@@ -2,7 +2,7 @@
 <script src="sigma.js/build/sigma.min.js"></script>
 <!-- END SIGMA IMPORTS -->
 <script src="sigma.js/plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
-<div sigma.js="container">
+<div id="container">
   <style>
     #graph-container {
       top: 0;
@@ -12,7 +12,7 @@
       position: absolute;
     }
   </style>
-  <div sigma.js="graph-container"></div>
+  <div id="graph-container"></div>
 </div>
 <script>
 /**

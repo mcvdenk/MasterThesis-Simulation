@@ -1,9 +1,4 @@
-var s = new sigma();
-
-sigma.parsers.json(
-  'data.json', 
-  {
-    container: 'container'
-  }
-);
+sigma.parsers.json('data.json', {
+  container: 'container'
+});
 
