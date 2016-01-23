@@ -1,1 +1,10 @@
-dinetwork {1 -> 2; 2 -> 3; 2 -- 4 }
+digraph flashmaps {
+    flashmaps [label="Flashmaps"]
+    flashcards [label="Flashcards"]
+    conceptmaps [label="Concept Maps"]
+    software [label="Software"]
+
+    flashmaps -> flashcards
+    flashmaps -> conceptmaps
+    flashmaps -> software
+}
