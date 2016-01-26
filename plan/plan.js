@@ -9,14 +9,19 @@ var network;
 var data;
 
 var options = {
+    nodes: {
+        shape: 'box'
+    },
     interaction: {
         dragNodes: false
     },
     layout: {
+        improvedLayout: false,
         hierarchical: {
             enabled: true,
-            levelSeparation: 150,
-            direction: 'LR'
+            levelSeparation: 500,
+            direction: 'LR',
+            sortMethod: 'directed'
         }
     }
 };
@@ -26,7 +31,7 @@ var reader = new XMLHttpRequest() || new ActiveXObject('MSXML2.XMLHTTP');
 loadFile();
 
 function loadFile() {
-    reader.open('get', 'data.txt', true); 
+    reader.open('get', 'plan.txt', true); 
     reader.onreadystatechange = setupContents;
     reader.send(null);
 }
