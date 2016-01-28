@@ -19,7 +19,7 @@ var options = {
         improvedLayout: false,
         hierarchical: {
             enabled: true,
-            levelSeparation: 500,
+            levelSeparation: 1000,
             direction: 'LR',
             sortMethod: 'directed'
         }
