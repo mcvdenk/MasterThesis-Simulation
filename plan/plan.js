@@ -10,13 +10,13 @@ var data;
 
 var options = {
     nodes: {
-        shape: 'box'
+        shape: 'box',
+        mass: 2
     },
     interaction: {
         dragNodes: false
     },
     layout: {
-        improvedLayout: false,
         hierarchical: {
             enabled: true,
             levelSeparation: 1000,
