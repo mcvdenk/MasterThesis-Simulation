@@ -93,6 +93,15 @@ digraph Flashmaps {
     n1.1.3.5 [label="Not only effective but also efficient for practicing new skills \cite{joseph}"];
     n1.1.4 [label="Retrieval hypothesis \cite{nakata}"];
     n1.1.4.1 [label="Increase effort over time"];
+    n1.1.5 [label="Retrieved context models"];
+    n1.1.5.1 [label="Retrieved context models have been applied to a wide range of recall phenomena involving recall of once-presented items \cite{siegel}"];
+    n1.1.5.2 [label="Each item is associated with a slowly drifting temporal context \cite{siegel}"];
+    n1.1.5.3 [label="Neighbouring items' context states are more strongly correlated \cite{siegel}"];
+    n1.1.5.4 [label="Contiguity effect"];
+    n1.1.5.4.1 [label="Tendency to successively recall neighbouring list items \cite{siegel}"];
+    n1.1.5.4.2 [label="Predicts recency effect \cite{siegel}"];
+    n1.1.5.5 [label="Context maintenance and retrieval model (CMR) \cite{siegel}"];
+    n1.1.5.5.1 [label="Hebbian learning rule"];
     n1.2 [label="Concept Maps"];
     n1.2.1 [label="Effectiveness"];
     n1.2.1.1 [label="Declarative knowledge and uses of memory have come under criticism due to an overemphasis placed upon the rote memorization of disconnected facts \cite{zirkle}"];
