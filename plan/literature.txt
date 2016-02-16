@@ -7,7 +7,7 @@ digraph Flashmaps {
     n1.1.1.3 [label="Spaced repetition"];
     n1.1.1.3.8 [label="Spacing effect \cite{verkoeijen}"];
     n1.1.1.3.8.1 [label="Massed items vs Spaced items"];
-    n1.1.1.3.8.2 [label="Repeated items are better remembered when both occurrences are separated by other events or items (i.e., spaced items) than when they are presented in immediate succession (i.e., massed items) \cite{verkoeijen, logan, siegel}."];
+    n1.1.1.3.8.2 [label="Repeated items are better remembered when both occurrences are separated by other events or items (i.e., spaced items) than when they are presented in immediate succession (i.e., massed items) \cite{verkoeijen, logan, siegel, xue, karpicke}."];
     n1.1.1.3.8.3 [label="Demonstrated with diverse populations \cite{verkoeijen, logan}"];
     n1.1.1.3.8.4 [label="Demonstrated under various learning conditions \cite{verkoeijen, logan}"];
     n1.1.1.3.8.5 [label="Demonstrated in both explicit and implicit memory tasks \cite{verkoeijen}"];
@@ -35,8 +35,16 @@ digraph Flashmaps {
     n1.1.1.3.8.9.1 [label="Contextual variablitily \cite{verkoeijen, siegel}"];
     n1.1.1.3.8.9.1.1 [label="Each presented item is associated with a slowly drifting context representatation, such taht items repeated at greater spacings benefit from more distinctive retrieval cues \cite{siegel}"];
     n1.1.1.3.8.9.2 [label="Study-phase retrieval theory \cite{siegel}"];
-    n1.1.1.3.8.9.2.1 [label="Repetition of an item retierves one's memories of the repeated item's earlier occurrences and their associated contexts, which in turn becomes associated with the repeated item, thus providing an additional set of retrieval cues for the repetition \cite{siegel}"];
+    n1.1.1.3.8.9.2.1 [label="Repetition of an item retrieves one's memories of the repeated item's earlier occurrences and their associated contexts, which in turn becomes associated with the repeated item, thus providing an additional set of retrieval cues for the repetition \cite{siegel}"];
     n1.1.1.3.8.9.1,2 [label="Not mutually exclusive, although often presented as alternative theories \cite{siegel}"];
+    n1.1.1.3.8.10 [label="Absolute vs Relative spacing"];
+    n1.1.1.3.8.10.1 [label="Absolute spacing: the amount of space inbetween repetitions"];
+    n1.1.1.3.8.10.2 [label="Relative spacing: the variance in space inbetween repetitions (contracting, equal or expanding)"];
+    n1.1.1.3.8.10.3 [label="Absolute spacing effect exists in pure lists \cite{karpicke}"];
+    n1.1.1.3.8.10.4 [label="Relative spacing effect does not exist \cite{karpicke}"];
+    n1.1.1.3.8.10.5 [label="Expanding creates increasing retrieval difficulty \cite{karpicke}"];
+    n1.1.1.3.8.11 [label="Detection of the repetition of an item is necessary for memory of later presentations to inherit th ememory consequences of earlier presentations \cite{wahlheim}"];
+    n1.1.1.3.8.11.1 [label="Manipulation of looking back instruction is successful in producing task control over the detection over the detection of repetitions \cite{wahlheim}"];
     n1.1.1.4 [label="Breaks"];
     n1.1.1.5 [label="Evaluation of response"];
     n1.1.1.6 [label="Memory tasks in lists \cite{verkoeijen}"];
@@ -76,6 +84,7 @@ digraph Flashmaps {
     n1.1.1.11.3 [label="Traditional"];
     n1.1.1.11.3.1 [label="Presentation of all unknown content \cite{joseph}"];
     n1.1.1.11.1,2,3.1 [label="All three methods were effective for helping students spell words \cite{joseph}"];
+    n1.1.1.11.1,2,3.2 [label="Interspersal more effective than traditional \cite{macquarrie}"];
     n1.1.1.11.1,2,3.2 [label="Efficiecy: Traditional > Interspersal > High-p \cite{joseph}"];
     n1.1.1.11.1.2.4 [label="Incremental rehearsal]"
     n1.1.1.11.1.2.4.1 [label="Present each unknown word in an incremental fashion with nine known words, until after the ninth iteration were the last word was removed, the unknown word became known and a new unknown word was introduced \cite{joseph}"];
@@ -84,6 +93,7 @@ digraph Flashmaps {
     n1.1.1.11.1.2.4.4 [label="Learning rates have been higher when more new material presented than review material \cite{joseph}];
     n1.1.1.11.1.2.4.5 [label="Some findings suggested that students as a group were better able to maintain and generalise reading words \cite{joseph}"]
     n1.1.1.11.1.2.4.6 [label="Better generalisation reading words from one context to another \cite{joseph}"];
+    n1.1.1.11.1.2.4.7 [label="Better retention than traditional or interspersal \cite{macquarrie}"];
     n1.1.2 [label="A relic of the old-fashioned behaviourist learning model \cite{hulstijn*}"];
     n1.1.3 [label="Effectiveness"];
     n1.1.3.1 [label="Memory should be understood and utilized by teachers and students with the intent to produce a store of knowledge that remains flexibly retrievable in a variety of contexts over a period of time \cite{zirkle}"];
@@ -91,6 +101,7 @@ digraph Flashmaps {
     n1.1.3.3 [label="Large numbers of words can be memorised in a very short time \cite{nakata}"];
     n1.1.3.4 [label="More resistant to decay"];
     n1.1.3.5 [label="Not only effective but also efficient for practicing new skills \cite{joseph}"];
+    n1.1.3.6 [label="The most effective device that can be applied to learning is to increase the amount of drill or practice \cite{macquarrie}"];
     n1.1.4 [label="Retrieval hypothesis \cite{nakata}"];
     n1.1.4.1 [label="Increase effort over time"];
     n1.1.5 [label="Retrieved context models"];
