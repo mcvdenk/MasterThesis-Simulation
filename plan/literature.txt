@@ -175,8 +175,19 @@ digraph Flashmaps {
     n1.2.4.2 [label="Cyclical structure \cite{canas}"];
     n1.2.4.3 [label="Cross-links \cite{canas}"];
     n1.2.4.4 [label="A well-organised cognitive structure is necessary for meaningful learning, and usually leads to graphically well-organised concept maps \cite{canas}"];
-    n1.2.5 [label="Concept Map's Content \cite{canas}"];
-    n1.2.5.1 [label="Focus question"];
+    n1.2.5 [label="Effective use of concept maps"];
+    n1.2.5.1 [label="It is advisable to present an interactive concept map that starts with a parsimonious and theme-oriented structure, and then gradually expand the details along with the instruction \cite{tzeng}"];
+    n1.2.5.1.1 [label="Might help to mitigate map shock \cite{tzeng}"];
+    n1.2.5.1.2 [label="Help readers freely to zoom in and out of the global and local structures of the represented text \cite{tzeng}"];
+    n1.2.5.1.3 [label='May synchronise better with the readers' four cognitive processes to achieve meaning learning \cite{tzeng}"];
+    n1.2.5.1.3.1 [label="Progressive differentiation"];
+    n1.2.5.1.3.1.1 [label="Elaboration and clarification of meanings of concepts or propositions occurring over time as new subsumption, integrative reconciliation and/or superordinate learning occurs \cite{novak}"];
+    n1.2.5.1.3.2 [label="Subsumption"];
+    n1.2.5.1.3.2.1 [label="Incorporation of new knowledge into a specifically relevant existing concept or proposition \cite{novak}"];
+    n1.2.5.1.3.3 [label="Superordinate learning"];
+    n1.2.5.1.3.3.1 [label="New concepts or propositions acquired that relate the meanings of two or more related, less inclusive ideas \cite{novak}"];
+    n1.2.5.1.3.4 [label="Integrative reconciliation"];
+    n1.2.5.1.3.4.1 [label="New learning that results in explicit delineation of similarities and differences between related ideas \cite{novak}"];
     n1.2.6 [label="Conditions \cite{canas}"];
     n1.2.6.1 [label="No conditions \cite{canas}"];
     n1.2.6.1.1 [label="Often leads to a descriptive concept map instead of an explanatory map \cite{canas}"];
@@ -240,6 +251,8 @@ digraph Flashmaps {
     n1.2.8.4.5 [label="Very limited extensibility \cite{eppler}"];
     n1.2.8.4.6 [label="High memorability \cite{eppler}"];
     n1.2.8.4.7 [label="High understandability by others \cite{eppler}"];
+    n1.2.9 [label="Using computer technology"];
+    n1.2.9.1 [label="So far, not many computer-based concept maping programs feature elaboration flexibility or interactivity that would allow the presentations of various scopes for a concept map. These would be important functions to consider in future design projects \cite{tzeng}"];
     n1.3 [label="Feedback"];
     n1.3.1 [label="Progress tracking"];
     n1.3.2 [label="Motivation"];
@@ -431,4 +444,5 @@ digraph Flashmaps {
     n1.7.2.1 [label="However, only multiple choice or fill in the blank questions]";
     n2 [label="Miscelanious"]
     n2.1 [label="The dynamic perspective on the human mind can pave the way for the design of new educational activities based on consideration of retrieval processes \cite{karpicke2}"];
+    n2.2 [label="Fuzzy Trace Theory \cite{tzeng}"];
 }
