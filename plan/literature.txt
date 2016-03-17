@@ -299,7 +299,7 @@ digraph Flashmaps {
     n1.4.2 [label="Applications of computer and communication technologies"];
     n1.4.2.1 [label="The popularity of computer and communication technologies has been changing the notation and the way of teaching and learning in the past decade \cite{hwang2}"];
     n1.5 [label="Frameworks"];
-    n1.5.1 [label="Cognitive load theory"];
+    n1.5.1 [label="Cognitive load theory \cite{cognitiveload}"];
     n1.5.1.1 [label="Assumptions about how the mind works in multimedia learning"];
     n1.5.1.1.1 [label=" Dual channel"];
     n1.5.1.1.2 [label="Limited capacity"];
@@ -323,7 +323,7 @@ digraph Flashmaps {
     n1.5.1.3.5 [label="Essential processing + representational holding"];
     n1.5.1.3.5.1 [label="Synchronising (Temporal contiguity effect)"];
     n1.5.1.3.5.2 [label="Individualising (Spatial ability effect)"];
-    n1.5.2 [label="Four components model"];
+    n1.5.2 [label="Four components model \cite{fourcomponentsmodel}"];
     n1.5.2.1 [label="Guidelines for designing goals"];
     n1.5.2.1.1 [label="On breaking down goals into subgoals"];
     n1.5.2.1.1.1 [label="It is useful to break down the desired end state into two or more intermediate states when the users must execute many actions"];
@@ -371,7 +371,7 @@ digraph Flashmaps {
     n1.5.2.4.3.1 [label="Instruct the user on how to avoid or minimise the risk"];
     n1.5.2.4.3.2 [label="Place the instruction to act safely before the risk description"];
     n1.5.2.4.3.3 [label="Persuade the user to act safely"];
-    n1.5.3 [label="Two factor theory for website design"];
+    n1.5.3 [label="Two factor theory for website design \cite{websitedesign}"];
     n1.5.3.1 [label="Hygiene factors"];
     n1.5.3.1.1 [label="Authorised/unauthorised use f the user's data for unanticipated purposes"];
     n1.5.3.1.2 [label="Authorised/unauthorised collection of user data"];
@@ -400,7 +400,7 @@ digraph Flashmaps {
     n1.5.3.2.12 [label="Presence/absence of external recognition of the website (e.g. the site won awards)"];
     n1.5.3.2.13 [label="Presence/absence of controversial materials"];
     n1.5.3.2.14 [label="Presence/absence of novel (new) information"];
-    n1.5.4 [label="ARCS-model"];
+    n1.5.4 [label="ARCS-model \cite{arcsmodel}"];
     n1.5.4.1 [label="Attention"];
     n1.5.4.1.1 [label="Perceptual arousal"];
     n1.5.4.1.2 [label="Inquiry arousal"];
@@ -437,7 +437,7 @@ digraph Flashmaps {
     n1.5.5.2.5 [label="Block size \cite{nakata}"];
     n1.5.5.2.6 [label="Adaptive sequencing \cite{nakata}"];
     n1.5.5.2.7 [label="Expanded rehearsal \cite{nakata}"];
-    n1.5.6 [label="Bloom's taxonomy"];
+    n1.5.6 [label="Bloom's taxonomy \cite{smithragan}"];
     n1.5.6.1 [label="Knowledge"];
     n1.5.6.2 [label="Comprehension"];
     n1.5.6.3 [label="Application"];
@@ -461,6 +461,20 @@ digraph Flashmaps {
     n1.5.8.5 [label="Make novel design features intuitive and give students time to adjust"];
     n1.5.8.5.1 [label="Tightly integrate the tool through in - class usage or homework problems to give students time to learn the interface"];
     n1.5.8.5.2 [label="Make the interface design as intuitive as possible to minimise the learning curve"];
+    n1.5.9 [label="Types of learning outcomes \cite{instructionaldesign}"];
+    n1.5.9.1 [label="Declarative knowledge"];
+    n1.5.9.2 [label="Intellectual skills"];
+    n1.5.9.2.1 [label="Discriminations"];
+    n1.5.9.2.2 [label="Concepts"];
+    n1.5.9.2.2.1 [label="Concrete concepts"];
+    n1.5.9.2.2.2 [label="Defined concepts"];
+    n1.5.9.2.3 [label="Principles or Relational rules"];
+    n1.5.9.2.4 [label="Procedures"];
+    n1.5.9.2.5 [label="Problem solving"];
+    n1.5.9.3 [label="Cognitive strategies"];
+    n1.5.9.4 [label="Attitudes"];
+    n1.5.9.5 [label="Psychomotor skills"];
+    n1.5.9.6 [label="Learning enterprises"];
     n1.6 [label="Choice of learning strategy by students"];
     n1.6.1 [label="Studies on learners' metacognition have suggested that learners tend to have misconceptions about what constitutes an effective learning technique \cite{nakata}"];
     n1.6.1.1 [label="Many learners believe that massed learning is more effective than spaced learning \cite{nakata}"];
