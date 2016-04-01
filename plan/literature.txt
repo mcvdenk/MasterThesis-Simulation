@@ -170,6 +170,7 @@ digraph Flashmaps {
     n1.1.6.2.5.3 [label="Estimated chance of the learner correctly recalling the current item, calculated from a memory model"];
     n1.1.6.2.5.4 [label="Estimated number of items that will be remembered in a minute, hour, day, week, month, and year"];
     n1.1.6.3 [label="Adaptive systems are better than progressive or responsive systems \cite{microlearning}"]; 
+
     n1.2 [label="Concept Maps"];
     n1.2.1 [label="Effectiveness"];
     n1.2.1.1 [label="Declarative knowledge and uses of memory have come under criticism due to an overemphasis placed upon the rote memorization of disconnected facts \cite{zirkle}"];
@@ -311,6 +312,7 @@ digraph Flashmaps {
     n1.2.10 [label="Map-shock"];
     n1.2.10.1 [label="Students encounter what is called map-schock when viewing the kind of larger concept maps that might more fully capture textbook knowledge structures \cite{moore}."];
     n1.2.10.2 [label="Map-shock is a type of cognitive overload that prevents students from effectively processing the concept map, thereby inhibiting their ability to learn from it \cite{moore}"];
+
     n1.3 [label="Feedback"];
     n1.3.1 [label="Progress tracking"];
     n1.3.2 [label="Motivation"];
@@ -322,6 +324,7 @@ digraph Flashmaps {
     n1.3.3.4 [label="Self level"];
     n1.3.4 [label="Instant feedback is beneficial for learning achievement and motivation \cite{hwang2}"];
     n1.3.5 [label="Awareness and reflection can help develop student's meta-cognition to enhance their learning and creativity abilities, so it is important to provide feedback mechanisms to engage students in reflective thinking \cite{hwang2}"];
+
     n1.4 [label="Software implementation"];
     n1.4.1 [label="Pro's and con's of computer and communication technologies"];
     n1.4.1.1 [label="Many studies have demonstrated the benefits of applying these technologies to learning \cite{hwang2}"];
@@ -345,6 +348,7 @@ digraph Flashmaps {
     n1.4.1.8.2.8 [label="Search engines"]; 
     n1.4.2 [label="Applications of computer and communication technologies"];
     n1.4.2.1 [label="The popularity of computer and communication technologies has been changing the notation and the way of teaching and learning in the past decade \cite{hwang2}"];
+
     n1.5 [label="Frameworks"];
     n1.5.1 [label="Cognitive load theory \cite{cognitiveload}"];
     n1.5.1.1 [label="Assumptions about how the mind works in multimedia learning"];
@@ -534,21 +538,25 @@ digraph Flashmaps {
     n1.5.9.4 [label="Attitudes"];
     n1.5.9.5 [label="Psychomotor skills"];
     n1.5.9.6 [label="Learning enterprises"];
+
     n1.6 [label="Choice of learning strategy by students"];
     n1.6.1 [label="Studies on learners' metacognition have suggested that learners tend to have misconceptions about what constitutes an effective learning technique \cite{nakata}"];
     n1.6.1.1 [label="Many learners believe that massed learning is more effective than spaced learning \cite{nakata}"];
     n1.6.1.2 [label="Learners are often unaware that retrieval practice leads to superior retention than mere presentation \cite{nakata}"];
     n1.6.2 [label="Learners may be unwilling to use research-based software due to lack of metacognitive knowledge, and explaining the theoretical justification for software might be useful \cite{nakata}"];
+
     n1.7 [label="Concept maps and retrieval practice"];
     n1.7.1 [label="It was shown that, compared with concept mapping, retrieval practice produces superior gains in both short- and long-term learning gains \cite{burdo}"];
     n1.7.2 [label="Retrieval practice group exam average higher than that of the control or concept mapping groups \cite{burdo}"];
     n1.7.2.1 [label="However, only multiple choice or fill in the blank questions]";
+
     n1.8 [label="Assessment"];
     n1.8.1 [label="Self assessment"];
     n1.8.2 [label="Peer assessment"];
     n1.8.3 [label="Instructor assessment"];
     n1.8.4 [label="Automatic assessment"];
     n1.8.4.1 [label="Multiple choice"];
+
     n2 [label="Miscelanious"]
     n2.1 [label="The dynamic perspective on the human mind can pave the way for the design of new educational activities based on consideration of retrieval processes \cite{karpicke2}"];
     n2.2 [label="Fuzzy Trace Theory \cite{tzeng}"];
