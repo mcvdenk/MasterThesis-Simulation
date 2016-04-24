@@ -1,4 +1,6 @@
 digraph concept_map {
+    # 13.1    
+
     #root [label="Literatuur in de 16de en 17de eeuw"]
         #religies [label="Religies"]
             katholicisme [label="Katholicisme"]
@@ -37,183 +39,255 @@ digraph concept_map {
     #plaatsen -> spanje
 
     protestantisme -> mluther [label="geleid door"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     protestantisme -> jcalvijn [label="geleid door"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     protestantisme -> boekdrukkunst [label="verspreid door"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     spanje -> nederlanden [label="bezetter van"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     spanje -> koningen [label="geregeerd door"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     koningen -> karelv [label="positie vervuld door"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     koningen -> fillipsii [label="positie vervuld door"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     karelv -> fillipsii [label="opgevolgd door"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     koningen -> centralisatie [label="wilden"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     centralisatie -> geloofsvervolging [label="leidde tot"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     centralisatie -> katholicisme [label="van"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     geloofsvervolging -> protestantisme [label="van"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     nederlanden -> verzet [label="kwam in"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     geloofsvervolging -> verzet [label="leidde tot"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     verzet -> wvoranje [label="onder leiding van"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
     verzet -> 80jarigeoorlog [label="leidde tot"]
-    // source = 13.1
-    // question = 
-    // answer = 
+    # source = 13.1
+    # question = 
+    # answer = 
 
-    // 13.2
+    # 13.2
     antwerpen
     amsterdam
     kooplieden
     calvinisten
+    vlucht
+    handelscentrum
+    groei
+    
+    protestantisme -> calvinisten [label="aangehangen door"]
+    handelscentrum -> antwerpen [label="was"]
+    handelscentrum -> amsterdam [label="werd"]
+    geloofsvervolging -> vlucht [label="leidde tot"]
+    vlucht -> kooplieden [label="van"]
+    vlucht -> calvinisten [label="van"]
+    vlucht -> antwerpen [label="vanaf"]
+    vlucht -> amsterdam [label="naar"]
+    vlucht -> groei [label="leidde tot"]
+    amsterdam -> groei [label="maakte door"]
+
     regenten
+    stedelijkecultuur
     kunst
-    schilderijen
     literatuur
-    stedelijkburgelijklit
     boers
-    burgers
     stedelijkegedragscode
     gewenstongewenst
-    
+
+    nederlanden -> regenten [label="bestuurd door"]
+    regenten -> stedelijkecultuur [label="wilden"]
+    regenten -> kunst [label="financierden"]
+    regenten -> literatuur [label="financierden"]
+    kunst -> stedelijkegedragscode [label="droeg bij aan"]
+    literatuur -> stedelijkegedragscode [label="droeg bij aan"]
+    stedelijkegedragscode -> gewenstongewenst [label="gaf aan"]
+    gewenstongewenst -> boers [label="voorbeeld ongewenst"]
+
     gabredero
-    dichter
-    toneelschrijver
-    boerengezelschap
     onmatiggedrag
     conflicten
+    alcoholisme
+    seksongeremd
     
-    jongeren
-    economische successen
-    pronken
-    geslachtsverkeer
+    gabredero -> boerengezelschap [label="schreef"]
+    boerengezelschap -> boers [label="beschrijft"]
+    boers -> conflicten [label="leidt tot"]
+    boers -> onmatiggedrag [label="werd gezien als"]
+    onmatiggedrag -> alcoholisme [label="bijvoorbeeld"]
+    onmatiggedrag -> seksongeremd [label="bijvoorbeeld"]
 
-    //13.3
-    rvrijn
-    jvermeer
-    fhals
-    jsteen
+    jongeren
+    moraal
+    geslachtsverkeer
+    lyriek
+    
+    groei -> jongeren [label="leidde tot"]
+    calvinisten -> moraal [label="hadden"]
+    moraal -> geslachtsverkeer [label="ten opzichte van"]
+    lyriek -> moraal [label="richtte zich op"]
+    jongeren -> moraal [label="moesten leven met"]
+
+    #13.3
     goudeneeuw
+    groei -> goudeneeuw [label="leidde tot"]
+
+    # 13.3.1
+    rederijkerkamer
+    opinierenderol
     oudekamer
         pchooft
         scoster
     witlavendel
         jvdvondel
-    huygens
 
-    // 13.3.1
-    rederijkers
-    opinierenderol
+    rederijkerkamer -> oudekamer [label="voorbeeld"]
+    rederijkerkamer -> dichters [label="bestond uit"]
+    oudekamer -> amsterdam [label="gevestigd in"]
+    oudekamer -> gabredero [label="schoolde"]
+    oudekamer -> pchooft [label="schoolde"]
+    oudekamer -> scoster [label="schoolde"]
+    rederijkerkamer -> witlavendel [label="voorbeeld"]
+    witlavendel -> amsterdam [label="gevestigd in"]
+    witlavendel -> jvdvondel [label="schoolde"]
+    rederijkerkamer -> opinierenderol [label="had"]
+    opinierenderol -> protestantisme [label="over"]
+    opinierenderol -> renaissance [label="over"]
+    opinierenderol -> humanisme [label="over"]
 
-    // 13.3.2
-    renaissance
-    italie
-    14de15deeeuw
-    republikeinsestadstaten
+    # 13.3.2
+    renaissance #(wedergeboorte)
+    1415eeuw
+    republikeinsestadstaten #italisch
         florence
         venetie
         genua
     klassiekeoudheid
-        kunst
-        ideeenwereld
-    brunelleschi
-    michelangelo
-    architectura
-    schilders
-        massaccio
-        botticelli
-        leonardodavinci
-        rafael
-    perspectief
-    literatuur
-        komedie
-        tragedie
-        epigram
+        klassiekekunst
+        klassiekeideeen
+    renliteratuur
+        toneel
+            komedie
+            tragedie
         emblematiek
         sonnet
-    translatio
-    imitatio
-    aemulatio
+    translatio #(vertaling)
+    imitatio #(nabootsing)
+    aemulatio #(overtreffing)
     mythologie
     taalschoonheden
 
-    // 13.3.3
+    renaissance -> republikeinsestadsstaten [label="vond plaats in"]
+    renaissance -> 1415eeuw [label="gedurende"]
+    republikeinsestadstaten -> florence [label="vooral"]
+    republikeinsestadstaten -> venetie [label="vooral"]
+    republikeinsestadstaten -> genua [label="vooral"]
+    renaissance -> klassiekeoudheid [label="herorientatie op"]
+    klassiekeoudheid -> klassiekekunst
+    klassiekeoudheid -> klassiekeideeen
+    klassiekeoudheid -> translatio
+    translatio -> imitatio
+    imitatio -> aemulatio
+    renaissance -> renliteratuur
+    renliteratuur -> toneel
+    toneel -> komedie
+    toneel -> tragedie
+    renliteratuur -> taalschoonheden
+    renliteratuur -> mythologie
+    renliteratuur -> emblematiek
+    renliteratuur -> sonnet
+
+    # 13.3.3
     humanisme
-    gpicodmirandola
-    waardigheidvdmens
+    menswaardigheid
     zelfontplooiing
     menswetenschappen
-        grammatica
-        retorica
-        ethiek
-        poezie
-        geschiedenis
-    onderscheidmensdier
-        taal
-        ethiek
-        voorbeelden
+        onderscheidmensdier
+            taal
+                grammatica
+                retorica
+            ethiek
+                poezie
+                geschiedenis
     verdraagzaamheid
-    erasmus
+    verzoening
     stoicisme
     tirannie
-    standvastig
     dvcoornhert
         zedelijkeverbetering
         zelfkennis
-        verdraagzaamheid
-        verzoening
     godsdienstvrijheid
     
-    natuurwetenschappen
-        wiskunde
-        heliocentrisme
-            copernicus
-            ggalilei
-            jkeppler
-
     reizen
-    
-    // 13.3.4
+    #boekdrukkunst
+
+    humanisme -> zelfontplooiing
+    humanisme -> menswaardigheid
+    humanisme -> verdraagzaamheid
+    humanisme -> menswetenschappen
+    menswetenschappen -> onderscheidmensdier
+    onderscheidmensdier -> taal
+    taal -> grammatica
+    taal -> retorica
+    onderscheidmensdier -> ethiek
+    ethiek -> poezie
+    ethiek -> geschiedenis
+    humanisme -> erasmus
+    humanisme -> verzoening
+    verzoening -> klassiekeoudheid
+    verzoening -> christendom
+    humanisme -> stoicisme
+    stoicisme -> tirannie
+    humanisme -> dvcoornhert
+    dvcoornhert -> nederlanden
+    dvcoornhert -> zedelijkeverbetering
+    dvcoornhert -> zelfkennis
+    dvcoornhert -> godsdienstvrijheid
+    calvinisten -> godsdienstvrijheid
+
+    renaissance -> boekdrukkunst
+    renaissance -> reizen
+    humanisme -> boekdrukkunst
+    humanisme -> reizen
+
+    # 13.3.4
+    nederlandseliteratuur
     mecenas
         adellijk
         kerkelijk
@@ -221,21 +295,40 @@ digraph concept_map {
         beleren
         moraliseren
         kritiek
-    jcats
     horatius
-        utiledulce
+        utile
+        dulce
+
+    nederlandseliteratuur -> mecenas
+    mecenas -> adellijk
+    mecenas -> kerkelijk
+    mecenas -> maatschappelijketaak [label="vervangen door"]
+    maatschappelijketaak -> beleren
+    maatschappelijketaak -> moraliseren
+    maatschappelijketaak -> kritiek
+    maatschappelijketaak -> horatius
+    horatius -> utile
+    horatius -> dulce
     
-    // 13.4
+    # 13.4
     strijdliteratuur
     actualiteit
-    overtuigen
     actie
+    geusenliederen
+    wilhelmus
     
     lyriek
     klucht
 
-    // 13.4.1 (emblematiek)
-    driedelig
+    nederlandseliteratuur -> strijdliteratuur
+    strijdliteratuur -> actualiteit
+    strijdliteratuur -> actie
+    actie -> verzet
+    strijdliteratuur -> geusenliederen
+    geusenliederen -> wilhelmus
+    nederlandseliteratuur -> renliteratuur
+
+    # 13.4.1 (emblematiek)
         motto
         pictura
         subscriptio
@@ -244,11 +337,21 @@ digraph concept_map {
     analogiedenken
         creationisme
         toeval
-    // jcats
-        silenusalcibaidis
-        siveproteus
+    jcats
+        silenusalcibiadis
+
+    emblematiek -> motto
+    emblematiek -> pictura
+    emblematiek -> subscriptio
+    emblematiek -> moraal
+    emblematiek -> dieperebetekenis
+    emblematiek -> analogiedenken
+    analogiedenken -> creationisme
+    creationisme -> toeval
+    emblematiek -> jcats
+    jcats -> silenusalcibiadis
     
-    // 13.4.2 (lyriek)
+    # 13.4.2 (lyriek)
     liefde
     platonischeliefde
     zinnelijkeliefde
@@ -256,9 +359,6 @@ digraph concept_map {
     nieuweliedboeken
         antwerpsliedboek
         dennieuwenlusthof
-    //jongeren
-        voorechtelijkgeslachtsverkeer
-        erotischespanningen
     petrarkisme
         petrarca
         paradoxen
@@ -273,31 +373,73 @@ digraph concept_map {
         literaireelite
     zelfbeheersing
     
-    // 13.4.3 (sonnet)
+    renliteratuur -> lyriek
+    lyriek -> liefde
+    liefde -> platonischeliefde
+    liefde -> zinnelijkeliefde
+    zinnelijkeliefde -> platonischeliefde [label="toegestaanals"]
+    lyriek -> antwerpsliedboek
+    lyriek -> dennieuwenlusthof
+    lyriek -> petrarkisme
+    petrarkisme -> petrarca
+    petrarkisme -> paradoxen
+    petrarkisme -> aanspreking
+    petrarkisme -> personificatie
+    petrarkisme -> paronomasia
+    petrarkisme -> liefdesklacht
+    petrarkisme -> verheerlijkingliefde
+    liefdesklacht -> ideaalbeeld
+    liefdesklacht -> verheerlijkingliefde [label="maar toch"]
+    petrakrisme -> beeldenconventies
+    beeldenconventies -> literairspel
+    beeldenconventies -> literaireelite
+    petrarkisme -> zelfbeheersing
+    zelfbeheersing -> geslachtsverkeer
+
+    # 13.4.3 (sonnet)
     veertienversregels
         octaaf
         sextet
         volta
-    //pchooft
+    #pchooft
 
-    // 13.4.4 (toneel)
-    stedelijkefuncte
+    sonnet -> veertienversregels
+    veertienversregels -> octaaf
+    veertienversregels -> sextet
+    octaaf -> volta
+    sextet -> volta
+    sonnet -> petrarkisme
+    sonnet -> pchooft
+
+    # 13.4.4 (toneel)
+    stedelijkefunctie
     publiek
     liefdadigeinstellingen
     stadsbestuur
     financieelbelang
     eerstenederduytscheacademie
-    jvcampen
     amsterdamseschouwburg
     spiegel
-    ethisch-didactisch
+    ethischdidactisch
 
-    // 13.4.4.1 (tragedie)
+    toneel -> stedelijkefunctie
+    toneel -> publiek
+    toneel -> amsterdam
+    toneel -> liefdadigeinstellingen [label="winst naar"]
+    regenten -> liefdadigeinstellingen [label="baat bij"]
+    toneel -> opinierenderol
+    toneel -> eerstenederduytscheacademie
+    toneel -> amsterdamseschouwburg
+    toneel -> spiegel
+    spiegel -> ethischdidactisch
+    ethischdidactisch -> gewenstongewenst
+
+    # 13.4.4.1 (tragedie)
     ondergang
     hooggeplaatstpersonage
     bijbel
-    // geschiedenis
-    // klassieke oudheid
+    # geschiedenis
+    # klassieke oudheid
     retorischdidactischtragedie
         seneca
         vijfbedrijven
@@ -309,45 +451,40 @@ digraph concept_map {
             plaats
             handeling
             aristoteles
-        gijsbreghtvanaemstel
-            //jvvondel
-            //amsterdam
-            //imitatio
-                zeepaert
-                paardvtroje
-                turfschip
-                aeneis
-            //aemulatio
-                christelijkperspectief
-                kindermoordbethlehem
-            //ontbrekenhandeling
+
+    tragedie -> ondergang
+    ondergang -> hooggeplaatstpersonage
+    tragedie -> klassiekeoudheid
+    tragedie -> geschiedenis
+    tragedie -> bijbel
+    tragedie -> retorischdidactischtragedie
+    retorischdidactischtragedie -> seneca
+    retorischdidactischtragedie -> vijfbedrijven
+    vijfbedrijven -> lossestructuur
+    vijfbedrijven -> afgerondescenes
+
+    tragedie -> aristotelestragedie
+    aristotelestragedie -> handelingsstructuur
+    handelingsstructuur -> tijd
+    handelingsstructuur -> plaats
+    handelingsstructuur -> handeling
+    handelingsstructuur -> aristoteles
     
-    // 13.4.4.2 (komedie en klucht)
-    komedie
+    # 13.4.4.2 (komedie en klucht)
+    #komedie
         laaggeplaatstpersonage
         spreektaal
         happyend
-        //pchooft
-        //bredero
-        warenar
-            //pchooft
-            //plautus
-            claertje
-            ritsert
-            rijckert
-        spaanschenbrabander
-            //bredero
-            jeroilmo
-            robbeknol
-            //amsterdam
-    //klucht
-        kluchtvdkoe
-            //bredero
-            dief
-            koe
-            boer
-            joosje
-        //vergelijking komedie
+    #klucht
+        #vergelijking komedie
         grappigesituaties
         primairelevensdriften
+
+    komedie -> laaggeplaatstpersonage
+    komedie -> spreektaal
+    komedie -> happyend
+
+    klucht -> komedie
+    klucht -> grappigesituaties
+    klucht -> primairelevensdriften
 }
