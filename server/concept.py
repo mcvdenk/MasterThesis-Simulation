@@ -1,6 +1,6 @@
 class Concept:
 
-    subconcepts = {}
+    superconcepts = {}
 
     def __init__ ( self, id_, label ):
         self.id_ = id_

@@ -1,0 +1,353 @@
+digraph concept_map {
+    #root [label="Literatuur in de 16de en 17de eeuw"]
+        #religies [label="Religies"]
+            katholicisme [label="Katholicisme"]
+            protestantisme [label="Protestantisme"]
+        #personen [label="Personen"]
+            mluther [label="Maarten Luther"]
+            jcalvijn [label="Johannes Calvijn"]
+            koningen [label="Koningen"]
+                karelv [label="Karel V"]
+                fillipsii [label="Fillips II"]
+            wvoranje [label="Willem van Oranje"]
+        #plaatsen [label="Plaatsen"]
+            nederlanden [label="Nederlanden"]
+            spanje [label="Spanje"]
+        #evenementen
+            boekdrukkunst [label="Boekdrukkunst"]
+            centralisatie [label="Centralisatie"]
+            geloofsvervolging [label="Geloofsvervolging"]
+            verzet [label="Verzet"]
+            80jarigeoorlog [label="Tachtigjarige Oorlog"]
+
+    #root -> religies
+    #root -> personen
+    #root -> plaatsen
+
+    #religies -> katholicisme
+    #religies -> reformatie
+    
+    #personen -> mluther
+    #personen -> jcalvijn
+    #personen -> karelv
+    #personen -> fillipsii
+    #personen -> wvoranje
+
+    #plaatsen -> nederlanden
+    #plaatsen -> spanje
+
+    protestantisme -> mluther [label="geleid door"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    protestantisme -> jcalvijn [label="geleid door"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    protestantisme -> boekdrukkunst [label="verspreid door"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    spanje -> nederlanden [label="bezetter van"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    spanje -> koningen [label="geregeerd door"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    koningen -> karelv [label="positie vervuld door"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    koningen -> fillipsii [label="positie vervuld door"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    karelv -> fillipsii [label="opgevolgd door"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    koningen -> centralisatie [label="wilden"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    centralisatie -> geloofsvervolging [label="leidde tot"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    centralisatie -> katholicisme [label="van"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    geloofsvervolging -> protestantisme [label="van"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    nederlanden -> verzet [label="kwam in"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    geloofsvervolging -> verzet [label="leidde tot"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    verzet -> wvoranje [label="onder leiding van"]
+    // source = 13.1
+    // question = 
+    // answer = 
+    verzet -> 80jarigeoorlog [label="leidde tot"]
+    // source = 13.1
+    // question = 
+    // answer = 
+
+    // 13.2
+    antwerpen
+    amsterdam
+    kooplieden
+    calvinisten
+    regenten
+    kunst
+    schilderijen
+    literatuur
+    stedelijkburgelijklit
+    boers
+    burgers
+    stedelijkegedragscode
+    gewenstongewenst
+    
+    gabredero
+    dichter
+    toneelschrijver
+    boerengezelschap
+    onmatiggedrag
+    conflicten
+    
+    jongeren
+    economische successen
+    pronken
+    geslachtsverkeer
+
+    //13.3
+    rvrijn
+    jvermeer
+    fhals
+    jsteen
+    goudeneeuw
+    oudekamer
+        pchooft
+        scoster
+    witlavendel
+        jvdvondel
+    huygens
+
+    // 13.3.1
+    rederijkers
+    opinierenderol
+
+    // 13.3.2
+    renaissance
+    italie
+    14de15deeeuw
+    republikeinsestadstaten
+        florence
+        venetie
+        genua
+    klassiekeoudheid
+        kunst
+        ideeenwereld
+    brunelleschi
+    michelangelo
+    architectura
+    schilders
+        massaccio
+        botticelli
+        leonardodavinci
+        rafael
+    perspectief
+    literatuur
+        komedie
+        tragedie
+        epigram
+        emblematiek
+        sonnet
+    translatio
+    imitatio
+    aemulatio
+    mythologie
+    taalschoonheden
+
+    // 13.3.3
+    humanisme
+    gpicodmirandola
+    waardigheidvdmens
+    zelfontplooiing
+    menswetenschappen
+        grammatica
+        retorica
+        ethiek
+        poezie
+        geschiedenis
+    onderscheidmensdier
+        taal
+        ethiek
+        voorbeelden
+    verdraagzaamheid
+    erasmus
+    stoicisme
+    tirannie
+    standvastig
+    dvcoornhert
+        zedelijkeverbetering
+        zelfkennis
+        verdraagzaamheid
+        verzoening
+    godsdienstvrijheid
+    
+    natuurwetenschappen
+        wiskunde
+        heliocentrisme
+            copernicus
+            ggalilei
+            jkeppler
+
+    reizen
+    
+    // 13.3.4
+    mecenas
+        adellijk
+        kerkelijk
+    maatschappelijketaak
+        beleren
+        moraliseren
+        kritiek
+    jcats
+    horatius
+        utiledulce
+    
+    // 13.4
+    strijdliteratuur
+    actualiteit
+    overtuigen
+    actie
+    
+    lyriek
+    klucht
+
+    // 13.4.1 (emblematiek)
+    driedelig
+        motto
+        pictura
+        subscriptio
+    moraal
+    dieperebetekenis
+    analogiedenken
+        creationisme
+        toeval
+    // jcats
+        silenusalcibaidis
+        siveproteus
+    
+    // 13.4.2 (lyriek)
+    liefde
+    platonischeliefde
+    zinnelijkeliefde
+    ideaalbeeld
+    nieuweliedboeken
+        antwerpsliedboek
+        dennieuwenlusthof
+    //jongeren
+        voorechtelijkgeslachtsverkeer
+        erotischespanningen
+    petrarkisme
+        petrarca
+        paradoxen
+        antithese
+        aanspreking
+        personificatie
+        paronomasia
+    liefdesklacht
+    verheerlijkingliefde
+    beeldenconventies
+        literairspel
+        literaireelite
+    zelfbeheersing
+    
+    // 13.4.3 (sonnet)
+    veertienversregels
+        octaaf
+        sextet
+        volta
+    //pchooft
+
+    // 13.4.4 (toneel)
+    stedelijkefuncte
+    publiek
+    liefdadigeinstellingen
+    stadsbestuur
+    financieelbelang
+    eerstenederduytscheacademie
+    jvcampen
+    amsterdamseschouwburg
+    spiegel
+    ethisch-didactisch
+
+    // 13.4.4.1 (tragedie)
+    ondergang
+    hooggeplaatstpersonage
+    bijbel
+    // geschiedenis
+    // klassieke oudheid
+    retorischdidactischtragedie
+        seneca
+        vijfbedrijven
+        lossestructuur
+        afgerondescenes
+    aristotelestragedie
+        handelingsstructuur
+            tijd
+            plaats
+            handeling
+            aristoteles
+        gijsbreghtvanaemstel
+            //jvvondel
+            //amsterdam
+            //imitatio
+                zeepaert
+                paardvtroje
+                turfschip
+                aeneis
+            //aemulatio
+                christelijkperspectief
+                kindermoordbethlehem
+            //ontbrekenhandeling
+    
+    // 13.4.4.2 (komedie en klucht)
+    komedie
+        laaggeplaatstpersonage
+        spreektaal
+        happyend
+        //pchooft
+        //bredero
+        warenar
+            //pchooft
+            //plautus
+            claertje
+            ritsert
+            rijckert
+        spaanschenbrabander
+            //bredero
+            jeroilmo
+            robbeknol
+            //amsterdam
+    //klucht
+        kluchtvdkoe
+            //bredero
+            dief
+            koe
+            boer
+            joosje
+        //vergelijking komedie
+        grappigesituaties
+        primairelevensdriften
+}

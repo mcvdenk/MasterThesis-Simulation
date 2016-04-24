@@ -1,0 +1,55 @@
+digraph example {
+    #root [label="Literatuur in de 16de en 17de eeuw"]
+        #religies [label="Religies"]
+            katholicisme [label="Katholicisme"]
+            protestantisme [label="Protestantisme"]
+        #personen [label="Personen"]
+            mluther [label="Maarten Luther"]
+            jcalvijn [label="Johannes Calvijn"]
+            koningen [label="Koningen"]
+                karelv [label="Karel V"]
+                fillipsii [label="Fillips II"]
+            wvoranje [label="Willem van Oranje"]
+        #plaatsen [label="Plaatsen"]
+            nederlanden [label="Nederlanden"]
+            spanje [label="Spanje"]
+        #evenementen
+            boekdrukkunst [label="Boekdrukkunst"]
+            centralisatie [label="Centralisatie"]
+            geloofsvervolging [label="Geloofsvervolging"]
+            verzet [label="Verzet"]
+            80jarigeoorlog [label="Tachtigjarige Oorlog"]
+
+    #root -> religies
+    #root -> personen
+    #root -> plaatsen
+
+    #religies -> katholicisme
+    #religies -> reformatie
+    
+    #personen -> mluther
+    #personen -> jcalvijn
+    #personen -> karelv
+    #personen -> fillipsii
+    #personen -> wvoranje
+
+    #plaatsen -> nederlanden
+    #plaatsen -> spanje
+
+    protestantisme -> mluther [label="geleid door"]
+    protestantisme -> jcalvijn [label="geleid door"]
+    protestantisme -> boekdrukkunst [label="verspreid door"]
+    spanje -> nederlanden [label="bezetter van"]
+    spanje -> koningen [label="geregeerd door"]
+    koningen -> karelv [label="positie vervuld door"]
+    koningen -> fillipsii [label="positie vervuld door"]
+    karelv -> fillipsii [label="opgevolgd door"]
+    koningen -> centralisatie [label="wilden"]
+    centralisatie -> geloofsvervolging [label="leidde tot"]
+    centralisatie -> katholicisme [label="van"]
+    geloofsvervolging -> protestantisme [label="van"]
+    nederlanden -> verzet [label="kwam in"]
+    geloofsvervolging -> verzet [label="leidde tot"]
+    verzet -> wvoranje [label="onder leiding van"]
+    verzet -> 80jarigeoorlog [label="leidde tot"]
+}

@@ -63,7 +63,7 @@ digraph Flashmaps {
     n1.1.1.7.2 [label="Computer-based flashcards have been used very widely \cite{nakata}"];
     n1.1.1.7.3 [label="Flashcard drill and practice is an effective method for teaching sight word recognition \cite{joseph}"];
     n1.1.1.7.4 [label="By psychology students"];
-    n1.1.1.7.4.1 [label="70% of the 415 general psychology study students sutudied used flashcards for at least one exam \cite{burgess}"];
+    n1.1.1.7.4.1 [label="70% of the 415 general psychology study students studied used flashcards for at least one exam \cite{burgess}"];
     n1.1.1.7.4.1.1 [label="Of which the majority using written flashcards \cite{burgess, golding}"];
     n1.1.1.7.4.1.2 [label="Of which a small minority using computer flashcards \cite{burgess, golding}"];
     n1.1.1.7.5 [label="More recently textbooks have started making flashcards available on their websites \cite{burgess, golding}"];
@@ -110,10 +110,11 @@ digraph Flashmaps {
     n1.1.1.11.3.1 [label="Presentation of all unknown content \cite{joseph}"];
     n1.1.1.11.1,2,3.1 [label="All three methods were effective for helping students spell words \cite{joseph}"];
     n1.1.1.11.1,2,3.2 [label="Interspersal more effective than traditional \cite{macquarrie}"];
-    n1.1.1.11.1,2,3.2 [label="Efficiecy: Traditional > Interspersal > High-p \cite{joseph}"];
+    n1.1.1.11.1,2,3.2 [label="Efficiency: Traditional > Interspersal > High-p \cite{joseph}"];
     n1.1.1.11.1.2.4 [label="Incremental rehearsal]"
     n1.1.1.11.1.2.4.1 [label="Present each unknown word in an incremental fashion with nine known words, until after the ninth iteration were the last word was removed, the unknown word became known and a new unknown word was introduced \cite{joseph}"];
     n1.1.1.11.1.2.4.2 [label="Particularly effective for helping students retain words \cite{joseph}"];
+    n1.1.7.2 [label="Target items are presented outside meaning-focused tasks, and learners are asked to associate the L2 word form withits meaning, usually in the form of a first language translation, L2 synonym, or L2 definition \cite{nakata}"];
     n1.1.1.11.1.2.4.3 [label="Less efficient than traditional \cite{joseph}"];
     n1.1.1.11.1.2.4.4 [label="Learning rates have been higher when more new material presented than review material \cite{joseph}];
     n1.1.1.11.1.2.4.5 [label="Some findings suggested that students as a group were better able to maintain and generalise reading words \cite{joseph}"]
@@ -170,12 +171,14 @@ digraph Flashmaps {
     n1.1.6.2.5.3 [label="Estimated chance of the learner correctly recalling the current item, calculated from a memory model"];
     n1.1.6.2.5.4 [label="Estimated number of items that will be remembered in a minute, hour, day, week, month, and year"];
     n1.1.6.3 [label="Adaptive systems are better than progressive or responsive systems \cite{microlearning}"]; 
-
+    n1.1.7 [label="Definition"];
+    n1.1.7.1 [label="Flashcard programs are defined as software that encourages learners to study L2 vocabulary in a paired-associate format \cite{nakata}"];
+    n1.1.7.2 [label="Target items are presented outside meaning-focused tasks, and learners are asked to associate the L2 word form withits meaning, usually in the form of a first language translation, L2 synonym, or L2 definition \cite{nakata}"];
     n1.2 [label="Concept Maps"];
     n1.2.1 [label="Effectiveness"];
     n1.2.1.1 [label="Declarative knowledge and uses of memory have come under criticism due to an overemphasis placed upon the rote memorization of disconnected facts \cite{zirkle}"];
     n1.2.1.2 [label="Whatever it is that students are to place into memory they should, more importantly, understand \cite{zirkle}"];
-    n1.2.1.3 [label="Via qualitative and quantitvative studies, researchers have shown that concept maps can promote meaningful learning, which leads to positive effects on students \cite{hwang2,subramaniam,canas}"];
+    n1.2.1.3 [label="Via qualitative and quantitative studies, researchers have shown that concept maps can promote meaningful learning, which leads to positive effects on students \cite{hwang2,subramaniam,canas}"];
     n1.2.1.4 [label="Generative or Supplantive"];
     n1.2.1.4.1 [label="Concept maps can be a visualised cognitive tool that helps students organise their knowledge and learning experiences, so that their self-awareness can be improved through reflective thinking \cite{hwang2}"];
     n1.2.1.4.2 [label="Extra load is created for the teachers who have to evaluate the maps developed by individual students \cite{hwang2}"];
@@ -183,7 +186,7 @@ digraph Flashmaps {
     n1.2.1.5 [label="Concept maps are hierarchical representations of knowledge. Construction of them involves linking concepts, which are typically nouns or verbs with or without modifying adjectives or adverbs, through the use of linking phrases has been shown to produce learning gains in the physiology classroom \cite{burdo}"];
     n1.2.1.6 [label="The widespread use of concept maps is based on the notion that a concept map is a reflection of the builder's cognitive structure and thus portrays his or her understanding of the domain depicted in the map \cite{canas}"];
     n1.2.1.7 [label="It is beyond question that activities that promote effective encoding, known as elaborative study tasks, are important for learning \cite{karpicke2}"];
-    n1.(2.1),(1.3).8 [label="Retrieval practice produced better performance than elaborative concept mapping for meaningful learning \cite{karpicke2}"];
+    n1.(2.1),(1.3).1 [label="Retrieval practice produced better performance than elaborative concept mapping for meaningful learning \cite{karpicke2}"];
     n1.2.1.8 [label="When the students are taught using both the concept map teaching strategy and traditional teaching strategy, they achieve better scores then only one of both strategies \cite{singh}"];
     n1.2.1.9 [label="There is some evidence that low-ability students, perhaps significally those with low verbal ability, obtain greater benefit from instructional diagrams than do high-ability learners \cite{nesbit2}"];
     n1.2.1.9.1 [label="When examined separately, only the effect for low verbal ability was statistically detectable \cite{nesbit2}"];
@@ -206,21 +209,21 @@ digraph Flashmaps {
     n1.2.2.4.1.3 [label="Examples \cite{ruiz1}"];
     n1.2.2.4.2 [label="Compare the student's map with a criterion map \cite{ruiz1}"];
     n1.2.2.4.3 [label="Combination with both strategies \cite{ruiz1}"];
-    n1.2.2.3 [label="Knowledge Mapping Scoring Methods \cite{chung}"];
-    n1.2.2.3.1 [label="Referent-free \cite{chung}"];
-    n1.2.2.3.1.1 [label="Evaluate the student's map against a rubric or with other criteria \cite{chung}"];
-    n1.2.2.3.1.2 [label="Configural \cite{chung}"];
-    n1.2.2.3.1.2.1 [label="Explicitly scores a map or elements of a map on its structural aspect \cite{chung}"];
-    n1.2.2.3.1.3 [label="Semantic \cite{chung}"];
-    n1.2.2.3.1.3.1 [label="Explicitly scores a map or elements of a map on its semantic aspect \cite{chung}"];
-    n1.2.2.3.2 [label="Referent-based \cite{chung}"];
-    n1.2.2.3.2.1 [label="Compare a student's map against a referent map \cite{chung}"];
-    n1.2.2.3.2.2 [label="Configural \cite{chung}"];
-    n1.2.2.3.2.2.1 [label="Compares the network structure of a student's map and the referent map \cite{chung}"];
-    n1.2.2.3.2.2.2 [label="Does not take into account the meaning of the relationships \cite{chung}"];
-    n1.2.2.3.2.3 [label="Semantic \cite{chung}"];
-    n1.2.2.3.2.3.1 [label="Compares the semantic structure of a student's map and the referent map \cite{chung}"];
-    n1.2.2.3.2.3.2 [label="Ignores the configural aspects of the network \cite{chung}"];
+    n1.2.2.5 [label="Knowledge Mapping Scoring Methods \cite{chung}"];
+    n1.2.2.5.1 [label="Referent-free \cite{chung}"];
+    n1.2.2.5.1.1 [label="Evaluate the student's map against a rubric or with other criteria \cite{chung}"];
+    n1.2.2.5.1.2 [label="Configural \cite{chung}"];
+    n1.2.2.5.1.2.1 [label="Explicitly scores a map or elements of a map on its structural aspect \cite{chung}"];
+    n1.2.2.5.1.3 [label="Semantic \cite{chung}"];
+    n1.2.2.5.1.3.1 [label="Explicitly scores a map or elements of a map on its semantic aspect \cite{chung}"];
+    n1.2.2.5.2 [label="Referent-based \cite{chung}"];
+    n1.2.2.5.2.1 [label="Compare a student's map against a referent map \cite{chung}"];
+    n1.2.2.5.2.2 [label="Configural \cite{chung}"];
+    n1.2.2.5.2.2.1 [label="Compares the network structure of a student's map and the referent map \cite{chung}"];
+    n1.2.2.5.2.2.2 [label="Does not take into account the meaning of the relationships \cite{chung}"];
+    n1.2.2.5.2.3 [label="Semantic \cite{chung}"];
+    n1.2.2.5.2.3.1 [label="Compares the semantic structure of a student's map and the referent map \cite{chung}"];
+    n1.2.2.5.2.3.2 [label="Ignores the configural aspects of the network \cite{chung}"];
     n1.2.3 [label="Novakian concept map"];
     n1.2.3.1 [label="Hierarchical"];
     n1.2.3.2 [label="Labeled links"];
@@ -263,7 +266,7 @@ digraph Flashmaps {
     n1.2.6.5.1 [label="Effective way of determining the student's prior knowledge at the beginning of a study unit \cite{canas}"];
     n1.2.6.6 [label="Expert skeleton concept maps \cite{canas}]";
     n1.2.6.6.1 [label="Restricts both freedom of content and structure \cite{canas}"];
-    n1.2.6.6.2 [label="Overcomes th edifficulty students have of 'getting started' in front of a blank canvas \cite{canas}"];
+    n1.2.6.6.2 [label="Overcomes the difficulty students have of 'getting started' in front of a blank canvas \cite{canas}"];
     n1.2.6.7 [label="Concept mapping games \cite{canas}]";
     n1.2.6.7.1 [label="Label the links between two given concepts \cite{canas}"];
     n1.2.6.8 [label="Fill-in-the-Cmap \cite{canas}"];
@@ -335,7 +338,7 @@ digraph Flashmaps {
     n1.4.1.6 [label="Effectiveness of using computer technology to provide feedback to students during the learning process \cite{hwang2}"];
     n1.4.1.7 [label="It is important to develop knowledge construction tools that can provide instant feedback to students during the mobile learning process"];
     n1.4.1.8 [label="Mindtools"];
-    n1.4.1.8.1 [label="A computer-based knowledge construction tool or system which serves as "a way of using a computre application program to engage learners in concstructive, higher-order, critical thinking about the subject they are studying \cite{hwang2}"];
+    n1.4.1.8.1 [label="A computer-based knowledge construction tool or system which serves as "a way of using a computer application program to engage learners in concstructive, higher-order, critical thinking about the subject they are studying \cite{hwang2}"];
     n1.4.1.8.2 [label="Several computer systems \cite{hwang2}"];
     n1.4.1.8.2.1 [label="Concept maps"];
     n1.4.1.8.2.1.1 [label="Recognised as being an effective tool for assisting students in organising knowledge and learning experiences]";
@@ -556,6 +559,15 @@ digraph Flashmaps {
     n1.8.3 [label="Instructor assessment"];
     n1.8.4 [label="Automatic assessment"];
     n1.8.4.1 [label="Multiple choice"];
+
+    n1.9 [label="Rote memorisation"];
+    n1.9.1 [label="Retrieval practice"];
+    n1.9.1.1 [label="Retrieving knowledge improves one's ability to retrieve it again in the future \cite{karpicke4}"];
+    n1.9.2 [label="Values of retrievable memory"];
+    n1.9.2.1 [label="To perform complex cognitive tasks, people must maintain access to large amounts of information \cite{ltwm}"];
+    n1.9.2.2 [label="Meaningful learning is often defined in contrast to rote learning \cite{karpicke4}"];
+    n1.9.2.3 [label="Active retrieval enhances learning of meaningful educational materials [...] these effects are long-lasting, not short-lived \cite{karpicke4}"];
+    
 
     n2 [label="Miscelanious"]
     n2.1 [label="The dynamic perspective on the human mind can pave the way for the design of new educational activities based on consideration of retrieval processes \cite{karpicke2}"];
