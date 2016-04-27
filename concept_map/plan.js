@@ -21,7 +21,9 @@ var options = {
             enabled: false,
             levelSeparation: 400,
             direction: 'LR',
-            sortMethod: 'directed'
+            sortMethod: 'directed',
+            blockShifting: false,
+            edgeMinimization: false
         }
     },
     physics: {

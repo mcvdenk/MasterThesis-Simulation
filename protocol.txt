@@ -17,8 +17,8 @@ keyword: LEARNED_ITEMS-RESPONSE
         edges:
             id
             label
-            source
-            target
+            from
+            to
 keyword: LEARN-REQUEST
     data:
 keyword: LEARN-RESPONSE
@@ -29,8 +29,8 @@ keyword: LEARN-RESPONSE
         edges:
             id
             label
-            source
-            target
+            from
+            to
             learning
 keyword: VALIDATE
     data:
@@ -49,8 +49,8 @@ keyword: UNDO-RESPONSE
         edges:
             id
             label
-            source
-            target
+            from
+            to
             learning
 keyword: LOGOUT
     data:

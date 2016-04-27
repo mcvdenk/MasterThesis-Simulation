@@ -39,452 +39,550 @@ digraph concept_map {
     #plaatsen -> spanje
 
     protestantisme -> mluther [label="geleid door"]
-    # source = 13.1
-    # question = 
-    # answer = 
     protestantisme -> jcalvijn [label="geleid door"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Door welke personen werd het protestantisme geleid?
     protestantisme -> boekdrukkunst [label="verspreid door"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Hoe werd het protestantisme verspreid?
     spanje -> nederlanden [label="bezetter van"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Welk land werd door Spanje bezet?
     spanje -> koningen [label="geregeerd door"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Waardoor werd Spanje geregeerd?
     koningen -> karelv [label="positie vervuld door"]
-    # source = 13.1
-    # question = 
-    # answer = 
     koningen -> fillipsii [label="positie vervuld door"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Wie waren de koningen van Spanje?
     karelv -> fillipsii [label="opgevolgd door"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Wie volgde Karel V op?
     koningen -> centralisatie [label="wilden"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Wat wilden de koningen van Spanje?
+    # answer = Centralisatie van katholicisme
     centralisatie -> geloofsvervolging [label="leidde tot"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Waartoe leidde de centralisatie van het katholicisme?
     centralisatie -> katholicisme [label="van"]
-    # source = 13.1
-    # question = 
-    # answer = 
     geloofsvervolging -> protestantisme [label="van"]
-    # source = 13.1
-    # question = 
-    # answer = 
-    nederlanden -> verzet [label="kwam in"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Welke religieuze stroming werd vervolgd door de koningen van Spanje?
+    verzet -> nederlanden [label="door"]
+    # question = Wie kwamen er in verzet?
     geloofsvervolging -> verzet [label="leidde tot"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Waartoe leidde de geloofsvervolging?
     verzet -> wvoranje [label="onder leiding van"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Wie leidde het verzet?
     verzet -> 80jarigeoorlog [label="leidde tot"]
-    # source = 13.1
-    # question = 
-    # answer = 
+    # question = Waartoe leidde het verzet?
 
     # 13.2
-    antwerpen
-    amsterdam
-    kooplieden
-    calvinisten
-    vlucht
-    handelscentrum
-    groei
+    antwerpen [label="Antwerpen"]
+    amsterdam [label="Amsterdam"]
+    kooplieden [label="Antwerpse kooplieden"]
+    calvinisten [label="Calvinisten"]
+    vlucht [label="Vlucht"]
+    handelscentrum [label="Europees handelscentrum"]
+    groei [label="Explosieve groei handel"]
     
     protestantisme -> calvinisten [label="aangehangen door"]
-    handelscentrum -> antwerpen [label="was"]
-    handelscentrum -> amsterdam [label="werd"]
+    # question = Door wie werd het protestantisme aangehangen?
+    antwerpen -> handelscentrum [label="was"]
+    # question = Wat was Antwerpen voor de geloofsvervolging?
+    amsterdam -> handelscentrum [label="werd"]
+    # question = Wat werd Amsterdam na de geloofsvervolging?
     geloofsvervolging -> vlucht [label="leidde tot"]
+    # question = Waartoe leidde de geloofsvervolging? (zie verzet)
     vlucht -> kooplieden [label="van"]
     vlucht -> calvinisten [label="van"]
+    # question = Wie gingen er op de vlucht?
     vlucht -> antwerpen [label="vanaf"]
+    # question = Vanaf waar vluchtten de kooplieden en calvinisten?
     vlucht -> amsterdam [label="naar"]
+    # question = Waar vluchtten de kooplieden en calvinisten naartoe?
     vlucht -> groei [label="leidde tot"]
-    amsterdam -> groei [label="maakte door"]
+    # question = Waartoe leidde het vluchten van kooplieden?
+    groei -> amsterdam [label="van"]
+    # answer = Een explosieve groei van de handel in Amsterdam
 
-    regenten
-    stedelijkecultuur
-    kunst
-    literatuur
-    boers
-    stedelijkegedragscode
-    gewenstongewenst
+    regenten [label="Regenten"]
+    stedelijkecultuur [label="Stedelijke cultuur"]
+    kunst [label="Kunst"]
+    literatuur [label="Literatuur"]
+    boers [label="Boers, onbeschaafd gedrag"]
+    stedelijkegedragscode [label="Stedelijke gedragscode"]
+    gewenstongewenst [label="Gewenst en ongewenst gedrag"]
 
     nederlanden -> regenten [label="bestuurd door"]
+    # question = Door wie werden de Nederlanden bestuurd?
     regenten -> stedelijkecultuur [label="wilden"]
-    regenten -> kunst [label="financierden"]
-    regenten -> literatuur [label="financierden"]
+    # question = Wat wilden de regenten in de stad?
+    kunst -> regenten [label="gefinancierd door"]
+    # question = Door wie werd de kunst en literatuur in de Nederlanden gefinancierd?
+    literatuur -> regenten [label="gefinancierd door"]
     kunst -> stedelijkegedragscode [label="droeg bij aan"]
     literatuur -> stedelijkegedragscode [label="droeg bij aan"]
+    # question = Waar droegen de kunst en literatuur aan bij?
+    stedelijkegedragscode -> stedelijkecultuur [label="vormde"]
+    # question = Wat vormde de stedelijke gedragscode?
     stedelijkegedragscode -> gewenstongewenst [label="gaf aan"]
+    # question = Wat gaf de stedelijkegedragscode aan?
     gewenstongewenst -> boers [label="voorbeeld ongewenst"]
+    # question = Hoe werd ongewenst gedrag ook wel beschreven?
 
-    gabredero
-    onmatiggedrag
-    conflicten
-    alcoholisme
-    seksongeremd
+    gabredero [label="G.A. Bredero"]
+    boerengezelschap [label="Boeren-gezelschap"]
+    onmatiggedrag [label="Onmatig gedrag"]
+    conflicten [label="Conflicten in de stad"]
+    alcoholisme [label="Alcoholisme"]
+    seksongeremd [label="Ongeremde seksualiteit"]
     
-    gabredero -> boerengezelschap [label="schreef"]
+    stedelijkegedragscode -> boerengezelschap [label="voorbeeld"]
+    # question -> Noem een voorbeeld van een literair werk die de stedelijke gedragscode aangeeft.
+    boerengezelschap -> gabredero [label="geschreven door"]
+    # question = Door wie is Boeren-gezelschap geschreven?
     boerengezelschap -> boers [label="beschrijft"]
+    # question = Wat voor gedrag wordt beschreven door Boeren-gezelschap?
     boers -> conflicten [label="leidt tot"]
+    # question = Waartoe leidde boers gedrag?
     boers -> onmatiggedrag [label="werd gezien als"]
+    # question = Hoe werd boers gedrag gezien?
+    # answer = Als onmatig gedrag.
     onmatiggedrag -> alcoholisme [label="bijvoorbeeld"]
     onmatiggedrag -> seksongeremd [label="bijvoorbeeld"]
+    # question = Wat waren voorbeelden van onmatig gedrag?
+    # answer = Alcoholisme en ongeremde seksualiteit.
 
-    jongeren
-    moraal
-    geslachtsverkeer
-    lyriek
+    jongeren [label="Galante jongeren uit de bovenlaag"]
+    moraal [label="Strenge moraal"]
+    geslachtsverkeer [label="Voorechtelijk geslachtsverkeer"]
+    lyriek [label="Lyriek"]
     
-    groei -> jongeren [label="leidde tot"]
+    groei -> jongeren [label="leidde tot bevolkingsgroep"]
+    # question = Wat voor nieuwe bevolkingsgroep ontstond er door de explosieve groei van handel in Amsterdam?
     calvinisten -> moraal [label="hadden"]
+    # not necessary to learn
     moraal -> geslachtsverkeer [label="ten opzichte van"]
+    # question = Wat hadden calvinisten ten opzichte van voorechtelijk geslachtsverkeer?
     lyriek -> moraal [label="richtte zich op"]
+    # question = Waar richtte zich de lyriek op?
     jongeren -> moraal [label="moesten leven met"]
+    # question = Waar moesten jongeren mee leven?
 
     #13.3
-    goudeneeuw
-    groei -> goudeneeuw [label="leidde tot"]
+    goudeneeuw [label="Gouden eeuw"]
+    groei -> goudeneeuw [label="luidde in"]
+    # question = Welk nieuw tijdperk luidde de explosieve groei van handel in Amterdam in?
 
     # 13.3.1
-    rederijkerkamer
-    opinierenderol
-    oudekamer
-        pchooft
-        scoster
-    witlavendel
-        jvdvondel
+    rederijkerskamer [label="Rederijkerskamers"]
+    dichters [label="Rederijkers (Nederlandse dichters"]
+    opinierenderol [label="Opiniërende rol"]
+    oudekamer [label="Oude kamer, D'Eglentier"]
+        pchooft [label="P.C. Hooft"]
+        scoster [label="S. Coster"]
+    witlavendel [label="Het Wit Lavendel, Brabantse Kamer"]
+        jvdvondel [label="J. van den Vondel"]
 
-    rederijkerkamer -> oudekamer [label="voorbeeld"]
-    rederijkerkamer -> dichters [label="bestond uit"]
+    rederijkerskamer -> oudekamer [label="voorbeeld"]
+    # question = Welke rederijkerskamers waren er te vinden in Amterdam?
+    rederijkerskamer -> dichters [label="bestond uit"]
+    # question = Wat waren de rederijkers?
     oudekamer -> amsterdam [label="gevestigd in"]
     oudekamer -> gabredero [label="schoolde"]
     oudekamer -> pchooft [label="schoolde"]
     oudekamer -> scoster [label="schoolde"]
-    rederijkerkamer -> witlavendel [label="voorbeeld"]
+    # question = Welke belangrijke dichters waren er geschoold door de Oude Kamer?
+    rederijkerskamer -> witlavendel [label="voorbeeld"]
     witlavendel -> amsterdam [label="gevestigd in"]
     witlavendel -> jvdvondel [label="schoolde"]
-    rederijkerkamer -> opinierenderol [label="had"]
+    # question = Welke belangrijke dichter was er geschoold door het Wit Lavendel?
+    rederijkerskamer -> opinierenderol [label="had als functie"]
+    # question = Wat was de functie van de rederijkerskamers?
     opinierenderol -> protestantisme [label="over"]
     opinierenderol -> renaissance [label="over"]
     opinierenderol -> humanisme [label="over"]
+    # question -> Wat werd er in de rederijkerskamers bediscussieerd?
 
     # 13.3.2
-    renaissance #(wedergeboorte)
-    1415eeuw
-    republikeinsestadstaten #italisch
-        florence
-        venetie
-        genua
-    klassiekeoudheid
-        klassiekekunst
-        klassiekeideeen
-    renliteratuur
-        toneel
-            komedie
-            tragedie
-        emblematiek
-        sonnet
-    translatio #(vertaling)
-    imitatio #(nabootsing)
-    aemulatio #(overtreffing)
-    mythologie
-    taalschoonheden
+    renaissance [label="Renaissance (wedergeboorte)"]
+    1415eeuw [label="14de, 15de eeuw"]
+    republikeinsestadstaten [label="Italische republikeinse stadstaten"]
+    klassiekeoudheid [label="Klassieke Oudheid"]
+        klassiekekunst [label="Klassieke kunst"]
+        klassiekeideeen [label="Klassieke ideeën"]
+    renliteratuur [label="Klassieke genres"]
+        toneel [label="Toneel"]
+            komedie [label="Komedie (blijspel)"]
+            tragedie [label="Tragedie (treurspel)"]
+        emblematiek [label="Emblematiek"]
+        sonnet [label="Sonnet"]
+    translatio [label="Translatio (vertaling)"]
+    imitatio [label="Imitatio (nabootsing)"]
+    aemulatio [label="Aemulatio (overtreffing)"]
+    mythologie [label="Mythologie"]
+    poezie [label="Dichtkunst"]
+    taalschoonheden [label="Geraffineerde taalschoonheden"]
 
-    renaissance -> republikeinsestadsstaten [label="vond plaats in"]
+    renaissance -> republikeinsestadstaten [label="vond plaats in"]
+    # question = Waar ontstond de renaissance?
     renaissance -> 1415eeuw [label="gedurende"]
-    republikeinsestadstaten -> florence [label="vooral"]
-    republikeinsestadstaten -> venetie [label="vooral"]
-    republikeinsestadstaten -> genua [label="vooral"]
-    renaissance -> klassiekeoudheid [label="herorientatie op"]
-    klassiekeoudheid -> klassiekekunst
-    klassiekeoudheid -> klassiekeideeen
-    klassiekeoudheid -> translatio
-    translatio -> imitatio
-    imitatio -> aemulatio
-    renaissance -> renliteratuur
-    renliteratuur -> toneel
-    toneel -> komedie
-    toneel -> tragedie
-    renliteratuur -> taalschoonheden
-    renliteratuur -> mythologie
-    renliteratuur -> emblematiek
-    renliteratuur -> sonnet
+    # question = Wanneer ontstond de renaissance?
+    renaissance -> klassiekeoudheid [label="heroriëntatie op"]
+    # question = Waar oriënteerde de renaissance zich op?
+    klassiekeoudheid -> klassiekekunst [label="bracht voort"]
+    klassiekeoudheid -> klassiekeideeen [label="bracht voort"]
+    klassiekeoudheid -> translatio [label="werd verwerkt door"]
+    klassiekeoudheid -> imitatio [label="werd verwerkt door"]
+    klassiekeoudheid -> aemulatio [label="werd verwerkt door"]
+    # question = Op welke wijze werden de werken uit de klassieke oudheid opnieuw gebruikt tijdens de renaissance?
+    klassiekeoudheid -> toneel [label="bracht voort"]
+    klassiekeoudheid -> poezie [label="bracht voort"]
+    # question = Voor welke aspecten uit de klassieke oudheid ontstond een nieuwe belangstelling gedurende de renaissance?
+    translatio -> imitatio [label="werd gebruikt voor"]
+    imitatio -> aemulatio [label="werd gebruikt voor"]
+    renaissance -> renliteratuur [label="bracht voort"]
+    renliteratuur -> toneel [label="nam over"]
+    toneel -> komedie [label="klassiek genre"]
+    toneel -> tragedie [label="klassiek genre"]
+    # question = Welke klassieke toneelgenres werden opnieuw uitgevoerd gedurende de renaissance?
+    literatuur -> renliteratuur [label="stroming"]
+    renliteratuur -> taalschoonheden [label="pronkte met"]
+    renliteratuur -> mythologie [label="pronkte met"]
+    # question = Wat was de nieuwe visie voor renaissanceliteratuur?
+    # answer = De literatuur moest pronken met taalschoonheden en mythologie, en belerend en diepzinnig zijn.
+    klassiekeoudheid -> mythologie [label="bracht voort"]
+    renliteratuur -> emblematiek [label="nieuw genre"]
+    poezie -> sonnet [label="nieuw genre"]
+    renliteratuur -> sonnet [label="nieuw genre"]
+    # question = Welke nieuwe genres ontstonden er in de renaissanceliteratuur?
 
     # 13.3.3
-    humanisme
-    menswaardigheid
-    zelfontplooiing
-    menswetenschappen
-        onderscheidmensdier
-            taal
-                grammatica
-                retorica
-            ethiek
-                poezie
-                geschiedenis
-    verdraagzaamheid
-    verzoening
-    stoicisme
-    tirannie
-    dvcoornhert
-        zedelijkeverbetering
-        zelfkennis
-    godsdienstvrijheid
+    humanisme [label="Humanisme"]
+    menswaardigheid [label="Menswaardigheid"]
+    zelfontplooiing [label="Zelfontplooing"]
+    menswetenschappen [label="Menswetenschappen"]
+        onderscheidmensdier [label="Onderscheid tussen mens en dier"]
+            taal [label="Taal"]
+                grammatica [label="Grammatica"]
+                retorica [label="Retorica"]
+            ethiek [label="Ethiek (kennis goed en kwaad"]
+                poezie [label="Poëzie"]
+                geschiedenis [label="Geschiedenis"]
+    verdraagzaamheid [label="Verdraagzaamheid"]
+    verzoening [label="Verzoening"]
+    stoicisme [label="Stoïcisme"]
+    tirannie [label="Tirannie"]
+    dvcoornhert [label="D.V. Coornhert"]
+        zedelijkeverbetering [label="Zedelijke verbetering"]
+        zelfkennis [label="Zelfkennis"]
+    godsdienstvrijheid [label="Godsdienstvrijheid voor iedereen"]
+    natuurwetenschappen [label="Natuurwetenschappen"]
     
-    reizen
+    reizen [label="Reizen"]
     #boekdrukkunst
 
-    humanisme -> zelfontplooiing
-    humanisme -> menswaardigheid
-    humanisme -> verdraagzaamheid
-    humanisme -> menswetenschappen
-    menswetenschappen -> onderscheidmensdier
-    onderscheidmensdier -> taal
-    taal -> grammatica
-    taal -> retorica
-    onderscheidmensdier -> ethiek
-    ethiek -> poezie
-    ethiek -> geschiedenis
-    humanisme -> erasmus
-    humanisme -> verzoening
-    verzoening -> klassiekeoudheid
-    verzoening -> christendom
-    humanisme -> stoicisme
-    stoicisme -> tirannie
-    humanisme -> dvcoornhert
-    dvcoornhert -> nederlanden
-    dvcoornhert -> zedelijkeverbetering
-    dvcoornhert -> zelfkennis
-    dvcoornhert -> godsdienstvrijheid
-    calvinisten -> godsdienstvrijheid
+    humanisme -> zelfontplooiing [label="belangrijk concept"]
+    humanisme -> menswaardigheid [label="belangrijk concept"]
+    # question = Welke concepten stonden centraal in het humanisme?
+    humanisme -> verdraagzaamheid [label="pleitte voor"]
+    # question = Waar pleitten de humanisten voor?
+    humanisme -> menswetenschappen [label="wijdde zich aan"]
+    humanisme -> natuurwetenschappen [label="wijdde zich aan"]
+    # question = Wat waren de twee grote humanistische stromingen binnen de wetenschap?
+    menswetenschappen -> onderscheidmensdier [label="maakte"]
+    # question = Welk onderscheid maakte men in de menswetenschappen?
+    onderscheidmensdier -> taal [label="door"]
+    # question = Waardoor werd het onderscheid tussen mens en dier gemaakt?
+    taal -> grammatica [label="met behulp van"]
+    taal -> retorica [label="met behulp van"]
+    # question = Welke belangrijke taalconcepten hanteerden de humanisten?
+    onderscheidmensdier -> ethiek [label="door"]
+    # question = Waar ontleenden de humanisten hun ideeën over ethiek aan?
+    ethiek -> poezie [label="geleverd door"]
+    ethiek -> geschiedenis [label="geleverd door"]
+    humanisme -> erasmus [label="belangrijke humanist"]
+    # question = Noem twee belangrijke humanisten.
+    humanisme -> verzoening [label="probeerde"]
+    # question = Wat probeerde het humanisme?
+    # answer = Het probeerde het gedachtegoed van de klassieke oudheid met het christendom te verzoenen.
+    verzoening -> klassiekeoudheid [label="van"]
+    verzoening -> christendom [label="van"]
+    humanisme -> stoicisme [label="herleefde"]
+    # question = Welke klassieke filosofische stroming werd herleefd door het humanisme?
+    stoicisme -> tirannie [label="standvastigheid tegen"]
+    # question = Waar moest men standvastig tegen zijn volgens de humanisten?
+    humanisme -> dvcoornhert [label="belangrijke humanist"]
+    dvcoornhert -> zedelijkeverbetering [label="streefde na"]
+    # question = Wat streefde D.V. Coornhert na?
+    dvcoornhert -> zelfkennis [label="benadrukte belang van"]
+    # question = Waarvan benadrukte D.V. Coornhert het belang?
+    dvcoornhert -> godsdienstvrijheid [label="pleitte voor"]
+    # question = Waar pleitte D.V. Coornhert voor?
+    calvinisten -> godsdienstvrijheid [label="waren tegen"]
+    koningen -> godsdienstvrijheid [label="waren tegen"]
 
-    renaissance -> boekdrukkunst
-    renaissance -> reizen
-    humanisme -> boekdrukkunst
-    humanisme -> reizen
+    renaissance -> boekdrukkunst [label="verspreid door"]
+    renaissance -> reizen [label="verspreid door"]
+    humanisme -> boekdrukkunst [label="verspreid door"]
+    humanisme -> reizen [label="verspreid door"]
+    # question = Waardoor werden de ideeën uit de renaissance en het humanisme verspreid?
 
     # 13.3.4
-    nederlandseliteratuur
-    mecenas
-        adellijk
-        kerkelijk
-    maatschappelijketaak
-        beleren
-        moraliseren
-        kritiek
-    horatius
-        utile
-        dulce
+    nederlandseliteratuur [label="Nederlandse literatuur"]
+    mecenas [label="Mecenas (opdrachtgevers)"]
+        adellijk [label="Adellijk"]
+        kerkelijk [label="Kerkelijk"]
+    maatschappelijketaak [label="Maatschappelijke taak"]
+        beleren [label="Beleren"]
+        moraliseren [label="Moraliseren (wijze lessen geven)"]
+        kritiek [label="Kritiek leveren"]
+    horatius [label="Horatius (Romein)"]
+        utile [label="Utile (leering)"]
+        dulce [label="Dulce (vermaak)"]
 
-    nederlandseliteratuur -> mecenas
-    mecenas -> adellijk
-    mecenas -> kerkelijk
-    mecenas -> maatschappelijketaak [label="vervangen door"]
-    maatschappelijketaak -> beleren
-    maatschappelijketaak -> moraliseren
-    maatschappelijketaak -> kritiek
-    maatschappelijketaak -> horatius
-    horatius -> utile
-    horatius -> dulce
-    
+    literatuur -> nederlandseliteratuur [label="in Nederland"]
+    nederlandseliteratuur -> mecenas [label="vroeger afhankelijk van"]
+    # question = Waar waren Nederlandse schrijvers afhankelijk van in de middeleeuwen?
+    mecenas -> adellijk [label="waren"]
+    mecenas -> kerkelijk [label="waren"]
+    # question = Wie waren de mecenas?
+    # answer = Adelijkke of kerkelijke opdrachtgevers
+    mecenas -> regenten [label="vervangen door"]
+    # question -> Wie vervingen de mecenas?
+    nederlandseliteratuur -> maatschappelijketaak [label="had"]
+    maatschappelijketaak -> beleren [label="was"]
+    maatschappelijketaak -> moraliseren [label="was"]
+    maatschappelijketaak -> kritiek [label="was"]
+    # question = Wat waren de maatschappelijke taken van Nederlandse literatuur?
+    maatschappelijketaak -> horatius [label="geïnspireerd door"]
+    # question = Door wie waren de maatschappelijke taken geïnspireerd?
+    horatius -> utile [label="dichtkunst moest .. bieden"]
+    horatius -> dulce [label="dichtkunst moest .. bieden"]
+    # question = Wat vond Horatius dat de dichtkunst moest bieden?    
+
     # 13.4
-    strijdliteratuur
-    actualiteit
-    actie
-    geusenliederen
-    wilhelmus
+    strijdliteratuur [label="Strijdliteratuur"]
+    actualiteit [label="Actualiteit"]
+    actie [label="Actie"]
+    geusenliederen [label="Een nieu Geusen Lieden Boecxken"]
+    wilhelmus [label="Wilhelmus"]
     
-    lyriek
-    klucht
+    lyriek [label="Lyriek (liederen)"]
+    klucht [label="Klucht"]
 
-    nederlandseliteratuur -> strijdliteratuur
-    strijdliteratuur -> actualiteit
-    strijdliteratuur -> actie
-    actie -> verzet
-    strijdliteratuur -> geusenliederen
-    geusenliederen -> wilhelmus
-    nederlandseliteratuur -> renliteratuur
+    nederlandseliteratuur -> strijdliteratuur [label="groep werken"]
+    # question = Wat waren de twee groepen werken binnen de Nederlandse literatuur?
+    strijdliteratuur -> actualiteit [label="verwees naar"]
+    # question = Waar verwees de strijdliteratuur naar?
+    strijdliteratuur -> actie [label="stimuleerde tot"]
+    # question = Waartoe stimuleerde de strijdliteratuur?
+    # answer = Tot actie om zich tegen Spanje te verzetten
+    actie -> verzet [label="voor"]
+    strijdliteratuur -> geusenliederen [label="voorbeeld"]
+    # question = Noem een beroemd voorbeeld van strijdliteratuur
+    geusenliederen -> wilhelmus [label="bevatte"]
+    # question = Welk bekend werk bevatte Een nieu Geusen Lieden Boecxken?
+    nederlandseliteratuur -> renliteratuur [label="groep werken"]
 
     # 13.4.1 (emblematiek)
-        motto
-        pictura
-        subscriptio
-    moraal
-    dieperebetekenis
-    analogiedenken
-        creationisme
-        toeval
-    jcats
-        silenusalcibiadis
+        motto [label="Motto (opschrift)"]
+        pictura [label="Pictura (afbeelding)"]
+        subscriptio [label="Subscriptio (uitleg)"]
+        waarheid [label="Algemene waarheid"]
+    dieperebetekenis [label="Diepere betekenis"]
+    analogiedenken [label="Analogiedenken"]
+        creationisme [label="Alles is Gods schepping"]
+        toeval [label="Parallellen zijn nooit toevallig"]
+    jcats [label="Jacob Cats"]
+        silenusalcibiadis [label="Silenus Alcibiadis, sive Proteus (Sinne- en Minnebeelden)"]
 
-    emblematiek -> motto
-    emblematiek -> pictura
-    emblematiek -> subscriptio
-    emblematiek -> moraal
-    emblematiek -> dieperebetekenis
-    emblematiek -> analogiedenken
-    analogiedenken -> creationisme
-    creationisme -> toeval
-    emblematiek -> jcats
-    jcats -> silenusalcibiadis
+    emblematiek -> motto [label="bevat"]
+    emblematiek -> pictura [label="bevat"]
+    emblematiek -> subscriptio [label="bevat"]
+    # question = Wat waren de onderdelen van een embleem?
+    emblematiek -> waarheid [label="illustreert"]
+    # question = Wat illustreerde een embleem?
+    emblematiek -> dieperebetekenis [label="heeft"]
+    emblematiek -> analogiedenken [label="maakt gebruik van"]
+    # question = Waarvan maakte emblematiek gebruik?
+    analogiedenken -> creationisme [label="maakt argument dat"]
+    # question = Welk argument werd gemaakt voor analogiedenken?
+    # answer = Alles is Gods schepping, en daarom kunnen parallellen nooit toevallig zijn
+    creationisme -> toeval [label="en daarom"]
+    emblematiek -> jcats [label="populaire auteur"]
+    # question = Noem een populaire auteur binnen de emblematiek
+    jcats -> silenusalcibiadis [label="publiceerde"]
+    # question = Welke beroemde embleembundel publiceerde Jacob Cats?
     
     # 13.4.2 (lyriek)
-    liefde
-    platonischeliefde
-    zinnelijkeliefde
-    ideaalbeeld
-    nieuweliedboeken
-        antwerpsliedboek
-        dennieuwenlusthof
-    petrarkisme
-        petrarca
-        paradoxen
-        antithese
-        aanspreking
-        personificatie
-        paronomasia
-    liefdesklacht
-    verheerlijkingliefde
-    beeldenconventies
-        literairspel
-        literaireelite
-    zelfbeheersing
+    liefde [label="Liefde"]
+    platonischeliefde [label="Platonische liefde"]
+    zinnelijkeliefde [label="Lichamelijke liefde"]
+    ideaalbeeld [label="Onbereikbaar ideaalbeeld"]
+    nieuweliedboeken [label="Nieuwe liedboeken"]
+        antwerpsliedboek [label="Antwerps liedboek"]
+        dennieuwenlusthof [label="Den nieuwen Lust-hof"]
     
-    renliteratuur -> lyriek
-    lyriek -> liefde
-    liefde -> platonischeliefde
-    liefde -> zinnelijkeliefde
-    zinnelijkeliefde -> platonischeliefde [label="toegestaanals"]
-    lyriek -> antwerpsliedboek
-    lyriek -> dennieuwenlusthof
-    lyriek -> petrarkisme
-    petrarkisme -> petrarca
-    petrarkisme -> paradoxen
-    petrarkisme -> aanspreking
-    petrarkisme -> personificatie
-    petrarkisme -> paronomasia
-    petrarkisme -> liefdesklacht
-    petrarkisme -> verheerlijkingliefde
-    liefdesklacht -> ideaalbeeld
-    liefdesklacht -> verheerlijkingliefde [label="maar toch"]
-    petrakrisme -> beeldenconventies
-    beeldenconventies -> literairspel
-    beeldenconventies -> literaireelite
-    petrarkisme -> zelfbeheersing
-    zelfbeheersing -> geslachtsverkeer
+    petrarkisme [label="Petrarkisme"]
+        petrarca [label="Petrarca"]
+        paradoxen [label="Paradoxen"]
+        antithese [label="Antithese (tegenstelling)"]
+        aanspreking [label="Aanspreking"]
+        personificatie [label="Personificatie"]
+        paronomasia [label="Paronomasia"]
+        liefdesklacht [label="Liefdesklacht"]
+        beeldenconventies [label="Literaire beelden en conventies"]
+        literaireelite [label="Literaire elite"]
+        zelfbeheersing [label="Zelfbeheersing"]
+    
+    renliteratuur -> lyriek [label="nieuw genre"]
+    lyriek -> liefde [label="stelde centraal"]
+    # question = Wat werd centraal gesteld in de lyriek?
+    liefde -> platonischeliefde [label="in de vorm van"]
+    liefde -> zinnelijkeliefde [label="in de vorm van"]
+    # question = Welke twee vormen van liefde werden onderscheiden?
+    zinnelijkeliefde -> platonischeliefde [label="toegestaan als"]
+    # question = Wanneer was lichamelijke liefde toegestaan?
+    lyriek -> petrarkisme [label="sloot aan op"]
+    # question = Op welke mode sloten de inhoud van de liederen en sonnetten aan?
+    petrarkisme -> petrarca [label="genoemd naar"]
+    # question = Naar wie is het petrarkisme genoemd?
+    petrarkisme -> beeldenconventies [label="gebruikte"]
+    # question = Waar maakte het petrarkisme gebruik van?
+    beeldenconventies -> paradoxen [label="waaronder"]
+    beeldenconventies -> antithese [label="waaronder"]
+    beeldenconventies -> aanspreking [label="waaronder"]
+    beeldenconventies -> personificatie [label="waaronder"]
+    beeldenconventies -> paronomasia [label="waaronder"]
+    # question = Welke literaire conventies werden er gebruikt in het petrarkisme?
+    petrarkisme -> liefdesklacht [label="stelde centraal"]
+    # question = Wat stond in het petrarkisme centraal?
+    petrarkisme -> platonischeliefde [label="verheerlijkte"]
+    # question = Wat werd door het petrarkisme verheerlijkt?
+    liefdesklacht -> ideaalbeeld [label="gericht aan"]
+    # question = Waaraan was de liefdesklacht gericht?
+    beeldenconventies -> literaireelite [label="begrepen door"]
+    # question - Door wie werden de literaire beelden en conventies begrepen?
+    petrarkisme -> zelfbeheersing [label="pleitte voor"]
+    zelfbeheersing -> geslachtsverkeer [label="ten opzichte van"]
+    # question = Waar pleitte het petrarkisme voor?
+    # answer = Voor zelfbeheersing ten opzichte van voorechtelijk geslachtsverkeer
+    lyriek -> nieuweliedboeken [label="geschreven in"]
+    # question = Waarin stonden de liederen geschreven?
+    nieuweliedboeken -> antwerpsliedboek [label="waaronder"]
+    nieuweliedboeken -> dennieuwenlusthof [label="waaronder"]
+    # question = Noem twee voorbeelden van de nieuwe liedboeken.
 
     # 13.4.3 (sonnet)
-    veertienversregels
-        octaaf
-        sextet
-        volta
+    veertienversregels [label="Veertien versregels"]
+        octaaf [label="Octaaf, acht eerste versregels"]
+        sextet [label="Sextet, zes laatste versregels "]
+        volta [label="Volta (wending)"]
     #pchooft
 
-    sonnet -> veertienversregels
-    veertienversregels -> octaaf
-    veertienversregels -> sextet
-    octaaf -> volta
-    sextet -> volta
-    sonnet -> petrarkisme
-    sonnet -> pchooft
+    sonnet -> veertienversregels [label="bestond uit"]
+    # question = Waaruit bestonden sonnetten?
+    veertienversregels -> octaaf [label="bestond uit"]
+    veertienversregels -> sextet [label="bestond uit"]
+    # question = Waaruit bestonden de veertien versregels van een sonnet?
+    sonnet -> volta [label="bestond uit"]
+    volta -> octaaf [label="na"]
+    volta -> sextet [label="voor"]
+    # question = Waar in het gedicht vond de volta plaats?
+    sonnet -> petrarkisme [label="sloot aan op"]
+    sonnet -> pchooft [label="belangrijkste dichter"]
+    # question = Wie was de belangrijkste sonnetdichter in de Nederlanden?
 
     # 13.4.4 (toneel)
-    stedelijkefunctie
-    publiek
-    liefdadigeinstellingen
-    stadsbestuur
-    financieelbelang
-    eerstenederduytscheacademie
-    amsterdamseschouwburg
-    spiegel
-    ethischdidactisch
+    publiek [label="Publiek"]
+    liefdadigeinstellingen [label="Liefdadige instellingen"]
+    eerstenederduytscheacademie [label="Eerste Nederduytsche Academie"]
+    amsterdamseschouwburg [label="Amsterdamse Schouwburg"]
+    spiegel [label="Spiegel"]
 
-    toneel -> stedelijkefunctie
-    toneel -> publiek
-    toneel -> amsterdam
+    toneel -> stedelijkegedragscode [label="met als ethisch-didactisch doel"]
+    # question = Welk ethisch-didactisch doel diende het toneel?
+    toneel -> publiek [label="geopend voor"]
+    # question = Waarvoor was het toneel geopend?
+    toneel -> amsterdam [label="grootste productie in"]
+    # question = Waar vond de grootste productie van toneel plaats in de Nederlanden?
     toneel -> liefdadigeinstellingen [label="winst naar"]
-    regenten -> liefdadigeinstellingen [label="baat bij"]
-    toneel -> opinierenderol
-    toneel -> eerstenederduytscheacademie
-    toneel -> amsterdamseschouwburg
-    toneel -> spiegel
-    spiegel -> ethischdidactisch
-    ethischdidactisch -> gewenstongewenst
+    # question = Waar ging de winst van het toneel naartoe?
+    regenten -> liefdadigeinstellingen [label="hadden baat bij"]
+    # question = Wie hadden er baat bij de liefdadige instellingen?
+    toneel -> opinierenderol [label="als functie"]
+    # question = Wat was de functie die het theater vervulde?
+    toneel -> eerstenederduytscheacademie [label="theater"]
+    toneel -> amsterdamseschouwburg [label="theater"]
+    # question = Welke theaters werden er in Amsterdam geopend?
+    toneel -> spiegel [lable="hield voor"]
+    # question = Wat hield het theater het publiek voor?
 
     # 13.4.4.1 (tragedie)
-    ondergang
-    hooggeplaatstpersonage
-    bijbel
+    ondergang [label="Ondergang van de hoofdpersoon"]
+    hooggeplaatstpersonage [label="Hooggeplaatst personage"]
+    bijbel [label="Bijbel"]
     # geschiedenis
     # klassieke oudheid
-    retorischdidactischtragedie
-        seneca
-        vijfbedrijven
-        lossestructuur
-        afgerondescenes
-    aristotelestragedie
-        handelingsstructuur
-            tijd
-            plaats
-            handeling
-            aristoteles
+    retorischdidactischtragedie [label="Rethorisch-didactische tragedie"]
+        seneca [label="Seneca (Romein)"]
+        vijfbedrijven [label="Vijf bedrijven"]
+        lossestructuur [label="Losse structuur"]
+        afgerondescenes [label="Afgedronde scènes"]
+    aristotelestragedie [label="Aristotelische tragedie"]
+        handelingsstructuur [label="Handelingsgerichte structuur"]
+            tijd [label="Tijd"]
+            plaats [label="Plaats"]
+            handeling [label="Handeling"]
+            aristoteles [label="Aristoteles (Grieks)"]
 
-    tragedie -> ondergang
-    ondergang -> hooggeplaatstpersonage
-    tragedie -> klassiekeoudheid
-    tragedie -> geschiedenis
-    tragedie -> bijbel
-    tragedie -> retorischdidactischtragedie
-    retorischdidactischtragedie -> seneca
-    retorischdidactischtragedie -> vijfbedrijven
-    vijfbedrijven -> lossestructuur
-    vijfbedrijven -> afgerondescenes
+    tragedie -> ondergang [label="ging over"]
+    # question = Wat was het onderwerp van een tragedie?
+    ondergang -> hooggeplaatstpersonage [label="hoofdpersoon was"]
+    # question = In wat voor positie bevond de hoofdpersoon van een tragedie zich?
+    tragedie -> klassiekeoudheid [label="inhoud verleend aan"]
+    tragedie -> geschiedenis [label="inhoud verleend aan"]
+    tragedie -> bijbel [label="inhoud verleend aan"]
+    # question = Waaraan verleenden tragedies grotendeels hun inhoud?
+    tragedie -> retorischdidactischtragedie [label="genre"]
+    # question = Welke genres van tragedies waren er?
+    retorischdidactischtragedie -> seneca [label="met als belangrijk voorbeeld"]
+    # question = Wat waren belangrijke voorbeelden vor de retorisch-didactische tragedie?
+    # answer = De tragedies van de Romein Seneca.
+    retorischdidactischtragedie -> vijfbedrijven [label="bestond uit"]
+    # question = Waaruit bestonden retorisch-didactische tragedies?
+    vijfbedrijven -> lossestructuur [label="hadden"]
+    # question = Wat voor structuur hadden de vijf bedrijven van een rethorisch-didactische tragedie?
+    vijfbedrijven -> afgerondescenes [label="waren"]
 
-    tragedie -> aristotelestragedie
-    aristotelestragedie -> handelingsstructuur
-    handelingsstructuur -> tijd
-    handelingsstructuur -> plaats
-    handelingsstructuur -> handeling
-    handelingsstructuur -> aristoteles
+    tragedie -> aristotelestragedie [label="genre"]
+    aristotelestragedie -> handelingsstructuur [label="gebaseerd op"]
+    # question = Op welke structuur was de aristotelestragedie gebaseerd?
+    handelingsstructuur -> tijd [label="eenheid van"]
+    handelingsstructuur -> plaats [label="eenheid van"]
+    handelingsstructuur -> handeling [label="eenheid van"]
+    # question = Wat hield de handelingsstructuur in?
+    # answer = Eenheid van tijd, plaats en handeling.
+    handelingsstructuur -> aristoteles [label="bedacht door"]
+    # question = Wie heeft de handelingsstructuur bedacht?
     
     # 13.4.4.2 (komedie en klucht)
     #komedie
-        laaggeplaatstpersonage
-        spreektaal
-        happyend
+        laaggeplaatstpersonage [label="Personen uit lagere klassen"]
+        spreektaal [label="Spreektaal"]
+        happyend [label="Happy end"]
     #klucht
         #vergelijking komedie
-        grappigesituaties
-        primairelevensdriften
+        grappigesituaties [label="Grappige situaties"]
+        primairelevensdriften [label="Primaire levensdriften"]
 
-    komedie -> laaggeplaatstpersonage
-    komedie -> spreektaal
-    komedie -> happyend
+    komedie -> laaggeplaatstpersonage [label="personages waren"]
+    # question = Wat voor personen werden afgebeeld in een komedie?
+    komedie -> spreektaal [label="gesproken in"]
+    # question = In wat voor soort taal werd de komedie gesproken?
+    komedie -> happyend [label="eindigde met"]
+    # question = Waarmee eindigde een komedie?
 
-    klucht -> komedie
-    klucht -> grappigesituaties
-    klucht -> primairelevensdriften
+    toneel -> klucht [label="nieuw genre"]
+    # question = Wat was een nieuw genre in het toneel?
+    klucht -> komedie [label="korter dan"]
+    # question = Wat was het verschil tussen een klucht en een komedie?
+    klucht -> grappigesituaties [label="toonden"]
+    # question = Wat werd er getoond in een komedie?
+    klucht -> primairelevensdriften [label="ging over"]
+    # question = Waardoor lieten personages in kluchten zich leiden?
 }
