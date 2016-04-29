@@ -1,4 +1,4 @@
-digraph concept_map {
+ concept_map {
     # 13.1    
 
     #root [label="Literatuur in de 16de en 17de eeuw"]
@@ -184,7 +184,7 @@ digraph concept_map {
     oudekamer -> amsterdam [label="gevestigd in"]
     oudekamer -> gabredero [label="schoolde"]
     oudekamer -> pchooft [label="schoolde"]
-    oudekamer -> scoster [label="schoolde"]
+    #  oudekamer -> scoster [label="schoolde"]
     # question = Welke belangrijke dichters waren er geschoold door de Oude Kamer?
     rederijkerskamer -> witlavendel [label="voorbeeld"]
     witlavendel -> amsterdam [label="gevestigd in"]
@@ -199,12 +199,12 @@ digraph concept_map {
 
     # 13.3.2
     renaissance [label="Renaissance (wedergeboorte)"]
-    1415eeuw [label="14de, 15de eeuw"]
+    1415eeuw [label="1500 - 1700"]
     republikeinsestadstaten [label="Italische republikeinse stadstaten"]
     klassiekeoudheid [label="Klassieke Oudheid"]
         klassiekekunst [label="Klassieke kunst"]
         klassiekeideeen [label="Klassieke ideeën"]
-    renliteratuur [label="Klassieke genres"]
+    renliteratuur [label="Renaissanceliteratuur"]
         toneel [label="Toneel"]
             komedie [label="Komedie (blijspel)"]
             tragedie [label="Tragedie (treurspel)"]
@@ -240,7 +240,7 @@ digraph concept_map {
     toneel -> tragedie [label="klassiek genre"]
     # question = Welke klassieke toneelgenres werden opnieuw uitgevoerd gedurende de renaissance?
     literatuur -> renliteratuur [label="stroming"]
-    renliteratuur -> taalschoonheden [label="pronkte met"]
+    #  renliteratuur -> taalschoonheden [label="pronkte met"]
     renliteratuur -> mythologie [label="pronkte met"]
     # question = Wat was de nieuwe visie voor renaissanceliteratuur?
     # answer = De literatuur moest pronken met taalschoonheden en mythologie, en belerend en diepzinnig zijn.
@@ -253,7 +253,7 @@ digraph concept_map {
     # 13.3.3
     humanisme [label="Humanisme"]
     menswaardigheid [label="Menswaardigheid"]
-    zelfontplooiing [label="Zelfontplooing"]
+    zelfontplooiing [label="Zelfontplooiing"]
     menswetenschappen [label="Menswetenschappen"]
         onderscheidmensdier [label="Onderscheid tussen mens en dier"]
             taal [label="Taal"]
@@ -271,6 +271,7 @@ digraph concept_map {
         zelfkennis [label="Zelfkennis"]
     godsdienstvrijheid [label="Godsdienstvrijheid voor iedereen"]
     natuurwetenschappen [label="Natuurwetenschappen"]
+    erasmus [label="Erasmus"]
     
     reizen [label="Reizen"]
     #boekdrukkunst
@@ -307,10 +308,8 @@ digraph concept_map {
     # question = Waar moest men standvastig tegen zijn volgens de humanisten?
     humanisme -> dvcoornhert [label="belangrijke humanist"]
     dvcoornhert -> zedelijkeverbetering [label="streefde na"]
-    # question = Wat streefde D.V. Coornhert na?
-    dvcoornhert -> zelfkennis [label="benadrukte belang van"]
-    # question = Waarvan benadrukte D.V. Coornhert het belang?
-    dvcoornhert -> godsdienstvrijheid [label="pleitte voor"]
+    dvcoornhert -> zelfkennis [label="streefde na"]
+    dvcoornhert -> godsdienstvrijheid [label="streefde na"]
     # question = Waar pleitte D.V. Coornhert voor?
     calvinisten -> godsdienstvrijheid [label="waren tegen"]
     koningen -> godsdienstvrijheid [label="waren tegen"]
@@ -331,7 +330,7 @@ digraph concept_map {
         moraliseren [label="Moraliseren (wijze lessen geven)"]
         kritiek [label="Kritiek leveren"]
     horatius [label="Horatius (Romein)"]
-        utile [label="Utile (leering)"]
+        utile [label="Utile (lering)"]
         dulce [label="Dulce (vermaak)"]
 
     literatuur -> nederlandseliteratuur [label="in Nederland"]
@@ -429,7 +428,7 @@ digraph concept_map {
         literaireelite [label="Literaire elite"]
         zelfbeheersing [label="Zelfbeheersing"]
     
-    renliteratuur -> lyriek [label="nieuw genre"]
+    renliteratuur -> lyriek [label="genre"]
     lyriek -> liefde [label="stelde centraal"]
     # question = Wat werd centraal gesteld in de lyriek?
     liefde -> platonischeliefde [label="in de vorm van"]
@@ -445,9 +444,9 @@ digraph concept_map {
     # question = Waar maakte het petrarkisme gebruik van?
     beeldenconventies -> paradoxen [label="waaronder"]
     beeldenconventies -> antithese [label="waaronder"]
-    beeldenconventies -> aanspreking [label="waaronder"]
-    beeldenconventies -> personificatie [label="waaronder"]
-    beeldenconventies -> paronomasia [label="waaronder"]
+    #  beeldenconventies -> aanspreking [label="waaronder"]
+    #  beeldenconventies -> personificatie [label="waaronder"]
+    #  beeldenconventies -> paronomasia [label="waaronder"]
     # question = Welke literaire conventies werden er gebruikt in het petrarkisme?
     petrarkisme -> liefdesklacht [label="stelde centraal"]
     # question = Wat stond in het petrarkisme centraal?
@@ -463,8 +462,8 @@ digraph concept_map {
     # answer = Voor zelfbeheersing ten opzichte van voorechtelijk geslachtsverkeer
     lyriek -> nieuweliedboeken [label="geschreven in"]
     # question = Waarin stonden de liederen geschreven?
-    nieuweliedboeken -> antwerpsliedboek [label="waaronder"]
-    nieuweliedboeken -> dennieuwenlusthof [label="waaronder"]
+    #  nieuweliedboeken -> antwerpsliedboek [label="waaronder"]
+    #  nieuweliedboeken -> dennieuwenlusthof [label="waaronder"]
     # question = Noem twee voorbeelden van de nieuwe liedboeken.
 
     # 13.4.3 (sonnet)
@@ -492,7 +491,7 @@ digraph concept_map {
     liefdadigeinstellingen [label="Liefdadige instellingen"]
     eerstenederduytscheacademie [label="Eerste Nederduytsche Academie"]
     amsterdamseschouwburg [label="Amsterdamse Schouwburg"]
-    spiegel [label="Spiegel"]
+    spiegel [label="Spiegel voorhouden"]
 
     toneel -> stedelijkegedragscode [label="met als ethisch-didactisch doel"]
     # question = Welk ethisch-didactisch doel diende het toneel?
@@ -509,7 +508,7 @@ digraph concept_map {
     toneel -> eerstenederduytscheacademie [label="theater"]
     toneel -> amsterdamseschouwburg [label="theater"]
     # question = Welke theaters werden er in Amsterdam geopend?
-    toneel -> spiegel [lable="hield voor"]
+    toneel -> spiegel [label="had als functie"]
     # question = Wat hield het theater het publiek voor?
 
     # 13.4.4.1 (tragedie)
@@ -518,7 +517,7 @@ digraph concept_map {
     bijbel [label="Bijbel"]
     # geschiedenis
     # klassieke oudheid
-    retorischdidactischtragedie [label="Rethorisch-didactische tragedie"]
+    retorischdidactischtragedie [label="Retorisch-didactische tragedie"]
         seneca [label="Seneca (Romein)"]
         vijfbedrijven [label="Vijf bedrijven"]
         lossestructuur [label="Losse structuur"]
@@ -529,6 +528,7 @@ digraph concept_map {
             plaats [label="Plaats"]
             handeling [label="Handeling"]
             aristoteles [label="Aristoteles (Grieks)"]
+    gvaemstel [label="Gijsbreght van Aemstel"]
 
     tragedie -> ondergang [label="ging over"]
     # question = Wat was het onderwerp van een tragedie?
@@ -545,9 +545,9 @@ digraph concept_map {
     # answer = De tragedies van de Romein Seneca.
     retorischdidactischtragedie -> vijfbedrijven [label="bestond uit"]
     # question = Waaruit bestonden retorisch-didactische tragedies?
-    vijfbedrijven -> lossestructuur [label="hadden"]
+    #  vijfbedrijven -> lossestructuur [label="hadden"]
     # question = Wat voor structuur hadden de vijf bedrijven van een rethorisch-didactische tragedie?
-    vijfbedrijven -> afgerondescenes [label="waren"]
+    #  vijfbedrijven -> afgerondescenes [label="waren"]
 
     tragedie -> aristotelestragedie [label="genre"]
     aristotelestragedie -> handelingsstructuur [label="gebaseerd op"]
@@ -559,16 +559,21 @@ digraph concept_map {
     # answer = Eenheid van tijd, plaats en handeling.
     handelingsstructuur -> aristoteles [label="bedacht door"]
     # question = Wie heeft de handelingsstructuur bedacht?
+
+    tragedie -> gvaemstel [label="voorbeeld"]
+    gvaemstel -> jvdvondel [label="geschreven door"]
     
     # 13.4.4.2 (komedie en klucht)
     #komedie
         laaggeplaatstpersonage [label="Personen uit lagere klassen"]
         spreektaal [label="Spreektaal"]
         happyend [label="Happy end"]
+        warenar [label="Warenar"]
     #klucht
         #vergelijking komedie
         grappigesituaties [label="Grappige situaties"]
         primairelevensdriften [label="Primaire levensdriften"]
+        kvdkoe [label="Klucht van de koe"]
 
     komedie -> laaggeplaatstpersonage [label="personages waren"]
     # question = Wat voor personen werden afgebeeld in een komedie?
@@ -576,6 +581,8 @@ digraph concept_map {
     # question = In wat voor soort taal werd de komedie gesproken?
     komedie -> happyend [label="eindigde met"]
     # question = Waarmee eindigde een komedie?
+    komedie -> warenar [label="voorbeeld"]
+    warenar -> pchooft [label="geschreven door"]
 
     toneel -> klucht [label="nieuw genre"]
     # question = Wat was een nieuw genre in het toneel?
@@ -585,4 +592,6 @@ digraph concept_map {
     # question = Wat werd er getoond in een komedie?
     klucht -> primairelevensdriften [label="ging over"]
     # question = Waardoor lieten personages in kluchten zich leiden?
+    klucht -> kvdkoe [label="voorbeeld"]
+    kvdkoe -> gabredero [label="geschreven door"]
 }

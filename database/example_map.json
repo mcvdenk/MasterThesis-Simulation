@@ -1,0 +1,15 @@
+{
+    "nodes": [
+        {"id": "1", "label": "Node 1"},
+        {"id": "2", "label": "Node 2"},
+        {"id": "3", "label": "Node 3"},
+        {"id": "4", "label": "Node 4"},
+        {"id": "5", "label": "Node 5"}
+    ],
+    "edges": [
+        {"id": "13", "label": "13", "from": "1", "to": "3"},
+        {"id": "12", "label": "12", "from": "1", "to": "2"},
+        {"id": "24", "label": "24", "from": "2", "to": "4"},
+        {"id": "25", "label": "25", "from": "2", "to": "5"}
+    ]
+}

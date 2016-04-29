@@ -4,3 +4,7 @@ class Edge:
         self.label = label
         self.card_question = card_question
         self.card_answer = card_answer
+    
+    def __init__(self, id_, label):
+        self.id_ = id_
+        self.label = label
