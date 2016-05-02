@@ -1,117 +1,91 @@
-var socket = new WebSocket("ws://www.mvdenk.com/thesis:8765");
-var container = document.getElementById("container");
+var uname = "";
+var cont = "mycontainer";
+var ws = new WebSocket("ws://www.mvdenk.com:5678");
 
-function authenticate(form) {
-    var msg = JSON.stringify({
+ws.onopen = function (event) {
+    document.getElementById(cont).style.visibility = "visible";
+}
+
+function authenticate() {
+    uname = document.getElementById("username").value;
+    console.log(uname);
+    var msg = {
         keyword: "AUTHENTICATE-REQUEST",
         data: {
-            username: form.elements["username"].value,
-            password: form.elements["password"].value,
-            browser: navigator.appVersion,
+            username: uname,
+            browser: navigator.platform
         }
-    });
-    while (socket.readyState != 1) {}
-    socket.send(msg);
-    socket.onmessage = function (event) {
-        msg = JSON.parse(event.data);
-        if (msg.keyword == "AUTHENTICATE-RESPONSE") {
-            switch(msg.data) {
-                case "LOGGED_IN":
-                    menu();
-                    break;
-                case "PASSWORD_INCORRECT":
-                    incorrect_password();
-                    break;
-                case "NEW_USERNAME":
-                    new_user();
-                    break;
-            }
-        }
+    }
+    ws.send(JSON.stringify(msg));
+}
+
+ws.onmessage = function (event) {
+    var msg = JSON.parse(event.data);
+    console.log(msg);
+
+    switch(msg.keyword) {
+        case "MAP-RESPONSE":
+            show_map(msg.data);
+            break;
+        case "AUTHENTICATE-RESPONSE":
+            show_menu();
+            break;
+        case "LEARNED_ITEMS-RESPONSE":
+            coloured_map = colourise_progress(msg.data);
+            show_map(coloured_map);
+            break;
+        case "LEARN-RESPONSE":
+            coloured_map = colourise_flashedge(msg.data);
+            show_map(coloured_map);
+            break;
     }
 }
 
-function password_incorrect() {
+function show_map(map) {
+    // provide the data in the vis format
+    var graph = {
+        nodes: map.nodes,
+        edges: map.edges
+    };
+
+    var options = {
+        edges: {
+            arrows: {
+                to: {enabled: true}
+            }
+        }
+    };
+    
+    var container =  document.getElementById(cont);
+    container.innerHTML = "";
+
+    // initialize your network!
+    var network = new vis.Network(container, graph, options);
 }
 
-function new_user() {
+function show_menu() {
+    document.getElementById(cont).innerHTML = 
+        "<input type='button' onclick='view_learned()' value='View learned items' /><br> \
+         <input type='button' onclick='learn()' value='Start learning' /><br> \
+         <input type='button' onclick='logout()' value='Logout' /><br>";
 }
 
-function menu() {
-    container.innerHTML = " \
-                           <h3>Menu</h3> \
-                           <button onclick=\'learn()\'> Learn </button> \
-                           <button onclick=\'overview()\'> Overview </button> \
-                           <button onclick=\'change_userdata()\'> Change user data </button> \
-                           <button onclick=\'logout()\'> Log out </button>";
+function colourise_progress(map) {
+}
+
+function colourise_flashedge(map) {
+}
+
+function show_login() {
+}
+
+function view_learned() {
 }
 
 function learn() {
-    var msg = JSON.stringify({
-        keyword: "LEARN-REQUEST",
-        data: ""
-    });
-    socket.send(msg);
-    socket.onmessage = function(event) {
-        msg = JSON.parse(event.data);
-        if (msg.keyword == "LEARN-RESPONSE") {
-            container.innerHTML = "";
-            var parserOptions = {
-                edges: {
-                    inheritColors: true
-                },
-                nodes: {
-                    fixed: false,
-                    parseColor: true
-                }
-            }
-            var parsed = vis.network.convertGephi(msg.data, parserOptions);
-
-            var data = {
-                nodes = parsed.nodes;
-                edges = parsed.edges;
-            }
-
-            var network = new vis.Network(container, data);
-        }
-    }
-}
-
-function overview() {
-    var msg = JSON.stringify({
-        keyword: "LEARNED_EDGES-REQUEST",
-        data: ""
-    });
-    socket.send(msg);
-    socket.onmessage = function(event) {
-        msg = JSON.parse(event.data);
-        if (msg.keyword == "LEARNED_EDGES-RESPONSE") {
-            container.innerHTML = "";
-            var parserOptions = {
-                edges: {
-                    inheritColors: true
-                },
-                nodes: {
-                    fixed: false,
-                    parseColor: true
-                }
-            }
-            var parsed = vis.network.convertGephi(msg.data, parserOptions);
-
-            var data = {
-                nodes = parsed.nodes;
-                edges = parsed.edges;
-            }
-
-            var network = new vis.Network(container, data);
-        }
-    }
-}
-
-function validate(edges) {
-}
-
-function change_userdata() {
 }
 
 function logout() {
+    ws.close();
+    location.reload();
 }

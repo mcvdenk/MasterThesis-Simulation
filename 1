@@ -5,7 +5,7 @@ keyword: AUTHENTICATE-REQUEST
         browser
 keyword: AUTHENTICATE-RESPONSE
     data:
-        success: [LOGGED_IN, NEW_USERNAME]
+        success: [LOGGED_IN, PASSWORD_INCORRECT, NEW_USERNAME]
 keyword: LEARNED_ITEMS-REQUEST
     data:
 keyword: LEARNED_ITEMS-RESPONSE
@@ -13,7 +13,7 @@ keyword: LEARNED_ITEMS-RESPONSE
         concepts:
             id
             label
-            learned
+            colour
         edges:
             id
             label
@@ -40,4 +40,17 @@ keyword: VALIDATE
             start_time
             end_time
 keyword: UNDO-REQUEST
+    data:
+keyword: UNDO-RESPONSE
+    data:
+        concepts:
+            id
+            label
+        edges:
+            id
+            label
+            from
+            to
+            learning
+keyword: LOGOUT
     data:

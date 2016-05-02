@@ -8,23 +8,18 @@
         <script src="client.js"></script>
     </head>
     <body>
-        <div id="container">
-            <form action="" method="post">
-                <fieldset>
-                    <legend> Login </legend>
-                    <table>
-                        <tr>
-                            <td> Username: </td>
-                            <td> <input type="text" name="username"> </td>
-                        </tr>
-                        <tr>
-                            <td>Password: </td>
-                            <td> <input type="text" name="password"> </td>
-                        </tr>
-                    </table>
-                    <input type="submit" value="Log in" onClick="authenticate(this.form)">
-                </fieldset>
-            </form>
+        <div id="mycontainer" style="visibility:hidden">
+            <fieldset>
+                <legend> Login </legend>
+                <table>
+                    <tr>
+                        <td> Username: </td>
+                        <td> <input id="username" type="text" name="username"
+                            onkeydown="if (event.keyCode == 13) authenticate()"> </td>
+                    </tr>
+                </table>
+                <input type="button" value="Log in" onClick="authenticate()">
+            </fieldset>
         </div>
     </body>
 </html>
