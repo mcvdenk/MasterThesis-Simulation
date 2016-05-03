@@ -8,6 +8,11 @@
         <script src="client.js"></script>
     </head>
     <body>
+        <div id="menu" style="visibility:hidden">
+            <a href="#" onclick="view_learned()">Show learned items</a>
+            <a href="#" onclick="learn()">Start learning</a>
+            <a href="#" onclick="logout()">Log out</a>
+        </div>
         <div id="mycontainer" style="visibility:hidden">
             <fieldset>
                 <legend> Login </legend>
@@ -21,5 +26,7 @@
                 <input type="button" value="Log in" onClick="authenticate()">
             </fieldset>
         </div>
+        <div id="panel"> </div>
+        <div id="instructions"> </div>
     </body>
 </html>

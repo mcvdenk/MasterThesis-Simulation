@@ -1,6 +1,24 @@
 var uname = "";
 var cont = "mycontainer";
 var ws = new WebSocket("ws://www.mvdenk.com:5678");
+var network
+var nodes
+var edges
+var map
+var options = {
+    nodes: {
+        shape: 'box',
+    },
+    edges: {
+        arrows: {
+            to: {enabled: true}
+        }
+    },
+    interaction: {
+        selectable: false,
+        dragNodes: false
+    }
+};
 
 ws.onopen = function (event) {
     document.getElementById(cont).style.visibility = "visible";
@@ -46,37 +64,43 @@ ws.onmessage = function (event) {
 
 function show_map(map) {
     // provide the data in the vis format
+
+    nodes = new vis.DataSet(map.nodes);
+    edges = new vis.DataSet(map.edges);
+
     var graph = {
-        nodes: map.nodes,
-        edges: map.edges
+        nodes: nodes,
+        edges: edges
     };
 
-    var options = {
-        edges: {
-            arrows: {
-                to: {enabled: true}
-            }
-        }
-    };
     
     var container =  document.getElementById(cont);
     container.innerHTML = "";
 
     // initialize your network!
-    var network = new vis.Network(container, graph, options);
+    network = new vis.Network(container, graph, options);
+
+    network.on('click', function(properties) {
+        for (i=0; i < map.edges.length; i++) {
+            if ('correct' in map.edges[i]) {
+                map.edges[i].correct = !map.edges[i].correct;
+                if (map.edges[i].correct) nodes.update([{ id : map.edges[i].to, color: {background: "green"}}]);
+                else nodes.update([{ id : map.edges[i].to, color: {background: "red"}}]);
+            }
+        }
+    });
 }
 
 function show_menu() {
-    document.getElementById(cont).innerHTML = 
-        "<input type='button' onclick='view_learned()' value='View learned items' /><br> \
-         <input type='button' onclick='learn()' value='Start learning' /><br> \
-         <input type='button' onclick='logout()' value='Logout' /><br>";
+    document.getElementById(cont).innerHTML = "";
+    document.getElementById("menu").style.visibility = "visible";
 }
 
-function colourise_progress(map) {
+function colourise_progress(data) {
 }
 
-function flashmap(map) {
+function flashmap(data) {
+    map = data;
     for (i = 0; i < map.edges.length; i++) {
         if (map.edges[i].learning) {
             map.edges[i].color = "orange";
@@ -84,18 +108,48 @@ function flashmap(map) {
                 if (map.edges[i].to == map.nodes[j].id) {
                     map.nodes[j].color = {background : "orange"};
                     map.nodes[j].true_label = map.nodes[j].label;
-                    map.nodes[j].label = "";
+                    map.nodes[j].label = "______";
                 }
             }
         }
     }
+    document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer()'> Show answer </a>";
     return map;
 }
 
-function show_login() {
+function show_answer() {
+    var index
+    for (i = 0; i < map.edges.length; i++) {
+        if (map.edges[i].learning) {
+            for (j=0;j < map.nodes.length; j++) {
+                if (map.edges[i].to == map.nodes[j].id) index = j;
+            }
+            nodes.update([{id: map.edges[i].to, color: {background : "green"}}]);
+            nodes.update([{id: map.edges[i].to, label: map.nodes[index].true_label}]);
+            map.edges[i].correct = true;
+        }
+    }
+    document.getElementById("panel").innerHTML = "<a href='#' onclick='validate()'> Next </a>";
 }
 
 function view_learned() {
+    var msg = {keyword: "LEARNED_ITEMS-REQUEST", data: {}};
+    ws.send(JSON.stringify(msg));
+}
+
+function undo() {
+    var msg = {keyword: "UNDO", data: {}};
+    ws.send(JSON.stringify(msg));
+}
+
+function validate() {
+    var msg = {keyword: "VALIDATE", data: {}};
+    var responses = [];
+    for (i = 0; i < map.edges.length; i++) {
+        if (map.edges[i].learning) responses.push({id: map.edges[i].id, correct: map.edges[i].correct});
+    }
+    msg.data.edges = responses;
+    ws.send(JSON.stringify(msg));
 }
 
 function learn() {

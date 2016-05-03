@@ -73,7 +73,7 @@ def new_flashedge(username):
         { "name" : username }, 
         { "$push" : {"flashedges" : {
             "id" : edge["id"],
-            "due" : math.inf
+            "due" : time.time()
         }}}
     )
     return build_partial_map(edge)

@@ -36,8 +36,6 @@ keyword: VALIDATE
     data:
         edges:
             id
-            value
-            start_time
-            end_time
-keyword: UNDO-REQUEST
+            correct
+keyword: UNDO
     data:
