@@ -54,6 +54,7 @@ def authenticate(data):
     return msg
 
 def provide_learned_items(data, username):
+    #TODO: implementation
     return ""
 
 def provide_learning(data, username):
@@ -97,10 +98,27 @@ def find_prerequisites(edge):
     return prereqs
 
 def validate(data, username):
-    return ""
+    for edge in data["edges"]:
+        due = next(fe for fe in db.users.find_one({"name": username})["flashedges"] if fe["id"] == edge["id"])["due"]
+        db.users.update(
+            {"name" : username, "flashedges.id" : edge["id"]},
+            {
+                "$push" : {"flashedges.$.responses" : {
+                    "start" : due,
+                    "end" : time.time(),
+                    "correct" : edge["correct"]
+                }},
+                "$set" : {"flashedges.0.due" : schedule(edge["id"], username)}
+            }
+        )
+    return provide_learning(data, username)
 
 def undo(data, username):
-    return ""
+    #TODO: remove latest response entry
+    return provide_learning(data, username)
+
+def schedule(id, username):
+    return time.time()
 
 # Contains a dictionary containing the keywords and their respective functions
 switchcases = {
@@ -108,7 +126,7 @@ switchcases = {
     "LEARNED_ITEMS-REQUEST" : provide_learned_items,
     "LEARN-REQUEST"         : provide_learning,
     "VALIDATE"              : validate,
-    "UNDO-REQUEST"          : undo,
+    "UNDO"                  : undo,
 }
 
 # Receives messages from a client, parses the json file to an object, passes them to consumer() and sends the result back to the client
