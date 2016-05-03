@@ -58,6 +58,7 @@ def provide_learned_items(data, username):
     return ""
 
 def provide_learning(data, username):
+    #TODO: multiple edges with same from, to and label
     flashedges = db.users.find_one({"name": username})["flashedges"]
     if (len(flashedges)):
         flashedges = sorted(flashedges, key=lambda k: k["due"])
@@ -67,6 +68,7 @@ def provide_learning(data, username):
     return new_flashedge(username)
 
 def new_flashedge(username):
+    #TODO: check prerequisites
     i = len(db.users.find_one({"name": username})["flashedges"])
     if (i > len(db.cmap.find_one()["edges"]) - 1): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     edge = db.cmap.find_one()["edges"][i]
@@ -107,8 +109,13 @@ def validate(data, username):
                     "start" : due,
                     "end" : time.time(),
                     "correct" : edge["correct"]
-                }},
-                "$set" : {"flashedges.0.due" : schedule(edge["id"], username)}
+                }}
+            }
+        )
+        db.users.update(
+            {"name" : username, "flashedges.id" : edge["id"]},
+            {
+                "$set" : {"flashedges.$.due" : schedule(edge["id"], username)}
             }
         )
     return provide_learning(data, username)
@@ -117,8 +124,17 @@ def undo(data, username):
     #TODO: remove latest response entry
     return provide_learning(data, username)
 
-def schedule(id, username):
-    return time.time()
+def schedule(id_, username):
+    #TODO: better scheduling algorithm
+    responses = sorted(
+            next(fe for fe in db.users.find_one({"name": username})["flashedges"] if fe["id"] == id_)["responses"],
+            key=lambda k: k['end'])
+    exp = 1
+    for resp in responses:
+        if (not resp["correct"]): break;
+        exp += 1
+    print(exp)
+    return time.time() + 5**exp
 
 # Contains a dictionary containing the keywords and their respective functions
 switchcases = {
