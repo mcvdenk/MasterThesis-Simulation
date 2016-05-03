@@ -4,6 +4,7 @@ import asyncio
 import datetime
 import time
 import random
+import math
 import websockets
 import json
 from pymongo import MongoClient
@@ -59,15 +60,41 @@ def provide_learning(data, username):
     flashedges = db.users.find_one({"name": username})["flashedges"]
     if (len(flashedges)):
         flashedges = sorted(flashedges, key=lambda k: k["due"])
-        if (flashedges[0]["due"] < time.time()): return build_partial_map(flashedges[0])
+        if (flashedges[0]["due"] < time.time()):
+            edge = next(e for e in db.cmap.find_one()["edges"] if e["id"] == flashedges[0]["id"])
+            return build_partial_map(edge)
     return new_flashedge(username)
 
 def new_flashedge(username):
-    return build_partial_map()
+    i = len(db.users.find_one({"name": username})["flashedges"])
+    if (i > len(db.cmap.find_one()["edges"]) - 1): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+    edge = db.cmap.find_one()["edges"][i]
+    db.users.update(
+        { "name" : username }, 
+        { "$push" : {"flashedges" : {
+            "id" : edge["id"],
+            "due" : math.inf
+        }}}
+    )
+    return build_partial_map(edge)
 
 def build_partial_map(flashedge):
-    msg = {"keyword" : "LEARN-RESPONSE", "data" : {}}
+    cmap = {"nodes": [], "edges": find_prerequisites(flashedge)}
+    for edge in cmap["edges"]:
+        edge["learning"] = edge == flashedge
+    cmap["nodes"].append(next(node for node in db.cmap.find_one()["nodes"] if node["id"] == flashedge["to"]))
+    for edge in cmap["edges"]:
+        cmap["nodes"].append(next(node for node in db.cmap.find_one()["nodes"] if node["id"] == edge["from"]))
+    msg = {"keyword" : "LEARN-RESPONSE", "data" : cmap}
     return msg
+
+def find_prerequisites(edge):
+    prereqs = []
+    prereqs.append(edge)
+    for prereq in db.cmap.find_one()["edges"]:
+        if (prereq["to"] == edge["from"] and prereq not in prereqs):
+            prereqs += find_prerequisites(prereq)
+    return prereqs
 
 def validate(data, username):
     return ""
@@ -79,7 +106,7 @@ def undo(data, username):
 switchcases = {
     "MAP-REQUEST"           : provide_map,
     "LEARNED_ITEMS-REQUEST" : provide_learned_items,
-    "LEARN_REQUEST"         : provide_learning,
+    "LEARN-REQUEST"         : provide_learning,
     "VALIDATE"              : validate,
     "UNDO-REQUEST"          : undo,
 }
@@ -108,7 +135,7 @@ async def handler(websocket, path):
             enc_recvmsg = await websocket.recv()
             print("Received message: " + enc_recvmsg)
             dec_recvmsg = json.loads(enc_recvmsg)
-            dec_sendmsg = consumer(dec_recvmsg, active_sessions[websocket])
+            dec_sendmsg = consumer(dec_recvmsg, active_sessions[websocket]["username"])
             enc_sendmsg = json.dumps(dec_sendmsg)
             await websocket.send(enc_sendmsg)
             print("Sent message: " + enc_sendmsg)

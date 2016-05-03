@@ -4,6 +4,7 @@ var ws = new WebSocket("ws://www.mvdenk.com:5678");
 
 ws.onopen = function (event) {
     document.getElementById(cont).style.visibility = "visible";
+    document.getElementById("username").focus();
 }
 
 function authenticate() {
@@ -35,8 +36,10 @@ ws.onmessage = function (event) {
             show_map(coloured_map);
             break;
         case "LEARN-RESPONSE":
-            coloured_map = colourise_flashedge(msg.data);
-            show_map(coloured_map);
+            show_map(flashmap(msg.data));
+            break;
+        case "NO_MORE_FLASHEDGES":
+            done_learning();
             break;
     }
 }
@@ -73,7 +76,20 @@ function show_menu() {
 function colourise_progress(map) {
 }
 
-function colourise_flashedge(map) {
+function flashmap(map) {
+    for (i = 0; i < map.edges.length; i++) {
+        if (map.edges[i].learning) {
+            map.edges[i].color = "orange";
+            for (j = 0; j < map.nodes.length; j++) {
+                if (map.edges[i].to == map.nodes[j].id) {
+                    map.nodes[j].color = {background : "orange"};
+                    map.nodes[j].true_label = map.nodes[j].label;
+                    map.nodes[j].label = "";
+                }
+            }
+        }
+    }
+    return map;
 }
 
 function show_login() {
@@ -83,6 +99,15 @@ function view_learned() {
 }
 
 function learn() {
+    var msg = {
+        keyword: "LEARN-REQUEST",
+        data: {}
+    }
+    ws.send(JSON.stringify(msg));
+}
+
+function done_learning() {
+    alert("There is nothing left to learn for now");
 }
 
 function logout() {
