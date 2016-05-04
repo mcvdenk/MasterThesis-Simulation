@@ -16,8 +16,8 @@ db = dbclient.test
 active_sessions = {}
 
 # Calls the corresponding function to the switchcases dict. When the keyword is invalid, it returns a FAILURE response
-def consumer(recvmessage, username):
-    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], username)
+def consumer(recvmessage):
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
     return "{keyword: FAILURE, data: {}}"
 
 # Loads the whole concept map from the database
@@ -125,7 +125,7 @@ def undo(data, username):
     return provide_learning(data, username)
 
 def schedule(id_, username):
-    #TODO: better scheduling algorithm
+    #TODO: implement memreflex algorithm
     responses = sorted(
             next(fe for fe in db.users.find_one({"name": username})["flashedges"] if fe["id"] == id_)["responses"],
             key=lambda k: k['end'])
@@ -133,7 +133,7 @@ def schedule(id_, username):
     for resp in responses:
         if (not resp["correct"]): break;
         exp += 1
-    print(exp)
+    #print(exp)
     return time.time() + 5**exp
 
 # Contains a dictionary containing the keywords and their respective functions
@@ -149,6 +149,7 @@ switchcases = {
 async def handler(websocket, path):
     try:
         loginmsg = json.loads(await websocket.recv())
+        db.logs.insert_one({str(math.floor(time.time())) : loginmsg})
         assert loginmsg["keyword"] == "AUTHENTICATE-REQUEST"
         await websocket.send(json.dumps(authenticate(loginmsg["data"])))
         active_sessions[websocket] = {
@@ -159,20 +160,24 @@ async def handler(websocket, path):
         date = datetime.datetime.fromtimestamp(0)
         for session in sessions:
             if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["start"])
-        print(loginmsg["data"]["username"] + " logged into the server at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
+        #print(loginmsg["data"]["username"] + " logged into the server at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
     except websockets.exceptions.ConnectionClosed:
-        print("Client disconnected")
+        #print("Client disconnected")
         return
 
     while (True):
         try:
             enc_recvmsg = await websocket.recv()
-            print("Received message: " + enc_recvmsg)
+            #print("Received message: " + enc_recvmsg)
             dec_recvmsg = json.loads(enc_recvmsg)
-            dec_sendmsg = consumer(dec_recvmsg, active_sessions[websocket]["username"])
+            dec_recvmsg.update({"user": active_sessions[websocket]["username"]})
+            db.logs.insert_one({str(math.floor(time.time())) : dec_recvmsg})
+            dec_sendmsg = consumer(dec_recvmsg)
             enc_sendmsg = json.dumps(dec_sendmsg)
             await websocket.send(enc_sendmsg)
-            print("Sent message: " + enc_sendmsg)
+            dec_sendmsg.update({"user": dec_recvmsg["user"]})
+            db.logs.insert_one({str(math.floor(time.time())) : dec_sendmsg})
+            #print("Sent message: " + enc_sendmsg)
         except websockets.exceptions.ConnectionClosed:
             db.users.update(
                 {"name" : active_sessions[websocket]["username"], "sessions.id" : active_sessions[websocket]["mongosession"]},
@@ -182,7 +187,8 @@ async def handler(websocket, path):
             date = datetime.datetime.fromtimestamp(0)
             for session in sessions:
                 if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["end"])
-            print(active_sessions[websocket]["username"] + " closed the connection at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
+            #print(active_sessions[websocket]["username"] + " closed the connection at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
+            db.logs.insert_one({str(math.floor(time.time())) : {"keyword": logout, "data": [], "user": active_sessions[websocket]["username"]}})
             break
 
 start_server = websockets.serve(handler, PATH, PORT)
