@@ -21,7 +21,7 @@ def consumer(recvmessage):
     return "{keyword: FAILURE, data: {}}"
 
 # Loads the whole concept map from the database
-def provide_map(data, username):
+def provide_map(data, name):
     cmap = {"keyword" : "MAP-RESPONSE", "data" : {"nodes": {}, "edges": {}}}
 
     cursor = db.cmap.find_one()
@@ -31,49 +31,49 @@ def provide_map(data, username):
     
     return cmap
 
-# Checks whether the username already exists in the database, and adds it when needed
+# Checks whether the name already exists in the database, and adds it when needed
 def authenticate(data):
     msg = {"keyword" : "AUTHENTICATE-RESPONSE", "data" : {}}
-    if (db.users.find_one({"name" : data["username"]})):
+    if (db.users.find_one({"name" : data["name"]})):
         msg["data"] = {"success" : "LOGGED_IN"}
     else:
         msg["data"] = {"success" : "NEW_USERNAME"}
         db.users.insert_one({
-            "name" : data["username"], "sessions" : [], "flashedges" : []
+            "name" : data["name"], "sessions" : [], "flashedges" : []
         })
     db.users.update(
-        {"name" : data["username"]},
+        {"name" : data["name"]},
         {
             "$push" : {"sessions" : {
                 "start" : time.time(),
                 "browser" : data["browser"],
-                "id" : len(db.users.find_one({"name" : data["username"]})["sessions"])
+                "id" : len(db.users.find_one({"name" : data["name"]})["sessions"])
             }}
         }
     )
     return msg
 
-def provide_learned_items(data, username):
+def provide_learned_items(data, name):
     #TODO: implementation
     return ""
 
-def provide_learning(data, username):
+def provide_learning(data, name):
     #TODO: multiple edges with same from, to and label
-    flashedges = db.users.find_one({"name": username})["flashedges"]
+    flashedges = db.users.find_one({"name": name})["flashedges"]
     if (len(flashedges)):
         flashedges = sorted(flashedges, key=lambda k: k["due"])
         if (flashedges[0]["due"] < time.time()):
             edge = next(e for e in db.cmap.find_one()["edges"] if e["id"] == flashedges[0]["id"])
             return build_partial_map(edge)
-    return new_flashedge(username)
+    return new_flashedge(name)
 
-def new_flashedge(username):
+def new_flashedge(name):
     #TODO: check prerequisites
-    i = len(db.users.find_one({"name": username})["flashedges"])
+    i = len(db.users.find_one({"name": name})["flashedges"])
     if (i > len(db.cmap.find_one()["edges"]) - 1): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     edge = db.cmap.find_one()["edges"][i]
     db.users.update(
-        { "name" : username }, 
+        { "name" : name }, 
         { "$push" : {"flashedges" : {
             "id" : edge["id"],
             "due" : time.time()
@@ -99,11 +99,11 @@ def find_prerequisites(edge):
             prereqs += find_prerequisites(prereq)
     return prereqs
 
-def validate(data, username):
+def validate(data, name):
     for edge in data["edges"]:
-        due = next(fe for fe in db.users.find_one({"name": username})["flashedges"] if fe["id"] == edge["id"])["due"]
+        due = next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == edge["id"])["due"]
         db.users.update(
-            {"name" : username, "flashedges.id" : edge["id"]},
+            {"name" : name, "flashedges.id" : edge["id"]},
             {
                 "$push" : {"flashedges.$.responses" : {
                     "start" : due,
@@ -113,21 +113,38 @@ def validate(data, username):
             }
         )
         db.users.update(
-            {"name" : username, "flashedges.id" : edge["id"]},
+            {"name" : name, "flashedges.id" : edge["id"]},
             {
-                "$set" : {"flashedges.$.due" : schedule(edge["id"], username)}
+                "$set" : {"flashedges.$.due" : schedule(edge["id"], name)}
             }
         )
-    return provide_learning(data, username)
+    return provide_learning(data, name)
 
-def undo(data, username):
-    #TODO: remove latest response entry
-    return provide_learning(data, username)
+def undo(data, name):
+    latest = 0
+    edgeI = ""
+    user = db.users.find_one({"name": name})
+    if (not user["flashedges"]): return provide_learning(data, name)
+    for edge in user["flashedges"]:
+        if (edge["responses"] and latest < edge["responses"][-1]["start"]):
+            edgeI = edge["id"]
+            latest = edge["responses"][-1]["start"]
+    print(latest, edgeI)
+    db.users.update({"name": name, "flashedges.id": edgeI}, 
+            {"$pop" : {"flashedges.$.responses" : 1}})
+    db.users.update(
+        {"name" : name, "flashedges.id" : edgeI},
+        {
+            "$set" : {"flashedges.$.due" : schedule(edge["id"], name)}
+        }
+    )
+    #TODO: remove flashedges with empty response arrays
+    return provide_learning(data, name)
 
-def schedule(id_, username):
+def schedule(id_, name):
     #TODO: implement memreflex algorithm
     responses = sorted(
-            next(fe for fe in db.users.find_one({"name": username})["flashedges"] if fe["id"] == id_)["responses"],
+            next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == id_)["responses"],
             key=lambda k: k['end'])
     exp = 1
     for resp in responses:
@@ -153,14 +170,14 @@ async def handler(websocket, path):
         assert loginmsg["keyword"] == "AUTHENTICATE-REQUEST"
         await websocket.send(json.dumps(authenticate(loginmsg["data"])))
         active_sessions[websocket] = {
-            "username"   : loginmsg["data"]["username"],
-            "mongosession" : len(db.users.find_one({"name" : loginmsg["data"]["username"]})["sessions"]) - 1
+            "name"   : loginmsg["data"]["name"],
+            "mongosession" : len(db.users.find_one({"name" : loginmsg["data"]["name"]})["sessions"]) - 1
         }
-        sessions = db.users.find_one({"name" : loginmsg["data"]["username"]})["sessions"]
+        sessions = db.users.find_one({"name" : loginmsg["data"]["name"]})["sessions"]
         date = datetime.datetime.fromtimestamp(0)
         for session in sessions:
             if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["start"])
-        #print(loginmsg["data"]["username"] + " logged into the server at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
+        #print(loginmsg["data"]["name"] + " logged into the server at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
     except websockets.exceptions.ConnectionClosed:
         #print("Client disconnected")
         return
@@ -170,7 +187,7 @@ async def handler(websocket, path):
             enc_recvmsg = await websocket.recv()
             #print("Received message: " + enc_recvmsg)
             dec_recvmsg = json.loads(enc_recvmsg)
-            dec_recvmsg.update({"user": active_sessions[websocket]["username"]})
+            dec_recvmsg.update({"user": active_sessions[websocket]["name"]})
             db.logs.insert_one({str(math.floor(time.time())) : dec_recvmsg})
             dec_sendmsg = consumer(dec_recvmsg)
             enc_sendmsg = json.dumps(dec_sendmsg)
@@ -180,15 +197,15 @@ async def handler(websocket, path):
             #print("Sent message: " + enc_sendmsg)
         except websockets.exceptions.ConnectionClosed:
             db.users.update(
-                {"name" : active_sessions[websocket]["username"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+                {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
                 {"$set": {"sessions.$.end" : time.time()}}
             )
-            sessions = db.users.find_one({"name" : loginmsg["data"]["username"]})["sessions"]
+            sessions = db.users.find_one({"name" : loginmsg["data"]["name"]})["sessions"]
             date = datetime.datetime.fromtimestamp(0)
             for session in sessions:
                 if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["end"])
-            #print(active_sessions[websocket]["username"] + " closed the connection at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
-            db.logs.insert_one({str(math.floor(time.time())) : {"keyword": logout, "data": [], "user": active_sessions[websocket]["username"]}})
+            #print(active_sessions[websocket]["name"] + " closed the connection at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
+            db.logs.insert_one({str(math.floor(time.time())) : {"keyword": logout, "data": [], "user": active_sessions[websocket]["name"]}})
             break
 
 start_server = websockets.serve(handler, PATH, PORT)

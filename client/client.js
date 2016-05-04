@@ -31,7 +31,7 @@ function authenticate() {
     var msg = {
         keyword: "AUTHENTICATE-REQUEST",
         data: {
-            username: uname,
+            name: uname,
             browser: navigator.platform
         }
     }
