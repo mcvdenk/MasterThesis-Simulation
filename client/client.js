@@ -19,6 +19,7 @@ var options = {
         dragNodes: false
     }
 };
+var show_undo = false;
 
 ws.onopen = function (event) {
     document.getElementById(cont).style.visibility = "visible";
@@ -113,7 +114,8 @@ function flashmap(data) {
             }
         }
     }
-    document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer()'> Show answer </a>";
+    if (show_undo) document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer()'> Show answer </a>";
+    else document.getElementById("panel").innerHTML = "<a href='#' onclick='show_answer()'> Show answer </a>";
     return map;
 }
 
@@ -140,6 +142,7 @@ function view_learned() {
 function undo() {
     var msg = {keyword: "UNDO", data: {}};
     ws.send(JSON.stringify(msg));
+    show_undo = false;
 }
 
 function validate() {
@@ -150,6 +153,7 @@ function validate() {
     }
     msg.data.edges = responses;
     ws.send(JSON.stringify(msg));
+    show_undo = true
 }
 
 function learn() {

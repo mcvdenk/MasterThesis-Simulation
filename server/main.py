@@ -76,7 +76,8 @@ def new_flashedge(name):
         { "name" : name }, 
         { "$push" : {"flashedges" : {
             "id" : edge["id"],
-            "due" : time.time()
+            "due" : time.time(),
+            "responses": []
         }}}
     )
     return build_partial_map(edge)
@@ -124,21 +125,20 @@ def undo(data, name):
     latest = 0
     edgeI = ""
     user = db.users.find_one({"name": name})
-    if (not user["flashedges"]): return provide_learning(data, name)
+    if ("flashedges" not in user): return provide_learning(data, name)
     for edge in user["flashedges"]:
-        if (edge["responses"] and latest < edge["responses"][-1]["start"]):
+        if (len(edge["responses"]) and latest < edge["responses"][-1]["start"]):
             edgeI = edge["id"]
             latest = edge["responses"][-1]["start"]
-    print(latest, edgeI)
-    db.users.update({"name": name, "flashedges.id": edgeI}, 
-            {"$pop" : {"flashedges.$.responses" : 1}})
-    db.users.update(
-        {"name" : name, "flashedges.id" : edgeI},
-        {
-            "$set" : {"flashedges.$.due" : schedule(edge["id"], name)}
-        }
-    )
-    #TODO: remove flashedges with empty response arrays
+    if (edgeI != ""):
+        db.users.update({"name": name, "flashedges.id": edgeI}, 
+                {"$pop" : {"flashedges.$.responses" : 1}})
+        db.users.update(
+            {"name" : name, "flashedges.id" : edgeI},
+            {
+                "$set" : {"flashedges.$.due" : schedule(edgeI, name)}
+            }
+        )
     return provide_learning(data, name)
 
 def schedule(id_, name):
@@ -147,6 +147,7 @@ def schedule(id_, name):
             next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == id_)["responses"],
             key=lambda k: k['end'])
     exp = 1
+    if (not len(responses)): return 0
     for resp in responses:
         if (not resp["correct"]): break;
         exp += 1
@@ -205,7 +206,7 @@ async def handler(websocket, path):
             for session in sessions:
                 if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["end"])
             #print(active_sessions[websocket]["name"] + " closed the connection at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
-            db.logs.insert_one({str(math.floor(time.time())) : {"keyword": logout, "data": [], "user": active_sessions[websocket]["name"]}})
+            db.logs.insert_one({str(math.floor(time.time())) : {"keyword": "LOGOUT", "data": [], "user": active_sessions[websocket]["name"]}})
             break
 
 start_server = websockets.serve(handler, PATH, PORT)
