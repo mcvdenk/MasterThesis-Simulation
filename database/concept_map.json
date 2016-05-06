@@ -1,1860 +1,1860 @@
-nodes :  {
+{ "nodes" : [
     {
-        id : katholicisme,
-        label : Katholicisme
+        "id" : "katholicisme",
+        "label" : "Katholicisme"
     },
     {
-        id : protestantisme,
-        label : Protestantisme
+        "id" : "protestantisme",
+        "label" : "Protestantisme"
     },
     {
-        id : mluther,
-        label : Maarten Luther
+        "id" : "mluther",
+        "label" : "Maarten Luther"
     },
     {
-        id : jcalvijn,
-        label : Johannes Calvijn
+        "id" : "jcalvijn",
+        "label" : "Johannes Calvijn"
     },
     {
-        id : koningen,
-        label : Koningen
+        "id" : "koningen",
+        "label" : "Koningen"
     },
     {
-        id : karelv,
-        label : Karel V
+        "id" : "karelv",
+        "label" : "Karel V"
     },
     {
-        id : fillipsii,
-        label : Fillips II
+        "id" : "fillipsii",
+        "label" : "Fillips II"
     },
     {
-        id : wvoranje,
-        label : Willem van Oranje
+        "id" : "wvoranje",
+        "label" : "Willem van Oranje"
     },
     {
-        id : nederlanden,
-        label : Nederlanden
+        "id" : "nederlanden",
+        "label" : "Nederlanden"
     },
     {
-        id : spanje,
-        label : Spanje
+        "id" : "spanje",
+        "label" : "Spanje"
     },
     {
-        id : boekdrukkunst,
-        label : Boekdrukkunst
+        "id" : "boekdrukkunst",
+        "label" : "Boekdrukkunst"
     },
     {
-        id : centralisatie,
-        label : Centralisatie
+        "id" : "centralisatie",
+        "label" : "Centralisatie"
     },
     {
-        id : geloofsvervolging,
-        label : Geloofsvervolging
+        "id" : "geloofsvervolging",
+        "label" : "Geloofsvervolging"
     },
     {
-        id : verzet,
-        label : Verzet
+        "id" : "verzet",
+        "label" : "Verzet"
     },
     {
-        id : 80jarigeoorlog,
-        label : Tachtigjarige Oorlog
+        "id" : "80jarigeoorlog",
+        "label" : "Tachtigjarige Oorlog"
     },
     {
-        id : antwerpen,
-        label : Antwerpen
+        "id" : "antwerpen",
+        "label" : "Antwerpen"
     },
     {
-        id : amsterdam,
-        label : Amsterdam
+        "id" : "amsterdam",
+        "label" : "Amsterdam"
     },
     {
-        id : kooplieden,
-        label : Antwerpse kooplieden
+        "id" : "kooplieden",
+        "label" : "Antwerpse kooplieden"
     },
     {
-        id : calvinisten,
-        label : Calvinisten
+        "id" : "calvinisten",
+        "label" : "Calvinisten"
     },
     {
-        id : vlucht,
-        label : Vlucht
+        "id" : "vlucht",
+        "label" : "Vlucht"
     },
     {
-        id : handelscentrum,
-        label : Europees handelscentrum
+        "id" : "handelscentrum",
+        "label" : "Europees handelscentrum"
     },
     {
-        id : groei,
-        label : Explosieve groei handel
+        "id" : "groei",
+        "label" : "Explosieve groei handel"
     },
     {
-        id : regenten,
-        label : Regenten
+        "id" : "regenten",
+        "label" : "Regenten"
     },
     {
-        id : stedelijkecultuur,
-        label : Stedelijke cultuur
+        "id" : "stedelijkecultuur",
+        "label" : "Stedelijke cultuur"
     },
     {
-        id : kunst,
-        label : Kunst
+        "id" : "kunst",
+        "label" : "Kunst"
     },
     {
-        id : literatuur,
-        label : Literatuur
+        "id" : "literatuur",
+        "label" : "Literatuur"
     },
     {
-        id : boers,
-        label : Boers, onbeschaafd gedrag
+        "id" : "boers",
+        "label" : "Boers, onbeschaafd gedrag"
     },
     {
-        id : stedelijkegedragscode,
-        label : Stedelijke gedragscode
+        "id" : "stedelijkegedragscode",
+        "label" : "Stedelijke gedragscode"
     },
     {
-        id : gewenstongewenst,
-        label : Gewenst en ongewenst gedrag
+        "id" : "gewenstongewenst",
+        "label" : "Gewenst en ongewenst gedrag"
     },
     {
-        id : gabredero,
-        label : G.A. Bredero
+        "id" : "gabredero",
+        "label" : "G.A. Bredero"
     },
     {
-        id : boerengezelschap,
-        label : Boeren-gezelschap
+        "id" : "boerengezelschap",
+        "label" : "Boeren-gezelschap"
     },
     {
-        id : onmatiggedrag,
-        label : Onmatig gedrag
+        "id" : "onmatiggedrag",
+        "label" : "Onmatig gedrag"
     },
     {
-        id : conflicten,
-        label : Conflicten in de stad
+        "id" : "conflicten",
+        "label" : "Conflicten in de stad"
     },
     {
-        id : alcoholisme,
-        label : Alcoholisme
+        "id" : "alcoholisme",
+        "label" : "Alcoholisme"
     },
     {
-        id : seksongeremd,
-        label : Ongeremde seksualiteit
+        "id" : "seksongeremd",
+        "label" : "Ongeremde seksualiteit"
     },
     {
-        id : jongeren,
-        label : Galante jongeren uit de bovenlaag
+        "id" : "jongeren",
+        "label" : "Galante jongeren uit de bovenlaag"
     },
     {
-        id : moraal,
-        label : Strenge moraal
+        "id" : "moraal",
+        "label" : "Strenge moraal"
     },
     {
-        id : geslachtsverkeer,
-        label : Voorechtelijk geslachtsverkeer
+        "id" : "geslachtsverkeer",
+        "label" : "Voorechtelijk geslachtsverkeer"
     },
     {
-        id : lyriek,
-        label : Lyriek (liederen)
+        "id" : "lyriek",
+        "label" : "Lyriek (liederen)"
     },
     {
-        id : goudeneeuw,
-        label : Gouden eeuw
+        "id" : "goudeneeuw",
+        "label" : "Gouden eeuw"
     },
     {
-        id : rederijkerskamer,
-        label : Rederijkerskamers
+        "id" : "rederijkerskamer",
+        "label" : "Rederijkerskamers"
     },
     {
-        id : dichters,
-        label : Rederijkers (Nederlandse dichters
+        "id" : "dichters",
+        "label" : "Rederijkers (Nederlandse dichters"
     },
     {
-        id : opinierenderol,
-        label : Opiniërende rol
+        "id" : "opinierenderol",
+        "label" : "Opiniërende rol"
     },
     {
-        id : oudekamer,
-        label : Oude kamer, D'Eglentier
+        "id" : "oudekamer",
+        "label" : "Oude kamer, D'Eglentier"
     },
     {
-        id : pchooft,
-        label : P.C. Hooft
+        "id" : "pchooft",
+        "label" : "P.C. Hooft"
     },
     {
-        id : scoster,
-        label : S. Coster
+        "id" : "scoster",
+        "label" : "S. Coster"
     },
     {
-        id : witlavendel,
-        label : Het Wit Lavendel, Brabantse Kamer
+        "id" : "witlavendel",
+        "label" : "Het Wit Lavendel, Brabantse Kamer"
     },
     {
-        id : jvdvondel,
-        label : J. van den Vondel
+        "id" : "jvdvondel",
+        "label" : "J. van den Vondel"
     },
     {
-        id : renaissance,
-        label : Renaissance (wedergeboorte)
+        "id" : "renaissance",
+        "label" : "Renaissance (wedergeboorte)"
     },
     {
-        id : humanisme,
-        label : Humanisme
+        "id" : "humanisme",
+        "label" : "Humanisme"
     },
     {
-        id : 1415eeuw,
-        label : 1500 - 1700
+        "id" : "1415eeuw",
+        "label" : "1500 - 1700"
     },
     {
-        id : republikeinsestadstaten,
-        label : Italische republikeinse stadstaten
+        "id" : "republikeinsestadstaten",
+        "label" : "Italische republikeinse stadstaten"
     },
     {
-        id : klassiekeoudheid,
-        label : Klassieke Oudheid
+        "id" : "klassiekeoudheid",
+        "label" : "Klassieke Oudheid"
     },
     {
-        id : klassiekekunst,
-        label : Klassieke kunst
+        "id" : "klassiekekunst",
+        "label" : "Klassieke kunst"
     },
     {
-        id : klassiekeideeen,
-        label : Klassieke ideeën
+        "id" : "klassiekeideeen",
+        "label" : "Klassieke ideeën"
     },
     {
-        id : renliteratuur,
-        label : Renaissanceliteratuur
+        "id" : "renliteratuur",
+        "label" : "Renaissanceliteratuur"
     },
     {
-        id : toneel,
-        label : Toneel
+        "id" : "toneel",
+        "label" : "Toneel"
     },
     {
-        id : komedie,
-        label : Komedie (blijspel)
+        "id" : "komedie",
+        "label" : "Komedie (blijspel)"
     },
     {
-        id : tragedie,
-        label : Tragedie (treurspel)
+        "id" : "tragedie",
+        "label" : "Tragedie (treurspel)"
     },
     {
-        id : emblematiek,
-        label : Emblematiek
+        "id" : "emblematiek",
+        "label" : "Emblematiek"
     },
     {
-        id : sonnet,
-        label : Sonnet
+        "id" : "sonnet",
+        "label" : "Sonnet"
     },
     {
-        id : translatio,
-        label : Translatio (vertaling)
+        "id" : "translatio",
+        "label" : "Translatio (vertaling)"
     },
     {
-        id : imitatio,
-        label : Imitatio (nabootsing)
+        "id" : "imitatio",
+        "label" : "Imitatio (nabootsing)"
     },
     {
-        id : aemulatio,
-        label : Aemulatio (overtreffing)
+        "id" : "aemulatio",
+        "label" : "Aemulatio (overtreffing)"
     },
     {
-        id : mythologie,
-        label : Mythologie
+        "id" : "mythologie",
+        "label" : "Mythologie"
     },
     {
-        id : poezie,
-        label : Poëzie
+        "id" : "poezie",
+        "label" : "Poëzie"
     },
     {
-        id : taalschoonheden,
-        label : Geraffineerde taalschoonheden
+        "id" : "taalschoonheden",
+        "label" : "Geraffineerde taalschoonheden"
     },
     {
-        id : menswaardigheid,
-        label : Menswaardigheid
+        "id" : "menswaardigheid",
+        "label" : "Menswaardigheid"
     },
     {
-        id : zelfontplooiing,
-        label : Zelfontplooiing
+        "id" : "zelfontplooiing",
+        "label" : "Zelfontplooiing"
     },
     {
-        id : menswetenschappen,
-        label : Menswetenschappen
+        "id" : "menswetenschappen",
+        "label" : "Menswetenschappen"
     },
     {
-        id : onderscheidmensdier,
-        label : Onderscheid tussen mens en dier
+        "id" : "onderscheidmensdier",
+        "label" : "Onderscheid tussen mens en dier"
     },
     {
-        id : taal,
-        label : Taal
+        "id" : "taal",
+        "label" : "Taal"
     },
     {
-        id : grammatica,
-        label : Grammatica
+        "id" : "grammatica",
+        "label" : "Grammatica"
     },
     {
-        id : retorica,
-        label : Retorica
+        "id" : "retorica",
+        "label" : "Retorica"
     },
     {
-        id : ethiek,
-        label : Ethiek (kennis goed en kwaad
+        "id" : "ethiek",
+        "label" : "Ethiek (kennis goed en kwaad"
     },
     {
-        id : geschiedenis,
-        label : Geschiedenis
+        "id" : "geschiedenis",
+        "label" : "Geschiedenis"
     },
     {
-        id : verdraagzaamheid,
-        label : Verdraagzaamheid
+        "id" : "verdraagzaamheid",
+        "label" : "Verdraagzaamheid"
     },
     {
-        id : verzoening,
-        label : Verzoening
+        "id" : "verzoening",
+        "label" : "Verzoening"
     },
     {
-        id : stoicisme,
-        label : Stoïcisme
+        "id" : "stoicisme",
+        "label" : "Stoïcisme"
     },
     {
-        id : tirannie,
-        label : Tirannie
+        "id" : "tirannie",
+        "label" : "Tirannie"
     },
     {
-        id : dvcoornhert,
-        label : D.V. Coornhert
+        "id" : "dvcoornhert",
+        "label" : "D.V. Coornhert"
     },
     {
-        id : zedelijkeverbetering,
-        label : Zedelijke verbetering
+        "id" : "zedelijkeverbetering",
+        "label" : "Zedelijke verbetering"
     },
     {
-        id : zelfkennis,
-        label : Zelfkennis
+        "id" : "zelfkennis",
+        "label" : "Zelfkennis"
     },
     {
-        id : godsdienstvrijheid,
-        label : Godsdienstvrijheid voor iedereen
+        "id" : "godsdienstvrijheid",
+        "label" : "Godsdienstvrijheid voor iedereen"
     },
     {
-        id : natuurwetenschappen,
-        label : Natuurwetenschappen
+        "id" : "natuurwetenschappen",
+        "label" : "Natuurwetenschappen"
     },
     {
-        id : erasmus,
-        label : Erasmus
+        "id" : "erasmus",
+        "label" : "Erasmus"
     },
     {
-        id : reizen,
-        label : Reizen
+        "id" : "reizen",
+        "label" : "Reizen"
     },
     {
-        id : christendom,
-        label : christendom
+        "id" : "christendom",
+        "label" : "christendom"
     },
     {
-        id : nederlandseliteratuur,
-        label : Nederlandse literatuur
+        "id" : "nederlandseliteratuur",
+        "label" : "Nederlandse literatuur"
     },
     {
-        id : mecenas,
-        label : Mecenas (opdrachtgevers)
+        "id" : "mecenas",
+        "label" : "Mecenas (opdrachtgevers)"
     },
     {
-        id : adellijk,
-        label : Adellijk
+        "id" : "adellijk",
+        "label" : "Adellijk"
     },
     {
-        id : kerkelijk,
-        label : Kerkelijk
+        "id" : "kerkelijk",
+        "label" : "Kerkelijk"
     },
     {
-        id : maatschappelijketaak,
-        label : Maatschappelijke taak
+        "id" : "maatschappelijketaak",
+        "label" : "Maatschappelijke taak"
     },
     {
-        id : beleren,
-        label : Beleren
+        "id" : "beleren",
+        "label" : "Beleren"
     },
     {
-        id : moraliseren,
-        label : Moraliseren (wijze lessen geven)
+        "id" : "moraliseren",
+        "label" : "Moraliseren (wijze lessen geven)"
     },
     {
-        id : kritiek,
-        label : Kritiek leveren
+        "id" : "kritiek",
+        "label" : "Kritiek leveren"
     },
     {
-        id : horatius,
-        label : Horatius (Romein)
+        "id" : "horatius",
+        "label" : "Horatius (Romein)"
     },
     {
-        id : utile,
-        label : Utile (lering)
+        "id" : "utile",
+        "label" : "Utile (lering)"
     },
     {
-        id : dulce,
-        label : Dulce (vermaak)
+        "id" : "dulce",
+        "label" : "Dulce (vermaak)"
     },
     {
-        id : strijdliteratuur,
-        label : Strijdliteratuur
+        "id" : "strijdliteratuur",
+        "label" : "Strijdliteratuur"
     },
     {
-        id : actualiteit,
-        label : Actualiteit
+        "id" : "actualiteit",
+        "label" : "Actualiteit"
     },
     {
-        id : actie,
-        label : Actie
+        "id" : "actie",
+        "label" : "Actie"
     },
     {
-        id : geusenliederen,
-        label : Een nieu Geusen Lieden Boecxken
+        "id" : "geusenliederen",
+        "label" : "Een nieu Geusen Lieden Boecxken"
     },
     {
-        id : wilhelmus,
-        label : Wilhelmus
+        "id" : "wilhelmus",
+        "label" : "Wilhelmus"
     },
     {
-        id : klucht,
-        label : Klucht
+        "id" : "klucht",
+        "label" : "Klucht"
     },
     {
-        id : motto,
-        label : Motto (opschrift)
+        "id" : "motto",
+        "label" : "Motto (opschrift)"
     },
     {
-        id : pictura,
-        label : Pictura (afbeelding)
+        "id" : "pictura",
+        "label" : "Pictura (afbeelding)"
     },
     {
-        id : subscriptio,
-        label : Subscriptio (uitleg)
+        "id" : "subscriptio",
+        "label" : "Subscriptio (uitleg)"
     },
     {
-        id : waarheid,
-        label : Algemene waarheid
+        "id" : "waarheid",
+        "label" : "Algemene waarheid"
     },
     {
-        id : dieperebetekenis,
-        label : Diepere betekenis
+        "id" : "dieperebetekenis",
+        "label" : "Diepere betekenis"
     },
     {
-        id : analogiedenken,
-        label : Analogiedenken
+        "id" : "analogiedenken",
+        "label" : "Analogiedenken"
     },
     {
-        id : creationisme,
-        label : Alles is Gods schepping
+        "id" : "creationisme",
+        "label" : "Alles is Gods schepping"
     },
     {
-        id : toeval,
-        label : Parallellen zijn nooit toevallig
+        "id" : "toeval",
+        "label" : "Parallellen zijn nooit toevallig"
     },
     {
-        id : jcats,
-        label : Jacob Cats
+        "id" : "jcats",
+        "label" : "Jacob Cats"
     },
     {
-        id : silenusalcibiadis,
-        label : Silenus Alcibiadis, sive Proteus (Sinne- en Minnebeelden)
+        "id" : "silenusalcibiadis",
+        "label" : "sive Proteus (Sinne- en Minnebeelden)"
     },
     {
-        id : liefde,
-        label : Liefde
+        "id" : "liefde",
+        "label" : "Liefde"
     },
     {
-        id : platonischeliefde,
-        label : Platonische liefde
+        "id" : "platonischeliefde",
+        "label" : "Platonische liefde"
     },
     {
-        id : zinnelijkeliefde,
-        label : Lichamelijke liefde
+        "id" : "zinnelijkeliefde",
+        "label" : "Lichamelijke liefde"
     },
     {
-        id : ideaalbeeld,
-        label : Onbereikbaar ideaalbeeld
+        "id" : "ideaalbeeld",
+        "label" : "Onbereikbaar ideaalbeeld"
     },
     {
-        id : nieuweliedboeken,
-        label : Nieuwe liedboeken
+        "id" : "nieuweliedboeken",
+        "label" : "Nieuwe liedboeken"
     },
     {
-        id : antwerpsliedboek,
-        label : Antwerps liedboek
+        "id" : "antwerpsliedboek",
+        "label" : "Antwerps liedboek"
     },
     {
-        id : dennieuwenlusthof,
-        label : Den nieuwen Lust-hof
+        "id" : "dennieuwenlusthof",
+        "label" : "Den nieuwen Lust-hof"
     },
     {
-        id : petrarkisme,
-        label : Petrarkisme
+        "id" : "petrarkisme",
+        "label" : "Petrarkisme"
     },
     {
-        id : petrarca,
-        label : Petrarca
+        "id" : "petrarca",
+        "label" : "Petrarca"
     },
     {
-        id : paradoxen,
-        label : Paradoxen
+        "id" : "paradoxen",
+        "label" : "Paradoxen"
     },
     {
-        id : antithese,
-        label : Antithese (tegenstelling)
+        "id" : "antithese",
+        "label" : "Antithese (tegenstelling)"
     },
     {
-        id : aanspreking,
-        label : Aanspreking
+        "id" : "aanspreking",
+        "label" : "Aanspreking"
     },
     {
-        id : personificatie,
-        label : Personificatie
+        "id" : "personificatie",
+        "label" : "Personificatie"
     },
     {
-        id : paronomasia,
-        label : Paronomasia
+        "id" : "paronomasia",
+        "label" : "Paronomasia"
     },
     {
-        id : liefdesklacht,
-        label : Liefdesklacht
+        "id" : "liefdesklacht",
+        "label" : "Liefdesklacht"
     },
     {
-        id : beeldenconventies,
-        label : Literaire beelden en conventies
+        "id" : "beeldenconventies",
+        "label" : "Literaire beelden en conventies"
     },
     {
-        id : literaireelite,
-        label : Literaire elite
+        "id" : "literaireelite",
+        "label" : "Literaire elite"
     },
     {
-        id : zelfbeheersing,
-        label : Zelfbeheersing
+        "id" : "zelfbeheersing",
+        "label" : "Zelfbeheersing"
     },
     {
-        id : veertienversregels,
-        label : Veertien versregels
+        "id" : "veertienversregels",
+        "label" : "Veertien versregels"
     },
     {
-        id : octaaf,
-        label : Octaaf, acht eerste versregels
+        "id" : "octaaf",
+        "label" : "Octaaf, acht eerste versregels"
     },
     {
-        id : sextet,
-        label : Sextet, zes laatste versregels 
+        "id" : "sextet",
+        "label" : "Sextet, zes laatste versregels "
     },
     {
-        id : volta,
-        label : Volta (wending)
+        "id" : "volta",
+        "label" : "Volta (wending)"
     },
     {
-        id : publiek,
-        label : Publiek
+        "id" : "publiek",
+        "label" : "Publiek"
     },
     {
-        id : liefdadigeinstellingen,
-        label : Liefdadige instellingen
+        "id" : "liefdadigeinstellingen",
+        "label" : "Liefdadige instellingen"
     },
     {
-        id : eerstenederduytscheacademie,
-        label : Eerste Nederduytsche Academie
+        "id" : "eerstenederduytscheacademie",
+        "label" : "Eerste Nederduytsche Academie"
     },
     {
-        id : amsterdamseschouwburg,
-        label : Amsterdamse Schouwburg
+        "id" : "amsterdamseschouwburg",
+        "label" : "Amsterdamse Schouwburg"
     },
     {
-        id : spiegel,
-        label : Spiegel voorhouden
+        "id" : "spiegel",
+        "label" : "Spiegel voorhouden"
     },
     {
-        id : ondergang,
-        label : Ondergang van de hoofdpersoon
+        "id" : "ondergang",
+        "label" : "Ondergang van de hoofdpersoon"
     },
     {
-        id : hooggeplaatstpersonage,
-        label : Hooggeplaatst personage
+        "id" : "hooggeplaatstpersonage",
+        "label" : "Hooggeplaatst personage"
     },
     {
-        id : bijbel,
-        label : Bijbel
+        "id" : "bijbel",
+        "label" : "Bijbel"
     },
     {
-        id : retorischdidactischtragedie,
-        label : Retorisch-didactische tragedie
+        "id" : "retorischdidactischtragedie",
+        "label" : "Retorisch-didactische tragedie"
     },
     {
-        id : seneca,
-        label : Seneca (Romein)
+        "id" : "seneca",
+        "label" : "Seneca (Romein)"
     },
     {
-        id : vijfbedrijven,
-        label : Vijf bedrijven
+        "id" : "vijfbedrijven",
+        "label" : "Vijf bedrijven"
     },
     {
-        id : lossestructuur,
-        label : Losse structuur
+        "id" : "lossestructuur",
+        "label" : "Losse structuur"
     },
     {
-        id : afgerondescenes,
-        label : Afgedronde scènes
+        "id" : "afgerondescenes",
+        "label" : "Afgedronde scènes"
     },
     {
-        id : aristotelestragedie,
-        label : Aristotelische tragedie
+        "id" : "aristotelestragedie",
+        "label" : "Aristotelische tragedie"
     },
     {
-        id : handelingsstructuur,
-        label : Handelingsgerichte structuur
+        "id" : "handelingsstructuur",
+        "label" : "Handelingsgerichte structuur"
     },
     {
-        id : tijd,
-        label : Tijd
+        "id" : "tijd",
+        "label" : "Tijd"
     },
     {
-        id : plaats,
-        label : Plaats
+        "id" : "plaats",
+        "label" : "Plaats"
     },
     {
-        id : handeling,
-        label : Handeling
+        "id" : "handeling",
+        "label" : "Handeling"
     },
     {
-        id : aristoteles,
-        label : Aristoteles (Grieks)
+        "id" : "aristoteles",
+        "label" : "Aristoteles (Grieks)"
     },
     {
-        id : gvaemstel,
-        label : Gijsbreght van Aemstel
+        "id" : "gvaemstel",
+        "label" : "Gijsbreght van Aemstel"
     },
     {
-        id : laaggeplaatstpersonage,
-        label : Personen uit lagere klassen
+        "id" : "laaggeplaatstpersonage",
+        "label" : "Personen uit lagere klassen"
     },
     {
-        id : spreektaal,
-        label : Spreektaal
+        "id" : "spreektaal",
+        "label" : "Spreektaal"
     },
     {
-        id : happyend,
-        label : Happy end
+        "id" : "happyend",
+        "label" : "Happy end"
     },
     {
-        id : warenar,
-        label : Warenar
+        "id" : "warenar",
+        "label" : "Warenar"
     },
     {
-        id : grappigesituaties,
-        label : Grappige situaties
+        "id" : "grappigesituaties",
+        "label" : "Grappige situaties"
     },
     {
-        id : primairelevensdriften,
-        label : Primaire levensdriften
+        "id" : "primairelevensdriften",
+        "label" : "Primaire levensdriften"
     },
     {
-        id : kvdkoe,
-        label : Klucht van de koe
+        "id" : "kvdkoe",
+        "label" : "Klucht van de koe"
     }
-},
-edges :  {
+],
+"edges" : [
     {
-        id : 0,
-        label : geleid door,
-        from : protestantisme,
-        to : mluther
+        "id" : "0",
+        "label" : "geleid door",
+        "from" : "protestantisme",
+        "to" : "mluther"
     },
     {
-        id : 1,
-        label : geleid door,
-        from : protestantisme,
-        to : jcalvijn
+        "id" : "1",
+        "label" : "geleid door",
+        "from" : "protestantisme",
+        "to" : "jcalvijn"
     },
     {
-        id : 2,
-        label : verspreid door,
-        from : protestantisme,
-        to : boekdrukkunst
+        "id" : "2",
+        "label" : "verspreid door",
+        "from" : "protestantisme",
+        "to" : "boekdrukkunst"
     },
     {
-        id : 3,
-        label : bezetter van,
-        from : spanje,
-        to : nederlanden
+        "id" : "3",
+        "label" : "bezetter van",
+        "from" : "spanje",
+        "to" : "nederlanden"
     },
     {
-        id : 4,
-        label : geregeerd door,
-        from : spanje,
-        to : koningen
+        "id" : "4",
+        "label" : "geregeerd door",
+        "from" : "spanje",
+        "to" : "koningen"
     },
     {
-        id : 5,
-        label : positie vervuld door,
-        from : koningen,
-        to : karelv
+        "id" : "5",
+        "label" : "positie vervuld door",
+        "from" : "koningen",
+        "to" : "karelv"
     },
     {
-        id : 6,
-        label : positie vervuld door,
-        from : koningen,
-        to : fillipsii
+        "id" : "6",
+        "label" : "positie vervuld door",
+        "from" : "koningen",
+        "to" : "fillipsii"
     },
     {
-        id : 7,
-        label : opgevolgd door,
-        from : karelv,
-        to : fillipsii
+        "id" : "7",
+        "label" : "opgevolgd door",
+        "from" : "karelv",
+        "to" : "fillipsii"
     },
     {
-        id : 8,
-        label : wilden,
-        from : koningen,
-        to : centralisatie
+        "id" : "8",
+        "label" : "wilden",
+        "from" : "koningen",
+        "to" : "centralisatie"
     },
     {
-        id : 9,
-        label : leidde tot,
-        from : centralisatie,
-        to : geloofsvervolging
+        "id" : "9",
+        "label" : "leidde tot",
+        "from" : "centralisatie",
+        "to" : "geloofsvervolging"
     },
     {
-        id : 10,
-        label : van,
-        from : centralisatie,
-        to : katholicisme
+        "id" : "10",
+        "label" : "van",
+        "from" : "centralisatie",
+        "to" : "katholicisme"
     },
     {
-        id : 11,
-        label : van,
-        from : geloofsvervolging,
-        to : protestantisme
+        "id" : "11",
+        "label" : "van",
+        "from" : "geloofsvervolging",
+        "to" : "protestantisme"
     },
     {
-        id : 12,
-        label : door,
-        from : verzet,
-        to : nederlanden
+        "id" : "12",
+        "label" : "door",
+        "from" : "verzet",
+        "to" : "nederlanden"
     },
     {
-        id : 13,
-        label : leidde tot,
-        from : geloofsvervolging,
-        to : verzet
+        "id" : "13",
+        "label" : "leidde tot",
+        "from" : "geloofsvervolging",
+        "to" : "verzet"
     },
     {
-        id : 14,
-        label : onder leiding van,
-        from : verzet,
-        to : wvoranje
+        "id" : "14",
+        "label" : "onder leiding van",
+        "from" : "verzet",
+        "to" : "wvoranje"
     },
     {
-        id : 15,
-        label : leidde tot,
-        from : verzet,
-        to : 80jarigeoorlog
+        "id" : "15",
+        "label" : "leidde tot",
+        "from" : "verzet",
+        "to" : "80jarigeoorlog"
     },
     {
-        id : 16,
-        label : aangehangen door,
-        from : protestantisme,
-        to : calvinisten
+        "id" : "16",
+        "label" : "aangehangen door",
+        "from" : "protestantisme",
+        "to" : "calvinisten"
     },
     {
-        id : 17,
-        label : was,
-        from : antwerpen,
-        to : handelscentrum
+        "id" : "17",
+        "label" : "was",
+        "from" : "antwerpen",
+        "to" : "handelscentrum"
     },
     {
-        id : 18,
-        label : werd,
-        from : amsterdam,
-        to : handelscentrum
+        "id" : "18",
+        "label" : "werd",
+        "from" : "amsterdam",
+        "to" : "handelscentrum"
     },
     {
-        id : 19,
-        label : leidde tot,
-        from : geloofsvervolging,
-        to : vlucht
+        "id" : "19",
+        "label" : "leidde tot",
+        "from" : "geloofsvervolging",
+        "to" : "vlucht"
     },
     {
-        id : 20,
-        label : van,
-        from : vlucht,
-        to : kooplieden
+        "id" : "20",
+        "label" : "van",
+        "from" : "vlucht",
+        "to" : "kooplieden"
     },
     {
-        id : 21,
-        label : van,
-        from : vlucht,
-        to : calvinisten
+        "id" : "21",
+        "label" : "van",
+        "from" : "vlucht",
+        "to" : "calvinisten"
     },
     {
-        id : 22,
-        label : vanaf,
-        from : vlucht,
-        to : antwerpen
+        "id" : "22",
+        "label" : "vanaf",
+        "from" : "vlucht",
+        "to" : "antwerpen"
     },
     {
-        id : 23,
-        label : naar,
-        from : vlucht,
-        to : amsterdam
+        "id" : "23",
+        "label" : "naar",
+        "from" : "vlucht",
+        "to" : "amsterdam"
     },
     {
-        id : 24,
-        label : leidde tot,
-        from : vlucht,
-        to : groei
+        "id" : "24",
+        "label" : "leidde tot",
+        "from" : "vlucht",
+        "to" : "groei"
     },
     {
-        id : 25,
-        label : van,
-        from : groei,
-        to : amsterdam
+        "id" : "25",
+        "label" : "van",
+        "from" : "groei",
+        "to" : "amsterdam"
     },
     {
-        id : 26,
-        label : bestuurd door,
-        from : nederlanden,
-        to : regenten
+        "id" : "26",
+        "label" : "bestuurd door",
+        "from" : "nederlanden",
+        "to" : "regenten"
     },
     {
-        id : 27,
-        label : wilden,
-        from : regenten,
-        to : stedelijkecultuur
+        "id" : "27",
+        "label" : "wilden",
+        "from" : "regenten",
+        "to" : "stedelijkecultuur"
     },
     {
-        id : 28,
-        label : gefinancierd door,
-        from : kunst,
-        to : regenten
+        "id" : "28",
+        "label" : "gefinancierd door",
+        "from" : "kunst",
+        "to" : "regenten"
     },
     {
-        id : 29,
-        label : gefinancierd door,
-        from : literatuur,
-        to : regenten
+        "id" : "29",
+        "label" : "gefinancierd door",
+        "from" : "literatuur",
+        "to" : "regenten"
     },
     {
-        id : 30,
-        label : droeg bij aan,
-        from : kunst,
-        to : stedelijkegedragscode
+        "id" : "30",
+        "label" : "droeg bij aan",
+        "from" : "kunst",
+        "to" : "stedelijkegedragscode"
     },
     {
-        id : 31,
-        label : droeg bij aan,
-        from : literatuur,
-        to : stedelijkegedragscode
+        "id" : "31",
+        "label" : "droeg bij aan",
+        "from" : "literatuur",
+        "to" : "stedelijkegedragscode"
     },
     {
-        id : 32,
-        label : vormde,
-        from : stedelijkegedragscode,
-        to : stedelijkecultuur
+        "id" : "32",
+        "label" : "vormde",
+        "from" : "stedelijkegedragscode",
+        "to" : "stedelijkecultuur"
     },
     {
-        id : 33,
-        label : gaf aan,
-        from : stedelijkegedragscode,
-        to : gewenstongewenst
+        "id" : "33",
+        "label" : "gaf aan",
+        "from" : "stedelijkegedragscode",
+        "to" : "gewenstongewenst"
     },
     {
-        id : 34,
-        label : voorbeeld ongewenst,
-        from : gewenstongewenst,
-        to : boers
+        "id" : "34",
+        "label" : "voorbeeld ongewenst",
+        "from" : "gewenstongewenst",
+        "to" : "boers"
     },
     {
-        id : 35,
-        label : voorbeeld,
-        from : stedelijkegedragscode,
-        to : boerengezelschap
+        "id" : "35",
+        "label" : "voorbeeld",
+        "from" : "stedelijkegedragscode",
+        "to" : "boerengezelschap"
     },
     {
-        id : 36,
-        label : geschreven door,
-        from : boerengezelschap,
-        to : gabredero
+        "id" : "36",
+        "label" : "geschreven door",
+        "from" : "boerengezelschap",
+        "to" : "gabredero"
     },
     {
-        id : 37,
-        label : beschrijft,
-        from : boerengezelschap,
-        to : boers
+        "id" : "37",
+        "label" : "beschrijft",
+        "from" : "boerengezelschap",
+        "to" : "boers"
     },
     {
-        id : 38,
-        label : leidt tot,
-        from : boers,
-        to : conflicten
+        "id" : "38",
+        "label" : "leidt tot",
+        "from" : "boers",
+        "to" : "conflicten"
     },
     {
-        id : 39,
-        label : werd gezien als,
-        from : boers,
-        to : onmatiggedrag
+        "id" : "39",
+        "label" : "werd gezien als",
+        "from" : "boers",
+        "to" : "onmatiggedrag"
     },
     {
-        id : 40,
-        label : bijvoorbeeld,
-        from : onmatiggedrag,
-        to : alcoholisme
+        "id" : "40",
+        "label" : "bijvoorbeeld",
+        "from" : "onmatiggedrag",
+        "to" : "alcoholisme"
     },
     {
-        id : 41,
-        label : bijvoorbeeld,
-        from : onmatiggedrag,
-        to : seksongeremd
+        "id" : "41",
+        "label" : "bijvoorbeeld",
+        "from" : "onmatiggedrag",
+        "to" : "seksongeremd"
     },
     {
-        id : 42,
-        label : leidde tot bevolkingsgroep,
-        from : groei,
-        to : jongeren
+        "id" : "42",
+        "label" : "leidde tot bevolkingsgroep",
+        "from" : "groei",
+        "to" : "jongeren"
     },
     {
-        id : 43,
-        label : hadden,
-        from : calvinisten,
-        to : moraal
+        "id" : "43",
+        "label" : "hadden",
+        "from" : "calvinisten",
+        "to" : "moraal"
     },
     {
-        id : 44,
-        label : ten opzichte van,
-        from : moraal,
-        to : geslachtsverkeer
+        "id" : "44",
+        "label" : "ten opzichte van",
+        "from" : "moraal",
+        "to" : "geslachtsverkeer"
     },
     {
-        id : 45,
-        label : richtte zich op,
-        from : lyriek,
-        to : moraal
+        "id" : "45",
+        "label" : "richtte zich op",
+        "from" : "lyriek",
+        "to" : "moraal"
     },
     {
-        id : 46,
-        label : moesten leven met,
-        from : jongeren,
-        to : moraal
+        "id" : "46",
+        "label" : "moesten leven met",
+        "from" : "jongeren",
+        "to" : "moraal"
     },
     {
-        id : 47,
-        label : luidde in,
-        from : groei,
-        to : goudeneeuw
+        "id" : "47",
+        "label" : "luidde in",
+        "from" : "groei",
+        "to" : "goudeneeuw"
     },
     {
-        id : 48,
-        label : voorbeeld,
-        from : rederijkerskamer,
-        to : oudekamer
+        "id" : "48",
+        "label" : "voorbeeld",
+        "from" : "rederijkerskamer",
+        "to" : "oudekamer"
     },
     {
-        id : 49,
-        label : bestond uit,
-        from : rederijkerskamer,
-        to : dichters
+        "id" : "49",
+        "label" : "bestond uit",
+        "from" : "rederijkerskamer",
+        "to" : "dichters"
     },
     {
-        id : 50,
-        label : gevestigd in,
-        from : oudekamer,
-        to : amsterdam
+        "id" : "50",
+        "label" : "gevestigd in",
+        "from" : "oudekamer",
+        "to" : "amsterdam"
     },
     {
-        id : 51,
-        label : schoolde,
-        from : oudekamer,
-        to : gabredero
+        "id" : "51",
+        "label" : "schoolde",
+        "from" : "oudekamer",
+        "to" : "gabredero"
     },
     {
-        id : 52,
-        label : schoolde,
-        from : oudekamer,
-        to : pchooft
+        "id" : "52",
+        "label" : "schoolde",
+        "from" : "oudekamer",
+        "to" : "pchooft"
     },
     {
-        id : 53,
-        label : voorbeeld,
-        from : rederijkerskamer,
-        to : witlavendel
+        "id" : "53",
+        "label" : "voorbeeld",
+        "from" : "rederijkerskamer",
+        "to" : "witlavendel"
     },
     {
-        id : 54,
-        label : gevestigd in,
-        from : witlavendel,
-        to : amsterdam
+        "id" : "54",
+        "label" : "gevestigd in",
+        "from" : "witlavendel",
+        "to" : "amsterdam"
     },
     {
-        id : 55,
-        label : schoolde,
-        from : witlavendel,
-        to : jvdvondel
+        "id" : "55",
+        "label" : "schoolde",
+        "from" : "witlavendel",
+        "to" : "jvdvondel"
     },
     {
-        id : 56,
-        label : had als functie,
-        from : rederijkerskamer,
-        to : opinierenderol
+        "id" : "56",
+        "label" : "had als functie",
+        "from" : "rederijkerskamer",
+        "to" : "opinierenderol"
     },
     {
-        id : 57,
-        label : over,
-        from : opinierenderol,
-        to : protestantisme
+        "id" : "57",
+        "label" : "over",
+        "from" : "opinierenderol",
+        "to" : "protestantisme"
     },
     {
-        id : 58,
-        label : over,
-        from : opinierenderol,
-        to : renaissance
+        "id" : "58",
+        "label" : "over",
+        "from" : "opinierenderol",
+        "to" : "renaissance"
     },
     {
-        id : 59,
-        label : over,
-        from : opinierenderol,
-        to : humanisme
+        "id" : "59",
+        "label" : "over",
+        "from" : "opinierenderol",
+        "to" : "humanisme"
     },
     {
-        id : 60,
-        label : vond plaats in,
-        from : renaissance,
-        to : republikeinsestadstaten
+        "id" : "60",
+        "label" : "vond plaats in",
+        "from" : "renaissance",
+        "to" : "republikeinsestadstaten"
     },
     {
-        id : 61,
-        label : gedurende,
-        from : renaissance,
-        to : 1415eeuw
+        "id" : "61",
+        "label" : "gedurende",
+        "from" : "renaissance",
+        "to" : "1415eeuw"
     },
     {
-        id : 62,
-        label : heroriëntatie op,
-        from : renaissance,
-        to : klassiekeoudheid
+        "id" : "62",
+        "label" : "heroriëntatie op",
+        "from" : "renaissance",
+        "to" : "klassiekeoudheid"
     },
     {
-        id : 63,
-        label : bracht voort,
-        from : klassiekeoudheid,
-        to : klassiekekunst
+        "id" : "63",
+        "label" : "bracht voort",
+        "from" : "klassiekeoudheid",
+        "to" : "klassiekekunst"
     },
     {
-        id : 64,
-        label : bracht voort,
-        from : klassiekeoudheid,
-        to : klassiekeideeen
+        "id" : "64",
+        "label" : "bracht voort",
+        "from" : "klassiekeoudheid",
+        "to" : "klassiekeideeen"
     },
     {
-        id : 65,
-        label : werd verwerkt door,
-        from : klassiekeoudheid,
-        to : translatio
+        "id" : "65",
+        "label" : "werd verwerkt door",
+        "from" : "klassiekeoudheid",
+        "to" : "translatio"
     },
     {
-        id : 66,
-        label : werd verwerkt door,
-        from : klassiekeoudheid,
-        to : imitatio
+        "id" : "66",
+        "label" : "werd verwerkt door",
+        "from" : "klassiekeoudheid",
+        "to" : "imitatio"
     },
     {
-        id : 67,
-        label : werd verwerkt door,
-        from : klassiekeoudheid,
-        to : aemulatio
+        "id" : "67",
+        "label" : "werd verwerkt door",
+        "from" : "klassiekeoudheid",
+        "to" : "aemulatio"
     },
     {
-        id : 68,
-        label : bracht voort,
-        from : klassiekeoudheid,
-        to : toneel
+        "id" : "68",
+        "label" : "bracht voort",
+        "from" : "klassiekeoudheid",
+        "to" : "toneel"
     },
     {
-        id : 69,
-        label : bracht voort,
-        from : klassiekeoudheid,
-        to : poezie
+        "id" : "69",
+        "label" : "bracht voort",
+        "from" : "klassiekeoudheid",
+        "to" : "poezie"
     },
     {
-        id : 70,
-        label : werd gebruikt voor,
-        from : translatio,
-        to : imitatio
+        "id" : "70",
+        "label" : "werd gebruikt voor",
+        "from" : "translatio",
+        "to" : "imitatio"
     },
     {
-        id : 71,
-        label : werd gebruikt voor,
-        from : imitatio,
-        to : aemulatio
+        "id" : "71",
+        "label" : "werd gebruikt voor",
+        "from" : "imitatio",
+        "to" : "aemulatio"
     },
     {
-        id : 72,
-        label : bracht voort,
-        from : renaissance,
-        to : renliteratuur
+        "id" : "72",
+        "label" : "bracht voort",
+        "from" : "renaissance",
+        "to" : "renliteratuur"
     },
     {
-        id : 73,
-        label : nam over,
-        from : renliteratuur,
-        to : toneel
+        "id" : "73",
+        "label" : "nam over",
+        "from" : "renliteratuur",
+        "to" : "toneel"
     },
     {
-        id : 74,
-        label : klassiek genre,
-        from : toneel,
-        to : komedie
+        "id" : "74",
+        "label" : "klassiek genre",
+        "from" : "toneel",
+        "to" : "komedie"
     },
     {
-        id : 75,
-        label : klassiek genre,
-        from : toneel,
-        to : tragedie
+        "id" : "75",
+        "label" : "klassiek genre",
+        "from" : "toneel",
+        "to" : "tragedie"
     },
     {
-        id : 76,
-        label : stroming,
-        from : literatuur,
-        to : renliteratuur
+        "id" : "76",
+        "label" : "stroming",
+        "from" : "literatuur",
+        "to" : "renliteratuur"
     },
     {
-        id : 77,
-        label : pronkte met,
-        from : renliteratuur,
-        to : mythologie
+        "id" : "77",
+        "label" : "pronkte met",
+        "from" : "renliteratuur",
+        "to" : "mythologie"
     },
     {
-        id : 78,
-        label : bracht voort,
-        from : klassiekeoudheid,
-        to : mythologie
+        "id" : "78",
+        "label" : "bracht voort",
+        "from" : "klassiekeoudheid",
+        "to" : "mythologie"
     },
     {
-        id : 79,
-        label : nieuw genre,
-        from : renliteratuur,
-        to : emblematiek
+        "id" : "79",
+        "label" : "nieuw genre",
+        "from" : "renliteratuur",
+        "to" : "emblematiek"
     },
     {
-        id : 80,
-        label : nieuw genre,
-        from : poezie,
-        to : sonnet
+        "id" : "80",
+        "label" : "nieuw genre",
+        "from" : "poezie",
+        "to" : "sonnet"
     },
     {
-        id : 81,
-        label : nieuw genre,
-        from : renliteratuur,
-        to : sonnet
+        "id" : "81",
+        "label" : "nieuw genre",
+        "from" : "renliteratuur",
+        "to" : "sonnet"
     },
     {
-        id : 82,
-        label : belangrijk concept,
-        from : humanisme,
-        to : zelfontplooiing
+        "id" : "82",
+        "label" : "belangrijk concept",
+        "from" : "humanisme",
+        "to" : "zelfontplooiing"
     },
     {
-        id : 83,
-        label : belangrijk concept,
-        from : humanisme,
-        to : menswaardigheid
+        "id" : "83",
+        "label" : "belangrijk concept",
+        "from" : "humanisme",
+        "to" : "menswaardigheid"
     },
     {
-        id : 84,
-        label : pleitte voor,
-        from : humanisme,
-        to : verdraagzaamheid
+        "id" : "84",
+        "label" : "pleitte voor",
+        "from" : "humanisme",
+        "to" : "verdraagzaamheid"
     },
     {
-        id : 85,
-        label : wijdde zich aan,
-        from : humanisme,
-        to : menswetenschappen
+        "id" : "85",
+        "label" : "wijdde zich aan",
+        "from" : "humanisme",
+        "to" : "menswetenschappen"
     },
     {
-        id : 86,
-        label : wijdde zich aan,
-        from : humanisme,
-        to : natuurwetenschappen
+        "id" : "86",
+        "label" : "wijdde zich aan",
+        "from" : "humanisme",
+        "to" : "natuurwetenschappen"
     },
     {
-        id : 87,
-        label : maakte,
-        from : menswetenschappen,
-        to : onderscheidmensdier
+        "id" : "87",
+        "label" : "maakte",
+        "from" : "menswetenschappen",
+        "to" : "onderscheidmensdier"
     },
     {
-        id : 88,
-        label : door,
-        from : onderscheidmensdier,
-        to : taal
+        "id" : "88",
+        "label" : "door",
+        "from" : "onderscheidmensdier",
+        "to" : "taal"
     },
     {
-        id : 89,
-        label : met behulp van,
-        from : taal,
-        to : grammatica
+        "id" : "89",
+        "label" : "met behulp van",
+        "from" : "taal",
+        "to" : "grammatica"
     },
     {
-        id : 90,
-        label : met behulp van,
-        from : taal,
-        to : retorica
+        "id" : "90",
+        "label" : "met behulp van",
+        "from" : "taal",
+        "to" : "retorica"
     },
     {
-        id : 91,
-        label : door,
-        from : onderscheidmensdier,
-        to : ethiek
+        "id" : "91",
+        "label" : "door",
+        "from" : "onderscheidmensdier",
+        "to" : "ethiek"
     },
     {
-        id : 92,
-        label : geleverd door,
-        from : ethiek,
-        to : poezie
+        "id" : "92",
+        "label" : "geleverd door",
+        "from" : "ethiek",
+        "to" : "poezie"
     },
     {
-        id : 93,
-        label : geleverd door,
-        from : ethiek,
-        to : geschiedenis
+        "id" : "93",
+        "label" : "geleverd door",
+        "from" : "ethiek",
+        "to" : "geschiedenis"
     },
     {
-        id : 94,
-        label : belangrijke humanist,
-        from : humanisme,
-        to : erasmus
+        "id" : "94",
+        "label" : "belangrijke humanist",
+        "from" : "humanisme",
+        "to" : "erasmus"
     },
     {
-        id : 95,
-        label : probeerde,
-        from : humanisme,
-        to : verzoening
+        "id" : "95",
+        "label" : "probeerde",
+        "from" : "humanisme",
+        "to" : "verzoening"
     },
     {
-        id : 96,
-        label : van,
-        from : verzoening,
-        to : klassiekeoudheid
+        "id" : "96",
+        "label" : "van",
+        "from" : "verzoening",
+        "to" : "klassiekeoudheid"
     },
     {
-        id : 97,
-        label : van,
-        from : verzoening,
-        to : christendom
+        "id" : "97",
+        "label" : "van",
+        "from" : "verzoening",
+        "to" : "christendom"
     },
     {
-        id : 98,
-        label : herleefde,
-        from : humanisme,
-        to : stoicisme
+        "id" : "98",
+        "label" : "herleefde",
+        "from" : "humanisme",
+        "to" : "stoicisme"
     },
     {
-        id : 99,
-        label : standvastigheid tegen,
-        from : stoicisme,
-        to : tirannie
+        "id" : "99",
+        "label" : "standvastigheid tegen",
+        "from" : "stoicisme",
+        "to" : "tirannie"
     },
     {
-        id : 100,
-        label : belangrijke humanist,
-        from : humanisme,
-        to : dvcoornhert
+        "id" : "100",
+        "label" : "belangrijke humanist",
+        "from" : "humanisme",
+        "to" : "dvcoornhert"
     },
     {
-        id : 101,
-        label : streefde na,
-        from : dvcoornhert,
-        to : zedelijkeverbetering
+        "id" : "101",
+        "label" : "streefde na",
+        "from" : "dvcoornhert",
+        "to" : "zedelijkeverbetering"
     },
     {
-        id : 102,
-        label : streefde na,
-        from : dvcoornhert,
-        to : zelfkennis
+        "id" : "102",
+        "label" : "streefde na",
+        "from" : "dvcoornhert",
+        "to" : "zelfkennis"
     },
     {
-        id : 103,
-        label : streefde na,
-        from : dvcoornhert,
-        to : godsdienstvrijheid
+        "id" : "103",
+        "label" : "streefde na",
+        "from" : "dvcoornhert",
+        "to" : "godsdienstvrijheid"
     },
     {
-        id : 104,
-        label : waren tegen,
-        from : calvinisten,
-        to : godsdienstvrijheid
+        "id" : "104",
+        "label" : "waren tegen",
+        "from" : "calvinisten",
+        "to" : "godsdienstvrijheid"
     },
     {
-        id : 105,
-        label : waren tegen,
-        from : koningen,
-        to : godsdienstvrijheid
+        "id" : "105",
+        "label" : "waren tegen",
+        "from" : "koningen",
+        "to" : "godsdienstvrijheid"
     },
     {
-        id : 106,
-        label : verspreid door,
-        from : renaissance,
-        to : boekdrukkunst
+        "id" : "106",
+        "label" : "verspreid door",
+        "from" : "renaissance",
+        "to" : "boekdrukkunst"
     },
     {
-        id : 107,
-        label : verspreid door,
-        from : renaissance,
-        to : reizen
+        "id" : "107",
+        "label" : "verspreid door",
+        "from" : "renaissance",
+        "to" : "reizen"
     },
     {
-        id : 108,
-        label : verspreid door,
-        from : humanisme,
-        to : boekdrukkunst
+        "id" : "108",
+        "label" : "verspreid door",
+        "from" : "humanisme",
+        "to" : "boekdrukkunst"
     },
     {
-        id : 109,
-        label : verspreid door,
-        from : humanisme,
-        to : reizen
+        "id" : "109",
+        "label" : "verspreid door",
+        "from" : "humanisme",
+        "to" : "reizen"
     },
     {
-        id : 110,
-        label : in Nederland,
-        from : literatuur,
-        to : nederlandseliteratuur
+        "id" : "110",
+        "label" : "in Nederland",
+        "from" : "literatuur",
+        "to" : "nederlandseliteratuur"
     },
     {
-        id : 111,
-        label : vroeger afhankelijk van,
-        from : nederlandseliteratuur,
-        to : mecenas
+        "id" : "111",
+        "label" : "vroeger afhankelijk van",
+        "from" : "nederlandseliteratuur",
+        "to" : "mecenas"
     },
     {
-        id : 112,
-        label : waren,
-        from : mecenas,
-        to : adellijk
+        "id" : "112",
+        "label" : "waren",
+        "from" : "mecenas",
+        "to" : "adellijk"
     },
     {
-        id : 113,
-        label : waren,
-        from : mecenas,
-        to : kerkelijk
+        "id" : "113",
+        "label" : "waren",
+        "from" : "mecenas",
+        "to" : "kerkelijk"
     },
     {
-        id : 114,
-        label : vervangen door,
-        from : mecenas,
-        to : regenten
+        "id" : "114",
+        "label" : "vervangen door",
+        "from" : "mecenas",
+        "to" : "regenten"
     },
     {
-        id : 115,
-        label : had,
-        from : nederlandseliteratuur,
-        to : maatschappelijketaak
+        "id" : "115",
+        "label" : "had",
+        "from" : "nederlandseliteratuur",
+        "to" : "maatschappelijketaak"
     },
     {
-        id : 116,
-        label : was,
-        from : maatschappelijketaak,
-        to : beleren
+        "id" : "116",
+        "label" : "was",
+        "from" : "maatschappelijketaak",
+        "to" : "beleren"
     },
     {
-        id : 117,
-        label : was,
-        from : maatschappelijketaak,
-        to : moraliseren
+        "id" : "117",
+        "label" : "was",
+        "from" : "maatschappelijketaak",
+        "to" : "moraliseren"
     },
     {
-        id : 118,
-        label : was,
-        from : maatschappelijketaak,
-        to : kritiek
+        "id" : "118",
+        "label" : "was",
+        "from" : "maatschappelijketaak",
+        "to" : "kritiek"
     },
     {
-        id : 119,
-        label : geïnspireerd door,
-        from : maatschappelijketaak,
-        to : horatius
+        "id" : "119",
+        "label" : "geïnspireerd door",
+        "from" : "maatschappelijketaak",
+        "to" : "horatius"
     },
     {
-        id : 120,
-        label : dichtkunst moest .. bieden,
-        from : horatius,
-        to : utile
+        "id" : "120",
+        "label" : "dichtkunst moest .. bieden",
+        "from" : "horatius",
+        "to" : "utile"
     },
     {
-        id : 121,
-        label : dichtkunst moest .. bieden,
-        from : horatius,
-        to : dulce
+        "id" : "121",
+        "label" : "dichtkunst moest .. bieden",
+        "from" : "horatius",
+        "to" : "dulce"
     },
     {
-        id : 122,
-        label : groep werken,
-        from : nederlandseliteratuur,
-        to : strijdliteratuur
+        "id" : "122",
+        "label" : "groep werken",
+        "from" : "nederlandseliteratuur",
+        "to" : "strijdliteratuur"
     },
     {
-        id : 123,
-        label : verwees naar,
-        from : strijdliteratuur,
-        to : actualiteit
+        "id" : "123",
+        "label" : "verwees naar",
+        "from" : "strijdliteratuur",
+        "to" : "actualiteit"
     },
     {
-        id : 124,
-        label : stimuleerde tot,
-        from : strijdliteratuur,
-        to : actie
+        "id" : "124",
+        "label" : "stimuleerde tot",
+        "from" : "strijdliteratuur",
+        "to" : "actie"
     },
     {
-        id : 125,
-        label : voor,
-        from : actie,
-        to : verzet
+        "id" : "125",
+        "label" : "voor",
+        "from" : "actie",
+        "to" : "verzet"
     },
     {
-        id : 126,
-        label : voorbeeld,
-        from : strijdliteratuur,
-        to : geusenliederen
+        "id" : "126",
+        "label" : "voorbeeld",
+        "from" : "strijdliteratuur",
+        "to" : "geusenliederen"
     },
     {
-        id : 127,
-        label : bevatte,
-        from : geusenliederen,
-        to : wilhelmus
+        "id" : "127",
+        "label" : "bevatte",
+        "from" : "geusenliederen",
+        "to" : "wilhelmus"
     },
     {
-        id : 128,
-        label : groep werken,
-        from : nederlandseliteratuur,
-        to : renliteratuur
+        "id" : "128",
+        "label" : "groep werken",
+        "from" : "nederlandseliteratuur",
+        "to" : "renliteratuur"
     },
     {
-        id : 129,
-        label : bevat,
-        from : emblematiek,
-        to : motto
+        "id" : "129",
+        "label" : "bevat",
+        "from" : "emblematiek",
+        "to" : "motto"
     },
     {
-        id : 130,
-        label : bevat,
-        from : emblematiek,
-        to : pictura
+        "id" : "130",
+        "label" : "bevat",
+        "from" : "emblematiek",
+        "to" : "pictura"
     },
     {
-        id : 131,
-        label : bevat,
-        from : emblematiek,
-        to : subscriptio
+        "id" : "131",
+        "label" : "bevat",
+        "from" : "emblematiek",
+        "to" : "subscriptio"
     },
     {
-        id : 132,
-        label : illustreert,
-        from : emblematiek,
-        to : waarheid
+        "id" : "132",
+        "label" : "illustreert",
+        "from" : "emblematiek",
+        "to" : "waarheid"
     },
     {
-        id : 133,
-        label : heeft,
-        from : emblematiek,
-        to : dieperebetekenis
+        "id" : "133",
+        "label" : "heeft",
+        "from" : "emblematiek",
+        "to" : "dieperebetekenis"
     },
     {
-        id : 134,
-        label : maakt gebruik van,
-        from : emblematiek,
-        to : analogiedenken
+        "id" : "134",
+        "label" : "maakt gebruik van",
+        "from" : "emblematiek",
+        "to" : "analogiedenken"
     },
     {
-        id : 135,
-        label : maakt argument dat,
-        from : analogiedenken,
-        to : creationisme
+        "id" : "135",
+        "label" : "maakt argument dat",
+        "from" : "analogiedenken",
+        "to" : "creationisme"
     },
     {
-        id : 136,
-        label : en daarom,
-        from : creationisme,
-        to : toeval
+        "id" : "136",
+        "label" : "en daarom",
+        "from" : "creationisme",
+        "to" : "toeval"
     },
     {
-        id : 137,
-        label : populaire auteur,
-        from : emblematiek,
-        to : jcats
+        "id" : "137",
+        "label" : "populaire auteur",
+        "from" : "emblematiek",
+        "to" : "jcats"
     },
     {
-        id : 138,
-        label : publiceerde,
-        from : jcats,
-        to : silenusalcibiadis
+        "id" : "138",
+        "label" : "publiceerde",
+        "from" : "jcats",
+        "to" : "silenusalcibiadis"
     },
     {
-        id : 139,
-        label : genre,
-        from : renliteratuur,
-        to : lyriek
+        "id" : "139",
+        "label" : "genre",
+        "from" : "renliteratuur",
+        "to" : "lyriek"
     },
     {
-        id : 140,
-        label : stelde centraal,
-        from : lyriek,
-        to : liefde
+        "id" : "140",
+        "label" : "stelde centraal",
+        "from" : "lyriek",
+        "to" : "liefde"
     },
     {
-        id : 141,
-        label : in de vorm van,
-        from : liefde,
-        to : platonischeliefde
+        "id" : "141",
+        "label" : "in de vorm van",
+        "from" : "liefde",
+        "to" : "platonischeliefde"
     },
     {
-        id : 142,
-        label : in de vorm van,
-        from : liefde,
-        to : zinnelijkeliefde
+        "id" : "142",
+        "label" : "in de vorm van",
+        "from" : "liefde",
+        "to" : "zinnelijkeliefde"
     },
     {
-        id : 143,
-        label : toegestaan als,
-        from : zinnelijkeliefde,
-        to : platonischeliefde
+        "id" : "143",
+        "label" : "toegestaan als",
+        "from" : "zinnelijkeliefde",
+        "to" : "platonischeliefde"
     },
     {
-        id : 144,
-        label : sloot aan op,
-        from : lyriek,
-        to : petrarkisme
+        "id" : "144",
+        "label" : "sloot aan op",
+        "from" : "lyriek",
+        "to" : "petrarkisme"
     },
     {
-        id : 145,
-        label : genoemd naar,
-        from : petrarkisme,
-        to : petrarca
+        "id" : "145",
+        "label" : "genoemd naar",
+        "from" : "petrarkisme",
+        "to" : "petrarca"
     },
     {
-        id : 146,
-        label : gebruikte,
-        from : petrarkisme,
-        to : beeldenconventies
+        "id" : "146",
+        "label" : "gebruikte",
+        "from" : "petrarkisme",
+        "to" : "beeldenconventies"
     },
     {
-        id : 147,
-        label : waaronder,
-        from : beeldenconventies,
-        to : paradoxen
+        "id" : "147",
+        "label" : "waaronder",
+        "from" : "beeldenconventies",
+        "to" : "paradoxen"
     },
     {
-        id : 148,
-        label : waaronder,
-        from : beeldenconventies,
-        to : antithese
+        "id" : "148",
+        "label" : "waaronder",
+        "from" : "beeldenconventies",
+        "to" : "antithese"
     },
     {
-        id : 149,
-        label : stelde centraal,
-        from : petrarkisme,
-        to : liefdesklacht
+        "id" : "149",
+        "label" : "stelde centraal",
+        "from" : "petrarkisme",
+        "to" : "liefdesklacht"
     },
     {
-        id : 150,
-        label : verheerlijkte,
-        from : petrarkisme,
-        to : platonischeliefde
+        "id" : "150",
+        "label" : "verheerlijkte",
+        "from" : "petrarkisme",
+        "to" : "platonischeliefde"
     },
     {
-        id : 151,
-        label : gericht aan,
-        from : liefdesklacht,
-        to : ideaalbeeld
+        "id" : "151",
+        "label" : "gericht aan",
+        "from" : "liefdesklacht",
+        "to" : "ideaalbeeld"
     },
     {
-        id : 152,
-        label : begrepen door,
-        from : beeldenconventies,
-        to : literaireelite
+        "id" : "152",
+        "label" : "begrepen door",
+        "from" : "beeldenconventies",
+        "to" : "literaireelite"
     },
     {
-        id : 153,
-        label : pleitte voor,
-        from : petrarkisme,
-        to : zelfbeheersing
+        "id" : "153",
+        "label" : "pleitte voor",
+        "from" : "petrarkisme",
+        "to" : "zelfbeheersing"
     },
     {
-        id : 154,
-        label : ten opzichte van,
-        from : zelfbeheersing,
-        to : geslachtsverkeer
+        "id" : "154",
+        "label" : "ten opzichte van",
+        "from" : "zelfbeheersing",
+        "to" : "geslachtsverkeer"
     },
     {
-        id : 155,
-        label : geschreven in,
-        from : lyriek,
-        to : nieuweliedboeken
+        "id" : "155",
+        "label" : "geschreven in",
+        "from" : "lyriek",
+        "to" : "nieuweliedboeken"
     },
     {
-        id : 156,
-        label : bestond uit,
-        from : sonnet,
-        to : veertienversregels
+        "id" : "156",
+        "label" : "bestond uit",
+        "from" : "sonnet",
+        "to" : "veertienversregels"
     },
     {
-        id : 157,
-        label : bestond uit,
-        from : veertienversregels,
-        to : octaaf
+        "id" : "157",
+        "label" : "bestond uit",
+        "from" : "veertienversregels",
+        "to" : "octaaf"
     },
     {
-        id : 158,
-        label : bestond uit,
-        from : veertienversregels,
-        to : sextet
+        "id" : "158",
+        "label" : "bestond uit",
+        "from" : "veertienversregels",
+        "to" : "sextet"
     },
     {
-        id : 159,
-        label : bestond uit,
-        from : sonnet,
-        to : volta
+        "id" : "159",
+        "label" : "bestond uit",
+        "from" : "sonnet",
+        "to" : "volta"
     },
     {
-        id : 160,
-        label : na,
-        from : volta,
-        to : octaaf
+        "id" : "160",
+        "label" : "na",
+        "from" : "volta",
+        "to" : "octaaf"
     },
     {
-        id : 161,
-        label : voor,
-        from : volta,
-        to : sextet
+        "id" : "161",
+        "label" : "voor",
+        "from" : "volta",
+        "to" : "sextet"
     },
     {
-        id : 162,
-        label : sloot aan op,
-        from : sonnet,
-        to : petrarkisme
+        "id" : "162",
+        "label" : "sloot aan op",
+        "from" : "sonnet",
+        "to" : "petrarkisme"
     },
     {
-        id : 163,
-        label : belangrijkste dichter,
-        from : sonnet,
-        to : pchooft
+        "id" : "163",
+        "label" : "belangrijkste dichter",
+        "from" : "sonnet",
+        "to" : "pchooft"
     },
     {
-        id : 164,
-        label : met als ethisch-didactisch doel,
-        from : toneel,
-        to : stedelijkegedragscode
+        "id" : "164",
+        "label" : "met als ethisch-didactisch doel",
+        "from" : "toneel",
+        "to" : "stedelijkegedragscode"
     },
     {
-        id : 165,
-        label : geopend voor,
-        from : toneel,
-        to : publiek
+        "id" : "165",
+        "label" : "geopend voor",
+        "from" : "toneel",
+        "to" : "publiek"
     },
     {
-        id : 166,
-        label : grootste productie in,
-        from : toneel,
-        to : amsterdam
+        "id" : "166",
+        "label" : "grootste productie in",
+        "from" : "toneel",
+        "to" : "amsterdam"
     },
     {
-        id : 167,
-        label : winst naar,
-        from : toneel,
-        to : liefdadigeinstellingen
+        "id" : "167",
+        "label" : "winst naar",
+        "from" : "toneel",
+        "to" : "liefdadigeinstellingen"
     },
     {
-        id : 168,
-        label : hadden baat bij,
-        from : regenten,
-        to : liefdadigeinstellingen
+        "id" : "168",
+        "label" : "hadden baat bij",
+        "from" : "regenten",
+        "to" : "liefdadigeinstellingen"
     },
     {
-        id : 169,
-        label : als functie,
-        from : toneel,
-        to : opinierenderol
+        "id" : "169",
+        "label" : "als functie",
+        "from" : "toneel",
+        "to" : "opinierenderol"
     },
     {
-        id : 170,
-        label : theater,
-        from : toneel,
-        to : eerstenederduytscheacademie
+        "id" : "170",
+        "label" : "theater",
+        "from" : "toneel",
+        "to" : "eerstenederduytscheacademie"
     },
     {
-        id : 171,
-        label : theater,
-        from : toneel,
-        to : amsterdamseschouwburg
+        "id" : "171",
+        "label" : "theater",
+        "from" : "toneel",
+        "to" : "amsterdamseschouwburg"
     },
     {
-        id : 172,
-        label : had als functie,
-        from : toneel,
-        to : spiegel
+        "id" : "172",
+        "label" : "had als functie",
+        "from" : "toneel",
+        "to" : "spiegel"
     },
     {
-        id : 173,
-        label : ging over,
-        from : tragedie,
-        to : ondergang
+        "id" : "173",
+        "label" : "ging over",
+        "from" : "tragedie",
+        "to" : "ondergang"
     },
     {
-        id : 174,
-        label : hoofdpersoon was,
-        from : ondergang,
-        to : hooggeplaatstpersonage
+        "id" : "174",
+        "label" : "hoofdpersoon was",
+        "from" : "ondergang",
+        "to" : "hooggeplaatstpersonage"
     },
     {
-        id : 175,
-        label : inhoud verleend aan,
-        from : tragedie,
-        to : klassiekeoudheid
+        "id" : "175",
+        "label" : "inhoud verleend aan",
+        "from" : "tragedie",
+        "to" : "klassiekeoudheid"
     },
     {
-        id : 176,
-        label : inhoud verleend aan,
-        from : tragedie,
-        to : geschiedenis
+        "id" : "176",
+        "label" : "inhoud verleend aan",
+        "from" : "tragedie",
+        "to" : "geschiedenis"
     },
     {
-        id : 177,
-        label : inhoud verleend aan,
-        from : tragedie,
-        to : bijbel
+        "id" : "177",
+        "label" : "inhoud verleend aan",
+        "from" : "tragedie",
+        "to" : "bijbel"
     },
     {
-        id : 178,
-        label : genre,
-        from : tragedie,
-        to : retorischdidactischtragedie
+        "id" : "178",
+        "label" : "genre",
+        "from" : "tragedie",
+        "to" : "retorischdidactischtragedie"
     },
     {
-        id : 179,
-        label : met als belangrijk voorbeeld,
-        from : retorischdidactischtragedie,
-        to : seneca
+        "id" : "179",
+        "label" : "met als belangrijk voorbeeld",
+        "from" : "retorischdidactischtragedie",
+        "to" : "seneca"
     },
     {
-        id : 180,
-        label : bestond uit,
-        from : retorischdidactischtragedie,
-        to : vijfbedrijven
+        "id" : "180",
+        "label" : "bestond uit",
+        "from" : "retorischdidactischtragedie",
+        "to" : "vijfbedrijven"
     },
     {
-        id : 181,
-        label : genre,
-        from : tragedie,
-        to : aristotelestragedie
+        "id" : "181",
+        "label" : "genre",
+        "from" : "tragedie",
+        "to" : "aristotelestragedie"
     },
     {
-        id : 182,
-        label : gebaseerd op,
-        from : aristotelestragedie,
-        to : handelingsstructuur
+        "id" : "182",
+        "label" : "gebaseerd op",
+        "from" : "aristotelestragedie",
+        "to" : "handelingsstructuur"
     },
     {
-        id : 183,
-        label : eenheid van,
-        from : handelingsstructuur,
-        to : tijd
+        "id" : "183",
+        "label" : "eenheid van",
+        "from" : "handelingsstructuur",
+        "to" : "tijd"
     },
     {
-        id : 184,
-        label : eenheid van,
-        from : handelingsstructuur,
-        to : plaats
+        "id" : "184",
+        "label" : "eenheid van",
+        "from" : "handelingsstructuur",
+        "to" : "plaats"
     },
     {
-        id : 185,
-        label : eenheid van,
-        from : handelingsstructuur,
-        to : handeling
+        "id" : "185",
+        "label" : "eenheid van",
+        "from" : "handelingsstructuur",
+        "to" : "handeling"
     },
     {
-        id : 186,
-        label : bedacht door,
-        from : handelingsstructuur,
-        to : aristoteles
+        "id" : "186",
+        "label" : "bedacht door",
+        "from" : "handelingsstructuur",
+        "to" : "aristoteles"
     },
     {
-        id : 187,
-        label : voorbeeld,
-        from : tragedie,
-        to : gvaemstel
+        "id" : "187",
+        "label" : "voorbeeld",
+        "from" : "tragedie",
+        "to" : "gvaemstel"
     },
     {
-        id : 188,
-        label : geschreven door,
-        from : gvaemstel,
-        to : jvdvondel
+        "id" : "188",
+        "label" : "geschreven door",
+        "from" : "gvaemstel",
+        "to" : "jvdvondel"
     },
     {
-        id : 189,
-        label : personages waren,
-        from : komedie,
-        to : laaggeplaatstpersonage
+        "id" : "189",
+        "label" : "personages waren",
+        "from" : "komedie",
+        "to" : "laaggeplaatstpersonage"
     },
     {
-        id : 190,
-        label : gesproken in,
-        from : komedie,
-        to : spreektaal
+        "id" : "190",
+        "label" : "gesproken in",
+        "from" : "komedie",
+        "to" : "spreektaal"
     },
     {
-        id : 191,
-        label : eindigde met,
-        from : komedie,
-        to : happyend
+        "id" : "191",
+        "label" : "eindigde met",
+        "from" : "komedie",
+        "to" : "happyend"
     },
     {
-        id : 192,
-        label : voorbeeld,
-        from : komedie,
-        to : warenar
+        "id" : "192",
+        "label" : "voorbeeld",
+        "from" : "komedie",
+        "to" : "warenar"
     },
     {
-        id : 193,
-        label : geschreven door,
-        from : warenar,
-        to : pchooft
+        "id" : "193",
+        "label" : "geschreven door",
+        "from" : "warenar",
+        "to" : "pchooft"
     },
     {
-        id : 194,
-        label : nieuw genre,
-        from : toneel,
-        to : klucht
+        "id" : "194",
+        "label" : "nieuw genre",
+        "from" : "toneel",
+        "to" : "klucht"
     },
     {
-        id : 195,
-        label : korter dan,
-        from : klucht,
-        to : komedie
+        "id" : "195",
+        "label" : "korter dan",
+        "from" : "klucht",
+        "to" : "komedie"
     },
     {
-        id : 196,
-        label : toonden,
-        from : klucht,
-        to : grappigesituaties
+        "id" : "196",
+        "label" : "toonden",
+        "from" : "klucht",
+        "to" : "grappigesituaties"
     },
     {
-        id : 197,
-        label : ging over,
-        from : klucht,
-        to : primairelevensdriften
+        "id" : "197",
+        "label" : "ging over",
+        "from" : "klucht",
+        "to" : "primairelevensdriften"
     },
     {
-        id : 198,
-        label : voorbeeld,
-        from : klucht,
-        to : kvdkoe
+        "id" : "198",
+        "label" : "voorbeeld",
+        "from" : "klucht",
+        "to" : "kvdkoe"
     },
     {
-        id : 199,
-        label : geschreven door,
-        from : kvdkoe,
-        to : gabredero
+        "id" : "199",
+        "label" : "geschreven door",
+        "from" : "kvdkoe",
+        "to" : "gabredero"
     }
-}
+]}
