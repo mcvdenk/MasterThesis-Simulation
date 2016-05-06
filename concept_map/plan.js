@@ -22,8 +22,6 @@ var options = {
             levelSeparation: 400,
             direction: 'LR',
             sortMethod: 'directed',
-            blockShifting: false,
-            edgeMinimization: false
         }
     },
     physics: {
@@ -50,6 +48,26 @@ function setupContents() {
             nodes: parsedData.nodes,
             edges: parsedData.edges
         };
-        network = new vis.Network(container, data, options);
+        //network = new vis.Network(container, data, options);
+        nodesstring = "nodes : {<br>";
+        for (i=0; i<data.nodes.length; i++) {
+            nodesstring += "{<br>";
+            nodesstring += "id : " + data.nodes[i].id + ",<br>";
+            nodesstring += "label : " + data.nodes[i].label + "<br>";
+            nodesstring += "},<br>";
+        }
+        nodesstring += "},<br>";
+        edgesstring = "edges : {<br>";
+        for (i=0; i<data.edges.length;i++) {
+            edgesstring += "{<br>";
+            edgesstring += "id : " + i + ",<br>";
+            edgesstring += "label : " + data.edges[i].label + ",<br>";
+            edgesstring += "from : " + data.edges[i].from + ",<br>";
+            edgesstring += "to : " + data.edges[i].to + "<br>";
+            edgesstring += "},<br>";
+        }
+        edgesstring += "}";
+        container.innerHTML = nodesstring;
+        container.innerHTML += edgesstring;
     }
 }

@@ -1,56 +1,12 @@
-keyword: AUTHENTICATE-REQUEST
-    data:
-        username
-        password
-        browser
-keyword: AUTHENTICATE-RESPONSE
-    data:
-        success: [LOGGED_IN, PASSWORD_INCORRECT, NEW_USERNAME]
-keyword: LEARNED_ITEMS-REQUEST
-    data:
-keyword: LEARNED_ITEMS-RESPONSE
-    data:
-        concepts:
-            id
-            label
-            colour
-        edges:
-            id
-            label
-            from
-            to
-keyword: LEARN-REQUEST
-    data:
-keyword: LEARN-RESPONSE
-    data:
-        concepts:
-            id
-            label
-        edges:
-            id
-            label
-            from
-            to
-            learning
-keyword: VALIDATE
-    data:
-        edges:
-            id
-            value
-            start_time
-            end_time
-keyword: UNDO-REQUEST
-    data:
-keyword: UNDO-RESPONSE
-    data:
-        concepts:
-            id
-            label
-        edges:
-            id
-            label
-            from
-            to
-            learning
-keyword: LOGOUT
-    data:
+<html>
+<head>
+<title> Plan </title>
+<link rel="stylesheet" type="text/css" href="vis/dist/vis.css" />
+<script src="vis/dist/vis.js"></script>
+</head>
+<body>
+<code id="container">
+</code>
+<script src="plan.js"></script>
+</body>
+</html>
