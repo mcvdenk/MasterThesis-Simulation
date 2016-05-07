@@ -457,7 +457,7 @@
     },
     {
         "id" : "silenusalcibiadis",
-        "label" : "sive Proteus (Sinne- en Minnebeelden)"
+        "label" : "Sinne- en Minnebeelden"
     },
     {
         "id" : "liefde",
@@ -660,1200 +660,1402 @@
     {
         "id" : "0",
         "label" : "geleid door",
+        "source" : "13.1",
+        "aswer" : "Door Maarten Luther en Johannes Calvijn",
         "from" : "protestantisme",
         "to" : "mluther"
     },
     {
         "id" : "1",
         "label" : "geleid door",
+        "source" : "13.1",
+        "aswer" : "Door Maarten Luther en Johannes Calvijn",
         "from" : "protestantisme",
         "to" : "jcalvijn"
     },
     {
         "id" : "2",
         "label" : "verspreid door",
+        "source" : "13.1",
         "from" : "protestantisme",
         "to" : "boekdrukkunst"
     },
     {
         "id" : "3",
         "label" : "bezetter van",
+        "source" : "13.1",
         "from" : "spanje",
         "to" : "nederlanden"
     },
     {
         "id" : "4",
         "label" : "geregeerd door",
+        "source" : "13.1",
         "from" : "spanje",
         "to" : "koningen"
     },
     {
         "id" : "5",
         "label" : "positie vervuld door",
+        "source" : "13.1",
         "from" : "koningen",
         "to" : "karelv"
     },
     {
         "id" : "6",
         "label" : "positie vervuld door",
+        "source" : "13.1",
         "from" : "koningen",
         "to" : "fillipsii"
     },
     {
         "id" : "7",
         "label" : "opgevolgd door",
+        "source" : "13.1",
         "from" : "karelv",
         "to" : "fillipsii"
     },
     {
         "id" : "8",
         "label" : "wilden",
+        "source" : "13.1",
         "from" : "koningen",
         "to" : "centralisatie"
     },
     {
         "id" : "9",
         "label" : "leidde tot",
+        "source" : "13.1",
         "from" : "centralisatie",
         "to" : "geloofsvervolging"
     },
     {
         "id" : "10",
         "label" : "van",
+        "source" : "13.1",
         "from" : "centralisatie",
         "to" : "katholicisme"
     },
     {
         "id" : "11",
         "label" : "van",
+        "source" : "13.1",
         "from" : "geloofsvervolging",
         "to" : "protestantisme"
     },
     {
         "id" : "12",
         "label" : "door",
+        "source" : "13.1",
         "from" : "verzet",
         "to" : "nederlanden"
     },
     {
         "id" : "13",
         "label" : "leidde tot",
+        "source" : "13.1",
         "from" : "geloofsvervolging",
         "to" : "verzet"
     },
     {
         "id" : "14",
         "label" : "onder leiding van",
+        "source" : "13.1",
         "from" : "verzet",
         "to" : "wvoranje"
     },
     {
         "id" : "15",
         "label" : "leidde tot",
+        "source" : "13.1",
         "from" : "verzet",
         "to" : "80jarigeoorlog"
     },
     {
         "id" : "16",
         "label" : "aangehangen door",
+        "source" : "13.2",
         "from" : "protestantisme",
         "to" : "calvinisten"
     },
     {
         "id" : "17",
         "label" : "was",
+        "source" : "13.2",
         "from" : "antwerpen",
         "to" : "handelscentrum"
     },
     {
         "id" : "18",
         "label" : "werd",
+        "source" : "13.2",
         "from" : "amsterdam",
         "to" : "handelscentrum"
     },
     {
         "id" : "19",
         "label" : "leidde tot",
+        "source" : "13.2",
         "from" : "geloofsvervolging",
         "to" : "vlucht"
     },
     {
         "id" : "20",
         "label" : "van",
+        "source" : "13.2",
         "from" : "vlucht",
         "to" : "kooplieden"
     },
     {
         "id" : "21",
         "label" : "van",
+        "source" : "13.2",
         "from" : "vlucht",
         "to" : "calvinisten"
     },
     {
         "id" : "22",
         "label" : "vanaf",
+        "source" : "13.2",
         "from" : "vlucht",
         "to" : "antwerpen"
     },
     {
         "id" : "23",
         "label" : "naar",
+        "source" : "13.2",
         "from" : "vlucht",
         "to" : "amsterdam"
     },
     {
         "id" : "24",
         "label" : "leidde tot",
+        "source" : "13.2",
         "from" : "vlucht",
         "to" : "groei"
     },
     {
         "id" : "25",
         "label" : "van",
+        "source" : "13.2",
         "from" : "groei",
         "to" : "amsterdam"
     },
     {
         "id" : "26",
         "label" : "bestuurd door",
+        "source" : "13.2",
         "from" : "nederlanden",
         "to" : "regenten"
     },
     {
         "id" : "27",
         "label" : "wilden",
+        "source" : "13.2",
         "from" : "regenten",
         "to" : "stedelijkecultuur"
     },
     {
         "id" : "28",
         "label" : "gefinancierd door",
+        "source" : "13.2",
         "from" : "kunst",
         "to" : "regenten"
     },
     {
         "id" : "29",
         "label" : "gefinancierd door",
+        "source" : "13.2",
         "from" : "literatuur",
         "to" : "regenten"
     },
     {
         "id" : "30",
         "label" : "droeg bij aan",
+        "source" : "13.2",
         "from" : "kunst",
         "to" : "stedelijkegedragscode"
     },
     {
         "id" : "31",
         "label" : "droeg bij aan",
+        "source" : "13.2",
         "from" : "literatuur",
         "to" : "stedelijkegedragscode"
     },
     {
         "id" : "32",
         "label" : "vormde",
+        "source" : "13.2",
         "from" : "stedelijkegedragscode",
         "to" : "stedelijkecultuur"
     },
     {
         "id" : "33",
         "label" : "gaf aan",
+        "source" : "13.2",
         "from" : "stedelijkegedragscode",
         "to" : "gewenstongewenst"
     },
     {
         "id" : "34",
         "label" : "voorbeeld ongewenst",
+        "source" : "13.2",
         "from" : "gewenstongewenst",
         "to" : "boers"
     },
     {
         "id" : "35",
         "label" : "voorbeeld",
+        "source" : "13.2",
         "from" : "stedelijkegedragscode",
         "to" : "boerengezelschap"
     },
     {
         "id" : "36",
         "label" : "geschreven door",
+        "source" : "13.2",
         "from" : "boerengezelschap",
         "to" : "gabredero"
     },
     {
         "id" : "37",
         "label" : "beschrijft",
+        "source" : "13.2",
         "from" : "boerengezelschap",
         "to" : "boers"
     },
     {
         "id" : "38",
         "label" : "leidt tot",
+        "source" : "13.2",
         "from" : "boers",
         "to" : "conflicten"
     },
     {
         "id" : "39",
         "label" : "werd gezien als",
+        "source" : "13.2",
         "from" : "boers",
         "to" : "onmatiggedrag"
     },
     {
         "id" : "40",
         "label" : "bijvoorbeeld",
+        "source" : "13.2",
         "from" : "onmatiggedrag",
         "to" : "alcoholisme"
     },
     {
         "id" : "41",
         "label" : "bijvoorbeeld",
+        "source" : "13.2",
         "from" : "onmatiggedrag",
         "to" : "seksongeremd"
     },
     {
         "id" : "42",
         "label" : "leidde tot bevolkingsgroep",
+        "source" : "13.2",
         "from" : "groei",
         "to" : "jongeren"
     },
     {
         "id" : "43",
         "label" : "hadden",
+        "source" : "13.2",
         "from" : "calvinisten",
         "to" : "moraal"
     },
     {
         "id" : "44",
         "label" : "ten opzichte van",
+        "source" : "13.2",
         "from" : "moraal",
         "to" : "geslachtsverkeer"
     },
     {
         "id" : "45",
         "label" : "richtte zich op",
+        "source" : "13.2",
         "from" : "lyriek",
         "to" : "moraal"
     },
     {
         "id" : "46",
         "label" : "moesten leven met",
+        "source" : "13.2",
         "from" : "jongeren",
         "to" : "moraal"
     },
     {
         "id" : "47",
         "label" : "luidde in",
+        "source" : "13.3",
         "from" : "groei",
         "to" : "goudeneeuw"
     },
     {
         "id" : "48",
         "label" : "voorbeeld",
+        "source" : "13.3.1",
         "from" : "rederijkerskamer",
         "to" : "oudekamer"
     },
     {
         "id" : "49",
         "label" : "bestond uit",
+        "source" : "13.3.1",
         "from" : "rederijkerskamer",
         "to" : "dichters"
     },
     {
         "id" : "50",
         "label" : "gevestigd in",
+        "source" : "13.3.1",
         "from" : "oudekamer",
         "to" : "amsterdam"
     },
     {
         "id" : "51",
         "label" : "schoolde",
+        "source" : "13.3.1",
         "from" : "oudekamer",
         "to" : "gabredero"
     },
     {
         "id" : "52",
         "label" : "schoolde",
+        "source" : "13.3.1",
         "from" : "oudekamer",
         "to" : "pchooft"
     },
     {
         "id" : "53",
         "label" : "voorbeeld",
+        "source" : "13.3.1",
         "from" : "rederijkerskamer",
         "to" : "witlavendel"
     },
     {
         "id" : "54",
         "label" : "gevestigd in",
+        "source" : "13.3.1",
         "from" : "witlavendel",
         "to" : "amsterdam"
     },
     {
         "id" : "55",
         "label" : "schoolde",
+        "source" : "13.3.1",
         "from" : "witlavendel",
         "to" : "jvdvondel"
     },
     {
         "id" : "56",
         "label" : "had als functie",
+        "source" : "13.3.1",
         "from" : "rederijkerskamer",
         "to" : "opinierenderol"
     },
     {
         "id" : "57",
         "label" : "over",
+        "source" : "13.3.1",
         "from" : "opinierenderol",
         "to" : "protestantisme"
     },
     {
         "id" : "58",
         "label" : "over",
+        "source" : "13.3.1",
         "from" : "opinierenderol",
         "to" : "renaissance"
     },
     {
         "id" : "59",
         "label" : "over",
+        "source" : "13.3.1",
         "from" : "opinierenderol",
         "to" : "humanisme"
     },
     {
         "id" : "60",
         "label" : "vond plaats in",
+        "source" : "13.3.2",
         "from" : "renaissance",
         "to" : "republikeinsestadstaten"
     },
     {
         "id" : "61",
         "label" : "gedurende",
+        "source" : "13.3.2",
         "from" : "renaissance",
         "to" : "1415eeuw"
     },
     {
         "id" : "62",
         "label" : "heroriëntatie op",
+        "source" : "13.3.2",
         "from" : "renaissance",
         "to" : "klassiekeoudheid"
     },
     {
         "id" : "63",
         "label" : "bracht voort",
+        "source" : "13.3.2",
         "from" : "klassiekeoudheid",
         "to" : "klassiekekunst"
     },
     {
         "id" : "64",
         "label" : "bracht voort",
+        "source" : "13.3.2",
         "from" : "klassiekeoudheid",
         "to" : "klassiekeideeen"
     },
     {
         "id" : "65",
         "label" : "werd verwerkt door",
+        "source" : "13.3.2",
         "from" : "klassiekeoudheid",
         "to" : "translatio"
     },
     {
         "id" : "66",
         "label" : "werd verwerkt door",
+        "source" : "13.3.2",
         "from" : "klassiekeoudheid",
         "to" : "imitatio"
     },
     {
         "id" : "67",
         "label" : "werd verwerkt door",
+        "source" : "13.3.2",
         "from" : "klassiekeoudheid",
         "to" : "aemulatio"
     },
     {
         "id" : "68",
         "label" : "bracht voort",
+        "source" : "13.3.2",
         "from" : "klassiekeoudheid",
         "to" : "toneel"
     },
     {
         "id" : "69",
         "label" : "bracht voort",
+        "source" : "13.3.2",
         "from" : "klassiekeoudheid",
         "to" : "poezie"
     },
     {
         "id" : "70",
         "label" : "werd gebruikt voor",
+        "source" : "13.3.2",
         "from" : "translatio",
         "to" : "imitatio"
     },
     {
         "id" : "71",
         "label" : "werd gebruikt voor",
+        "source" : "13.3.2",
         "from" : "imitatio",
         "to" : "aemulatio"
     },
     {
         "id" : "72",
         "label" : "bracht voort",
+        "source" : "13.3.2",
         "from" : "renaissance",
         "to" : "renliteratuur"
     },
     {
         "id" : "73",
         "label" : "nam over",
+        "source" : "13.3.2",
         "from" : "renliteratuur",
         "to" : "toneel"
     },
     {
         "id" : "74",
         "label" : "klassiek genre",
+        "source" : "13.3.2",
         "from" : "toneel",
         "to" : "komedie"
     },
     {
         "id" : "75",
         "label" : "klassiek genre",
+        "source" : "13.3.2",
         "from" : "toneel",
         "to" : "tragedie"
     },
     {
         "id" : "76",
         "label" : "stroming",
+        "source" : "13.3.2",
         "from" : "literatuur",
         "to" : "renliteratuur"
     },
     {
         "id" : "77",
         "label" : "pronkte met",
+        "source" : "13.3.2",
         "from" : "renliteratuur",
         "to" : "mythologie"
     },
     {
         "id" : "78",
         "label" : "bracht voort",
+        "source" : "13.3.2",
         "from" : "klassiekeoudheid",
         "to" : "mythologie"
     },
     {
         "id" : "79",
         "label" : "nieuw genre",
+        "source" : "13.3.2",
         "from" : "renliteratuur",
         "to" : "emblematiek"
     },
     {
         "id" : "80",
         "label" : "nieuw genre",
+        "source" : "13.3.2",
         "from" : "poezie",
         "to" : "sonnet"
     },
     {
         "id" : "81",
         "label" : "nieuw genre",
+        "source" : "13.3.2",
         "from" : "renliteratuur",
         "to" : "sonnet"
     },
     {
         "id" : "82",
         "label" : "belangrijk concept",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "zelfontplooiing"
     },
     {
         "id" : "83",
         "label" : "belangrijk concept",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "menswaardigheid"
     },
     {
         "id" : "84",
         "label" : "pleitte voor",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "verdraagzaamheid"
     },
     {
         "id" : "85",
         "label" : "wijdde zich aan",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "menswetenschappen"
     },
     {
         "id" : "86",
         "label" : "wijdde zich aan",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "natuurwetenschappen"
     },
     {
         "id" : "87",
         "label" : "maakte",
+        "source" : "13.3.3",
         "from" : "menswetenschappen",
         "to" : "onderscheidmensdier"
     },
     {
         "id" : "88",
         "label" : "door",
+        "source" : "13.3.3",
         "from" : "onderscheidmensdier",
         "to" : "taal"
     },
     {
         "id" : "89",
         "label" : "met behulp van",
+        "source" : "13.3.3",
         "from" : "taal",
         "to" : "grammatica"
     },
     {
         "id" : "90",
         "label" : "met behulp van",
+        "source" : "13.3.3",
         "from" : "taal",
         "to" : "retorica"
     },
     {
         "id" : "91",
         "label" : "door",
+        "source" : "13.3.3",
         "from" : "onderscheidmensdier",
         "to" : "ethiek"
     },
     {
         "id" : "92",
         "label" : "geleverd door",
+        "source" : "13.3.3",
         "from" : "ethiek",
         "to" : "poezie"
     },
     {
         "id" : "93",
         "label" : "geleverd door",
+        "source" : "13.3.3",
         "from" : "ethiek",
         "to" : "geschiedenis"
     },
     {
         "id" : "94",
         "label" : "belangrijke humanist",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "erasmus"
     },
     {
         "id" : "95",
         "label" : "probeerde",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "verzoening"
     },
     {
         "id" : "96",
         "label" : "van",
+        "source" : "13.3.3",
         "from" : "verzoening",
         "to" : "klassiekeoudheid"
     },
     {
         "id" : "97",
         "label" : "van",
+        "source" : "13.3.3",
         "from" : "verzoening",
         "to" : "christendom"
     },
     {
         "id" : "98",
         "label" : "herleefde",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "stoicisme"
     },
     {
         "id" : "99",
         "label" : "standvastigheid tegen",
+        "source" : "13.3.3",
         "from" : "stoicisme",
         "to" : "tirannie"
     },
     {
         "id" : "100",
         "label" : "belangrijke humanist",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "dvcoornhert"
     },
     {
         "id" : "101",
         "label" : "streefde na",
+        "source" : "13.3.3",
         "from" : "dvcoornhert",
         "to" : "zedelijkeverbetering"
     },
     {
         "id" : "102",
         "label" : "streefde na",
+        "source" : "13.3.3",
         "from" : "dvcoornhert",
         "to" : "zelfkennis"
     },
     {
         "id" : "103",
         "label" : "streefde na",
+        "source" : "13.3.3",
         "from" : "dvcoornhert",
         "to" : "godsdienstvrijheid"
     },
     {
         "id" : "104",
         "label" : "waren tegen",
+        "source" : "13.3.3",
         "from" : "calvinisten",
         "to" : "godsdienstvrijheid"
     },
     {
         "id" : "105",
         "label" : "waren tegen",
+        "source" : "13.3.3",
         "from" : "koningen",
         "to" : "godsdienstvrijheid"
     },
     {
         "id" : "106",
         "label" : "verspreid door",
+        "source" : "13.3.3",
         "from" : "renaissance",
         "to" : "boekdrukkunst"
     },
     {
         "id" : "107",
         "label" : "verspreid door",
+        "source" : "13.3.3",
         "from" : "renaissance",
         "to" : "reizen"
     },
     {
         "id" : "108",
         "label" : "verspreid door",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "boekdrukkunst"
     },
     {
         "id" : "109",
         "label" : "verspreid door",
+        "source" : "13.3.3",
         "from" : "humanisme",
         "to" : "reizen"
     },
     {
         "id" : "110",
         "label" : "in Nederland",
+        "source" : "13.3.4",
         "from" : "literatuur",
         "to" : "nederlandseliteratuur"
     },
     {
         "id" : "111",
         "label" : "vroeger afhankelijk van",
+        "source" : "13.3.4",
         "from" : "nederlandseliteratuur",
         "to" : "mecenas"
     },
     {
         "id" : "112",
         "label" : "waren",
+        "source" : "13.3.4",
         "from" : "mecenas",
         "to" : "adellijk"
     },
     {
         "id" : "113",
         "label" : "waren",
+        "source" : "13.3.4",
         "from" : "mecenas",
         "to" : "kerkelijk"
     },
     {
         "id" : "114",
         "label" : "vervangen door",
+        "source" : "13.3.4",
         "from" : "mecenas",
         "to" : "regenten"
     },
     {
         "id" : "115",
         "label" : "had",
+        "source" : "13.3.4",
         "from" : "nederlandseliteratuur",
         "to" : "maatschappelijketaak"
     },
     {
         "id" : "116",
         "label" : "was",
+        "source" : "13.3.4",
         "from" : "maatschappelijketaak",
         "to" : "beleren"
     },
     {
         "id" : "117",
         "label" : "was",
+        "source" : "13.3.4",
         "from" : "maatschappelijketaak",
         "to" : "moraliseren"
     },
     {
         "id" : "118",
         "label" : "was",
+        "source" : "13.3.4",
         "from" : "maatschappelijketaak",
         "to" : "kritiek"
     },
     {
         "id" : "119",
         "label" : "geïnspireerd door",
+        "source" : "13.3.4",
         "from" : "maatschappelijketaak",
         "to" : "horatius"
     },
     {
         "id" : "120",
         "label" : "dichtkunst moest .. bieden",
+        "source" : "13.3.4",
         "from" : "horatius",
         "to" : "utile"
     },
     {
         "id" : "121",
         "label" : "dichtkunst moest .. bieden",
+        "source" : "13.3.4",
         "from" : "horatius",
         "to" : "dulce"
     },
     {
         "id" : "122",
         "label" : "groep werken",
+        "source" : "13.4",
         "from" : "nederlandseliteratuur",
         "to" : "strijdliteratuur"
     },
     {
         "id" : "123",
         "label" : "verwees naar",
+        "source" : "13.4",
         "from" : "strijdliteratuur",
         "to" : "actualiteit"
     },
     {
         "id" : "124",
         "label" : "stimuleerde tot",
+        "source" : "13.4",
         "from" : "strijdliteratuur",
         "to" : "actie"
     },
     {
         "id" : "125",
         "label" : "voor",
+        "source" : "13.4",
         "from" : "actie",
         "to" : "verzet"
     },
     {
         "id" : "126",
         "label" : "voorbeeld",
+        "source" : "13.4",
         "from" : "strijdliteratuur",
         "to" : "geusenliederen"
     },
     {
         "id" : "127",
         "label" : "bevatte",
+        "source" : "13.4",
         "from" : "geusenliederen",
         "to" : "wilhelmus"
     },
     {
         "id" : "128",
         "label" : "groep werken",
+        "source" : "13.4",
         "from" : "nederlandseliteratuur",
         "to" : "renliteratuur"
     },
     {
         "id" : "129",
         "label" : "bevat",
+        "source" : "13.4.1",
         "from" : "emblematiek",
         "to" : "motto"
     },
     {
         "id" : "130",
         "label" : "bevat",
+        "source" : "13.4.1",
         "from" : "emblematiek",
         "to" : "pictura"
     },
     {
         "id" : "131",
         "label" : "bevat",
+        "source" : "13.4.1",
         "from" : "emblematiek",
         "to" : "subscriptio"
     },
     {
         "id" : "132",
         "label" : "illustreert",
+        "source" : "13.4.1",
         "from" : "emblematiek",
         "to" : "waarheid"
     },
     {
         "id" : "133",
         "label" : "heeft",
+        "source" : "13.4.1",
         "from" : "emblematiek",
         "to" : "dieperebetekenis"
     },
     {
         "id" : "134",
         "label" : "maakt gebruik van",
+        "source" : "13.4.1",
         "from" : "emblematiek",
         "to" : "analogiedenken"
     },
     {
         "id" : "135",
         "label" : "maakt argument dat",
+        "source" : "13.4.1",
         "from" : "analogiedenken",
         "to" : "creationisme"
     },
     {
         "id" : "136",
         "label" : "en daarom",
+        "source" : "13.4.1",
         "from" : "creationisme",
         "to" : "toeval"
     },
     {
         "id" : "137",
         "label" : "populaire auteur",
+        "source" : "13.4.1",
         "from" : "emblematiek",
         "to" : "jcats"
     },
     {
         "id" : "138",
         "label" : "publiceerde",
+        "source" : "13.4.1",
         "from" : "jcats",
         "to" : "silenusalcibiadis"
     },
     {
         "id" : "139",
         "label" : "genre",
+        "source" : "13.4.2",
         "from" : "renliteratuur",
         "to" : "lyriek"
     },
     {
         "id" : "140",
         "label" : "stelde centraal",
+        "source" : "13.4.2",
         "from" : "lyriek",
         "to" : "liefde"
     },
     {
         "id" : "141",
         "label" : "in de vorm van",
+        "source" : "13.4.2",
         "from" : "liefde",
         "to" : "platonischeliefde"
     },
     {
         "id" : "142",
         "label" : "in de vorm van",
+        "source" : "13.4.2",
         "from" : "liefde",
         "to" : "zinnelijkeliefde"
     },
     {
         "id" : "143",
         "label" : "toegestaan als",
+        "source" : "13.4.2",
         "from" : "zinnelijkeliefde",
         "to" : "platonischeliefde"
     },
     {
         "id" : "144",
         "label" : "sloot aan op",
+        "source" : "13.4.2",
         "from" : "lyriek",
         "to" : "petrarkisme"
     },
     {
         "id" : "145",
         "label" : "genoemd naar",
+        "source" : "13.4.2",
         "from" : "petrarkisme",
         "to" : "petrarca"
     },
     {
         "id" : "146",
         "label" : "gebruikte",
+        "source" : "13.4.2",
         "from" : "petrarkisme",
         "to" : "beeldenconventies"
     },
     {
         "id" : "147",
         "label" : "waaronder",
+        "source" : "13.4.2",
         "from" : "beeldenconventies",
         "to" : "paradoxen"
     },
     {
         "id" : "148",
         "label" : "waaronder",
+        "source" : "13.4.2",
         "from" : "beeldenconventies",
         "to" : "antithese"
     },
     {
         "id" : "149",
         "label" : "stelde centraal",
+        "source" : "13.4.2",
         "from" : "petrarkisme",
         "to" : "liefdesklacht"
     },
     {
         "id" : "150",
         "label" : "verheerlijkte",
+        "source" : "13.4.2",
         "from" : "petrarkisme",
         "to" : "platonischeliefde"
     },
     {
         "id" : "151",
         "label" : "gericht aan",
+        "source" : "13.4.2",
         "from" : "liefdesklacht",
         "to" : "ideaalbeeld"
     },
     {
         "id" : "152",
         "label" : "begrepen door",
+        "source" : "13.4.2",
         "from" : "beeldenconventies",
         "to" : "literaireelite"
     },
     {
         "id" : "153",
         "label" : "pleitte voor",
+        "source" : "13.4.2",
         "from" : "petrarkisme",
         "to" : "zelfbeheersing"
     },
     {
         "id" : "154",
         "label" : "ten opzichte van",
+        "source" : "13.4.2",
         "from" : "zelfbeheersing",
         "to" : "geslachtsverkeer"
     },
     {
         "id" : "155",
         "label" : "geschreven in",
+        "source" : "13.4.2",
         "from" : "lyriek",
         "to" : "nieuweliedboeken"
     },
     {
         "id" : "156",
         "label" : "bestond uit",
+        "source" : "13.4.3",
         "from" : "sonnet",
         "to" : "veertienversregels"
     },
     {
         "id" : "157",
         "label" : "bestond uit",
+        "source" : "13.4.3",
         "from" : "veertienversregels",
         "to" : "octaaf"
     },
     {
         "id" : "158",
         "label" : "bestond uit",
+        "source" : "13.4.3",
         "from" : "veertienversregels",
         "to" : "sextet"
     },
     {
         "id" : "159",
         "label" : "bestond uit",
+        "source" : "13.4.3",
         "from" : "sonnet",
         "to" : "volta"
     },
     {
         "id" : "160",
         "label" : "na",
+        "source" : "13.4.3",
         "from" : "volta",
         "to" : "octaaf"
     },
     {
         "id" : "161",
         "label" : "voor",
+        "source" : "13.4.3",
         "from" : "volta",
         "to" : "sextet"
     },
     {
         "id" : "162",
         "label" : "sloot aan op",
+        "source" : "13.4.3",
         "from" : "sonnet",
         "to" : "petrarkisme"
     },
     {
         "id" : "163",
         "label" : "belangrijkste dichter",
+        "source" : "13.4.3",
         "from" : "sonnet",
         "to" : "pchooft"
     },
     {
         "id" : "164",
         "label" : "met als ethisch-didactisch doel",
+        "source" : "13.4.4",
         "from" : "toneel",
         "to" : "stedelijkegedragscode"
     },
     {
         "id" : "165",
         "label" : "geopend voor",
+        "source" : "13.4.4",
         "from" : "toneel",
         "to" : "publiek"
     },
     {
         "id" : "166",
         "label" : "grootste productie in",
+        "source" : "13.4.4",
         "from" : "toneel",
         "to" : "amsterdam"
     },
     {
         "id" : "167",
         "label" : "winst naar",
+        "source" : "13.4.4",
         "from" : "toneel",
         "to" : "liefdadigeinstellingen"
     },
     {
         "id" : "168",
         "label" : "hadden baat bij",
+        "source" : "13.4.4",
         "from" : "regenten",
         "to" : "liefdadigeinstellingen"
     },
     {
         "id" : "169",
         "label" : "als functie",
+        "source" : "13.4.4",
         "from" : "toneel",
         "to" : "opinierenderol"
     },
     {
         "id" : "170",
         "label" : "theater",
+        "source" : "13.4.4",
         "from" : "toneel",
         "to" : "eerstenederduytscheacademie"
     },
     {
         "id" : "171",
         "label" : "theater",
+        "source" : "13.4.4",
         "from" : "toneel",
         "to" : "amsterdamseschouwburg"
     },
     {
         "id" : "172",
         "label" : "had als functie",
+        "source" : "13.4.4",
         "from" : "toneel",
         "to" : "spiegel"
     },
     {
         "id" : "173",
         "label" : "ging over",
+        "source" : "13.4.4.1",
         "from" : "tragedie",
         "to" : "ondergang"
     },
     {
         "id" : "174",
         "label" : "hoofdpersoon was",
+        "source" : "13.4.4.1",
         "from" : "ondergang",
         "to" : "hooggeplaatstpersonage"
     },
     {
         "id" : "175",
         "label" : "inhoud verleend aan",
+        "source" : "13.4.4.1",
         "from" : "tragedie",
         "to" : "klassiekeoudheid"
     },
     {
         "id" : "176",
         "label" : "inhoud verleend aan",
+        "source" : "13.4.4.1",
         "from" : "tragedie",
         "to" : "geschiedenis"
     },
     {
         "id" : "177",
         "label" : "inhoud verleend aan",
+        "source" : "13.4.4.1",
         "from" : "tragedie",
         "to" : "bijbel"
     },
     {
         "id" : "178",
         "label" : "genre",
+        "source" : "13.4.4.1",
         "from" : "tragedie",
         "to" : "retorischdidactischtragedie"
     },
     {
         "id" : "179",
         "label" : "met als belangrijk voorbeeld",
+        "source" : "13.4.4.1",
         "from" : "retorischdidactischtragedie",
         "to" : "seneca"
     },
     {
         "id" : "180",
         "label" : "bestond uit",
+        "source" : "13.4.4.1",
         "from" : "retorischdidactischtragedie",
         "to" : "vijfbedrijven"
     },
     {
         "id" : "181",
         "label" : "genre",
+        "source" : "13.4.4.1",
         "from" : "tragedie",
         "to" : "aristotelestragedie"
     },
     {
         "id" : "182",
         "label" : "gebaseerd op",
+        "source" : "13.4.4.1",
         "from" : "aristotelestragedie",
         "to" : "handelingsstructuur"
     },
     {
         "id" : "183",
         "label" : "eenheid van",
+        "source" : "13.4.4.1",
         "from" : "handelingsstructuur",
         "to" : "tijd"
     },
     {
         "id" : "184",
         "label" : "eenheid van",
+        "source" : "13.4.4.1",
         "from" : "handelingsstructuur",
         "to" : "plaats"
     },
     {
         "id" : "185",
         "label" : "eenheid van",
+        "source" : "13.4.4.1",
         "from" : "handelingsstructuur",
         "to" : "handeling"
     },
     {
         "id" : "186",
         "label" : "bedacht door",
+        "source" : "13.4.4.1",
         "from" : "handelingsstructuur",
         "to" : "aristoteles"
     },
     {
         "id" : "187",
         "label" : "voorbeeld",
+        "source" : "13.4.4.1",
         "from" : "tragedie",
         "to" : "gvaemstel"
     },
     {
         "id" : "188",
         "label" : "geschreven door",
+        "source" : "13.4.4.1",
         "from" : "gvaemstel",
         "to" : "jvdvondel"
     },
     {
         "id" : "189",
         "label" : "personages waren",
+        "source" : "13.4.4.2",
         "from" : "komedie",
         "to" : "laaggeplaatstpersonage"
     },
     {
         "id" : "190",
         "label" : "gesproken in",
+        "source" : "13.4.4.2",
         "from" : "komedie",
         "to" : "spreektaal"
     },
     {
         "id" : "191",
         "label" : "eindigde met",
+        "source" : "13.4.4.2",
         "from" : "komedie",
         "to" : "happyend"
     },
     {
         "id" : "192",
         "label" : "voorbeeld",
+        "source" : "13.4.4.2",
         "from" : "komedie",
         "to" : "warenar"
     },
     {
         "id" : "193",
         "label" : "geschreven door",
+        "source" : "13.4.4.2",
         "from" : "warenar",
         "to" : "pchooft"
     },
     {
         "id" : "194",
         "label" : "nieuw genre",
+        "source" : "13.4.4.2",
         "from" : "toneel",
         "to" : "klucht"
     },
     {
         "id" : "195",
         "label" : "korter dan",
+        "source" : "13.4.4.2",
         "from" : "klucht",
         "to" : "komedie"
     },
     {
         "id" : "196",
         "label" : "toonden",
+        "source" : "13.4.4.2",
         "from" : "klucht",
         "to" : "grappigesituaties"
     },
     {
         "id" : "197",
         "label" : "ging over",
+        "source" : "13.4.4.2",
         "from" : "klucht",
         "to" : "primairelevensdriften"
     },
     {
         "id" : "198",
         "label" : "voorbeeld",
+        "source" : "13.4.4.2",
         "from" : "klucht",
         "to" : "kvdkoe"
     },
     {
         "id" : "199",
         "label" : "geschreven door",
+        "source" : "13.4.4.2",
         "from" : "kvdkoe",
         "to" : "gabredero"
     }
