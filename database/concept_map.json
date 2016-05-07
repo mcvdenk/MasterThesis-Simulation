@@ -661,7 +661,6 @@
         "id" : "0",
         "label" : "geleid door",
         "source" : "13.1",
-        "aswer" : "Door Maarten Luther en Johannes Calvijn",
         "from" : "protestantisme",
         "to" : "mluther"
     },
@@ -669,7 +668,6 @@
         "id" : "1",
         "label" : "geleid door",
         "source" : "13.1",
-        "aswer" : "Door Maarten Luther en Johannes Calvijn",
         "from" : "protestantisme",
         "to" : "jcalvijn"
     },
