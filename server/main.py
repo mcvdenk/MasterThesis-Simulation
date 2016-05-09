@@ -12,7 +12,7 @@ from pymongo import MongoClient
 PATH = 'mvdenk.com'
 PORT = 5678
 dbclient = MongoClient()
-db = dbclient.test
+db = dbclient.flashmap
 active_sessions = {}
 
 # Calls the corresponding function to the switchcases dict. When the keyword is invalid, it returns a FAILURE response
@@ -39,7 +39,7 @@ def authenticate(data):
     else:
         msg["data"] = {"success" : "NEW_USERNAME"}
         db.users.insert_one({
-            "name" : data["name"], "sessions" : [], "flashedges" : []
+            "name" : data["name"], "sessions" : [], "flashedges" : [], "flashmap_condition" : random.choice([True, False]), "flashcards" : []
         })
     db.users.update(
         {"name" : data["name"]},
@@ -58,6 +58,37 @@ def provide_learned_items(data, name):
     return ""
 
 def provide_learning(data, name):
+    if (db.users.find_one({"name": name})["flashmap_condition"]): return provide_flashedges(data, name)
+    return provide_flashcard(data,name)
+
+def provide_flashcard(data, name):
+    flashcards = db.users.find_one({"name": name})["flashcards"]
+    if (len(flashcards)):
+        flashcards = sorted(flashcards, key=lambda k: k["due"])
+        if (flashcards[0]["due"] < time.time()):
+            card = next(e for e in db.cmap.find_one()["flashcards"] if e["id"] == flashcards[0]["id"])
+            return build_flashcard(card)
+    return new_flashcard(name)
+
+def new_flashcard(name):
+    #TODO: check prerequisites
+    i = len(db.users.find_one({"name": name})["flashcards"])
+    if (i > len(db.fcards.find_one()["flashcards"]) - 1): return {"keyword": "NO_MORE_FLASHCARDS", "data": {}}
+    card = db.fcards.find_one()["flashcards"][i]
+    db.users.update(
+        { "name" : name }, 
+        { "$push" : {"flashcards" : {
+            "id" : card["id"],
+            "due" : time.time(),
+            "responses": []
+        }}}
+    )
+    return build_flashcard(card)
+
+def build_flashcard(card):
+    return {"keyword" : "LEARN-RESPONSE(fc)", "data" : card}
+
+def provide_flashedges(data, name):
     #TODO: multiple edges with same from, to and label
     flashedges = db.users.find_one({"name": name})["flashedges"]
     if (len(flashedges)):
@@ -83,21 +114,20 @@ def new_flashedge(name):
     return build_partial_map(edge)
 
 def build_partial_map(flashedge):
-    cmap = {"nodes": [], "edges": find_prerequisites(flashedge)}
+    cmap = {"nodes": [], "edges": find_prerequisites(flashedge, [])}
     for edge in cmap["edges"]:
         edge["learning"] = edge == flashedge
     cmap["nodes"].append(next(node for node in db.cmap.find_one()["nodes"] if node["id"] == flashedge["to"]))
     for edge in cmap["edges"]:
         cmap["nodes"].append(next(node for node in db.cmap.find_one()["nodes"] if node["id"] == edge["from"]))
-    msg = {"keyword" : "LEARN-RESPONSE", "data" : cmap}
+    msg = {"keyword" : "LEARN-RESPONSE(fm)", "data" : cmap}
     return msg
 
-def find_prerequisites(edge):
-    prereqs = []
+def find_prerequisites(edge, prereqs):
     prereqs.append(edge)
-    for prereq in db.cmap.find_one()["edges"]:
-        if (prereq["to"] == edge["from"] and prereq not in prereqs):
-            prereqs += find_prerequisites(prereq)
+    for edge in db.cmap.find_one()["edges"]:
+        if (edge["to"] == edge["from"] and edge not in prereqs):
+            prereqs += find_prerequisites(edge, prereqs)
     return prereqs
 
 def validate(data, name):

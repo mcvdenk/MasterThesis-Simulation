@@ -20,6 +20,8 @@ var options = {
     }
 };
 var show_undo = false;
+var question = "";
+var answer = "";
 
 ws.onopen = function (event) {
     document.getElementById(cont).style.visibility = "visible";
@@ -54,8 +56,11 @@ ws.onmessage = function (event) {
             coloured_map = colourise_progress(msg.data);
             show_map(coloured_map);
             break;
-        case "LEARN-RESPONSE":
+        case "LEARN-RESPONSE(fm)":
             show_map(flashmap(msg.data));
+            break;
+        case "LEARN-RESPONSE(fc)":
+            show_card(msg.data);
             break;
         case "NO_MORE_FLASHEDGES":
             done_learning();
@@ -98,6 +103,11 @@ function show_menu() {
 }
 
 function colourise_progress(data) {
+}
+
+function show_card(data) {
+    question = data.question
+    document.getElementById(cont).innerHTML = question;
 }
 
 function flashmap(data) {

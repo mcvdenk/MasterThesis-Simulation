@@ -3,1080 +3,720 @@
         "edgeID" : "0,1",
         "source" : "13.1",
         "question" : "Door welke personen werd het protestantisme geleid?",
-        "answer" : "Door Maarten Luther en Johannes Calvijn",
+        "answer" : "Door Maarten Luther en Johannes Calvijn"
     },
     {
         "edgeID" : "2",
         "source" : "13.1",
         "question" : "Hoe werd het protestantisme verspreid?",
-        "answer" : "Door de boekdrukkunst",
+        "answer" : "Door de boekdrukkunst"
     },
     {
         "edgeID" : "3",
         "source" : "13.1",
         "question" : "Welk land werd door Spanje bezet?",
-        "answer" : "De Nederlanden",
+        "answer" : "De Nederlanden"
     },
     {
         "edgeID" : "4",
         "source" : "13.1",
         "question" : "Waardoor werd Spanje geregeerd?",
-        "answer" : "Door koningen",
+        "answer" : "Door koningen"
     },
     {
         "edgeID" : "5,6",
         "source" : "13.1",
         "question" : "Wie waren de koningen van Spanje?",
-        "answer" : "Karel V en Fillips II",
+        "answer" : "Karel V en Fillips II"
     },
     {
         "edgeID" : "7",
         "source" : "13.1",
         "question" : "Wie volgde Karel V op?",
-        "answer" : "Fillips II",
+        "answer" : "Fillips II"
     },
     {
         "edgeID" : "8,10",
         "source" : "13.1",
         "question" : "Wat wilden de koningen van Spanje?",
-        "answer" : "Centralisatie van katholicisme",
+        "answer" : "Centralisatie van katholicisme"
     },
     {
         "edgeID" : "9,11",
         "source" : "13.1",
         "question" : "Waartoe leidde de centralisatie van het katholicisme?",
-        "answer" : "Geloofsvervolging van protesantisme",
+        "answer" : "Geloofsvervolging van protesantisme"
     },
     {
         "edgeID" : "12, 13",
         "source" : "13.1",
         "question" : "Waartoe leidde de geloofsvervolging?",
-        "answer" : "Verzet van de Nederlanden",
+        "answer" : "Verzet van de Nederlanden"
     },
     {
         "edgeID" : "14",
         "source" : "13.1",
         "question" : "Door wie werd het verzet geleid?",
-        "answer" : "Door Willem van Oranje",
+        "answer" : "Door Willem van Oranje"
     },
     {
         "edgeID" : "15",
         "source" : "13.1",
         "question" : "Waartoe leidde het verzet?",
-        "answer" : "Tot de Tachtigjarige Oorlog",
+        "answer" : "Tot de Tachtigjarige Oorlog"
     },
     {
         "edgeID" : "16",
         "source" : "13.2",
         "question" : "Door wie werd het protestantisme aangehangen?",
-        "answer" : "Calvinisten",
+        "answer" : "Calvinisten"
     },
     {
         "edgeID" : "17",
         "source" : "13.2",
         "question" : "Wat was Antwerpen voor de geloofsvervolging?",
-        "answer" : "Een europees handelscentrum",
+        "answer" : "Een europees handelscentrum"
     },
     {
         "edgeID" : "19,20,21,22,23",
         "source" : "13.2",
         "question" : "Wat voor implicaties had de geloofsvervolging voor Antwerpen?",
-        "answer" : "De vlucht van kooplieden en calvinisten naar Amsterdam",
+        "answer" : "De vlucht van kooplieden en calvinisten naar Amsterdam"
     },
     {
         "edgeID" : "18",
         "source" : "13.2",
         "question" : "Wat werd Amsterdam na de geloofsvervolging?",
-        "answer" : "Een europees handelscentrum",
+        "answer" : "Een europees handelscentrum"
     },
     {
         "edgeID" : "24,25",
         "source" : "13.2",
         "question" : "Waartoe leidde het vluchten van kooplieden?",
-        "answer" : "Een explosieve groei van de handel in Amsterdam",
+        "answer" : "Een explosieve groei van de handel in Amsterdam"
     },
     {
         "edgeID" : "26",
         "source" : "13.2",
         "question" : "Door wie werden de Nederlanden bestuurd?",
-        "answer" : "Door regenten",
+        "answer" : "Door regenten"
     },
     {
         "edgeID" : "27",
         "source" : "13.2",
         "question" : "Wat wilden de regenten in de stad?",
-        "answer" : "Stedelijke cultuur",
+        "answer" : "Stedelijke cultuur"
     },
     {
         "edgeID" : "28,29",
         "source" : "13.2",
         "question" : "Door wie werd de kunst en literatuur in de Nederlanden gefinancierd?",
-        "answer" : "Door de regenten",
+        "answer" : "Door de regenten"
     },
     {
         "edgeID" : "30,31",
         "source" : "13.2",
         "question" : "Waar droegen de kunst en literatuur aan bij?",
-        "answer" : "Aan de stedelijke gedragscode",
+        "answer" : "Aan de stedelijke gedragscode"
     },
     {
         "edgeID" : "32",
         "source" : "13.2",
         "question" : "Wat vormde de stedelijke gedragscode?",
-        "answer" : "De stedelijke cultuur",
+        "answer" : "De stedelijke cultuur"
     },
     {
         "edgeID" : "33",
         "source" : "13.2",
         "question" : "Wat gaf de stedelijke gedragscode aan?",
-        "answer" : "Gewenst en ongewenst gedrag",
+        "answer" : "Gewenst en ongewenst gedrag"
     },
     {
         "edgeID" : "34",
         "source" : "13.2",
         "question" : "Hoe werd ongewenst gedrag ook wel beschreven?",
-        "answer" : "Als boers, onbeschaafd gedrag",
+        "answer" : "Als boers, onbeschaafd gedrag"
     },
     {
         "edgeID" : "35",
         "source" : "13.2",
         "question" : "Noem een voorbeeld van een literair werk die de stedelijke gedragscode aangeeft.",
-        "answer" : "Boeren-gezelschap",
+        "answer" : "Boeren-gezelschap"
     },
     {
         "edgeID" : "36",
         "source" : "13.2",
         "question" : "Door wie is Boeren-gezelschap geschreven?",
-        "answer" : "Door G.A. Bredero",
+        "answer" : "Door G.A. Bredero"
     },
     {
         "edgeID" : "37",
         "source" : "13.2",
         "question" : "Wat voor gedrag wordt beschreven door Boeren-gezelschap?",
-        "answer" : "Boers, onbeschaafd gedrag",
+        "answer" : "Boers, onbeschaafd gedrag"
     },
     {
         "edgeID" : "38",
         "source" : "13.2",
         "question" : "Waartoe leidde boers gedrag?",
-        "answer" : "Tot conflicten",
+        "answer" : "Tot conflicten"
     },
     {
         "edgeID" : "39",
         "source" : "13.2",
         "question" : "Hoe werd boers gedrag gezien?",
-        "answer" : "Als onmatig gedrag",
+        "answer" : "Als onmatig gedrag"
     },
     {
         "edgeID" : "40,41",
         "source" : "13.2",
         "question" : "Wat waren voorbeelden van onmatig gedrag?",
-        "answer" : "Alcoholisme en ongeremde seksualiteit.",
+        "answer" : "Alcoholisme en ongeremde seksualiteit."
     },
     {
         "edgeID" : "42",
         "source" : "13.2",
         "question" : "Wat voor nieuwe bevolkingsgroep ontstond er door de explosieve groei van handel in Amsterdam?",
-        "answer" : "Galante jongeren uit de bovenlaag",
+        "answer" : "Galante jongeren uit de bovenlaag"
     },
     {
         "edgeID" : "43,44",
         "source" : "13.2",
         "question" : "Wat hadden calvinisten ten opzichte van voorechtelijk geslachtsverkeer?",
-        "answer" : "Een strenge moraal",
+        "answer" : "Een strenge moraal"
     },
     {
         "edgeID" : "45",
         "source" : "13.2",
         "question" : "Waar richtte zich de lyriek op?",
-        "answer" : "Op de jongeren",
+        "answer" : "Op de jongeren"
     },
     {
         "edgeID" : "46",
         "source" : "13.2",
         "question" : "Waar moesten de jongeren mee leven?",
-        "answer" : "Met de strenge moraal van calvinisten op voorechtelijk geslachtsverkeer",
+        "answer" : "Met de strenge moraal van calvinisten op voorechtelijk geslachtsverkeer"
     },
     {
         "edgeID" : "47",
         "source" : "13.3",
         "question" : "Welk nieuw tijdperk luidde de explosieve groei van handel in Amterdam in?",
-        "answer" : "De gouden eeuw",
+        "answer" : "De gouden eeuw"
     },
     {
         "edgeID" : "48,53,54,55",
         "source" : "13.3.1",
         "question" : "Welke rederijkerskamers waren er te vinden in Amsterdam?",
-        "answer" : "De Oude Kamer (D'Eglentier) en het Wit Lavendel (de Brabantse Kamer)",
+        "answer" : "De Oude Kamer (D'Eglentier) en het Wit Lavendel (de Brabantse Kamer)"
     },
     {
         "edgeID" : "49",
         "source" : "13.3.1",
         "question" : "Wat waren de rederijkers?",
-        "answer" : "Dichters",
+        "answer" : "Dichters"
     },
     {
         "edgeID" : "50",
         "source" : "13.3.1",
         "question" : "Welke belangrijke dichters waren er geschoold door de Oude Kamer?",
-        "answer" : "G.A. Bredero en P.C. Hooft",
+        "answer" : "G.A. Bredero en P.C. Hooft"
     },
     {
         "edgeID" : "51,52",
         "source" : "13.3.1",
         "question" : "Welke belangrijke dichter was er geschoold door het Wit Lavendel?",
-        "answer" : "J. van den Vondel",
+        "answer" : "J. van den Vondel"
     },
     {
         "edgeID" : "56",
         "source" : "13.3.1",
         "question" : "Wat was de functie van de rederijkerskamers?",
-        "answer" : "Een opiniërende rol hebben",
+        "answer" : "Een opiniërende rol hebben"
     },
     {
         "edgeID" : "57,58,59",
         "source" : "13.3.1",
         "question" : "Wat werd er in de rederijkerskamers bediscussieerd?",
-        "answer" : "Het protestantisme, de renaissance en het humanisme",
+        "answer" : "Het protestantisme, de renaissance en het humanisme"
     },
     {
         "edgeID" : "60",
         "source" : "13.3.2",
         "question" : "Waar ontstond de renaissance?",
-        "answer" : "In de Italische republikeinse stadstaten",
+        "answer" : "In de Italische republikeinse stadstaten"
     },
     {
         "edgeID" : "61",
         "source" : "13.3.2",
         "question" : "Wanneer ontstond de renaissance?",
-        "answer" : "1500-1700",
+        "answer" : "1500-1700"
     },
     {
         "edgeID" : "62,63,64",
         "source" : "13.3.2",
         "question" : "Waar oriënteerde de renaissance zich op?",
-        "answer" : "Op de kunst en ideeën uit de Klassieke Oudheid",
+        "answer" : "Op de kunst en ideeën uit de Klassieke Oudheid"
     },
     {
         "edgeID" : "65,66,67,70,71",
         "source" : "13.3.2",
         "question" : "Op welke wijze werden de werken uit de klassieke oudheid opnieuw gebruikt tijdens de renaissance?",
-        "answer" : "Translatio (vertaling), daarna imitatio (nabootsing) en tenslotte aemulatio (overtreffing)",
+        "answer" : "Translatio (vertaling), daarna imitatio (nabootsing) en tenslotte aemulatio (overtreffing)"
     },
     {
         "edgeID" : "68,69,72,73,74,76",
         "source" : "13.3.2",
         "question" : "Welke klassieke literatuurgenres werden er in de renaissanceliteratuur overgenomen?",
-        "answer" : "Toneel en poezie",
+        "answer" : "Toneel en poezie"
     },
     {
         "edgeID" : "74,75",
         "source" : "13.3.2",
         "question" : "Welke klassieke toneelgenres werden opnieuw uitgevoerd gedurende de renaissance?",
-        "answer" : "De komedie (blijspel) en de tragedie (treurspel)",
+        "answer" : "De komedie (blijspel) en de tragedie (treurspel)"
     },
     {
         "edgeID" : "77,78",
         "source" : "13.3.2",
         "question" : "Wat was de nieuwe visie voor renaissanceliteratuur?",
-        "answer" : "De literatuur moest pronken met taalschoonheden en mythologie, en belerend en diepzinnig zijn",
+        "answer" : "De literatuur moest pronken met taalschoonheden en mythologie, en belerend en diepzinnig zijn"
     },
     {
         "edgeID" : "79,80,81",
         "source" : "13.3.2",
         "question" : "Welke nieuwe genres ontstonden er in de renaissanceliteratuur?",
-        "answer" : "De emblematiek en het sonnet",
+        "answer" : "De emblematiek en het sonnet"
     },
     {
         "edgeID" : "82,83",
         "source" : "13.3.3",
         "question" : "Welke concepten stonden centraal in het humanisme?",
-        "answer" : "Zelfontplooiing en menswaardigheid",
+        "answer" : "Zelfontplooiing en menswaardigheid"
     },
     {
         "edgeID" : "84",
         "source" : "13.3.3",
         "question" : "Waar pleitten de humanisten voor?",
-        "answer" : "Verdraagzaamheid",
+        "answer" : "Verdraagzaamheid"
     },
     {
         "edgeID" : "85,86",
         "source" : "13.3.3",
         "question" : "Wat waren de twee grote humanistische stromingen binnen de wetenschap?",
-        "answer" : "Menswetenschappen en natuurwetenschappen",
+        "answer" : "Menswetenschappen en natuurwetenschappen"
     },
     {
         "edgeID" : "87,88,91",
         "source" : "13.3.3",
         "question" : "Waardoor maakten de humanisten onderscheid tussen mens en dier?",
-        "answer" : "Door taal en ethiek (kennis tussen goed en kwaad)",
+        "answer" : "Door taal en ethiek (kennis tussen goed en kwaad)"
     },
     {
         "edgeID" : "89,90",
         "source" : "13.3.3",
         "question" : "Welke belangrijke taalconcepten hanterden de humanisten?",
-        "answer" : "Grammatica en retorica",
+        "answer" : "Grammatica en retorica"
     },
     {
         "edgeID" : "92,93",
         "source" : "13.3.3",
         "question" : "Waar ontleenden de humanisten hun ideeen over ethiek aan?",
-        "answer" : "Aan poëzie en geschiedenis",
+        "answer" : "Aan poëzie en geschiedenis"
     },
     {
         "edgeID" : "94,100",
         "source" : "13.3.3",
         "question" : "Noem twee belangrijke humanisten",
-        "answer" : "Erasmus en D.V. Coornhert",
+        "answer" : "Erasmus en D.V. Coornhert"
     },
     {
         "edgeID" : "95,96,97",
         "source" : "13.3.3",
         "question" : "Wat probeerde het humanisme?",
-        "answer" : "Het probeerde het gedachtegoed van de klassieke oudheid met het christendom te verzoenen",
+        "answer" : "Het probeerde het gedachtegoed van de klassieke oudheid met het christendom te verzoenen"
     },
     {
         "edgeID" : "98",
         "source" : "13.3.3",
         "question" : "Welke klassieke filosofische stroming werd herleefd door het humanisme?",
-        "answer" : "Stoïcisme",
+        "answer" : "Stoïcisme"
     },
     {
         "edgeID" : "99",
         "source" : "13.3.3",
         "question" : "Waar moest men standvastig tegen zijn volgens de stoïcisten?",
-        "answer" : "Tegen tirannie",
+        "answer" : "Tegen tirannie"
     },
     {
         "edgeID" : "101,102,103",
         "source" : "13.3.3",
         "question" : "Waar pleitte D.V. Coornhert voor?",
-        "answer" : "Voor zedelijkeverbetering, godsdienstvrijheid en zelfkennis",
+        "answer" : "Voor zedelijkeverbetering, godsdienstvrijheid en zelfkennis"
     },
     {
         "edgeID" : "104,105",
         "source" : "13.3.3",
         "question" : "Wie waren tegen godsdienstvrijheid?",
-        "answer" : "De Spaanse koningen en de calvinisten",
+        "answer" : "De Spaanse koningen en de calvinisten"
     },
     {
         "edgeID" : "106,107,108,109",
         "source" : "13.3.3",
         "question" : "Waardoor werden de ideeën uit de renaissance en het humanisme verspreid?",
-        "answer" : "Door reizen en de boekdrukkunst",
+        "answer" : "Door reizen en de boekdrukkunst"
     },
     {
         "edgeID" : "111,112,113",
         "source" : "13.3.4",
         "question" : "Waar waren Nederlandse schrijvers afhankelijk van in de middeleeuwen?",
-        "answer" : "Door kerkelijke en adellijke mecenas (opdrachtgevers)",
+        "answer" : "Door kerkelijke en adellijke mecenas (opdrachtgevers)"
     },
     {
         "edgeID" : "114",
         "source" : "13.3.4",
         "question" : "Wie vervingen de mecenas",
-        "answer" : "De regenten",
+        "answer" : "De regenten"
     },
     {
         "edgeID" : "115,116,117,118",
         "source" : "13.3.4",
         "question" : "Wat waren de maatschappelijke taken van Nederlandse literatuur?",
-        "answer" : "Beleren, moraliseren (wijze lessen geven) en kritiek leveren",
+        "answer" : "Beleren, moraliseren (wijze lessen geven) en kritiek leveren"
     },
     {
         "edgeID" : "119",
         "source" : "13.3.4",
         "question" : "Door wie waren de maatschappelijke taken geïnspireerd?",
-        "answer" : "Door de Romein Horatius",
+        "answer" : "Door de Romein Horatius"
     },
     {
         "edgeID" : "120,121",
         "source" : "13.3.4",
         "question" : "Wat vond Horatius dat de dichtkunst moest bieden?",
-        "answer" : "Utile (lering) en dulce (vermaak)",
+        "answer" : "Utile (lering) en dulce (vermaak)"
     },
     {
         "edgeID" : "122,128",
         "source" : "13.4",
         "question" : "Wat waren de twee groepen werken binnen de Nederlandse literatuur?",
-        "answer" : "De strijdliteratuur en de renaissancistisch-humanistische literatuur",
+        "answer" : "De strijdliteratuur en de renaissancistisch-humanistische literatuur"
     },
     {
         "edgeID" : "123",
         "source" : "13.4",
         "question" : "Waar verwees de strijdliteratuur naar?",
-        "answer" : "Naar de actualiteit",
+        "answer" : "Naar de actualiteit"
     },
     {
         "edgeID" : "124,125",
         "source" : "13.4",
         "question" : "Waartoe stimuleerde de strijdliteratuur?",
-        "answer" : "Tot actie om zich tegen Spanje te verzetten",
+        "answer" : "Tot actie om zich tegen Spanje te verzetten"
     },
     {
         "edgeID" : "126",
         "source" : "13.4",
         "question" : "Noem een beroemd voorbeeld van strijdliteratuur",
-        "answer" : "Een nieu Geusen Lieden Boecxken",
+        "answer" : "Een nieu Geusen Lieden Boecxken"
     },
     {
         "edgeID" : "127",
         "source" : "13.4",
         "question" : "Welk bekend werk bevatte Een nieu Geusen Lieden Boecxken?",
-        "answer" : "Het Wilhelmus",
+        "answer" : "Het Wilhelmus"
     },
     {
         "edgeID" : "129,130,131",
         "source" : "13.4.1",
         "question" : "Wat waren de onderdelen van een embleem?",
-        "answer" : "Een motto (opschrift), pictura (afbeelding) en subscriptio (uitleg)",
+        "answer" : "Een motto (opschrift), pictura (afbeelding) en subscriptio (uitleg)"
     },
     {
         "edgeID" : "132",
         "source" : "13.4.1",
         "question" : "Wat illustreerde een embleem?",
-        "answer" : "Een algemene waarheid",
+        "answer" : "Een algemene waarheid"
     },
     {
         "edgeID" : "133,134",
         "source" : "13.4.1",
         "question" : "Waarvan maakte emblematiek gebruik?",
-        "answer" : "Van diepere betekenissen en analogiedenken",
+        "answer" : "Van diepere betekenissen en analogiedenken"
     },
     {
         "edgeID" : "135,136",
         "source" : "13.4.1",
         "question" : "Welk argument werd gemaakt voor het gebruik van analogiedenken?",
-        "answer" : "Alles is Gods schepping, en daarom kunnen parallellen nooit toevallig zijn",
+        "answer" : "Alles is Gods schepping, en daarom kunnen parallellen nooit toevallig zijn"
     },
     {
         "edgeID" : "137",
         "source" : "13.4.1",
         "question" : "Noem een populaire auteur binnen de emblematiek",
-        "answer" : "Jacob Cats",
+        "answer" : "Jacob Cats"
     },
     {
         "edgeID" : "138",
         "source" : "13.4.1",
         "question" : "Welke beroemde embleembundel publiceerde Jacob Cats?",
-        "answer" : "Sinne- en Minnebeelden",
+        "answer" : "Sinne- en Minnebeelden"
     },
     {
         "edgeID" : "140",
         "source" : "13.4.2",
         "question" : "Wat werd centraal gesteld in de lyriek?",
-        "answer" : "De liefde",
+        "answer" : "De liefde"
     },
     {
         "edgeID" : "141,142",
         "source" : "13.4.2",
         "question" : "Welke twee vormen van liefde werden onderscheiden?",
-        "answer" : "De platonische liefde en de lichamelijke liefde",
+        "answer" : "De platonische liefde en de lichamelijke liefde"
     },
     {
         "edgeID" : "143",
         "source" : "13.4.2",
         "question" : "Wanneer was lichamelijke liefde toegestaan?",
-        "answer" : "Wanneer er sprake was van platonische liefde",
+        "answer" : "Wanneer er sprake was van platonische liefde"
     },
     {
         "edgeID" : "144, 162",
         "source" : "13.4.2",
         "question" : "Op welke mode sloten de inhoud van de liederen en sonnetten aan?",
-        "answer" : "Op het petrarkisme",
+        "answer" : "Op het petrarkisme"
     },
     {
         "edgeID" : "145",
         "source" : "13.4.2",
         "question" : "Naar wie is het petrarkisme genoemd?",
-        "answer" : "De Italische renaissancedichter Petrarka",
+        "answer" : "De Italische renaissancedichter Petrarka"
     },
     {
         "edgeID" : "146",
         "source" : "13.4.2",
         "question" : "Waar maakte het petrarkisme gebruik van?",
-        "answer" : "Van literaire beelden en conventies",
+        "answer" : "Van literaire beelden en conventies"
     },
     {
         "edgeID" : "147,148",
         "source" : "13.4.2",
         "question" : "Welke literaire conventies werden er gebruikt in het petrarkisme?",
-        "answer" : "Paradoxen (schijnbare tegenstellingen) en antithesen (tegenstellingen)",
+        "answer" : "Paradoxen (schijnbare tegenstellingen) en antithesen (tegenstellingen)"
     },
     {
         "edgeID" : "149",
         "source" : "13.4.2",
         "question" : "Wat stond in het petrarkisme centraal?",
-        "answer" : "De liefdesklacht",
+        "answer" : "De liefdesklacht"
     },
     {
         "edgeID" : "150",
         "source" : "13.4.2",
         "question" : "Wat werd door het petrarkisme verheerlijkt?",
-        "answer" : "De platonische liefde",
+        "answer" : "De platonische liefde"
     },
     {
         "edgeID" : "151",
         "source" : "13.4.2",
         "question" : "Waaraan was de liefdesklacht gericht?",
-        "answer" : "Aan een onbereikbaar ideaalbeeld",
+        "answer" : "Aan een onbereikbaar ideaalbeeld"
     },
     {
         "edgeID" : "152",
         "source" : "13.4.2",
         "question" : "Door wie werden de literaire beelden en conventies begrepen?",
-        "answer" : "Door de literaire elite",
+        "answer" : "Door de literaire elite"
     },
     {
         "edgeID" : "153,154",
         "source" : "13.4.2",
         "question" : "Waar pleitte het petrarkisme voor?",
-        "answer" : "Voor zelfbeheersing ten opzichte van voorechtelijk geslachtsverkeer",
+        "answer" : "Voor zelfbeheersing ten opzichte van voorechtelijk geslachtsverkeer"
     },
     {
         "edgeID" : "155",
         "source" : "13.4.2",
         "question" : "Waarin stonden de liederen geschreven?",
-        "answer" : "In de nieuwe liedboeken",
+        "answer" : "In de nieuwe liedboeken"
     },
     {
         "edgeID" : "156",
         "source" : "13.4.3",
         "question" : "Waaruit bestonden sonnetten?",
-        "answer" : "Uit veertien versregels",
+        "answer" : "Uit veertien versregels"
     },
     {
         "edgeID" : "157,158,159",
         "source" : "13.4.3",
         "question" : "Waaruit bestonden de veertien versregels van een sonnet?",
-        "answer" : "Uit het octaaf, de volta en het sextet",
+        "answer" : "Uit het octaaf, de volta en het sextet"
     },
     {
         "edgeID" : "160,161",
         "source" : "13.4.3",
         "question" : "Waar in het gedicht vond de volta plaats?",
-        "answer" : "Na het octaaf en voor het sextet",
+        "answer" : "Na het octaaf en voor het sextet"
     },
     {
         "edgeID" : "163",
         "source" : "13.4.3",
         "question" : "Wie was de belangrijkste sonnetdichter in de Nederlanden?",
-        "answer" : "P.C. Hooft",
+        "answer" : "P.C. Hooft"
     },
     {
         "edgeID" : "164",
         "source" : "13.4.4",
         "question" : "Welk ethisch-didactisch doel diende het toneel?",
-        "answer" : "Het uitbeelden van de stedelijke gedragscode",
+        "answer" : "Het uitbeelden van de stedelijke gedragscode"
     },
     {
         "edgeID" : "165",
         "source" : "13.4.4",
         "question" : "Waarvoor was het toneel geopend?",
-        "answer" : "Het publiek",
+        "answer" : "Het publiek"
     },
     {
         "edgeID" : "166",
         "source" : "13.4.4",
         "question" : "Waar vond de grootste productie van toneel plaats in de Nederlanden?",
-        "answer" : "In de Nederlanden",
+        "answer" : "In de Nederlanden"
     },
     {
         "edgeID" : "167",
         "source" : "14.4.4",
         "question" : "Waar ging de winst van het toneel naartoe?",
-        "answer" : "Naar liefdadige instellingen",
+        "answer" : "Naar liefdadige instellingen"
     },
     {
         "edgeID" : "168",
         "source" : "13.4.4",
         "question" : "Wie hadden er baat bij de liefdadige instellingen?",
-        "answer" : "Regenten",
+        "answer" : "Regenten"
     },
     {
         "edgeID" : "170,171",
         "source" : "13.4.4",
         "question" : "Welke theaters werden er in Amsterdam geopend?",
-        "answer" : "De Eerste Nederduytsche Academie en de Amsterdamse Schouwburg",
+        "answer" : "De Eerste Nederduytsche Academie en de Amsterdamse Schouwburg"
     },
     {
         "edgeID" : "172",
         "source" : "13.4.4",
         "question" : "Wat hield het theater het publiek voor?",
-        "answer" : "Een morele spiegel",
+        "answer" : "Een morele spiegel"
     },
     {
         "edgeID" : "173",
         "source" : "13.4.4.1",
         "question" : "Wat was het onderwerp van een tragedie?",
-        "answer" : "De ondergang van de hoofdpersoon",
+        "answer" : "De ondergang van de hoofdpersoon"
     },
     {
         "edgeID" : "174",
         "source" : "13.4.4.1",
         "question" : "In wat voor positie bevond de hoofdpersoon van een tragedie zich?",
-        "answer" : "In een hooggeplaatste positie",
+        "answer" : "In een hooggeplaatste positie"
     },
     {
         "edgeID" : "175,176,177",
         "source" : "13.4.4.1",
         "question" : "Waaraan verleenden tragedies grotendeels hun inhoud?",
-        "answer" : "De Klassieke Oudheid, de geschiedenis en de bijbel",
+        "answer" : "De Klassieke Oudheid, de geschiedenis en de bijbel"
     },
     {
         "edgeID" : "178,181",
         "source" : "13.4.4.1",
         "question" : "Welke genres van tragedies waren er?",
-        "answer" : "De retorisch-didactische tragedie en de aristotelische tragedie",
+        "answer" : "De retorisch-didactische tragedie en de aristotelische tragedie"
     },
     {
         "edgeID" : "179",
         "source" : "13.4.4.1",
         "question" : "Wat waren belangrijke voorbeelden vor de retorisch-didactische tragedie?",
-        "answer" : "De tragedies van de Romein Seneca",
+        "answer" : "De tragedies van de Romein Seneca"
     },
     {
         "edgeID" : "180",
         "source" : "13.4.4.1",
         "question" : "Waaruit bestonden retorisch-didactische tragedies?",
-        "answer" : "Uit vijf bedrijven",
+        "answer" : "Uit vijf bedrijven"
     },
     {
         "edgeID" : "182",
         "source" : "13.4.4.1",
         "question" : "Op welke structuur was de aristotelestragedie gebaseerd?",
-        "answer" : "Op de handelingsstructuur",
+        "answer" : "Op de handelingsstructuur"
     },
     {
         "edgeID" : "183,184,185",
         "source" : "13.4.4.1",
         "question" : "Wat hield de handelingsstructuur in?",
-        "answer" : "Eenheid van tijd, plaats en handeling",
+        "answer" : "Eenheid van tijd, plaats en handeling"
     },
     {
         "edgeID" : "186",
         "source" : "13.4.4.1",
         "question" : "Wie heeft de handelingsstructuur bedacht?",
-        "answer" : "aristoteles",
+        "answer" : "aristoteles"
     },
     {
         "edgeID" : "187,188",
         "source" : "13.4.4.1",
         "question" : "Noem een bekend voorbeeld van een Nederlandse aristotelische tragedie",
-        "answer" : "Gijsbreght van Aemstel, geschreven door J. van den Vondel",
+        "answer" : "Gijsbreght van Aemstel, geschreven door J. van den Vondel"
     },
     {
         "edgeID" : "189",
         "source" : "13.4.4.2",
         "question" : "Wat voor personages werden afgebeeld in een komedie?",
-        "answer" : "Personages uit lagere klassen",
+        "answer" : "Personages uit lagere klassen"
     },
     {
         "edgeID" : "190",
         "source" : "13.4.4.2",
         "question" : "Wat voor soort taal werd in de komedie gebruikt?",
-        "answer" : "Spreektaal",
+        "answer" : "Spreektaal"
     },
     {
         "edgeID" : "191",
         "source" : "13.4.4.2",
         "question" : "Waarmee eindigde een komedie?",
-        "answer" : "Met een happy end",
+        "answer" : "Met een happy end"
     },
     {
         "edgeID" : "192,193",
         "source" : "13.4.4.2",
         "question" : "Noem een bekend voorbeeld van een komedie",
-        "answer" : "Warenar, geschreven door P.C. Hooft",
+        "answer" : "Warenar, geschreven door P.C. Hooft"
     },
     {
         "edgeID" : "194",
         "source" : "13.4.4.2",
         "question" : "Wat was een nieuw genre in het toneel?",
-        "answer" : "De klucht",
+        "answer" : "De klucht"
     },
     {
         "edgeID" : "195",
         "source" : "13.4.4.2",
         "question" : "Wat was het verschil tussen een klucht en een komedie?",
-        "answer" : "De klucht was korter",
+        "answer" : "De klucht was korter"
     },
     {
         "edgeID" : "196",
         "source" : "13.4.4.2",
         "question" : "Wat werd er getoond in een komedie?",
-        "answer" : "Grappige situaties",
+        "answer" : "Grappige situaties"
     },
     {
         "edgeID" : "197",
         "source" : "13.4.4.2",
         "question" : "Waardoor lieten personages in kluchten zich leiden?",
-        "answer" : "Door primaire levensdriften",
+        "answer" : "Door primaire levensdriften"
     },
     {
         "edgeID" : "198,199",
         "source" : "13.4.4.2",
         "question" : "Noem een bekend voorbeeld van een klucht",
-        "answer" : "De klucht van de koe, geschreven door G.A. Bredero",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
-    },
-    {
-        "edgeID" : "",
-        "source" : "",
-        "question" : "",
-        "answer" : "",
+        "answer" : "De klucht van de koe, geschreven door G.A. Bredero"
     }
 ]}
