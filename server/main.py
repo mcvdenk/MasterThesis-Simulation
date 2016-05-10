@@ -39,7 +39,7 @@ def authenticate(data):
     else:
         msg["data"] = {"success" : "NEW_USERNAME"}
         db.users.insert_one({
-            "name" : data["name"], "sessions" : [], "flashedges" : [], "flashmap_condition" : random.choice([True, False]), "flashcards" : []
+            "name" : data["name"], "sessions" : [], "flashedges" : [], "flashmap_condition" : random.choice([True, False])
         })
     db.users.update(
         {"name" : data["name"]},
@@ -62,22 +62,22 @@ def provide_learning(data, name):
     return provide_flashcard(data,name)
 
 def provide_flashcard(data, name):
-    flashcards = db.users.find_one({"name": name})["flashcards"]
+    flashcards = db.users.find_one({"name": name})["flashedges"]
     if (len(flashcards)):
         flashcards = sorted(flashcards, key=lambda k: k["due"])
         if (flashcards[0]["due"] < time.time()):
-            card = next(e for e in db.cmap.find_one()["flashcards"] if e["id"] == flashcards[0]["id"])
+            card = next(e for e in db.fcards.find_one()["flashcards"] if e["id"] == flashcards[0]["id"])
             return build_flashcard(card)
     return new_flashcard(name)
 
 def new_flashcard(name):
     #TODO: check prerequisites
-    i = len(db.users.find_one({"name": name})["flashcards"])
+    i = len(db.users.find_one({"name": name})["flashedges"])
     if (i > len(db.fcards.find_one()["flashcards"]) - 1): return {"keyword": "NO_MORE_FLASHCARDS", "data": {}}
     card = db.fcards.find_one()["flashcards"][i]
     db.users.update(
         { "name" : name }, 
-        { "$push" : {"flashcards" : {
+        { "$push" : {"flashedges" : {
             "id" : card["id"],
             "due" : time.time(),
             "responses": []
@@ -130,7 +130,7 @@ def find_prerequisites(edge, prereqs):
             prereqs += find_prerequisites(edge, prereqs)
     return prereqs
 
-def validate(data, name):
+def validate_fm(data, name):
     for edge in data["edges"]:
         due = next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == edge["id"])["due"]
         db.users.update(
@@ -149,6 +149,26 @@ def validate(data, name):
                 "$set" : {"flashedges.$.due" : schedule(edge["id"], name)}
             }
         )
+    return provide_learning(data, name)
+
+def validate_fc(data, name):
+    due = next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == data["id"])["due"]
+    db.users.update(
+        {"name" : name, "flashedges.id" : data["id"]},
+        {
+            "$push" : {"flashedges.$.responses" : {
+                "start" : due,
+                "end" : time.time(),
+                "correct" : data["correct"]
+            }}
+        }
+    )
+    db.users.update(
+        {"name" : name, "flashedges.id" : data["id"]},
+        {
+            "$set" : {"flashedges.$.due" : schedule(data["id"], name)}
+        }
+    )
     return provide_learning(data, name)
 
 def undo(data, name):
@@ -181,7 +201,6 @@ def schedule(id_, name):
     for resp in responses:
         if (not resp["correct"]): break;
         exp += 1
-    #print(exp)
     return time.time() + 5**exp
 
 # Contains a dictionary containing the keywords and their respective functions
@@ -189,7 +208,8 @@ switchcases = {
     "MAP-REQUEST"           : provide_map,
     "LEARNED_ITEMS-REQUEST" : provide_learned_items,
     "LEARN-REQUEST"         : provide_learning,
-    "VALIDATE"              : validate,
+    "VALIDATE(fm)"          : validate_fm,
+    "VALIDATE(fc)"          : validate_fc,
     "UNDO"                  : undo,
 }
 

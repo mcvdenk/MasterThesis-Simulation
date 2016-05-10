@@ -22,6 +22,7 @@ var options = {
 var show_undo = false;
 var question = "";
 var answer = "";
+var fc_id = "";
 
 ws.onopen = function (event) {
     document.getElementById(cont).style.visibility = "visible";
@@ -106,8 +107,17 @@ function colourise_progress(data) {
 }
 
 function show_card(data) {
-    question = data.question
+    question = data.question;
+    answer = data.answer;
+    fc_id = data.id;
     document.getElementById(cont).innerHTML = question;
+    if (show_undo) document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer_fc()'> Show answer </a>";
+    else document.getElementById("panel").innerHTML = "<a href='#' onclick='show_answer_fc()'> Show answer </a>";
+}
+
+function show_answer_fc() {
+    document.getElementById(cont).innerHTML += "<br><br>" + answer;
+    document.getElementById("panel").innerHTML = "<a href='#' onclick='validate_fc(false)'> Incorrect </a><a href='#' onclick='validate_fc(true)'> Correct </a";
 }
 
 function flashmap(data) {
@@ -124,12 +134,12 @@ function flashmap(data) {
             }
         }
     }
-    if (show_undo) document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer()'> Show answer </a>";
-    else document.getElementById("panel").innerHTML = "<a href='#' onclick='show_answer()'> Show answer </a>";
+    if (show_undo) document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer_fm()'> Show answer </a>";
+    else document.getElementById("panel").innerHTML = "<a href='#' onclick='show_answer_fm()'> Show answer </a>";
     return map;
 }
 
-function show_answer() {
+function show_answer_fm() {
     var index
     for (i = 0; i < map.edges.length; i++) {
         if (map.edges[i].learning) {
@@ -141,7 +151,7 @@ function show_answer() {
             map.edges[i].correct = true;
         }
     }
-    document.getElementById("panel").innerHTML = "<a href='#' onclick='validate()'> Next </a>";
+    document.getElementById("panel").innerHTML = "<a href='#' onclick='validate_fm()'> Next </a>";
 }
 
 function view_learned() {
@@ -155,15 +165,23 @@ function undo() {
     show_undo = false;
 }
 
-function validate() {
-    var msg = {keyword: "VALIDATE", data: {}};
+function validate_fc(correct) {
+    var msg = {keyword: "VALIDATE(fc)", data: {}};
+    msg.data.id = fc_id;
+    msg.data.correct = correct;
+    ws.send(JSON.stringify(msg));
+    show_undo = true;
+}
+
+function validate_fm() {
+    var msg = {keyword: "VALIDATE(fm)", data: {}};
     var responses = [];
     for (i = 0; i < map.edges.length; i++) {
         if (map.edges[i].learning) responses.push({id: map.edges[i].id, correct: map.edges[i].correct});
     }
     msg.data.edges = responses;
     ws.send(JSON.stringify(msg));
-    show_undo = true
+    show_undo = true;
 }
 
 function learn() {
