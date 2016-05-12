@@ -83,6 +83,7 @@ function show_map(map) {
     
     var container =  document.getElementById(cont);
     container.innerHTML = "";
+    container.style = "height:80%"; 
 
     // initialize your network!
     network = new vis.Network(container, graph, options);

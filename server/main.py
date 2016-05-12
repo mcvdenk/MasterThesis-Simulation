@@ -114,20 +114,25 @@ def new_flashedge(name):
     return build_partial_map(edge)
 
 def build_partial_map(flashedge):
-    cmap = {"nodes": [], "edges": find_prerequisites(flashedge, [])}
+    edges = db.cmap.find_one()["edges"]
+    nodes = db.cmap.find_one()["nodes"]
+    cmap = {"nodes": [], "edges": find_prerequisites(flashedge, [], edges)}
     for edge in cmap["edges"]:
         edge["learning"] = edge == flashedge
-    cmap["nodes"].append(next(node for node in db.cmap.find_one()["nodes"] if node["id"] == flashedge["to"]))
+    cmap["nodes"].append(next(node for node in nodes if node["id"] == flashedge["to"]))
     for edge in cmap["edges"]:
-        cmap["nodes"].append(next(node for node in db.cmap.find_one()["nodes"] if node["id"] == edge["from"]))
+        for node in nodes:
+            if (node["id"] == edge["from"] and node not in cmap["nodes"]):
+                cmap["nodes"].append(node)
     msg = {"keyword" : "LEARN-RESPONSE(fm)", "data" : cmap}
     return msg
 
-def find_prerequisites(edge, prereqs):
-    prereqs.append(edge)
-    for edge in db.cmap.find_one()["edges"]:
-        if (edge["to"] == edge["from"] and edge not in prereqs):
-            prereqs += find_prerequisites(edge, prereqs)
+def find_prerequisites(postreq, prereqs, edges):
+    prereqs.append(postreq)
+    for db_edge in edges:
+        if (db_edge["to"] == postreq["from"] and db_edge not in prereqs):
+            for prereq in find_prerequisites(db_edge, prereqs, edges):
+                if (prereq not in prereqs): prereqs += prereq
     return prereqs
 
 def validate_fm(data, name):
