@@ -148,6 +148,11 @@ def build_partial_map(flashedge, sources):
     cmap = {"nodes": [], "edges": find_prerequisites(flashedge, [], edges, sources)}
     for edge in cmap["edges"]:
         edge["learning"] = edge == flashedge
+    for edge in edges:
+        if (flashedge["from"] == edge["from"] and flashedge["label"] == edge["label"] and edge["id"] is not flashedge["id"]):
+            edge["learning"] = True
+            cmap["edges"].append(edge)
+            cmap["nodes"].append(next(node for node in nodes if node["id"] == edge["to"]))
     cmap["nodes"].append(next(node for node in nodes if node["id"] == flashedge["to"]))
     for edge in cmap["edges"]:
         for node in nodes:
