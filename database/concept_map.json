@@ -169,7 +169,7 @@
     },
     {
         "id" : "opinierenderol",
-        "label" : "Opiniërende rol"
+        "label" : "Opini&euml;rende rol"
     },
     {
         "id" : "oudekamer",
@@ -217,7 +217,7 @@
     },
     {
         "id" : "klassiekeideeen",
-        "label" : "Klassieke ideeën"
+        "label" : "Klassieke idee&euml;n"
     },
     {
         "id" : "renliteratuur",
@@ -261,7 +261,7 @@
     },
     {
         "id" : "poezie",
-        "label" : "Poëzie"
+        "label" : "Po&euml;zie"
     },
     {
         "id" : "taalschoonheden",
@@ -313,7 +313,7 @@
     },
     {
         "id" : "stoicisme",
-        "label" : "Stoïcisme"
+        "label" : "Sto&iuml;cisme"
     },
     {
         "id" : "tirannie",
@@ -597,7 +597,7 @@
     },
     {
         "id" : "afgerondescenes",
-        "label" : "Afgedronde scènes"
+        "label" : "Afgedronde sc&egrave;nes"
     },
     {
         "id" : "aristotelestragedie",
@@ -1093,7 +1093,7 @@
     },
     {
         "id" : "62",
-        "label" : "heroriëntatie op",
+        "label" : "herori&euml;ntatie op",
         "source" : "13.3.2",
         "from" : "renaissance",
         "to" : "klassiekeoudheid"
@@ -1492,7 +1492,7 @@
     },
     {
         "id" : "119",
-        "label" : "geïnspireerd door",
+        "label" : "ge&iuml;nspireerd door",
         "source" : "13.3.4",
         "from" : "maatschappelijketaak",
         "to" : "horatius"

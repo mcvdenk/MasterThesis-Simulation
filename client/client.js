@@ -17,7 +17,8 @@ var options = {
     interaction: {
         selectable: false,
         dragNodes: false
-    }
+    },
+    physics : {barnesHut: {avoidOverlap: 1}}
 };
 var show_undo = false;
 var question = "";
@@ -66,6 +67,9 @@ ws.onmessage = function (event) {
         case "NO_MORE_FLASHEDGES":
             done_learning();
             break;
+        case "READ_SOURCE-REQUEST":
+            prompt_source_request(msg.data);
+            break;
     }
 }
 
@@ -80,13 +84,13 @@ function show_map(map) {
         edges: edges
     };
 
-    
     var container =  document.getElementById(cont);
     container.innerHTML = "";
     container.style = "height:80%"; 
 
     // initialize your network!
     network = new vis.Network(container, graph, options);
+    setTimeout(network.stopSimulation(), 6000);
 
     network.on('click', function(properties) {
         for (i=0; i < map.edges.length; i++) {
@@ -112,8 +116,8 @@ function show_card(data) {
     answer = data.answer;
     fc_id = data.id;
     document.getElementById(cont).innerHTML = question;
-    if (show_undo) document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer_fc()'> Show answer </a>";
-    else document.getElementById("panel").innerHTML = "<a href='#' onclick='show_answer_fc()'> Show answer </a>";
+    if (show_undo) document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer_fc()'> Toon antwoord </a>";
+    else document.getElementById("panel").innerHTML = "<a href='#' onclick='show_answer_fc()'> Toon antwoord </a>";
 }
 
 function show_answer_fc() {
@@ -135,8 +139,8 @@ function flashmap(data) {
             }
         }
     }
-    if (show_undo) document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer_fm()'> Show answer </a>";
-    else document.getElementById("panel").innerHTML = "<a href='#' onclick='show_answer_fm()'> Show answer </a>";
+    if (show_undo) document.getElementById("panel").innerHTML = "<a href='#' onclick='undo()'> Undo </a> <a href='#' onclick='show_answer_fm()'> Toon antwoord </a>";
+    else document.getElementById("panel").innerHTML = "<a href='#' onclick='show_answer_fm()'> Toon antwoord </a>";
     return map;
 }
 
@@ -152,7 +156,7 @@ function show_answer_fm() {
             map.edges[i].correct = true;
         }
     }
-    document.getElementById("panel").innerHTML = "<a href='#' onclick='validate_fm()'> Next </a>";
+    document.getElementById("panel").innerHTML = "<a href='#' onclick='validate_fm()'> Volgende </a>";
 }
 
 function view_learned() {
@@ -194,7 +198,17 @@ function learn() {
 }
 
 function done_learning() {
-    alert("There is nothing left to learn for now");
+    alert("Je bent klaar voor nu, kom morgen terug voor nieuwe flashcards.");
+}
+
+function prompt_source_request(data) {
+    document.getElementById(cont).innerHTML = "Heb je paragraaf " + data.source + " al gelezen? Zo nee, lees deze dan nu.";
+    document.getElementById("panel").innerHTML = "<a href='#' onclick='confirm_source(" + data.source + ")'> Gelezen </a>";
+}
+
+function confirm_source(source_) {
+    var msg = {keyword: "READ_SOURCE-RESPONSE", data: { source : source_ }};
+    ws.send(JSON.stringify(msg));
 }
 
 function logout() {
