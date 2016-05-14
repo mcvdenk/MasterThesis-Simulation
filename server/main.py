@@ -38,13 +38,17 @@ def provide_map(data, name):
 
 # Checks whether the name already exists in the database, and adds it when needed
 def authenticate(data):
-    msg = {"keyword" : "AUTHENTICATE-RESPONSE", "data" : {}}
-    if (db.users.find_one({"name" : data["name"]})):
-        msg["data"] = {"success" : "LOGGED_IN"}
-    else:
-        msg["data"] = {"success" : "NEW_USERNAME"}
+    user = db.users.find_one({"name" : data["name"]})
+    if (not user):
         db.users.insert_one({
-            "name" : data["name"], "sessions" : [], "flashedges" : [], "flashmap_condition" : random.choice([True, False]), "read_sources" : []
+            "name" : data["name"],
+            "sessions" : [],
+            "flashedges" : [],
+            "flashmap_condition" : random.choice([True, False]),
+            "read_sources" : [],
+            "gender" : "unknown",
+            "birthdate" : 0,
+            "tests": []
         })
     db.users.update(
         {"name" : data["name"]},
@@ -57,7 +61,47 @@ def authenticate(data):
             }}
         }
     )
-    return msg
+    return {"keyword" : "AUTHENTICATE-RESPONSE", "data" : {"success" : "LOGGED_IN"}}
+
+def request_descriptives(data):
+    req_msg = {"keyword" : "DESCRIPTIVES-REQUEST", "data": {}}
+    db.logs.insert_one({str(math.floor(time.time())) : req_msg})
+    return req_msg
+
+def add_descriptives(data, name):
+    db.logs.insert_one({str(math.floor(time.time())) : data})
+    db.users.update(
+        {"name" : name},
+        {"$set" : {
+            "gender" : data["gender"],
+            "birthdate" : data["birthdate"]
+        }}
+    )
+
+def test(data):
+    req_msg = {"keyword" : "TEST-REQUEST", "data": {"flashcards" : [], "items" : []}}
+    available_flashcards = db.fcards.find_one()["flashcards"]
+    available_items = db.itembank.find_one()["questions"]
+    tests = db.users.find_one({"name" : data["name"]})["tests"]
+    if (len(tests)):
+        for test in tests:
+            fcard_ids = [d['id'] for d in test["flashcards"]]
+            item_ids = [d['id'] for d in test["items"]]
+            for fcard in available_flashcards:
+                if (fcard["id"] in fcard_ids): available_flashcards.remove(fcard)
+            for item in available_items:
+                if (item["id"] in item_ids): available_items.remove(item)
+    req_msg["data"]["flashcards"] = random.sample(available_flashcards, 5)
+    req_msg["data"]["items"] = random.sample(available_items, 5)
+    db.logs.insert_one({str(math.floor(time.time())) : req_msg})
+    return req_msg
+
+def add_test(data, name):
+    db.logs.insert_one({str(math.floor(time.time())) : data})
+    db.users.update(
+        {"name" : name},
+        {"$push" : { "tests" : data }}
+    )
 
 def provide_learned_items(data, name):
     #TODO: implementation
@@ -273,24 +317,28 @@ async def handler(websocket, path):
         loginmsg = json.loads(await websocket.recv())
         db.logs.insert_one({str(math.floor(time.time())) : loginmsg})
         assert loginmsg["keyword"] == "AUTHENTICATE-REQUEST"
-        await websocket.send(json.dumps(authenticate(loginmsg["data"])))
+        auth_msg = authenticate(loginmsg["data"])
         active_sessions[websocket] = {
             "name" : loginmsg["data"]["name"],
             "mongosession" : len(db.users.find_one({"name" : loginmsg["data"]["name"]})["sessions"]) - 1
         }
+        user = db.users.find_one({"name" : loginmsg["data"]["name"]})
+        if (user["gender"] == "unknown"):
+            await websocket.send(json.dumps(request_descriptives(loginmsg["data"])))
+            add_descriptives(json.loads(await websocket.recv())["data"], loginmsg["data"]["name"])
+        if (len(user["tests"]) < 1):
+            await websocket.send(json.dumps(test(loginmsg["data"])))
+            add_test(json.loads(await websocket.recv())["data"], loginmsg["data"]["name"])
         sessions = db.users.find_one({"name" : loginmsg["data"]["name"]})["sessions"]
         date = datetime.datetime.fromtimestamp(0)
         for session in sessions:
             if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["start"])
-        #print(loginmsg["data"]["name"] + " logged into the server at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
+        await websocket.send(json.dumps(auth_msg))
     except websockets.exceptions.ConnectionClosed:
-        #print("Client disconnected")
         return
-
     while (True):
         try:
             enc_recvmsg = await websocket.recv()
-            #print("Received message: " + enc_recvmsg)
             dec_recvmsg = json.loads(enc_recvmsg)
             dec_recvmsg.update({"user": active_sessions[websocket]["name"]})
             db.logs.insert_one({str(math.floor(time.time())) : dec_recvmsg})
@@ -299,7 +347,6 @@ async def handler(websocket, path):
             await websocket.send(enc_sendmsg)
             dec_sendmsg.update({"user": dec_recvmsg["user"]})
             db.logs.insert_one({str(math.floor(time.time())) : dec_sendmsg})
-            #print("Sent message: " + enc_sendmsg)
         except websockets.exceptions.ConnectionClosed:
             db.users.update(
                 {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
@@ -309,7 +356,6 @@ async def handler(websocket, path):
             date = datetime.datetime.fromtimestamp(0)
             for session in sessions:
                 if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["end"])
-            #print(active_sessions[websocket]["name"] + " closed the connection at " + date.strftime("%a %Y-%m-%d %H:%M:%S"))
             db.logs.insert_one({str(math.floor(time.time())) : {"keyword": "LOGOUT", "data": [], "user": active_sessions[websocket]["name"]}})
             break
 

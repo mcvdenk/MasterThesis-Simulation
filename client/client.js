@@ -52,8 +52,7 @@ ws.onmessage = function (event) {
             show_map(msg.data);
             break;
         case "AUTHENTICATE-RESPONSE":
-            if (msg.data.success = "NEW_USERNAME") ask_descriptives();
-            else show_menu();
+            show_menu();
             break;
         case "LEARNED_ITEMS-RESPONSE":
             coloured_map = colourise_progress(msg.data);
@@ -71,23 +70,28 @@ ws.onmessage = function (event) {
         case "READ_SOURCE-REQUEST":
             prompt_source_request(msg.data);
             break;
+        case "DESCRIPTIVES-REQUEST":
+            ask_descriptives();
+            break;
+        case "TEST-REQUEST":
+            test(msg.data);
+            break;
     }
 }
 
 function ask_descriptives() {
     document.getElementById(cont).innerHTML = " \
-        <form> \
-            Wat is je geslacht? <br> \
-            <input type='radio' name='gender' value='male' /> Mannelijk <br /> \
-            <input type='radio' name='gender' value='female' /> Vrouwelijk <br /> \
-            <input type='radio' name='gender' value='other' /> Anders <br /> \
-            Wat is je geboortedatum? <input type='text' name='birthdate' id='birthdate' /> (dd-mm-yyyy) \
-            <input type='button' value='Verstuur' onClick='send_descriptives()' /> \
-        </form>";
+        Wat is je geslacht? <br> \
+        <input type='radio' name='gender' value='male' /> Mannelijk <br /> \
+        <input type='radio' name='gender' value='female' /> Vrouwelijk <br /> \
+        <input type='radio' name='gender' value='other' /> Anders <br /> \
+        Wat is je geboortedatum? <input type='text' name='birthdate' id='birthdate' /> (dd-mm-yyyy) <br />\
+        <a href='#' onClick='send_descriptives()'>Verstuur</a> \
+        <div id='invalid' />";
 }
 
 function send_descriptives() {
-    msg = {keyword: "PROVIDE_DESCRIPTIVES", data: {gender: "male", birthdate: 0}};
+    msg = {keyword: "DESCRIPTIVES-RESPONSE", data: {gender: "male", birthdate: 0}};
     var genderbuttons = document.getElementsByName('gender');
     for (i = 0; i < genderbuttons.length; i++) {
         if (genderbuttons[i].checked) msg.data.gender = genderbuttons[i].value;
@@ -99,13 +103,41 @@ function send_descriptives() {
             || parseInt(parts[2], 10) < 1900 || parseInt(parts[2], 10) > new Date().getFullYear()
             || parseInt(parts[1], 10) < 1    || parseInt(parts[1], 10) > 12
             || parseInt(parts[0], 10) < 1    || parseInt(parts[0], 10) > 31) {
-       document.getElementById(cont).innerHTML += "INVALID DATE"
+       document.getElementById('invalid').innerHTML = "INVALID DATE"
        return
     }
     var date = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
     msg.data.birthdate = date.getTime();
     if (date.getTime() > new Date().getTime() || msg.data.birthdate == 0) document.getElementById(cont).innerHTML += "INVALID DATE";
     else ws.send(JSON.stringify(msg));
+}
+
+function test(data) {
+    document.getElementById(cont).innerHTML = ""
+    for (i = 0; i < data.flashcards.length; i++) {
+        document.getElementById(cont).innerHTML += " \
+            <h3>" + data.flashcards[i].question + "</h3> \
+            <input type='text' name='flashcard' id='flashcard" + data.flashcards[i].id + "' />";
+    }
+    for (i = 0; i < data.items.length; i++) {
+        document.getElementById(cont).innerHTML += " \
+            <h3>" + data.items[i].question + "</h3> \
+            <input type='text' name='item' id='item" + data.items[i].id + "' />";
+    }
+    document.getElementById(cont).innerHTML += "<br /><a href='#' onClick='send_test_results()'>Verstuur</a>";
+}
+
+function send_test_results() {
+    msg = {keyword: "TEST-RESPONSE", data: {flashcards : [], items : []}}
+    var flashcards = document.getElementsByName('flashcard');
+    for (i = 0; i < flashcards.length; i++) {
+        msg.data.flashcards.push({id : flashcards[i].id - "flashcard", answer : flashcards[i].value});
+    }
+    var items = document.getElementsByName('item');
+    for (i = 0; i < items.length; i++) {
+        msg.data.items.push({id : items[i].id - "item", answer : items[i].value});
+    }
+    ws.send(JSON.stringify(msg));
 }
 
 function show_map(map) {
