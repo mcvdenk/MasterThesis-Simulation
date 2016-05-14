@@ -23,7 +23,7 @@ SOURCES.sort()
 # Calls the corresponding function to the switchcases dict. When the keyword is invalid, it returns a FAILURE response
 def consumer(recvmessage):
     if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
-    return "{keyword: FAILURE, data: {}}"
+    return {keyword: "FAILURE", data: {}}
 
 # Loads the whole concept map from the database
 def provide_map(data, name):
@@ -149,7 +149,7 @@ def build_partial_map(flashedge, sources):
     for edge in cmap["edges"]:
         edge["learning"] = edge == flashedge
     for edge in edges:
-        if (flashedge["from"] == edge["from"] and flashedge["label"] == edge["label"] and edge["id"] is not flashedge["id"]):
+        if (flashedge["from"] == edge["from"] and flashedge["label"] == edge["label"] and edge["id"] is not flashedge["id"] and edge["source"] in sources):
             edge["learning"] = True
             cmap["edges"].append(edge)
             cmap["nodes"].append(next(node for node in nodes if node["id"] == edge["to"]))

@@ -75,15 +75,7 @@ ws.onmessage = function (event) {
 }
 
 function ask_descriptives() {
-    document.getElementById(cont).innerHTML = " \
-        <form> \
-            Wat is je geslacht? <br> \
-            <input type='radio' name='gender' value='male' /> Mannelijk <br /> \
-            <input type='radio' name='gender' value='female' /> Vrouwelijk <br /> \
-            <input type='radio' name='gender' value='other' /> Anders <br /> \
-            Wat is je geboortedatum? <input type='text' name='birthdate' id='birthdate' /> (dd-mm-yyyy) \
-            <input type='button' value='Verstuur' onClick='send_descriptives()' /> \
-        </form>";
+    document.getElementById(cont).innerHTML = "<object type='text/html' data='descriptives.html' />"
 }
 
 function send_descriptives() {
@@ -93,13 +85,13 @@ function send_descriptives() {
         if (genderbuttons[i].checked) msg.data.gender = genderbuttons[i].value;
         break;
     }
-    datestr = document.getElementById('birthdate').value;
+    datestr = document.getElementsByName('birthdate').value;
     var parts = datestr.split("-");
     if (parts.length != 3
             || parseInt(parts[2], 10) < 1900 || parseInt(parts[2], 10) > new Date().getFullYear()
             || parseInt(parts[1], 10) < 1    || parseInt(parts[1], 10) > 12
             || parseInt(parts[0], 10) < 1    || parseInt(parts[0], 10) > 31) {
-       document.getElementById(cont).innerHTML += "INVALID DATE"
+       document.getELementById(cont).innerHTML += "INVALID DATE"
        return
     }
     var date = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
