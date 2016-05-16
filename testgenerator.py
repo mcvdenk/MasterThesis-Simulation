@@ -11,9 +11,7 @@ for code in db.codes.find():
     items = random.sample(db.itembank.find_one()["questions"], 5)
     for fcard in flashcards:
         test.write("fc" + str(fcard["id"]) + ": " + fcard["question"] + "\n\n")
-        for _ in range (0,3):
-            test.write("……………………………………………………………………………………………………………………………………\n\n")
+        test.write("………………………………………………………………………………………………………………………………………………………………………………………………………………\n\n")
     for item in items:
         test.write("itm" + str(item["id"]) + ": " + item["question"] + "\n\n")
-        for _ in range (0,3):
-            test.write("……………………………………………………………………………………………………………………………………\n\n")
+        test.write("………………………………………………………………………………………………………………………………………………………………………………………………………………\n\n")

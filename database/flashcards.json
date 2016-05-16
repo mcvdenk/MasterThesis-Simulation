@@ -53,7 +53,7 @@
         "edgeID" : "9,11",
         "source" : "13.1",
         "question" : "Waartoe leidde de centralisatie van het katholicisme?",
-        "answer" : "Geloofsvervolging van protesantisme"
+        "answer" : "Geloofsvervolging van protestantisme"
     },
     {
         "id" : "8",
@@ -88,7 +88,7 @@
         "edgeID" : "17",
         "source" : "13.2",
         "question" : "Wat was Antwerpen voor de geloofsvervolging?",
-        "answer" : "Een europees handelscentrum"
+        "answer" : "Een Europees handelscentrum"
     },
     {
         "id" : "13",
@@ -102,7 +102,7 @@
         "edgeID" : "18",
         "source" : "13.2",
         "question" : "Wat werd Amsterdam na de geloofsvervolging?",
-        "answer" : "Een europees handelscentrum"
+        "answer" : "Een Europees handelscentrum"
     },
     {
         "id" : "15",
@@ -234,7 +234,7 @@
         "id" : "33",
         "edgeID" : "47",
         "source" : "13.3",
-        "question" : "Welk nieuw tijdperk luidde de explosieve groei van handel in Amterdam in?",
+        "question" : "Welk nieuw tijdperk luidde de explosieve groei van handel in Amsterdam in?",
         "answer" : "De gouden eeuw"
     },
     {
@@ -249,7 +249,7 @@
         "edgeID" : "49",
         "source" : "13.3.1",
         "question" : "Wat waren de rederijkers?",
-        "answer" : "Dichters"
+        "answer" : "Dichters en toneelschrijvers"
     },
     {
         "id" : "36",
@@ -284,13 +284,13 @@
         "edgeID" : "60",
         "source" : "13.3.2",
         "question" : "Waar ontstond de renaissance?",
-        "answer" : "In de Italische republikeinse stadstaten"
+        "answer" : "In de Italiaanse republikeinse stadstaten"
     },
     {
         "id" : "41",
         "edgeID" : "61",
         "source" : "13.3.2",
-        "question" : "Wanneer ontstond de renaissance?",
+        "question" : "Wanneer ontstond de renaissance in Nederland?",
         "answer" : "1500-1700"
     },
     {
@@ -312,7 +312,7 @@
         "edgeID" : "68,69,72,73,74,76",
         "source" : "13.3.2",
         "question" : "Welke klassieke literatuurgenres werden er in de renaissanceliteratuur overgenomen?",
-        "answer" : "Toneel en poezie"
+        "answer" : "Toneel en po&euml;zie"
     },
     {
         "id" : "45",
@@ -364,20 +364,6 @@
         "answer" : "Door taal en ethiek (kennis tussen goed en kwaad)"
     },
     {
-        "id" : "52",
-        "edgeID" : "89,90",
-        "source" : "13.3.3",
-        "question" : "Welke belangrijke taalconcepten hanterden de humanisten?",
-        "answer" : "Grammatica en retorica"
-    },
-    {
-        "id" : "53",
-        "edgeID" : "92,93",
-        "source" : "13.3.3",
-        "question" : "Waar ontleenden de humanisten hun ideeen over ethiek aan?",
-        "answer" : "Aan po&euml;zie en geschiedenis"
-    },
-    {
         "id" : "54",
         "edgeID" : "94,100",
         "source" : "13.3.3",
@@ -410,7 +396,7 @@
         "edgeID" : "101,102,103",
         "source" : "13.3.3",
         "question" : "Waar pleitte D.V. Coornhert voor?",
-        "answer" : "Voor zedelijkeverbetering, godsdienstvrijheid en zelfkennis"
+        "answer" : "Voor zedelijke verbetering, godsdienstvrijheid en zelfkennis"
     },
     {
         "id" : "59",
@@ -430,14 +416,14 @@
         "id" : "61",
         "edgeID" : "111,112,113",
         "source" : "13.3.4",
-        "question" : "Waar waren Nederlandse schrijvers afhankelijk van in de middeleeuwen?",
-        "answer" : "Door kerkelijke en adellijke mecenas (opdrachtgevers)"
+        "question" : "Van wie waren Nederlandse schrijvers afhankelijk in de middeleeuwen?",
+        "answer" : "Van kerkelijke en adellijke mecenas (opdrachtgevers)"
     },
     {
         "id" : "62",
         "edgeID" : "114",
         "source" : "13.3.4",
-        "question" : "Wie vervingen de mecenas",
+        "question" : "Wie vervingen de mecenassen?",
         "answer" : "De regenten"
     },
     {
@@ -483,17 +469,10 @@
         "answer" : "Tot actie om zich tegen Spanje te verzetten"
     },
     {
-        "id" : "69",
-        "edgeID" : "126",
-        "source" : "13.4",
-        "question" : "Noem een beroemd voorbeeld van strijdliteratuur",
-        "answer" : "Een nieu Geusen Lieden Boecxken"
-    },
-    {
         "id" : "70",
         "edgeID" : "127",
         "source" : "13.4",
-        "question" : "Welk bekend werk bevatte Een nieu Geusen Lieden Boecxken?",
+        "question" : "Welk strijdlied bevatte Een nieu Geusen Lieden Boecxken?",
         "answer" : "Het Wilhelmus"
     },
     {
@@ -623,13 +602,6 @@
         "answer" : "Voor zelfbeheersing ten opzichte van voorechtelijk geslachtsverkeer"
     },
     {
-        "id" : "89",
-        "edgeID" : "155",
-        "source" : "13.4.2",
-        "question" : "Waarin stonden de liederen geschreven?",
-        "answer" : "In de nieuwe liedboeken"
-    },
-    {
         "id" : "90",
         "edgeID" : "156",
         "source" : "13.4.3",
@@ -641,13 +613,13 @@
         "edgeID" : "157,158,159",
         "source" : "13.4.3",
         "question" : "Waaruit bestonden de veertien versregels van een sonnet?",
-        "answer" : "Uit het octaaf, de volta en het sextet"
+        "answer" : "Uit het octaaf, de volta/wending en het sextet"
     },
     {
         "id" : "92",
         "edgeID" : "160,161",
         "source" : "13.4.3",
-        "question" : "Waar in het gedicht vond de volta plaats?",
+        "question" : "Waar in het gedicht vond de volta/wending plaats?",
         "answer" : "Na het octaaf en voor het sextet"
     },
     {
@@ -738,7 +710,7 @@
         "id" : "105",
         "edgeID" : "179",
         "source" : "13.4.4.1",
-        "question" : "Wat waren belangrijke voorbeelden vor de retorisch-didactische tragedie?",
+        "question" : "Wat waren belangrijke voorbeelden voor de retorisch-didactische tragedie?",
         "answer" : "De tragedies van de Romein Seneca"
     },
     {
@@ -767,7 +739,7 @@
         "edgeID" : "186",
         "source" : "13.4.4.1",
         "question" : "Wie heeft de handelingsstructuur bedacht?",
-        "answer" : "aristoteles"
+        "answer" : "Aristoteles"
     },
     {
         "id" : "110",
