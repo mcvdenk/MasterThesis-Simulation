@@ -2,7 +2,9 @@ from pymongo import MongoClient
 
 client = MongoClient()
 db = client.flashmap
-standardform = open('forms/standardforms.txt', 'r')
+standardform = open('forms/standardform.txt', 'r')
+formtext = standardform.read()
 
 for code in db.codes.find():
-    print(str(code["id"]) + ": " + (code["code"]))
+    spec_form = open('forms/form' + str(code["id"]) + '.txt', 'w')
+    spec_form.write(formtext + code["code"])
