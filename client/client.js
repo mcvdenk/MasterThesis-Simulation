@@ -8,17 +8,35 @@ var map
 var options = {
     nodes: {
         shape: 'box',
+        color: {
+            border: "#554600",
+            background: "#D4C26A",
+            highlight: {
+                border: "#554600",
+                background: "#AA9739"
+            }
+        },
+        font: {
+            color: "#554600"
+        }
     },
     edges: {
         arrows: {
             to: {enabled: true}
+        },
+        color: {
+            color: "#554600",
+            highlight: "#554600"
+        },
+        font: {
+            color: "#554600"
         }
     },
     interaction: {
-        selectable: false,
+        selectable: true,
         dragNodes: false
-    },
-    physics : {barnesHut: {avoidOverlap: 1}}
+    }
+//    physics : {barnesHut: {avoidOverlap: 1}}
 };
 var show_undo = false;
 var question = "";
@@ -81,11 +99,18 @@ ws.onmessage = function (event) {
 
 function ask_descriptives() {
     document.getElementById(cont).innerHTML = " \
-        Wat is je geslacht? <br> \
-        <input type='radio' name='gender' value='male' /> Mannelijk <br /> \
-        <input type='radio' name='gender' value='female' /> Vrouwelijk <br /> \
-        <input type='radio' name='gender' value='other' /> Anders <br /> \
-        Wat is je geboortedatum? <input type='text' name='birthdate' id='birthdate' /> (dd-mm-yyyy) <br />\
+        <h3> Wat is je geslacht? </h3> \
+        <table> \
+        <tr> \
+        <td> <input type='radio' name='gender' value='male' checked/> </td><td> Mannelijk </td> \
+        </tr><tr> \
+        <td> <input type='radio' name='gender' value='female' /> </td><td> Vrouwelijk </td> \
+        </tr><tr> \
+        <td> <input type='radio' name='gender' value='other' /> </td><td> Anders </td> \
+        </tr> \
+        </table> \
+        <h3> Wat is je geboortedatum? </h3> \
+        <input type='text' name='birthdate' id='birthdate' /> <br /> (dd-mm-yyyy) <br />\
         <a href='#' onClick='send_descriptives()'>Verstuur</a> \
         <div id='invalid' />";
 }
@@ -117,12 +142,12 @@ function test(data) {
     for (i = 0; i < data.flashcards.length; i++) {
         document.getElementById(cont).innerHTML += " \
             <h3>" + data.flashcards[i].question + "</h3> \
-            <input type='text' name='flashcard' id='flashcard" + data.flashcards[i].id + "' />";
+            <textarea rows='4' cols='50' class='test' name='flashcard' id='flashcard" + data.flashcards[i].id + "' />";
     }
     for (i = 0; i < data.items.length; i++) {
         document.getElementById(cont).innerHTML += " \
             <h3>" + data.items[i].question + "</h3> \
-            <input type='text' name='item' id='item" + data.items[i].id + "' />";
+            <textarea rows='4' cols='50' class='test' name='item' id='item" + data.items[i].id + "' />";
     }
     document.getElementById(cont).innerHTML += "<br /><a href='#' onClick='send_test_results()'>Verstuur</a>";
 }
@@ -131,11 +156,11 @@ function send_test_results() {
     msg = {keyword: "TEST-RESPONSE", data: {flashcards : [], items : []}}
     var flashcards = document.getElementsByName('flashcard');
     for (i = 0; i < flashcards.length; i++) {
-        msg.data.flashcards.push({id : flashcards[i].id - "flashcard", answer : flashcards[i].value});
+        msg.data.flashcards.push({id : flashcards[i].id.slice(9), answer : flashcards[i].value});
     }
     var items = document.getElementsByName('item');
     for (i = 0; i < items.length; i++) {
-        msg.data.items.push({id : items[i].id - "item", answer : items[i].value});
+        msg.data.items.push({id : items[i].id.slice(4), answer : items[i].value});
     }
     ws.send(JSON.stringify(msg));
 }
@@ -153,18 +178,24 @@ function show_map(map) {
 
     var container =  document.getElementById(cont);
     container.innerHTML = "";
-    container.style = "height:80%"; 
+    container.style= "height:100%";
 
     // initialize your network!
     network = new vis.Network(container, graph, options);
-    setTimeout(network.stopSimulation(), 6000);
 
     network.on('click', function(properties) {
+        console.log(properties)
         for (i=0; i < map.edges.length; i++) {
-            if ('correct' in map.edges[i]) {
+            if ('correct' in map.edges[i] && properties.nodes[0] == map.edges[i].to) {
                 map.edges[i].correct = !map.edges[i].correct;
-                if (map.edges[i].correct) nodes.update([{ id : map.edges[i].to, color: {background: "green"}}]);
-                else nodes.update([{ id : map.edges[i].to, color: {background: "red"}}]);
+                if (map.edges[i].correct) {
+                    edges.update([{ id: map.edges[i].id, color: {color: "#0F640F", highlight: "#0F640F"}, font: {color: "#0F640F"}}])
+                    nodes.update([{ id : map.edges[i].to, color: {border: "#0F640F", background: "#55AA55", highlight: {border: "#0F640F", background: "#55AA55"}}, font: {color: "#0F640F"}}]);
+                }
+                else {
+                    edges.update([{ id: map.edges[i].id, color: {color: "#550000", highlight: "#550000"}, font: {color: "#550000"}}])
+                    nodes.update([{ id : map.edges[i].to, color: {border: "#550000", background: "#AA3939", highlight: {border: "#550000", background: "#AA3939"}}, font: {color: "#550000"}}]);
+                }
             }
         }
     });
@@ -172,7 +203,7 @@ function show_map(map) {
 
 function show_menu() {
     document.getElementById(cont).innerHTML = "";
-    document.getElementById("menu").style.visibility = "visible";
+    document.getElementsByTagName("nav")[0].style.visibility = "visible";
 }
 
 function colourise_progress(data) {
@@ -218,7 +249,8 @@ function show_answer_fm() {
             for (j=0;j < map.nodes.length; j++) {
                 if (map.edges[i].to == map.nodes[j].id) index = j;
             }
-            nodes.update([{id: map.edges[i].to, color: {background : "green"}}]);
+            edges.update([{ id: map.edges[i].id, color: {color: "#0F640F", highlight: {color: "#0F640F"}}, font: {color: "#0F640F"}}])
+            nodes.update([{id: map.edges[i].to, color: {border: "#0F640F", background : "#55AA55"}}]);
             nodes.update([{id: map.edges[i].to, label: map.nodes[index].true_label}]);
             map.edges[i].correct = true;
         }

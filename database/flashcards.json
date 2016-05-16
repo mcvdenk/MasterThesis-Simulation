@@ -231,7 +231,7 @@
         "edgeID" : "56",
         "source" : "13.3.1",
         "question" : "Wat was de functie van de rederijkerskamers?",
-        "answer" : "Een opiniërende rol hebben"
+        "answer" : "Een opini&euml;rende rol hebben"
     },
     {
         "edgeID" : "57,58,59",
@@ -254,8 +254,8 @@
     {
         "edgeID" : "62,63,64",
         "source" : "13.3.2",
-        "question" : "Waar oriënteerde de renaissance zich op?",
-        "answer" : "Op de kunst en ideeën uit de Klassieke Oudheid"
+        "question" : "Waar ori&euml;nteerde de renaissance zich op?",
+        "answer" : "Op de kunst en idee&euml;n uit de Klassieke Oudheid"
     },
     {
         "edgeID" : "65,66,67,70,71",
@@ -321,7 +321,7 @@
         "edgeID" : "92,93",
         "source" : "13.3.3",
         "question" : "Waar ontleenden de humanisten hun ideeen over ethiek aan?",
-        "answer" : "Aan poëzie en geschiedenis"
+        "answer" : "Aan po&euml;zie en geschiedenis"
     },
     {
         "edgeID" : "94,100",
@@ -339,12 +339,12 @@
         "edgeID" : "98",
         "source" : "13.3.3",
         "question" : "Welke klassieke filosofische stroming werd herleefd door het humanisme?",
-        "answer" : "Stoïcisme"
+        "answer" : "Sto&iuml;cisme"
     },
     {
         "edgeID" : "99",
         "source" : "13.3.3",
-        "question" : "Waar moest men standvastig tegen zijn volgens de stoïcisten?",
+        "question" : "Waar moest men standvastig tegen zijn volgens de sto&iuml;cisten?",
         "answer" : "Tegen tirannie"
     },
     {
@@ -362,7 +362,7 @@
     {
         "edgeID" : "106,107,108,109",
         "source" : "13.3.3",
-        "question" : "Waardoor werden de ideeën uit de renaissance en het humanisme verspreid?",
+        "question" : "Waardoor werden de idee&euml;n uit de renaissance en het humanisme verspreid?",
         "answer" : "Door reizen en de boekdrukkunst"
     },
     {
@@ -386,7 +386,7 @@
     {
         "edgeID" : "119",
         "source" : "13.3.4",
-        "question" : "Door wie waren de maatschappelijke taken geïnspireerd?",
+        "question" : "Door wie waren de maatschappelijke taken ge&iuml;nspireerd?",
         "answer" : "Door de Romein Horatius"
     },
     {

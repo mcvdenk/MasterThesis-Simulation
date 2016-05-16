@@ -111,19 +111,18 @@ def provide_learning(data, name):
     user = db.users.find_one({"name": name})
     flashedges = user["flashedges"]
     if (not (len(flashedges) or user["sessions"][-1]["source_prompted"])): return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[0]}}
-    hasResponses = True
     for edge in flashedges:
         if (not len(edge["responses"])): flashedges.remove(edge)
     if (len(flashedges)):
         flashedges = sorted(user["flashedges"], key = lambda k: k["responses"][-1]["start"], reverse=True)
         if (datetime.date.today() > datetime.date.fromtimestamp(flashedges[0]["responses"][-1]["start"])):
-            print("test")
+            flashedges = sorted(user["flashedges"], key = lambda k: k["responses"][0]["start"], reverse=True)
             if (user["flashmap_condition"]):
                 if (SOURCES.index(user["read_sources"][-1]) 
-                        < SOURCES.index(next(edge for edge in db.cmap.find_one()["edges"] if edge["id"] == user["flashedges"][-1]["id"])["source"]) - 1):
+                        < SOURCES.index(next(edge for edge in db.cmap.find_one()["edges"] if edge["id"] == user["flashedges"][-1]["id"])["source"]) + 1):
                     return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
             elif (SOURCES.index(user["read_sources"][-1]) 
-                    < SOURCES.index(next(card for card in db.fcards.find_one()["flashcards"] if card["id"] == user["flashedges"][-1]["id"])["source"]) - 1):
+                    < SOURCES.index(next(card for card in db.fcards.find_one()["flashcards"] if card["id"] == user["flashedges"][-1]["id"])["source"]) + 1):
                 return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
     if (user["flashmap_condition"]): return provide_flashedges(data, name)
     return provide_flashcard(data,name)
@@ -140,9 +139,9 @@ def provide_flashcard(data, name):
 def new_flashcard(name):
     #TODO: check prerequisites
     i = len(db.users.find_one({"name": name})["flashedges"])
-    if (i > len(db.fcards.find_one()["flashcards"]) - 1): return {"keyword": "NO_MORE_FLASHCARDS", "data": {}}
+    if (i > len(db.fcards.find_one()["flashcards"]) - 1): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     card = db.fcards.find_one()["flashcards"][i]
-    if (card["source"] not in db.users.find_one({"name": name})["read_sources"]): return {"keyword": "NO_MORE_FLASHCARDS", "data": {}}
+    if (card["source"] not in db.users.find_one({"name": name})["read_sources"]): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     db.users.update(
         { "name" : name }, 
         { "$push" : {"flashedges" : {
@@ -163,9 +162,8 @@ def provide_flashedges(data, name):
     if (len(flashedges)):
         flashedges = sorted(flashedges, key=lambda k: k["due"])
         if (flashedges[0]["due"] < time.time()):
-            sources = user["read_sources"]
             edge = next(e for e in db.cmap.find_one()["edges"] if e["id"] == flashedges[0]["id"])
-            return build_partial_map(edge, sources)
+            return build_partial_map(edge, user)
     return new_flashedge(name)
 
 def new_flashedge(name):
@@ -184,16 +182,26 @@ def new_flashedge(name):
             "responses": []
         }}}
     )
-    return build_partial_map(edge, sources)
+    for alt_edge in db.cmap.find_one()["edges"]:
+        if (edge["from"] == alt_edge["from"] and edge["label"] == alt_edge["label"] and not alt_edge["id"] == edge["id"]):
+            db.users.update(
+                { "name" : name }, 
+                { "$push" : {"flashedges" : {
+                    "id" : alt_edge["id"],
+                    "due" : time.time(),
+                    "responses": []
+                }}}
+            )
+    return build_partial_map(edge, user)
 
-def build_partial_map(flashedge, sources):
+def build_partial_map(flashedge, user):
     edges = db.cmap.find_one()["edges"]
     nodes = db.cmap.find_one()["nodes"]
-    cmap = {"nodes": [], "edges": find_prerequisites(flashedge, [], edges, sources)}
+    cmap = {"nodes": [], "edges": find_prerequisites(flashedge, [], edges, user["read_sources"])}
     for edge in cmap["edges"]:
         edge["learning"] = edge == flashedge
     for edge in edges:
-        if (flashedge["from"] == edge["from"] and flashedge["label"] == edge["label"] and edge["id"] is not flashedge["id"] and edge["source"] in sources):
+        if (flashedge["from"] == edge["from"] and flashedge["label"] == edge["label"] and not edge["id"] == flashedge["id"] and edge["source"] in user["read_sources"]):
             edge["learning"] = True
             cmap["edges"].append(edge)
             cmap["nodes"].append(next(node for node in nodes if node["id"] == edge["to"]))
