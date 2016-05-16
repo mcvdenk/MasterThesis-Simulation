@@ -74,7 +74,8 @@ def add_descriptives(data, name):
         {"name" : name},
         {"$set" : {
             "gender" : data["gender"],
-            "birthdate" : data["birthdate"]
+            "birthdate" : data["birthdate"],
+            "code" : data["code"]
         }}
     )
 
@@ -319,10 +320,17 @@ switchcases = {
     "READ_SOURCE-RESPONSE"  : add_source,
 }
 
+def provide_active_sessions():
+    return {"keyword" : "ACTIVE_SESSIONS", "data" : {"amount" : len(active_sessions)}}
+
 # Receives messages from a client, parses the json file to an object, passes them to consumer() and sends the result back to the client
 async def handler(websocket, path):
     try:
         loginmsg = json.loads(await websocket.recv())
+        if (loginmsg["data"]["name"] == "active_sessions"):
+            await websocket.send(json.dumps(provide_active_sessions()))
+            websocket.close()
+            return
         db.logs.insert_one({str(math.floor(time.time())) : loginmsg})
         assert loginmsg["keyword"] == "AUTHENTICATE-REQUEST"
         auth_msg = authenticate(loginmsg["data"])
@@ -343,6 +351,7 @@ async def handler(websocket, path):
             if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["start"])
         await websocket.send(json.dumps(auth_msg))
     except websockets.exceptions.ConnectionClosed:
+        if websocket in active_sessions: del active_sessions[websocket]
         return
     while (True):
         try:
@@ -356,6 +365,7 @@ async def handler(websocket, path):
             dec_sendmsg.update({"user": dec_recvmsg["user"]})
             db.logs.insert_one({str(math.floor(time.time())) : dec_sendmsg})
         except websockets.exceptions.ConnectionClosed:
+            if websocket in active_sessions: del active_sessions[websocket]
             db.users.update(
                 {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
                 {"$set": {"sessions.$.end" : time.time()}}

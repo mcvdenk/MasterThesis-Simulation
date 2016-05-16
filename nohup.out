@@ -1,0 +1,4 @@
+  File "server/main.py", line 324
+    msg = {"keyword" : "ACTIVE_SESSIONS", "data" : ["amount" : len(active_sessions)]}
+                                                             ^
+SyntaxError: invalid syntax

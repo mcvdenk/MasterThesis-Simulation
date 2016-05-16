@@ -110,7 +110,9 @@ function ask_descriptives() {
         </tr> \
         </table> \
         <h3> Wat is je geboortedatum? </h3> \
-        <input type='text' name='birthdate' id='birthdate' /> <br /> (dd-mm-yyyy) <br />\
+        <input type='text' name='birthdate' id='birthdate' /> <br /> (dd-mm-yyyy) \
+        <h3> Wat is de code vermeld op de toezeggingsverklaring? </h3> \
+        <input type='text' name='code' id='code' /> <br /> \
         <a href='#' onClick='send_descriptives()'>Verstuur</a> \
         <div id='invalid' />";
 }
@@ -122,6 +124,7 @@ function send_descriptives() {
         if (genderbuttons[i].checked) msg.data.gender = genderbuttons[i].value;
         break;
     }
+    msg.data.code = document.getElementById('code').value;
     datestr = document.getElementById('birthdate').value;
     var parts = datestr.split("-");
     if (parts.length != 3
