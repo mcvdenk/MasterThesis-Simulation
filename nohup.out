@@ -2,3 +2,12 @@
     msg = {"keyword" : "ACTIVE_SESSIONS", "data" : ["amount" : len(active_sessions)]}
                                                              ^
 SyntaxError: invalid syntax
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 336, in handler
+    auth_msg = authenticate(loginmsg["data"])
+  File "server/main.py", line 47, in authenticate
+    "flashmap_condition" : [True, False][len(db.users.find())%2],
+TypeError: object of type 'Cursor' has no len()

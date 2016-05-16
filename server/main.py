@@ -44,7 +44,7 @@ def authenticate(data):
             "name" : data["name"],
             "sessions" : [],
             "flashedges" : [],
-            "flashmap_condition" : random.choice([True, False]),
+            "flashmap_condition" : [True, False][db.users.count()%2],
             "read_sources" : [],
             "gender" : "unknown",
             "birthdate" : 0,
