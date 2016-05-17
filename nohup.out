@@ -273,3 +273,35 @@ Traceback (most recent call last):
   File "server/main.py", line 370, in handler
     {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
 KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b1aabe0>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 362, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1001, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 374, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f6f7abe1710>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 362, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1005, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 374, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f6f7abf0c50>

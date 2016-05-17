@@ -143,7 +143,7 @@ function send_descriptives() {
 }
 
 function test(data) {
-    document.getElementById("instructions").innerHTML = "Probeer de onderstaande toets zo goed mogelijk in te vullen. Je mag vragen overslaan als je de antwoorden niet weet."
+    document.getElementById("instructions").innerHTML = "<p> Probeer de onderstaande toets zo goed mogelijk in te vullen. Je mag vragen overslaan als je de antwoorden niet weet. Als dit de eerste toets is en je hebt de papieren versie al gemaakt kun je de toets overslaan door hem leeg te versturen. </p>"
     document.getElementById(cont).innerHTML = ""
     for (i = 0; i < data.flashcards.length; i++) {
         document.getElementById(cont).innerHTML += " \
