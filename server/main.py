@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5679
+PORT = 5678
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -109,6 +109,7 @@ def provide_learned_items(data, name):
     return ""
 
 def provide_learning(data, name):
+    if (learning_time_reached(name)): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     user = db.users.find_one({"name": name})
     flashedges = user["flashedges"]
     if (not (len(flashedges) or user["sessions"][-1]["source_prompted"])): return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[0]}}
@@ -127,6 +128,19 @@ def provide_learning(data, name):
                 return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
     if (user["flashmap_condition"]): return provide_flashedges(data, name)
     return provide_flashcard(data,name)
+
+def learning_time_reached(name):
+    times = []
+    learn_time = 0
+    for edge in db.users.find_one({"name": name})["flashedges"]:
+        for response in edge["responses"]:
+            if (datetime.date.fromtimestamp(response["start"]) == datetime.date.today()):
+                times.append(response["start"])
+                times.append(response["end"])
+    times.sort()
+    for i in range(1, len(times)):
+        learn_time += min(times[i] - times[i-1], 30)
+    return learn_time > 15*60
 
 def provide_flashcard(data, name):
     flashcards = db.users.find_one({"name": name})["flashedges"]
@@ -355,7 +369,7 @@ async def handler(websocket, path):
             if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["start"])
         await websocket.send(json.dumps(auth_msg))
     except websockets.exceptions.ConnectionClosed:
-        if websocket in active_sessions: del active_sessions[websocket]
+        if (websocket in active_sessions): del active_sessions[websocket]
         return
     while (True):
         try:
@@ -369,7 +383,6 @@ async def handler(websocket, path):
             dec_sendmsg.update({"user": dec_recvmsg["user"]})
             db.logs.insert_one({str(math.floor(time.time())) : dec_sendmsg})
         except websockets.exceptions.ConnectionClosed:
-            if websocket in active_sessions: del active_sessions[websocket]
             db.users.update(
                 {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
                 {"$set": {"sessions.$.end" : time.time()}}
@@ -379,7 +392,8 @@ async def handler(websocket, path):
             for session in sessions:
                 if (session["id"] == active_sessions[websocket]["mongosession"]): date = datetime.datetime.fromtimestamp(session["end"])
             db.logs.insert_one({str(math.floor(time.time())) : {"keyword": "LOGOUT", "data": [], "user": active_sessions[websocket]["name"]}})
-            break
+            if (websocket in active_sessions): del active_sessions[websocket]
+            return
 
 start_server = websockets.serve(handler, PATH, PORT)
 
