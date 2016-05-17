@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5678");
+var ws = new WebSocket("ws://www.mvdenk.com:5679");
 var network
 var nodes
 var edges
@@ -44,6 +44,7 @@ var answer = "";
 var fc_id = "";
 
 ws.onopen = function (event) {
+    document.getElementById("instructions").innerHTML = "<p>Je kunt hier inloggen door een al bestaande gebruikersnaam in te vullen, of een nieuw account aanmaken door een nieuwe gebruikersnaam in te vullen. Als dit niet lukt, stuur dan een email naar <a href='mailto:mvdenk@gmail.com'>mvdenk@gmail.com</a>.</p>";
     document.getElementById(cont).style.visibility = "visible";
     document.getElementById("username").focus();
 }
@@ -98,6 +99,7 @@ ws.onmessage = function (event) {
 }
 
 function ask_descriptives() {
+    document.getElementById("instructions").innerHTML = "Voer hier je algemene gegevens in";
     document.getElementById(cont).innerHTML = " \
         <h3> Wat is je geslacht? </h3> \
         <table> \
@@ -141,6 +143,7 @@ function send_descriptives() {
 }
 
 function test(data) {
+    document.getElementById("instructions").innerHTML = "Probeer de onderstaande toets zo goed mogelijk in te vullen. Je mag vragen overslaan als je de antwoorden niet weet."
     document.getElementById(cont).innerHTML = ""
     for (i = 0; i < data.flashcards.length; i++) {
         document.getElementById(cont).innerHTML += " \
@@ -205,6 +208,7 @@ function show_map(map) {
 }
 
 function show_menu() {
+    document.getElementById("instructions").innerHTML = "";
     document.getElementById(cont).innerHTML = "";
     document.getElementsByTagName("nav")[0].style.visibility = "visible";
 }
@@ -213,6 +217,7 @@ function colourise_progress(data) {
 }
 
 function show_card(data) {
+    document.getElementById("instructions").innerHTML = "<p> Probeer de onderstaande vraag te beantwoorden </p>";
     question = data.question;
     answer = data.answer;
     fc_id = data.id;
@@ -222,11 +227,14 @@ function show_card(data) {
 }
 
 function show_answer_fc() {
+    document.getElementById("instructions").innerHTML = "<p> Geef aan of het door jou bedachte antwoord correct of incorrect was </p>";
     document.getElementById(cont).innerHTML += "<br><br>" + answer;
     document.getElementById("panel").innerHTML = "<a href='#' onclick='validate_fc(false)'> Incorrect </a><a href='#' onclick='validate_fc(true)'> Correct </a";
 }
 
 function flashmap(data) {
+    document.getElementById("instructions").innerHTML = "<p> Probeer te bedenken wat er in de oranje lege velden moet komen te staan. </p>";
+    question = data.question;
     map = data;
     for (i = 0; i < map.edges.length; i++) {
         if (map.edges[i].learning) {
@@ -246,6 +254,7 @@ function flashmap(data) {
 }
 
 function show_answer_fm() {
+    document.getElementById("instructions").innerHTML = "<p> Geef aan of jouw antwoord goed of fout was. Als je op de velden klikt, veranderen ze van kleur, waarbij groen een goed antwoord is en rood een fout antwoord. </p>";
     var index
     for (i = 0; i < map.edges.length; i++) {
         if (map.edges[i].learning) {

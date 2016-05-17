@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5678
+PORT = 5679
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -185,14 +185,18 @@ def new_flashedge(name):
     )
     for alt_edge in db.cmap.find_one()["edges"]:
         if (edge["from"] == alt_edge["from"] and edge["label"] == alt_edge["label"] and not alt_edge["id"] == edge["id"]):
-            db.users.update(
-                { "name" : name }, 
-                { "$push" : {"flashedges" : {
-                    "id" : alt_edge["id"],
-                    "due" : time.time(),
-                    "responses": []
-                }}}
-            )
+            inedges = False
+            for e in edges:
+                if (alt_edge["id"] == e["id"]): inedges = True
+            if (not inedges):
+                db.users.update(
+                    { "name" : name }, 
+                    { "$push" : {"flashedges" : {
+                        "id" : alt_edge["id"],
+                        "due" : time.time(),
+                        "responses": []
+                    }}}
+                )
     return build_partial_map(edge, user)
 
 def build_partial_map(flashedge, user):

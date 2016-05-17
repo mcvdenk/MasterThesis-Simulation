@@ -11,3 +11,265 @@ Traceback (most recent call last):
   File "server/main.py", line 47, in authenticate
     "flashmap_condition" : [True, False][len(db.users.find())%2],
 TypeError: object of type 'Cursor' has no len()
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 362, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 26, in consumer
+    return {keyword: "FAILURE", data: {}}
+NameError: name 'keyword' is not defined
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 362, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 26, in consumer
+    return {keyword: "FAILURE", data: {}}
+NameError: name 'keyword' is not defined
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 362, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 310, in add_source
+    return provide_learning(data, name)
+  File "server/main.py", line 118, in provide_learning
+    flashedges = sorted(user["flashedges"], key = lambda k: k["responses"][-1]["start"], reverse=True)
+  File "server/main.py", line 118, in <lambda>
+    flashedges = sorted(user["flashedges"], key = lambda k: k["responses"][-1]["start"], reverse=True)
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1006, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b1bb3c8>
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 365, in handler
+    dec_sendmsg.update({"user": dec_recvmsg["user"]})
+AttributeError: 'str' object has no attribute 'update'
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 365, in handler
+    dec_sendmsg.update({"user": dec_recvmsg["user"]})
+AttributeError: 'str' object has no attribute 'update'
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1005, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f01110c6d30>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1006, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b1299e8>
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 362, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 26, in consumer
+    return {keyword: "FAILURE", data: {}}
+NameError: name 'keyword' is not defined
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1006, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b1c5f60>
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 365, in handler
+    dec_sendmsg.update({"user": dec_recvmsg["user"]})
+AttributeError: 'str' object has no attribute 'update'
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1001, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b0e8dd8>
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 365, in handler
+    dec_sendmsg.update({"user": dec_recvmsg["user"]})
+AttributeError: 'str' object has no attribute 'update'
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1005, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b13a518>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1005, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b129ef0>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1005, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b0dbb70>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1001, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b0e7048>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1001, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b0e8be0>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1001, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b0f7f98>
+Exception in connection handler
+Traceback (most recent call last):
+  File "server/main.py", line 358, in handler
+    enc_recvmsg = await websocket.recv()
+  File "/usr/local/lib/python3.5/dist-packages/websockets/protocol.py", line 296, in recv
+    raise ConnectionClosed(self.close_code, self.close_reason)
+websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code = 1001, no reason.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 370, in handler
+    {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
+KeyError: <websockets.server.WebSocketServerProtocol object at 0x7f010b1aabe0>
