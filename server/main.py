@@ -109,7 +109,9 @@ def provide_learned_items(data, name):
     return ""
 
 def provide_learning(data, name):
-    if (learning_time_reached(name)): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+    if (learning_time_reached(name)):
+        db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     user = db.users.find_one({"name": name})
     flashedges = user["flashedges"]
     if (not (len(flashedges) or user["sessions"][-1]["source_prompted"])): return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[0]}}
@@ -154,9 +156,13 @@ def provide_flashcard(data, name):
 def new_flashcard(name):
     #TODO: check prerequisites
     i = len(db.users.find_one({"name": name})["flashedges"])
-    if (i > len(db.fcards.find_one()["flashcards"]) - 1): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+    if (i > len(db.fcards.find_one()["flashcards"]) - 1):
+        db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     card = db.fcards.find_one()["flashcards"][i]
-    if (card["source"] not in db.users.find_one({"name": name})["read_sources"]): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+    if (card["source"] not in db.users.find_one({"name": name})["read_sources"]):
+        db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     db.users.update(
         { "name" : name }, 
         { "$push" : {"flashedges" : {
@@ -186,9 +192,13 @@ def new_flashedge(name):
     user = db.users.find_one({"name": name})
     edges = user["flashedges"]
     sources = user["read_sources"]
-    if (len(edges) > len(db.cmap.find_one()["edges"]) - 1): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+    if (len(edges) > len(db.cmap.find_one()["edges"]) - 1):
+        db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     edge = db.cmap.find_one()["edges"][len(edges)]
-    if (edge["source"] not in db.users.find_one({"name": name})["read_sources"]): return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+    if (edge["source"] not in db.users.find_one({"name": name})["read_sources"]):
+        db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     db.users.update(
         { "name" : name }, 
         { "$push" : {"flashedges" : {
