@@ -196,6 +196,10 @@ def new_flashedge(name):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     edge = db.cmap.find_one()["edges"][len(edges)]
+    for e in db.cmap.find_one()["edges"]:
+        if (e["id"] not in [d["id"] for d in edges]):
+            edge = e
+            break
     if (edge["source"] not in db.users.find_one({"name": name})["read_sources"]):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
@@ -211,7 +215,7 @@ def new_flashedge(name):
         if (edge["from"] == alt_edge["from"] and edge["label"] == alt_edge["label"] and not alt_edge["id"] == edge["id"]):
             inedges = False
             for e in edges:
-                if (alt_edge["id"] == e["id"]): inedges = True
+                if (str(alt_edge["id"]) == str(e["id"])): inedges = True
             if (not inedges):
                 db.users.update(
                     { "name" : name }, 
