@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5678
+PORT = 5679
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -252,6 +252,7 @@ def find_prerequisites(postreq, prereqs, edges, sources):
 
 def validate_fm(data, name):
     for edge in data["edges"]:
+        print(edge)
         due = next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == edge["id"])["due"]
         db.users.update(
             {"name" : name, "flashedges.id" : edge["id"]},

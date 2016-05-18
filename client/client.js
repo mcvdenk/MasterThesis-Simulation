@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5678");
+var ws = new WebSocket("ws://www.mvdenk.com:5679");
 var network
 var nodes
 var edges
@@ -72,6 +72,7 @@ ws.onmessage = function (event) {
             break;
         case "AUTHENTICATE-RESPONSE":
             show_menu();
+            help();
             break;
         case "LEARNED_ITEMS-RESPONSE":
             coloured_map = colourise_progress(msg.data);
@@ -320,6 +321,10 @@ function prompt_source_request(data) {
 function confirm_source(source_) {
     var msg = {keyword: "READ_SOURCE-RESPONSE", data: { source : source_ }};
     ws.send(JSON.stringify(msg));
+}
+
+function help() {
+    document.getElementById(cont).innerHTML = "<p>Dankjewel voor het meedoen aan het experiment. Hier kun je iedere dag met de flashcards oefenen om je zo goed voor te kunnen bereiden op de toets over Nederlandse literatuur uit de 17de eeuw.</p><p>Het flashcard systeem is het meest effectief als je iedere dag tijd eraan besteed. Bovendien krijg je de waardebon alleen als je iedere dag het systeem gebruikt voor 15 minuten, of totdat de flashcards voor die dag op zijn. Op het moment dat je op een bepaalde dag klaar bent krijg je vanzelf een popup die aangeeft dat je klaar bent voor vandaag.</p>";
 }
 
 function logout() {
