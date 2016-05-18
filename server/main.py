@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5679
+PORT = 5678
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -245,7 +245,10 @@ def new_flashedge(name):
         }}}
     )
     for alt_edge in db.cmap.find_one()["edges"]:
-        if (edge["from"] == alt_edge["from"] and edge["label"] == alt_edge["label"] and not alt_edge["id"] == edge["id"]):
+        if (edge["from"] == alt_edge["from"]
+                and edge["label"] == alt_edge["label"]
+                and not alt_edge["id"] == edge["id"]
+                and alt_edge["source"] in db.users.find_one({"name": name})["read_sources"]):
             inedges = False
             for e in edges:
                 if (str(alt_edge["id"]) == str(e["id"])): inedges = True
