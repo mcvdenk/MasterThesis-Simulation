@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5678
+PORT = 5679
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -146,12 +146,14 @@ def provide_learning(data, name):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     user = db.users.find_one({"name": name})
-    flashedges = user["flashedges"]
-    if (not (len(flashedges) or user["sessions"][-1]["source_prompted"])): return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[0]}}
-    for edge in flashedges:
-        if (not len(edge["responses"])): flashedges.remove(edge)
+    all_flashedges = user["flashedges"]
+    if (not (len(all_flashedges) or user["sessions"][-1]["source_prompted"])): return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[0]}}
+    flashedges = []
+    for edge in all_flashedges:
+        if (len(edge["responses"])): flashedges.append(edge)
     if (len(flashedges)):
-        flashedges = sorted(user["flashedges"], key = lambda k: k["responses"][-1]["start"], reverse=True)
+        print(flashedges)
+        flashedges = sorted(flashedges, key = lambda k: k["responses"][-1]["start"], reverse=True)
         if (datetime.date.today() > datetime.date.fromtimestamp(flashedges[0]["responses"][-1]["start"])):
             flashedges = sorted(user["flashedges"], key = lambda k: k["responses"][0]["start"], reverse=True)
             if (user["flashmap_condition"]):
