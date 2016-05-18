@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5679
+PORT = 5678
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -177,7 +177,6 @@ def build_flashcard(card):
     return {"keyword" : "LEARN-RESPONSE(fc)", "data" : card}
 
 def provide_flashedges(data, name):
-    #TODO: multiple edges with same from, to and label
     user = db.users.find_one({"name": name})
     flashedges = user["flashedges"]
     if (len(flashedges)):
@@ -236,6 +235,9 @@ def build_partial_map(flashedge, user):
     for edge in edges:
         if (flashedge["from"] == edge["from"] and flashedge["label"] == edge["label"] and not edge["id"] == flashedge["id"] and edge["source"] in user["read_sources"]):
             edge["learning"] = True
+            for fe in user["flashedges"]:
+                if (fe["id"] == edge["id"] and fe["due"] > time.time()):
+                    edge["learning"] = False
             cmap["edges"].append(edge)
             cmap["nodes"].append(next(node for node in nodes if node["id"] == edge["to"]))
     cmap["nodes"].append(next(node for node in nodes if node["id"] == flashedge["to"]))
@@ -256,8 +258,7 @@ def find_prerequisites(postreq, prereqs, edges, sources):
 
 def validate_fm(data, name):
     for edge in data["edges"]:
-        print(edge)
-        due = next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == edge["id"])["due"]
+        due = min(next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == edge["id"])["due"], time.time())
         db.users.update(
             {"name" : name, "flashedges.id" : edge["id"]},
             {
