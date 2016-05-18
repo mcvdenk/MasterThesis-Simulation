@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5679
+PORT = 5678
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -142,9 +142,6 @@ def provide_learned_items(data, name):
     return msg
 
 def provide_learning(data, name):
-    if (learning_time_reached(name)):
-        db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
     user = db.users.find_one({"name": name})
     all_flashedges = user["flashedges"]
     if (not (len(all_flashedges) or user["sessions"][-1]["source_prompted"])): return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[0]}}
@@ -152,10 +149,9 @@ def provide_learning(data, name):
     for edge in all_flashedges:
         if (len(edge["responses"])): flashedges.append(edge)
     if (len(flashedges)):
-        print(flashedges)
         flashedges = sorted(flashedges, key = lambda k: k["responses"][-1]["start"], reverse=True)
         if (datetime.date.today() > datetime.date.fromtimestamp(flashedges[0]["responses"][-1]["start"])):
-            flashedges = sorted(user["flashedges"], key = lambda k: k["responses"][0]["start"], reverse=True)
+            flashedges = sorted(flashedges, key = lambda k: k["responses"][0]["start"], reverse=True)
             if (user["flashmap_condition"]):
                 if (SOURCES.index(user["read_sources"][-1]) 
                         < SOURCES.index(next(edge for edge in db.cmap.find_one()["edges"] if edge["id"] == user["flashedges"][-1]["id"])["source"]) + 1):
@@ -163,8 +159,13 @@ def provide_learning(data, name):
             elif (SOURCES.index(user["read_sources"][-1]) 
                     < SOURCES.index(next(card for card in db.fcards.find_one()["flashcards"] if card["id"] == user["flashedges"][-1]["id"])["source"]) + 1):
                 return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
-    if (user["flashmap_condition"]): return provide_flashedges(data, name)
-    return provide_flashcard(data,name)
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+    else: msg = provide_flashcard(data,name)
+    if (learning_time_reached(name)):
+        db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
+        msg["time_up"] = True
+    else: msg["time_up"] = False
+    return msg
 
 def learning_time_reached(name):
     times = []
@@ -216,6 +217,7 @@ def provide_flashedges(data, name):
     flashedges = user["flashedges"]
     if (len(flashedges)):
         flashedges = sorted(flashedges, key=lambda k: k["due"])
+        print(flashedges)
         if (flashedges[0]["due"] < time.time()):
             edge = next(e for e in db.cmap.find_one()["edges"] if e["id"] == flashedges[0]["id"])
             return build_partial_map(edge, user)

@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5679");
+var ws = new WebSocket("ws://www.mvdenk.com:5678");
 var network
 var nodes
 var edges
@@ -82,10 +82,10 @@ ws.onmessage = function (event) {
             show_flashcard_progress(msg.data);
             break;
         case "LEARN-RESPONSE(fm)":
-            show_map(flashmap(msg.data));
+            show_map(flashmap(msg.data, msg.time_up));
             break;
         case "LEARN-RESPONSE(fc)":
-            show_card(msg.data);
+            show_card(msg.data, msg.time_up);
             break;
         case "NO_MORE_FLASHEDGES":
             done_learning();
@@ -229,8 +229,9 @@ function show_flashcard_progress(data) {
         <p> Geleerd: " + data.learned + " </p>"
 }
 
-function show_card(data) {
+function show_card(data, time_up) {
     document.getElementById("instructions").innerHTML = "<p> Probeer de onderstaande vraag te beantwoorden </p>";
+    if (time_up) document.getElementById("instructions").innerHTML = "<p style='color:red;'> Je hebt vandaag 15 minuten geleerd!! </p>";
     question = data.question;
     answer = data.answer;
     fc_id = data.id;
@@ -245,8 +246,9 @@ function show_answer_fc() {
     document.getElementById("panel").innerHTML = "<a href='#' onclick='validate_fc(false)'> Incorrect </a><a href='#' onclick='validate_fc(true)'> Correct </a";
 }
 
-function flashmap(data) {
+function flashmap(data, time_up) {
     document.getElementById("instructions").innerHTML = "<p> Probeer te bedenken wat er in de oranje lege velden moet komen te staan. </p>";
+    if (time_up) document.getElementById("instructions").innerHTML = "<p style='color:red;'> Je hebt vandaag 15 minuten geleerd!! </p>";
     question = data.question;
     map = data;
     for (i = 0; i < map.edges.length; i++) {
