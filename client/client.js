@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5678");
+var ws = new WebSocket("ws://www.mvdenk.com:5679");
 var network
 var nodes
 var edges
@@ -34,7 +34,7 @@ var options = {
     },
     interaction: {
         selectable: true,
-        dragNodes: false
+        dragNodes: true
     }
 //    physics : {barnesHut: {avoidOverlap: 1}}
 };
@@ -74,9 +74,12 @@ ws.onmessage = function (event) {
             show_menu();
             help();
             break;
-        case "LEARNED_ITEMS-RESPONSE":
+        case "LEARNED_FLASHMAP-RESPONSE":
             coloured_map = colourise_progress(msg.data);
             show_map(coloured_map);
+            break;
+        case "LEARNED_FLASHCARDS-RESPONSE":
+            show_flashcard_progress(msg.data);
             break;
         case "LEARN-RESPONSE(fm)":
             show_map(flashmap(msg.data));
@@ -191,7 +194,6 @@ function show_map(map) {
     network = new vis.Network(container, graph, options);
 
     network.on('click', function(properties) {
-        console.log(properties)
         for (i=0; i < map.edges.length; i++) {
             if ('correct' in map.edges[i] && properties.nodes[0] == map.edges[i].to) {
                 map.edges[i].correct = !map.edges[i].correct;
@@ -215,6 +217,16 @@ function show_menu() {
 }
 
 function colourise_progress(data) {
+    return data
+}
+
+function show_flashcard_progress(data) {
+    document.getElementById(cont).innerHTML = " \
+        <p> Klaar om nu geleerd te worden: " + data.due +" </p> \
+        <p> Nog niet gezien: " + data.not_seen + " </p> \
+        <p> Nieuw: " + data.new + " </p> \
+        <p> Lerende: " + data.learning + " </p> \
+        <p> Geleerd: " + data.learned + " </p>"
 }
 
 function show_card(data) {

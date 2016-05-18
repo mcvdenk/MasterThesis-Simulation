@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5678
+PORT = 5679
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -105,8 +105,41 @@ def add_test(data, name):
     )
 
 def provide_learned_items(data, name):
-    #TODO: implementation
-    return ""
+    msg = {"keyword" : "", "data" : {}}
+    flashedges = db.users.find_one({"name" : name})["flashedges"]
+    for flashedge in flashedges:
+        exp = 0
+        for response in flashedge["responses"]:
+            if (response["correct"]): exp += 1
+            else: exp = 0
+        flashedge["exponent"] = exp
+        flashedge["due"] = flashedge["due"] > time.time()
+    if (db.users.find_one({"name" : name})["flashmap_condition"]):
+        msg["keyword"] = "LEARNED_FLASHMAP-RESPONSE"
+        cmap = {"edges" : [], "nodes" : []}
+        nodes = db.cmap.find_one()["nodes"]
+        for flashedge in flashedges:
+            for edge in db.cmap.find_one()["edges"]:
+                if (edge["id"] == flashedge["id"]):
+                    cmap["edges"].append(edge)
+                    for node in nodes:
+                        if ((node["id"] == edge["from"] or node["id"] == edge["to"]) and node not in cmap["nodes"]):
+                            cmap["nodes"].append(node)
+        msg["data"] = cmap
+    else:
+        msg["keyword"] = "LEARNED_FLASHCARDS-RESPONSE"
+        msg["data"] = {"due" : 0, "new": 0, "learning": 0, "learned": 0, "not_seen": 0}
+        for flashcard in db.fcards.find_one()["flashcards"]:
+            seen = False
+            for flashedge in flashedges:
+                if (flashcard["id"] == flashedge["id"]):
+                    seen = True
+                    if (flashedge["due"] < time.time()): msg["data"]["due"] += 1
+                    if (flashedge["exponent"] < 2): msg["data"]["new"] += 1
+                    elif (flashedge["exponent"] < 6): msg["data"]["learning"] += 1
+                    else: msg["data"]["learned"] += 1
+            if (not seen): msg["data"]["not_seen"] += 1
+    return msg
 
 def provide_learning(data, name):
     if (learning_time_reached(name)):
@@ -194,11 +227,12 @@ def new_flashedge(name):
     if (len(edges) > len(db.cmap.find_one()["edges"]) - 1):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
-    edge = db.cmap.find_one()["edges"][len(edges)]
-    for e in db.cmap.find_one()["edges"]:
-        if (e["id"] not in [d["id"] for d in edges]):
-            edge = e
-            break
+    i = len(edges)
+    edge = db.cmap.find_one()["edges"][i]
+    confirmed = False
+    while (edge["id"] in [d["id"] for d in edges]):
+            i += 1
+            edge = db.cmap.find_one()["edges"][i]
     if (edge["source"] not in db.users.find_one({"name": name})["read_sources"]):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
