@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5678");
+var ws = new WebSocket("ws://www.mvdenk.com:5679");
 var network
 var nodes
 var edges

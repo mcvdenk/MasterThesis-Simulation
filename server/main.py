@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5678
+PORT = 5679
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -366,9 +366,9 @@ def schedule(id_, name):
     exp = 1
     if (not len(responses)): return 0
     for resp in responses:
-        if (not resp["correct"]): break;
+        if (not resp["correct"]): exp = 1;
         exp += 1
-    return time.time() + 5**exp
+    return time.time() + min(5**exp, 2000000)
 
 def add_source(data, name):
     db.users.update(
