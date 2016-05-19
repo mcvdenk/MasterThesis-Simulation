@@ -299,7 +299,21 @@ def find_prerequisites(postreq, prereqs, edges, sources):
 
 def validate_fm(data, name):
     for edge in data["edges"]:
-        due = min(next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == edge["id"])["due"], time.time())
+        due = time.time()
+        edge_exists = False
+        for fe in db.users.find_one({"name": name})["flashedges"]:
+            if (edge["id"] == fe["id"]):
+                due = min(due, fe["due"])
+                edge_exists = True
+        if (not edge_exists):
+            db.users.update(
+                { "name" : name }, 
+                { "$push" : {"flashedges" : {
+                    "id" : edge["id"],
+                    "due" : time.time(),
+                    "responses": []
+                }}}
+            )
         db.users.update(
             {"name" : name, "flashedges.id" : edge["id"]},
             {
