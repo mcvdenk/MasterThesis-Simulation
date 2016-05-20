@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5679
+PORT = 5678
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -23,7 +23,7 @@ SOURCES.sort()
 # Calls the corresponding function to the switchcases dict. When the keyword is invalid, it returns a FAILURE response
 def consumer(recvmessage):
     if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
-    return {keyword: "FAILURE", data: {}}
+    return {"keyword": "FAILURE", "data": {}}
 
 # Loads the whole concept map from the database
 def provide_map(data, name):
@@ -217,7 +217,6 @@ def provide_flashedges(data, name):
     flashedges = user["flashedges"]
     if (len(flashedges)):
         flashedges = sorted(flashedges, key=lambda k: k["due"])
-        print(flashedges)
         if (flashedges[0]["due"] < time.time()):
             edge = next(e for e in db.cmap.find_one()["edges"] if e["id"] == flashedges[0]["id"])
             return build_partial_map(edge, user)
@@ -381,7 +380,7 @@ def schedule(id_, name):
     if (not len(responses)): return 0
     for resp in responses:
         if (not resp["correct"]): exp = 1;
-        exp += 1
+        else: exp += 1
     return time.time() + min(5**exp, 2000000)
 
 def add_source(data, name):

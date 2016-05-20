@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5679");
+var ws = new WebSocket("ws://www.mvdenk.com:5678");
 var network
 var nodes
 var edges
@@ -330,9 +330,11 @@ function done_learning() {
 function prompt_source_request(data) {
     document.getElementById(cont).innerHTML = "Heb je paragraaf " + data.source + " al gelezen? Zo nee, lees deze dan nu.";
     document.getElementById("panel").innerHTML = "<a href='#' onclick='confirm_source(" + data.source + ")'> Gelezen </a>";
+    console.log(typeof data.source)
 }
 
 function confirm_source(source_) {
+    console.log(source_)
     var msg = {keyword: "READ_SOURCE-RESPONSE", data: { source : source_ }};
     ws.send(JSON.stringify(msg));
 }
