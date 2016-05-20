@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5679");
+var ws = new WebSocket("ws://www.mvdenk.com:5678");
 var network
 var nodes
 var edges
@@ -42,11 +42,18 @@ var show_undo = false;
 var question = "";
 var answer = "";
 var fc_id = "";
+var logged_in = false;
 
 ws.onopen = function (event) {
     document.getElementById("instructions").innerHTML = "<p>Je kunt hier inloggen door een al bestaande gebruikersnaam in te vullen, of een nieuw account aanmaken door een nieuwe gebruikersnaam in te vullen. Als dit niet lukt, stuur dan een email naar <a href='mailto:mvdenk@gmail.com'>mvdenk@gmail.com</a>.</p>";
     document.getElementById(cont).style.visibility = "visible";
     document.getElementById("username").focus();
+}
+
+ws.onclose = function(event) {
+    if (logged_in) {
+        if (!alert("Connection lost.")) window.location.reload();
+    }
 }
 
 function authenticate() {
@@ -65,8 +72,12 @@ function authenticate() {
 ws.onmessage = function (event) {
     var msg = JSON.parse(event.data);
     console.log(msg);
+    logged_in = true;
 
     switch(msg.keyword) {
+        case "ACTIVE_SESSIONS":
+            logged_in = false;
+            break;
         case "MAP-RESPONSE":
             show_map(msg.data);
             break;
@@ -342,6 +353,7 @@ function help() {
 }
 
 function logout() {
+    logged_in = false;
     ws.close();
     location.reload();
 }
