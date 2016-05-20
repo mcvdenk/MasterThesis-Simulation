@@ -104,6 +104,40 @@ def add_test(data, name):
         {"$push" : { "tests" : data }}
     )
 
+def questionnaire(data):
+    useful_items = []
+    ease_items = []
+
+    formulations = ["positive", "negative"]
+
+    for part in db.questionnaire.find():
+        for key in part:
+            if (key == "perceived_usefulness"):
+                useful1 = []
+                for item in part[key]:
+                    formulation = random.choice(formulations)
+                    useful1.append({"id": item["id"], "formulation": formulation, "item": item[formulation]})
+                random.shuffle(useful1)
+                useful2 = []
+                for item in part[key]:
+                    formulation = formulations[1 - formulations.index(useful1[int(item["id"])]["formulation"])]
+                    useful2.append({"id": item["id"], "formulation": formulation, "item": item[formulation]})
+                random.shuffle(useful2)
+                useful_items = useful1 + useful2
+            if (key == "perceived_ease_of_use"):
+                ease1 = []
+                for item in part[key]:
+                    formulation = random.choice(formulations)
+                    ease1.append({"id": item["id"], "formulation": formulation, "item": item[formulation]})
+                random.shuffle(ease1)
+                ease2 = []
+                for item in part[key]:
+                    formulation = formulations[1 - formulations.index(ease1[int(item["id"])]["formulation"])]
+                    ease2.append({"id": item["id"], "formulation": formulation, "item": item[formulation]})
+                random.shuffle(ease2)
+                ease_items = ease1 + ease2
+    return {"keyword" : "QUESTIONNAIRE-REQUEST", "data": {"perceived_usefulness" : useful_items, "perceived_ease_of_use" : ease_items}}
+
 def provide_learned_items(data, name):
     msg = {"keyword" : "", "data" : {}}
     flashedges = db.users.find_one({"name" : name})["flashedges"]
@@ -194,11 +228,14 @@ def new_flashcard(name):
     i = len(db.users.find_one({"name": name})["flashedges"])
     if (i > len(db.fcards.find_one()["flashcards"]) - 1):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}}
     card = db.fcards.find_one()["flashcards"][i]
     if (card["source"] not in db.users.find_one({"name": name})["read_sources"]):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+        source = ""
+        if (len(db.users.find_one({"name": name})["read_sources"]) < len(SOURCES)):
+            source = SOURCES[len(db.users.find_one({"name": name})["read_sources"])]
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": source}}
     db.users.update(
         { "name" : name }, 
         { "$push" : {"flashedges" : {
@@ -229,7 +266,7 @@ def new_flashedge(name):
     sources = user["read_sources"]
     if (len(edges) > len(db.cmap.find_one()["edges"]) - 1):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}}
     i = len(edges)
     edge = db.cmap.find_one()["edges"][i]
     confirmed = False
@@ -238,7 +275,10 @@ def new_flashedge(name):
             edge = db.cmap.find_one()["edges"][i]
     if (edge["source"] not in db.users.find_one({"name": name})["read_sources"]):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {}}
+        source = ""
+        if (len(db.users.find_one({"name": name})["read_sources"]) < len(SOURCES)):
+            source = SOURCES[len(db.users.find_one({"name": name})["read_sources"])]
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": source}}
     db.users.update(
         { "name" : name }, 
         { "$push" : {"flashedges" : {

@@ -99,7 +99,7 @@ ws.onmessage = function (event) {
             show_card(msg.data, msg.time_up);
             break;
         case "NO_MORE_FLASHEDGES":
-            done_learning();
+            done_learning(msg.data);
             break;
         case "READ_SOURCE-REQUEST":
             prompt_source_request(msg.data);
@@ -109,6 +109,9 @@ ws.onmessage = function (event) {
             break;
         case "TEST-REQUEST":
             test(msg.data);
+            break;
+        case "QUESTIONNAIRE-REQUEST":
+            questionnaire(msg.data);
             break;
     }
 }
@@ -184,6 +187,12 @@ function send_test_results() {
         msg.data.items.push({id : items[i].id.slice(4), answer : items[i].value});
     }
     ws.send(JSON.stringify(msg));
+}
+
+function questionnaire(data) {
+}
+
+function send_questionnaire_results() {
 }
 
 function show_map(map) {
@@ -334,8 +343,9 @@ function learn() {
     ws.send(JSON.stringify(msg));
 }
 
-function done_learning() {
-    alert("Je bent klaar voor nu, kom morgen terug voor nieuwe flashcards.");
+function done_learning(data) {
+    if (data.source != "") document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag, maar als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
+    else document.getElementById(cont).innerHTML ="<p>Er zijn geen flashcards meer voor nu, en daarmee ben je klaar voor vandaag.</p>";
 }
 
 function prompt_source_request(data) {

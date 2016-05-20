@@ -1,0 +1,66 @@
+{
+    perceived_usefulness: [
+        {
+            id: "0",
+            positive: "Het gebruik van het flashcardsysteem maakte het leren sneller.",
+            negative: "Het gebruik van het flashcardsysteem maakte het leren langzamer."
+        },
+        {
+            id: "1",
+            positive: "Het flashcardsysteem was goed voor mijn leerprestaties.",
+            negative: "Het flashcardsysteem was slecht voor mijn leerprestaties."
+        },
+        {
+            id: "2",
+            positive: "Het flashcardsysteem was goed voor mijn productiviteit.",
+            negative: "Het flashcardsysteem was slecht voor mijn productiviteit."
+        },
+        {
+            id: "3",
+            positive: "Door het flashcardsysteem kon ik effectiver leren.",
+            negative: "Door het flashcardsysteem kon ik minder effectief leren."
+        },
+        {
+            id: "4",
+            positive: "Door het flashcardsysteem kon ik makkelijker leren.",
+            negative: "Door het flashcardsysteem kon ik moeilijker leren."
+        },
+        {
+            id: "5",
+            positive: "Ik vond het flashcardsysteem nuttig.",
+            negative: "Ik vond het flashcardsysteem niet nuttig."
+        }
+    ],
+    perceived_ease_of_use: [
+        {
+            id: "0",
+            positive: "Het flashcardsysteem leren te gebruiken was makkelijk.",
+            negative: "Het flashcardsysteem leren te gebruiken was moeilijk."
+        },
+        {
+            id: "1",
+            positive: "Ik kon het flashcardsysteem makkelijk laten doen wat ik wilde.",
+            negative: "Ik kon het flashcardsysteem moeilijk laten doen wat ik wilde."
+        },
+        {
+            id: "2",
+            positive: "Het was duidelijk hoe het flashcardsysteem gebruikt moest worden.",
+            negative: "Het was onduidelijk hoe het flashcardsysteem gebruikt moest worden."
+        },
+        {
+            id: "3",
+            positive: "Het flashcardsysteem was flexibel.",
+            negative: "Het flashcardsysteem was inflexibel."
+        },
+        {
+            id: "4",
+            positive: "Het was makkelijk om goed te worden in het gebruik van het flashcardsysteem.",
+            negative: "Het was moeilijk om goed te worden in het gebruik van het flashcardsysteem."
+        },
+        {
+            id: "5",
+            positive: "Ik vond het flashcardsysteem makkelijk om te gebruiken.",
+            negative: "Ik vond het flashcardsysteem moeilijk om te gebruiken."
+        }
+    ]
+}
