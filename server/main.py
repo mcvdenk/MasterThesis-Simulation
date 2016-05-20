@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5678
+PORT = 5679
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -458,6 +458,9 @@ async def handler(websocket, path):
         if (loginmsg["data"]["name"] == "active_sessions"):
             await websocket.send(json.dumps(provide_active_sessions()))
             websocket.close()
+            return
+        if (loginmsg["data"]["name"] == "questionnaire"):
+            await websocket.send(json.dumps(questionnaire(loginmsg["data"]["name"])))
             return
         db.logs.insert_one({str(math.floor(time.time())) : loginmsg})
         assert loginmsg["keyword"] == "AUTHENTICATE-REQUEST"

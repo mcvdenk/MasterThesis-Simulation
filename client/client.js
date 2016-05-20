@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5678");
+var ws = new WebSocket("ws://www.mvdenk.com:5679");
 var network
 var nodes
 var edges
@@ -72,7 +72,7 @@ function authenticate() {
 ws.onmessage = function (event) {
     var msg = JSON.parse(event.data);
     console.log(msg);
-    logged_in = true;
+    if (uname != "questionnaire") logged_in = true;
 
     switch(msg.keyword) {
         case "ACTIVE_SESSIONS":
@@ -190,6 +190,39 @@ function send_test_results() {
 }
 
 function questionnaire(data) {
+    document.getElementById("instructions").innerHTML = "<p>Hieronder staan stellingen waarbij je aan kunt geven of je het er mee eens of oneens bent. Dit is voor mij om te kunnen bepalen of je het flashcard systeem nuttig vond en makkelijk te gebruiken.</p>";
+    container = document.getElementById(cont);
+    container.innerHTML = "";
+    for (i = 0; i < data.perceived_usefulness.length; i++) {
+        var form = "+";
+        if (data.perceived_usefulness[i].formulation == "negative") form = "-";
+        container_text = " \
+            <h3>" + data.perceived_usefulness[i].item + "</h3> \
+            <table style='text-align:center;'> \
+                <tr> \
+                    <td>Zeer mee oneens</td><td>Mee oneens</td><td>Noch mee eens, <br />noch mee oneens</td><td>Mee eens</td><td>Zeer mee eens</td> \
+                </tr><tr>";
+        for (j=0; j < 5; j++) {
+            container_text += "<td><input type='radio' name='useful"+form+data.perceived_usefulness[i].id+"' value='"+j+"' /></td>";
+        }
+        container_text += "</tr></table>";
+        container.innerHTML += container_text;
+    }
+    for (i = 0; i < data.perceived_ease_of_use.length; i++) {
+        var form = "+";
+        if (data.perceived_ease_of_use[i].formulation == "negative") form = "-";
+        container_text = " \
+                                <h3>" + data.perceived_ease_of_use[i].item + "</h3> \
+                                <table style='text-align:center;'> \
+                                    <tr> \
+                                        <td>Zeer mee oneens</td><td>Mee oneens</td><td>Noch mee eens, <br />noch mee oneens</td><td>Mee eens</td><td>Zeer mee eens</td> \
+                                    </tr><tr>";
+        for (j=0; j < 5; j++) {
+            container_text += "<td><input type='radio' name='ease"+form+data.perceived_ease_of_use[i].id+"' value='"+j+"' /></td>";
+        }
+        container_text += "</tr></table>";
+        container.innerHTML += container_text;
+    }
 }
 
 function send_questionnaire_results() {

@@ -77,6 +77,10 @@ table {
     margin: auto;
 }
 
+table tr td {
+    margin: .3em;
+}
+
 input[type=text], textarea {
     border: 2px solid; 
     color: #806D15;
