@@ -93,13 +93,13 @@ ws.onmessage = function (event) {
             show_flashcard_progress(msg.data);
             break;
         case "LEARN-RESPONSE(fm)":
-            show_map(flashmap(msg.data, msg.time_up));
+            show_map(flashmap(msg.data, msg.time_up, msg.successful_days));
             break;
         case "LEARN-RESPONSE(fc)":
-            show_card(msg.data, msg.time_up);
+            show_card(msg.data, msg.time_up, msg.successful_days);
             break;
         case "NO_MORE_FLASHEDGES":
-            done_learning(msg.data);
+            done_learning(msg.data, msg.successful_days);
             break;
         case "READ_SOURCE-REQUEST":
             prompt_source_request(msg.data);
@@ -112,6 +112,9 @@ ws.onmessage = function (event) {
             break;
         case "QUESTIONNAIRE-REQUEST":
             questionnaire(msg.data);
+            break;
+        case "DEBRIEFING":
+            debriefing();
             break;
     }
 }
@@ -230,7 +233,7 @@ function questionnaire(data) {
         <textarea rows='4' cols='50' class='questionnaire' name='goed' id='goed'></textarea> \
         <h3>Wat zijn eventuele verbeteringen die gemaakt zouden kunnen worden?</h3> \
         <textarea rows='4' cols='50' class='questionnaire' name='kan_beter' id='kan_beter'></textarea>";
-    container_text += "<br /><p>Als je bereid bent om later ge&iuml;nterviewd te worden over het flashmap systeem, vul dan hieronder je emailadres in.</p> \
+    container_text += "<br /><p>Als je bereid bent om later ge&iuml;nterviewd te worden over het flashcard systeem, vul dan hieronder je emailadres in.</p> \
                        <input type='text' id='email'/>";
     container_text += "<br /><a href='#' onClick='send_questionnaire_results()'>Verstuur</a>";
     container.innerHTML = container_text;
@@ -314,9 +317,16 @@ function show_flashcard_progress(data) {
         <p> Geleerd: " + data.learned + " </p>"
 }
 
-function show_card(data, time_up) {
+function show_card(data, time_up, successful_days) {
     document.getElementById("instructions").innerHTML = "<p> Probeer de onderstaande vraag te beantwoorden </p>";
-    if (time_up) document.getElementById("instructions").innerHTML = "<p style='color:red;'> Je hebt vandaag 15 minuten geleerd!! </p>";
+    if (time_up) {
+        if (successful_days < 6) {
+            document.getElementById("instructions").innerHTML = "<p style='color:red;'> Je hebt vandaag 15 minuten geleerd, nog "+ (6 - successful_days).toString() +" dagen te gaan. </p>";
+        }
+        if (successful_days == 6) {
+            document.getElementById("instructions").innerHTML = "<p style='color:red;'> Je hebt vandaag 15 minuten geleerd, kom morgen terug voor de laatste kennistoets en de enquete. </p>";
+        }
+    }
     question = data.question;
     answer = data.answer;
     fc_id = data.id;
@@ -331,9 +341,16 @@ function show_answer_fc() {
     document.getElementById("panel").innerHTML = "<a href='#' onclick='validate_fc(false)'> Incorrect </a><a href='#' onclick='validate_fc(true)'> Correct </a";
 }
 
-function flashmap(data, time_up) {
+function flashmap(data, time_up, successful_days) {
     document.getElementById("instructions").innerHTML = "<p> Probeer te bedenken wat er in de oranje lege velden moet komen te staan. </p>";
-    if (time_up) document.getElementById("instructions").innerHTML = "<p style='color:red;'> Je hebt vandaag 15 minuten geleerd!! </p>";
+    if (time_up) {
+        if (successful_days < 6) {
+            document.getElementById("instructions").innerHTML = "<p style='color:red;'> Je hebt vandaag 15 minuten geleerd, nog "+ (6 - successful_days).toString() +" dagen te gaan. </p>";
+        }
+        if (successful_days == 6) {
+            document.getElementById("instructions").innerHTML = "<p style='color:red;'> Je hebt vandaag 15 minuten geleerd, kom morgen terug voor de laatste kennistoets en de enquete. </p>";
+        }
+    }
     question = data.question;
     map = data;
     for (i = 0; i < map.edges.length; i++) {
@@ -408,9 +425,18 @@ function learn() {
     ws.send(JSON.stringify(msg));
 }
 
-function done_learning(data) {
-    if (data.source != "") document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag, maar als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
-    else document.getElementById(cont).innerHTML ="<p>Er zijn geen flashcards meer voor nu, en daarmee ben je klaar voor vandaag.</p>";
+function done_learning(data, successful_days) {
+    if (data.source != "") {
+        if (successful_days < 6) document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag, en je hebt nog "+ (6 - successful_days).toString() +" te gaan. Als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
+        else if (successful_days == 6) document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag, kom morgen terug voor de laatste kennistoets en de enquete. Als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
+        else document.getElementById(cont).innerHTTML = document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag. Als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
+    }
+    else {
+        if (successful_days < 6) document.getElementById(cont).innerHTML ="<p>Er zijn geen flashcards meer voor nu, en daarmee ben je klaar voor vandaag. Je hebt nog "+ (6 - successful_days).toString() +" dagen te gaan.</p>";
+        else if (successful_days == 6) document.getElementById(cont).innerHTML ="<p>Er zijn geen flashcards meer voor nu, en daarmee ben je klaar voor vandaag. Kom morgen terug voor de laatste kennistoets en de enquete.</p>";
+        else document.getElementById(cont).innerHTML ="<p>Er zijn geen flashcards meer voor nu, en daarmee ben je klaar voor vandaag.</p>";
+    }
+    document.getElementById("panel").innerHTML = "";
 }
 
 function prompt_source_request(data) {
@@ -424,7 +450,13 @@ function confirm_source(source_) {
 }
 
 function help() {
+    document.getElementById("instructions").innerHTML = "";
     document.getElementById(cont).innerHTML = "<p>Dankjewel voor het meedoen aan het experiment. Hier kun je iedere dag met de flashcards oefenen om je zo goed voor te kunnen bereiden op de toets over Nederlandse literatuur uit de 17de eeuw.</p><p>Het flashcard systeem is het meest effectief als je iedere dag tijd eraan besteed. Bovendien krijg je de waardebon alleen als je iedere dag het systeem gebruikt voor 15 minuten, of totdat de flashcards voor die dag op zijn. Op het moment dat je op een bepaalde dag klaar bent krijg je vanzelf een popup die aangeeft dat je klaar bent voor vandaag.</p>";
+}
+
+function debriefing() {
+    document.getElementById("instructions").innerHTML = "";
+    document.getElementById(cont).innerHTML = "<p>Hartelijk bedankt voor het meedoen aan het onderzoek, en gefeliciteerd met de waardebon. Je zult deze binnenkort van je leraar ontvangen als je de toezeggingsverklaring hebt ingeleverd. Verder staat het je vrij om gebruik te blijven maken van het flashcard systeem, het is goed om de kennis die je geleerd hebt vers te houden tot de toets. De resultaten van dit onderzoek kun je op verzoek ter inzage bij mij aanvragen. Als je net je email adres hebt ingevuld krijg je binnenkort een mail om een datum in te plannen voor het interview. Verder wens ik je nog veel succes voor dit vak. Als je nog vragen hebt kun je me altijd nog een email sturen (mvdenk@gmail.com).</p>";
 }
 
 function logout() {

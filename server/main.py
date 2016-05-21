@@ -206,6 +206,7 @@ def provide_learning(data, name):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         msg["time_up"] = True
     else: msg["time_up"] = False
+    msg["successful_days"] = successful_days(name)
     return msg
 
 def learning_time_reached(name):
@@ -235,14 +236,14 @@ def new_flashcard(name):
     i = len(db.users.find_one({"name": name})["flashedges"])
     if (i > len(db.fcards.find_one()["flashcards"])):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}}
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}, "successful_days": successful_days(name)}
     card = db.fcards.find_one()["flashcards"][i]
     if (card["source"] not in db.users.find_one({"name": name})["read_sources"]):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         source = ""
         if (len(db.users.find_one({"name": name})["read_sources"]) < len(SOURCES)):
             source = SOURCES[len(db.users.find_one({"name": name})["read_sources"])]
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": source}}
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": source}, "successful_days": successful_days(name)}
     db.users.update(
         { "name" : name }, 
         { "$push" : {"flashedges" : {
@@ -273,7 +274,7 @@ def new_flashedge(name):
     sources = user["read_sources"]
     if (len(edges) > len(db.cmap.find_one()["edges"])):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}}
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}, "successful_days": successful_days(name)}
     i = len(edges)
     edge = db.cmap.find_one()["edges"][i]
     confirmed = False
@@ -285,7 +286,7 @@ def new_flashedge(name):
         source = ""
         if (len(db.users.find_one({"name": name})["read_sources"]) < len(SOURCES)):
             source = SOURCES[len(db.users.find_one({"name": name})["read_sources"])]
-        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": source}}
+        return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": source}, "successful_days": successful_days(name)}
     db.users.update(
         { "name" : name }, 
         { "$push" : {"flashedges" : {
@@ -503,6 +504,8 @@ async def handler(websocket, path):
             if ("questionnaire" not in user):
                 await websocket.send(json.dumps(questionnaire(loginmsg["data"])))
                 add_questionnaire(json.loads(await websocket.recv())["data"], loginmsg["data"]["name"])
+                await websocket.send(json.dumps({"keyword": "DEBRIEFING", data: {}}))
+                await websocket.recv()
         sessions = db.users.find_one({"name" : loginmsg["data"]["name"]})["sessions"]
         date = datetime.datetime.fromtimestamp(0)
         for session in sessions:
