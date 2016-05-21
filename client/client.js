@@ -230,12 +230,14 @@ function questionnaire(data) {
         <textarea rows='4' cols='50' class='questionnaire' name='goed' id='goed'></textarea> \
         <h3>Wat zijn eventuele verbeteringen die gemaakt zouden kunnen worden?</h3> \
         <textarea rows='4' cols='50' class='questionnaire' name='kan_beter' id='kan_beter'></textarea>";
+    container_text += "<br /><p>Als je bereid bent om later ge&iuml;nterviewd te worden over het flashmap systeem, vul dan hieronder je emailadres in.</p> \
+                       <input type='text' id='email'/>";
     container_text += "<br /><a href='#' onClick='send_questionnaire_results()'>Verstuur</a>";
     container.innerHTML = container_text;
 }
 
 function send_questionnaire_results() {
-    msg = {keyword: "QUESTIONNAIRE-RESPONSE", data: {perceived_usefulness : { positive : [], negative : []}, perceived_ease_of_use : { positive : [], negative : []}, goed: "", kan_beter: ""}}
+    msg = {keyword: "QUESTIONNAIRE-RESPONSE", data: {perceived_usefulness : { positive : [], negative : []}, perceived_ease_of_use : { positive : [], negative : []}, goed: "", kan_beter: "", email: ""}}
     var useful = document.getElementsByClassName('useful');
     for (i = 0; i < useful.length; i++) {
         if (useful[i].checked) {
@@ -253,7 +255,9 @@ function send_questionnaire_results() {
     }
     msg.data.goed = document.getElementById("goed").value;
     msg.data.kan_beter = document.getElementById("kan_beter").value;
+    msg.data.email = document.getElementById("email").value;
     console.log(JSON.stringify(msg));
+    ws.send(JSON.stringify(msg));
 }
 
 function show_map(map) {

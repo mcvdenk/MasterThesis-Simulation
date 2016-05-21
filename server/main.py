@@ -458,6 +458,19 @@ switchcases = {
 def provide_active_sessions():
     return {"keyword" : "ACTIVE_SESSIONS", "data" : {"amount" : len(active_sessions)}}
 
+def successful_days(name):
+    user = db.users.find_one({"name": name})
+    days = []
+    if ("successfull_days" in user):
+        for flashedge in user["flashedges"]:
+            for response in flashedge["responses"]:
+                if (datetime.date.fromtimestamp(response["start"]) == datetime.date(2016,5,18)
+                        and datetime.date(2016,5,18) not in days): days.append(datetime.date(2016,5,18))
+        if (user["name"] == "iliaszeryouh" and datetime.date(2016,5,18) not in days): days.append(datetime.date(2016,5,18))
+        for day in user["successfull_days"]:
+            if (datetime.date.fromtimestamp(day) not in days): days.append(datetime.date.fromtimestamp(day))
+    return len(days)
+
 # Receives messages from a client, parses the json file to an object, passes them to consumer() and sends the result back to the client
 async def handler(websocket, path):
     try:
@@ -483,6 +496,13 @@ async def handler(websocket, path):
         if (len(user["tests"]) < 1):
             await websocket.send(json.dumps(test(loginmsg["data"])))
             add_test(json.loads(await websocket.recv())["data"], loginmsg["data"]["name"])
+        if (successful_days(loginmsg["data"]["name"]) > 5):
+            if (len(user["tests"]) < 2):
+                await websocket.send(json.dumps(test(loginmsg["data"])))
+                add_test(json.loads(await websocket.recv())["data"], loginmsg["data"]["name"])
+            if ("questionnaire" not in user):
+                await websocket.send(json.dumps(questionnaire(loginmsg["data"])))
+                add_questionnaire(json.loads(await websocket.recv())["data"], loginmsg["data"]["name"])
         sessions = db.users.find_one({"name" : loginmsg["data"]["name"]})["sessions"]
         date = datetime.datetime.fromtimestamp(0)
         for session in sessions:

@@ -6,8 +6,8 @@ db = MongoClient().flashmap
 
 i = 0
 for user in db.users.find():
-    if (not user["flashedges"] == [] and not user["name"].startswith("test")):
-        if ("successfull_days" in user):
+    if (not user["flashedges"] == []):
+        if ("successfull_days" in user and not user["name"].startswith("test")):
             days = []
             for flashedge in user["flashedges"]:
                 for response in flashedge["responses"]:
