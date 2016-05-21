@@ -427,7 +427,7 @@ function learn() {
 
 function done_learning(data, successful_days) {
     if (data.source != "") {
-        if (successful_days < 6) document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag, en je hebt nog "+ (6 - successful_days).toString() +" te gaan. Als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
+        if (successful_days < 6) document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag, en je hebt nog "+ (6 - successful_days).toString() +" dagen te gaan. Als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
         else if (successful_days == 6) document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag, kom morgen terug voor de laatste kennistoets en de enquete. Als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
         else document.getElementById(cont).innerHTTML = document.getElementById(cont).innerHTML = "<p>Er zijn geen flashcards meer behorende tot de paragrafen die je gelezen hebt. Je bent daarmee klaar voor vandaag. Als je paragraaf " + data.source + " gelezen kun je verder met de volgende flashcards.</p><a href='#' onclick='confirm_source(\"" + data.source + "\")'> Verder </a>";
     }
