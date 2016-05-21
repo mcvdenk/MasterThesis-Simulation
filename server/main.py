@@ -117,11 +117,11 @@ def questionnaire(data):
                 for item in part[key]:
                     formulation = random.choice(formulations)
                     useful1.append({"id": item["id"], "formulation": formulation, "item": item[formulation]})
-                random.shuffle(useful1)
                 useful2 = []
                 for item in part[key]:
                     formulation = formulations[1 - formulations.index(useful1[int(item["id"])]["formulation"])]
                     useful2.append({"id": item["id"], "formulation": formulation, "item": item[formulation]})
+                random.shuffle(useful1)
                 random.shuffle(useful2)
                 useful_items = useful1 + useful2
             if (key == "perceived_ease_of_use"):
@@ -129,14 +129,21 @@ def questionnaire(data):
                 for item in part[key]:
                     formulation = random.choice(formulations)
                     ease1.append({"id": item["id"], "formulation": formulation, "item": item[formulation]})
-                random.shuffle(ease1)
                 ease2 = []
                 for item in part[key]:
                     formulation = formulations[1 - formulations.index(ease1[int(item["id"])]["formulation"])]
                     ease2.append({"id": item["id"], "formulation": formulation, "item": item[formulation]})
+                random.shuffle(ease1)
                 random.shuffle(ease2)
                 ease_items = ease1 + ease2
     return {"keyword" : "QUESTIONNAIRE-REQUEST", "data": {"perceived_usefulness" : useful_items, "perceived_ease_of_use" : ease_items}}
+
+def add_questionnaire(data, name):
+    db.logs.insert_one({str(math.floor(time.time())) : data})
+    db.users.update(
+        {"name" : name},
+        { "questionnaire" : data }
+    )
 
 def provide_learned_items(data, name):
     msg = {"keyword" : "", "data" : {}}
@@ -226,7 +233,7 @@ def provide_flashcard(data, name):
 def new_flashcard(name):
     #TODO: check prerequisites
     i = len(db.users.find_one({"name": name})["flashedges"])
-    if (i > len(db.fcards.find_one()["flashcards"]) - 1):
+    if (i > len(db.fcards.find_one()["flashcards"])):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}}
     card = db.fcards.find_one()["flashcards"][i]
@@ -264,7 +271,7 @@ def new_flashedge(name):
     user = db.users.find_one({"name": name})
     edges = user["flashedges"]
     sources = user["read_sources"]
-    if (len(edges) > len(db.cmap.find_one()["edges"]) - 1):
+    if (len(edges) > len(db.cmap.find_one()["edges"])):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}}
     i = len(edges)

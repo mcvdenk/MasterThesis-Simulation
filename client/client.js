@@ -193,39 +193,67 @@ function questionnaire(data) {
     document.getElementById("instructions").innerHTML = "<p>Hieronder staan stellingen waarbij je aan kunt geven of je het er mee eens of oneens bent. Dit is voor mij om te kunnen bepalen of je het flashcard systeem nuttig vond en makkelijk te gebruiken.</p>";
     container = document.getElementById(cont);
     container.innerHTML = "";
+    container_text = "";
+    var form = "";
     for (i = 0; i < data.perceived_usefulness.length; i++) {
-        var form = "+";
-        if (data.perceived_usefulness[i].formulation == "negative") form = "-";
-        container_text = " \
+        if (data.perceived_usefulness[i].formulation == "positive") form = "+";
+        else form = "-";
+        item_text = " \
             <h3>" + data.perceived_usefulness[i].item + "</h3> \
             <table style='text-align:center;'> \
                 <tr> \
                     <td>Zeer mee oneens</td><td>Mee oneens</td><td>Noch mee eens, <br />noch mee oneens</td><td>Mee eens</td><td>Zeer mee eens</td> \
                 </tr><tr>";
-        for (j=0; j < 5; j++) {
-            container_text += "<td><input type='radio' name='useful"+form+data.perceived_usefulness[i].id+"' value='"+j+"' /></td>";
+        for (j=-2; j <= 2; j++) {
+            item_text += "<td><input type='radio' class='useful' name='useful"+form+data.perceived_usefulness[i].id+"' value='"+j+"' /></td>";
         }
-        container_text += "</tr></table>";
-        container.innerHTML += container_text;
+        item_text += "</tr></table>";
+        container_text += item_text;
     }
     for (i = 0; i < data.perceived_ease_of_use.length; i++) {
-        var form = "+";
-        if (data.perceived_ease_of_use[i].formulation == "negative") form = "-";
-        container_text = " \
-                                <h3>" + data.perceived_ease_of_use[i].item + "</h3> \
-                                <table style='text-align:center;'> \
-                                    <tr> \
-                                        <td>Zeer mee oneens</td><td>Mee oneens</td><td>Noch mee eens, <br />noch mee oneens</td><td>Mee eens</td><td>Zeer mee eens</td> \
-                                    </tr><tr>";
-        for (j=0; j < 5; j++) {
-            container_text += "<td><input type='radio' name='ease"+form+data.perceived_ease_of_use[i].id+"' value='"+j+"' /></td>";
+        if (data.perceived_ease_of_use[i].formulation == "positive") form = "+";
+        else form = "-";
+        item_text = " \
+            <h3>" + data.perceived_ease_of_use[i].item + "</h3> \
+            <table style='text-align:center;'> \
+                <tr> \
+                    <td>Zeer mee oneens</td><td>Mee oneens</td><td>Noch mee eens, <br />noch mee oneens</td><td>Mee eens</td><td>Zeer mee eens</td> \
+                </tr><tr>";
+        for (j=-2; j <= 2; j++) {
+            item_text += "<td><input type='radio' class='ease' name='ease"+form+data.perceived_ease_of_use[i].id+"' value='"+j+"' /></td>";
         }
-        container_text += "</tr></table>";
-        container.innerHTML += container_text;
+        item_text += "</tr></table>"
+        container_text += item_text;
     }
+    container_text += " \
+        <h3>Wat vond je goed aan het flashcard systeem?</h3> \
+        <textarea rows='4' cols='50' class='questionnaire' name='goed' id='goed'></textarea> \
+        <h3>Wat zijn eventuele verbeteringen die gemaakt zouden kunnen worden?</h3> \
+        <textarea rows='4' cols='50' class='questionnaire' name='kan_beter' id='kan_beter'></textarea>";
+    container_text += "<br /><a href='#' onClick='send_questionnaire_results()'>Verstuur</a>";
+    container.innerHTML = container_text;
 }
 
 function send_questionnaire_results() {
+    msg = {keyword: "QUESTIONNAIRE-RESPONSE", data: {perceived_usefulness : { positive : [], negative : []}, perceived_ease_of_use : { positive : [], negative : []}, goed: "", kan_beter: ""}}
+    var useful = document.getElementsByClassName('useful');
+    for (i = 0; i < useful.length; i++) {
+        if (useful[i].checked) {
+            if (useful[i].name.charAt(6) == '+') msg.data.perceived_usefulness.positive.push({id: useful[i].name.slice(7), value: useful[i].value});
+            else msg.data.perceived_usefulness.negative.push({id: useful[i].name.slice(7), value: useful[i].value});
+        }    
+    }
+    var ease = document.getElementsByClassName('ease');
+    for (i = 0; i < ease.length; i++) {
+        if (ease[i].checked) {
+            console.log(ease[i].name);
+            if (ease[i].name.charAt(4) == '+') msg.data.perceived_ease_of_use.positive.push({id: ease[i].name.slice(5), value: ease[i].value});
+            else msg.data.perceived_ease_of_use.negative.push({id: ease[i].name.slice(5), value: ease[i].value});
+        }    
+    }
+    msg.data.goed = document.getElementById("goed").value;
+    msg.data.kan_beter = document.getElementById("kan_beter").value;
+    console.log(JSON.stringify(msg));
 }
 
 function show_map(map) {
