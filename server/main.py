@@ -142,7 +142,7 @@ def add_questionnaire(data, name):
     db.logs.insert_one({str(math.floor(time.time())) : data})
     db.users.update(
         {"name" : name},
-        { "questionnaire" : data }
+        { "$set" : { "questionnaire" : data }}
     )
 
 def provide_learned_items(data, name):
