@@ -154,7 +154,6 @@ def provide_learned_items(data, name):
             if (response["correct"]): exp += 1
             else: exp = 0
         flashedge["exponent"] = exp
-        flashedge["due"] = flashedge["due"] > time.time()
     if (db.users.find_one({"name" : name})["flashmap_condition"]):
         msg["keyword"] = "LEARNED_FLASHMAP-RESPONSE"
         cmap = {"edges" : [], "nodes" : []}
