@@ -1,6 +1,6 @@
 var uname = "";
 var cont = "mycontainer";
-var ws = new WebSocket("ws://www.mvdenk.com:5679");
+var ws = new WebSocket("ws://www.mvdenk.com:5678");
 var network
 var nodes
 var edges
@@ -120,6 +120,7 @@ ws.onmessage = function (event) {
 }
 
 function ask_descriptives() {
+    document.getElementById("panel").innerHTML = "";
     document.getElementById("instructions").innerHTML = "Voer hier je algemene gegevens in";
     document.getElementById(cont).innerHTML = " \
         <h3> Wat is je geslacht? </h3> \
@@ -164,6 +165,7 @@ function send_descriptives() {
 }
 
 function test(data) {
+    document.getElementById("panel").innerHTML = "";
     document.getElementById("instructions").innerHTML = "<p> Probeer de onderstaande toets zo goed mogelijk in te vullen. Je mag vragen overslaan als je de antwoorden niet weet. Als dit de eerste toets is en je hebt de papieren versie al gemaakt kun je de toets overslaan door hem leeg te versturen. </p>"
     document.getElementById(cont).innerHTML = ""
     for (i = 0; i < data.flashcards.length; i++) {
@@ -193,6 +195,7 @@ function send_test_results() {
 }
 
 function questionnaire(data) {
+    document.getElementById("panel").innerHTML = "";
     document.getElementById("instructions").innerHTML = "<p>Hieronder staan stellingen waarbij je aan kunt geven of je het er mee eens of oneens bent. Dit is voor mij om te kunnen bepalen of je het flashcard systeem nuttig vond en makkelijk te gebruiken.</p>";
     container = document.getElementById(cont);
     container.innerHTML = "";
@@ -305,10 +308,12 @@ function show_menu() {
 }
 
 function colourise_progress(data) {
+    document.getElementById("panel").innerHTML = "";
     return data
 }
 
 function show_flashcard_progress(data) {
+    document.getElementById("panel").innerHTML = "";
     document.getElementById(cont).innerHTML = " \
         <p> Klaar om nu geleerd te worden: " + data.due +" </p> \
         <p> Nog niet gezien: " + data.not_seen + " </p> \
@@ -451,11 +456,13 @@ function confirm_source(source_) {
 
 function help() {
     document.getElementById("instructions").innerHTML = "";
+    document.getElementById("panel").innerHTML = "";
     document.getElementById(cont).innerHTML = "<p>Dankjewel voor het meedoen aan het experiment. Hier kun je iedere dag met de flashcards oefenen om je zo goed voor te kunnen bereiden op de toets over Nederlandse literatuur uit de 17de eeuw.</p><p>Het flashcard systeem is het meest effectief als je iedere dag tijd eraan besteed. Bovendien krijg je de waardebon alleen als je iedere dag het systeem gebruikt voor 15 minuten, of totdat de flashcards voor die dag op zijn. Op het moment dat je op een bepaalde dag klaar bent krijg je vanzelf een popup die aangeeft dat je klaar bent voor vandaag.</p>";
 }
 
 function debriefing() {
     document.getElementById("instructions").innerHTML = "";
+    document.getElementById("panel").innerHTML = "";
     document.getElementById(cont).innerHTML = "<p>Hartelijk bedankt voor het meedoen aan het onderzoek, en gefeliciteerd met de waardebon. Je zult deze binnenkort van je leraar ontvangen als je de toezeggingsverklaring hebt ingeleverd. Verder staat het je vrij om gebruik te blijven maken van het flashcard systeem, het is goed om de kennis die je geleerd hebt vers te houden tot de toets. De resultaten van dit onderzoek kun je op verzoek ter inzage bij mij aanvragen. Als je net je email adres hebt ingevuld krijg je binnenkort een mail om een datum in te plannen voor het interview. Verder wens ik je nog veel succes voor dit vak. Als je nog vragen hebt kun je me altijd nog een email sturen (mvdenk@gmail.com).</p>";
 }
 

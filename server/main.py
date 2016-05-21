@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5679
+PORT = 5678
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
