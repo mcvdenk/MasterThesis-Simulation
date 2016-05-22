@@ -45,7 +45,7 @@ var fc_id = "";
 var logged_in = false;
 
 ws.onopen = function (event) {
-    document.getElementById("instructions").innerHTML = "<p>Je kunt hier inloggen door een al bestaande gebruikersnaam in te vullen, of een nieuw account aanmaken door een nieuwe gebruikersnaam in te vullen. Als dit niet lukt, stuur dan een email naar <a href='mailto:mvdenk@gmail.com'>mvdenk@gmail.com</a>.</p>";
+    document.getElementById("instructions").innerHTML = "<p>Je kunt hier inloggen door een al bestaande gebruikersnaam in te vullen, of een nieuw account aanmaken door een zelbedachte, nieuwe gebruikersnaam in te vullen. Als dit niet lukt, stuur dan een email naar <a href='mailto:mvdenk@gmail.com'>mvdenk@gmail.com</a>.</p>";
     document.getElementById(cont).style.visibility = "visible";
     document.getElementById("username").focus();
 }
@@ -121,7 +121,7 @@ ws.onmessage = function (event) {
 
 function ask_descriptives() {
     document.getElementById("panel").innerHTML = "";
-    document.getElementById("instructions").innerHTML = "Voer hier je algemene gegevens in";
+    document.getElementById("instructions").innerHTML = "Voer hier je algemene gegevens in. Ben je je code kwijt? Stuur dan even een email met je gebruikersnaam en echte naam naar mvdenk@gmail.com";
     document.getElementById(cont).innerHTML = " \
         <h3> Wat is je geslacht? </h3> \
         <table> \

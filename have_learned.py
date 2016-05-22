@@ -16,7 +16,8 @@ for user in db.users.find():
             if (user["name"] == "iliaszeryouh" and datetime.date(2016,5,18) not in days): days.append(datetime.date(2016,5,18))
             for day in user["successfull_days"]:
                 if (datetime.date.fromtimestamp(day) not in days): days.append(datetime.date.fromtimestamp(day))
-            print(user["name"] + " " + str(user["flashmap_condition"]))
-            print(len(days))
-            i += 1
+            if(len(days) > 1):
+                print(user["name"] + " " + str(user["flashmap_condition"]))
+                print(len(days))
+                i += 1
 print(i)
