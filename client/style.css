@@ -39,6 +39,12 @@ html, body {
     text-align: left;
 }
 
+hr {
+    max-width: 30em;
+    margin: auto;
+    margin-top: 1em;
+}
+
 header {
     text-align: center;
     margin-top: -100px;
