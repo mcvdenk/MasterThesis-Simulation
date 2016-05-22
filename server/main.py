@@ -456,7 +456,7 @@ switchcases = {
 }
 
 def provide_active_sessions():
-    return {"keyword" : "ACTIVE_SESSIONS", "data" : {"amount" : len(active_sessions)}}
+    return {"keyword" : "ACTIVE_SESSIONS", "data" : active_sessions}
 
 def successful_days(name):
     user = db.users.find_one({"name": name})
