@@ -3,6 +3,10 @@ import time
 db = MongoClient().flashmap
 
 
-for user in db.users.find():
-    if ("17" in [fe["id"] for fe in user["flashedges"]] and not "16" in [d["id"] for d in user["flashedges"]]):
-        db.users.update({"name": user["name"]}, {"$push": {"flashedges": {"id": "16", "due": time.time(), "responses": []}}})
+fes = []
+for fe in db.users.find_one({"name": "test3"})["flashedges"]:
+    if (fe["id"] not in fes): fes.append(fe["id"])
+    else: print(fe["id"])
+
+print(len(db.users.find_one({"name": "test3"})["flashedges"]))
+print(len(db.cmap.find_one()["edges"]))

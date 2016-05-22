@@ -10,7 +10,7 @@ import json
 from pymongo import MongoClient
 
 PATH = 'mvdenk.com'
-PORT = 5678
+PORT = 5679
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
@@ -233,7 +233,7 @@ def provide_flashcard(data, name):
 def new_flashcard(name):
     #TODO: check prerequisites
     i = len(db.users.find_one({"name": name})["flashedges"])
-    if (i > len(db.fcards.find_one()["flashcards"])):
+    if (i >= len(db.fcards.find_one()["flashcards"])):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}, "successful_days": successful_days(name)}
     card = db.fcards.find_one()["flashcards"][i]
@@ -271,7 +271,7 @@ def new_flashedge(name):
     user = db.users.find_one({"name": name})
     edges = user["flashedges"]
     sources = user["read_sources"]
-    if (len(edges) > len(db.cmap.find_one()["edges"])):
+    if (len(edges) >= len(db.cmap.find_one()["edges"])):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
         return {"keyword": "NO_MORE_FLASHEDGES", "data": {"source": ""}, "successful_days": successful_days(name)}
     i = len(edges)
@@ -320,7 +320,7 @@ def build_partial_map(flashedge, user):
     for edge in cmap["edges"]:
         edge["learning"] = edge == flashedge
     for edge in edges:
-        if (flashedge["from"] == edge["from"] and flashedge["label"] == edge["label"] and not edge["id"] == flashedge["id"] and edge["source"] in user["read_sources"]):
+        if (flashedge["from"] == edge["from"] and flashedge["label"] == edge["label"] and not edge["id"] in [d["id"] for d in cmap["edges"]] and edge["source"] in user["read_sources"]):
             edge["learning"] = True
             for fe in user["flashedges"]:
                 if (fe["id"] == edge["id"] and fe["due"] > time.time()):
