@@ -463,7 +463,11 @@ function help() {
 function debriefing() {
     document.getElementById("instructions").innerHTML = "";
     document.getElementById("panel").innerHTML = "";
-    document.getElementById(cont).innerHTML = "<p>Hartelijk bedankt voor het meedoen aan het onderzoek, en gefeliciteerd met de waardebon. Je zult deze binnenkort van je leraar ontvangen als je de toezeggingsverklaring hebt ingeleverd. Verder staat het je vrij om gebruik te blijven maken van het flashcard systeem, het is goed om de kennis die je geleerd hebt vers te houden tot de toets. De resultaten van dit onderzoek kun je op verzoek ter inzage bij mij aanvragen. Als je net je email adres hebt ingevuld krijg je binnenkort een mail om een datum in te plannen voor het interview. Verder wens ik je nog veel succes voor dit vak. Als je nog vragen hebt kun je me altijd nog een email sturen (mvdenk@gmail.com).</p>";
+    document.getElementById(cont).innerHTML = "<p>Hartelijk bedankt voor het meedoen aan het onderzoek, en gefeliciteerd met de waardebon. Je zult deze binnenkort van je leraar ontvangen als je de toezeggingsverklaring hebt ingeleverd. Verder staat het je vrij om gebruik te blijven maken van het flashcard systeem, het is goed om de kennis die je geleerd hebt vers te houden tot de toets. De resultaten van dit onderzoek kun je op verzoek ter inzage bij mij aanvragen. Als je net je email adres hebt ingevuld krijg je binnenkort een mail om een datum in te plannen voor het interview. Verder wens ik je nog veel succes voor dit vak. Als je nog vragen hebt kun je me altijd nog een email sturen (mvdenk@gmail.com).</p><a href='#' onclick='acc_debriefing()'>Gelezen</a>";
+}
+
+function acc_debriefing() {
+    ws.send(JSON.stringify({keyword: "DEBRIEFING-RESPONSE", data: {}}));
 }
 
 function logout() {
