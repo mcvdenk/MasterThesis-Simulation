@@ -503,7 +503,7 @@ async def handler(websocket, path):
             if ("questionnaire" not in user):
                 await websocket.send(json.dumps(questionnaire(loginmsg["data"])))
                 add_questionnaire(json.loads(await websocket.recv())["data"], loginmsg["data"]["name"])
-                await websocket.send(json.dumps({"keyword": "DEBRIEFING", data: {}}))
+                await websocket.send(json.dumps({"keyword": "DEBRIEFING", "data": {}}))
                 await websocket.recv()
         sessions = db.users.find_one({"name" : loginmsg["data"]["name"]})["sessions"]
         date = datetime.datetime.fromtimestamp(0)
