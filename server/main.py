@@ -19,7 +19,6 @@ SOURCES = []
 for edge in db.cmap.find_one()["edges"]:
     if (edge["source"] not in SOURCES): SOURCES.append(edge["source"])
 SOURCES.sort()
-logged_in_users = 0
 
 # Calls the corresponding function to the switchcases dict. When the keyword is invalid, it returns a FAILURE response
 def consumer(recvmessage):
@@ -457,7 +456,7 @@ switchcases = {
 }
 
 def provide_active_sessions():
-    return {"keyword" : "ACTIVE_SESSIONS", "data" : {"sessions": active_sessions, "number": logged_in_users}}
+    return {"keyword" : "ACTIVE_SESSIONS", "data" : len(active_sessions)}
 
 def successful_days(name):
     user = db.users.find_one({"name": name})
@@ -474,7 +473,6 @@ def successful_days(name):
 
 # Receives messages from a client, parses the json file to an object, passes them to consumer() and sends the result back to the client
 async def handler(websocket, path):
-    logged_in_users += 1
     try:
         loginmsg = json.loads(await websocket.recv())
         if (loginmsg["data"]["name"] == "active_sessions"):
@@ -527,7 +525,6 @@ async def handler(websocket, path):
             dec_sendmsg.update({"user": dec_recvmsg["user"]})
             db.logs.insert_one({str(math.floor(time.time())) : dec_sendmsg})
         except websockets.exceptions.ConnectionClosed:
-            logged_in_users += -1
             db.users.update(
                 {"name" : active_sessions[websocket]["name"], "sessions.id" : active_sessions[websocket]["mongosession"]},
                 {"$set": {"sessions.$.end" : time.time()}}
