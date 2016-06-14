@@ -1,0 +1,121 @@
+{
+    "id":"0",
+    "question":"Leg uit waarom regenten baat hadden bij het financieren van kunst en literatuur in de Nederlanden.",
+    "source":"13.2",
+    "response_model": [
+        "Legt uit dat deze bijdroegen aan de stedelijke cultuur of gedragscode",
+        "Legt uit dat er anders onmatig gedrag ontstond",
+        "Noemt voorbeelden van onmatig gedrag (overmatig drankgebruik, ongeremde seksualiteit)",
+        "Legt uit wie de regenten waren",
+        "Noemt dat de winst van het toneel naar liefdadige instellingen ging"
+    ]
+}
+{
+    "id":"1",
+    "question":"Welk maatschappelijk probleem probeerde de lyriek op te lossen?",
+    "source":"13.2",
+    "response_model": [
+        "Noemt de opkomst van galante jongeren uit de bovenlaag",
+        "Noemt de gouden eeuw",
+        "Noemt dat de calvinisten een strenge moraal hadden ten opzichte van voorechtelijk geslachtsverkeer",
+        "Noemt dat jongeren met deze moraal moesten leven",
+        "Legt uit hoe de lyriek de jongeren onderwees in de verhouding tussen platonische en zinnelijke liefde"
+    ]
+}
+{
+    "id":"2",
+    "question":"Waarom stelde het petrarkisme de liefdesklacht centraal? Gebruik de literaire beelden en conventies in je antwoord.",
+    "source":"13.4.2",
+    "response_model": [
+        "Noemt de paradox",
+        "Noemt de antithese",
+        "Noemt dat de liefdesklacht gericht was aan een ideaalbeeld",
+        "Noemt dat dit ideaalbeeld onbereikbaar was",
+        "Legt uit dat de onbereikbaarheid de liefde juist beter maakt, omdat de platonische liefde belangrijker is dan de lichamelijke liefde",
+        "Legt uit dat dit paradoxaal is"
+    ]
+}
+{
+    "id":"3",
+    "question":"Leg uit hoe de Klassieke Oudheid opnieuw tot leven gebracht werd in de renaissance.",
+    "source":"13.3.2",
+    "response_model": [
+        "Noemt dat de verschillende klassieke genres opnieuw toegepast werden",
+        "Noemt dat de klassieke ideeen opnieuw bediscussieerd werden",
+        "Noemt dat de thema's uit de klassieke mythologie opnieuw werden gebruikt",
+        "Legt uit dat de klassieke werken eerst vertaald werden (translatio)",
+        "Legt uit dat deze werken nagebootst werden (imitatio)",
+        "Legt uit dat deze werken overtroffen moesten worden (aemulatio)"
+    ]
+}
+{
+    "id":"4",
+    "question":"Hoe maakten de humanisten onderscheid tussen mens en dier?",
+    "source":"13.3.3",
+    "response_model": [
+        "Noemt dat mensen zich onderscheidden door taal te gebruiken, waarbij dieren dat niet deden",
+        "Noemt hierbij grammatica",
+        "Noemt hierbij retorica",
+        "Noemt dat mensen zich onderscheidden door kennis te hebben over goed en kwaad, terwijl dieren dit niet hadden (en handelden op basis van instinct)",
+        "Noemt dat deze kennis geleverd werd door poezie",
+        "Noemt dat deze kennis geleverd werd door voorbeelden uit de geschiedenis"
+    ]
+}
+{
+    "id":"5",
+    "question":"Wat zijn de verschillen tussen een tragedie en een komedie?",
+    "source":"13.4.4",
+    "response_model": [
+        "Noemt dat een tragedie treurig is en een komedie vrolijk",
+        "Noemt dat een tragedie hooggeplaatste personages bevat en een komedie laaggeplaatste personages",
+        "Noemt dat een tragedie de ondergang van het hoofdpersonage toont, terwijl de komedie eindigt met een happy end"
+    ]
+}
+{
+    "id":"6",
+    "question":"Waarom maakte de emblematiek gebruik van analogieën?",
+    "source":"13.4.1",
+    "response_model": [
+        "Noemt dat volgens de calvinisten de wereld gods schepping is",
+        "Noemt dat daarom parallellen nooit toevallig kunnen zijn",
+        "Legt uit dat daarom analogieen belangrijk waren in de emblematiek"
+    ]
+}
+{
+    "id":"7",
+    "question":"Leg uit tegen welke historische gebeurtenis het verzet van de Nederlanden gedurende de Tachtigjarige Oorlog gericht was.",
+    "source":"13.1",
+    "response_model": [
+        "Noemt dat het verzet tegen Spanje gericht was",
+        "Noemt Karel V",
+        "Noemt Fillips II",
+        "Noemt de centralisatie",
+        "Noemt centralisatie van katholicisme",
+        "Noemt de geloofsvervolging",
+        "Noemt dat protestantisme of calvinisme vervolgd werd"
+    ]
+}
+{
+    "id":"8",
+    "question":"Leg uit wat een volta is.",
+    "source":"13.4.3",
+    "response_model": [
+        "Noemt dat de volta zich tussen het octaaf en het sextet bevindt",
+        "Legt uit dat de volta en dramatische wending is tussen deze twee delen"
+    ]
+}
+{
+    "id":"9",
+    "question":"Leg uit wat de Rederijkerskamers waren en wat hun functies waren.",
+    "source":"13.3.1",
+    "response_model": [
+        "Noemt dat de Rederijkerskamers uit vooraanstaande dichters bestond",
+        "Legt uit dat ze een opinierende rol moesten hebben",
+        "Noemt hierbij dat deze opinies over de renaissance gingen",
+        "Noemt hierbij dat deze opinies over het humanisme gingen",
+        "Noemt hierbij dat deze opinies over het protestantisme gingen",
+        "Legt uit dat deze rol inhield dat ze moesten beleren",
+        "Legt uit dat deze rol inhield dat ze moesten moraliseren",
+        "Legt uit dat deze rol inhield dat ze moesten kritiek moesten leveren"
+    ]
+}

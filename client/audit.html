@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Flashmaps </title>
+        <link rel="stylesheet" type="text/css" href="vis/dist/vis.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="vis/dist/vis.js"></script>
+        <script src="audit.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <header>
+                <nav style="visibility:hidden">
+                    <a href="#" onclick="help()">Help</a>
+                    <a href="#" onclick="view_learned()">Show learned items</a>
+                    <a href="#" onclick="learn()">Start learning</a>
+                    <a href="#" onclick="logout()">Log out</a>
+                    <a href="mailto:mvdenk@gmail.com">mvdenk@gmail.com</a>
+                </nav>
+                <div id="instructions"> <p>Helaas werkt de applicatie niet in deze browser, je hebt een modernere browser nodig.</p> </div>
+            </header>
+            <div id="mycontainer" style="visibility:hidden">
+                <h3> Login </h3>
+                Username:
+                <input id="username" type="text" name="username"
+                    onkeydown="if (event.keyCode == 13) authenticate()" />
+                <a href="#" onClick="authenticate()">Log in</a>
+            </div>
+            <footer>
+                <div id="panel"> </div>
+            </footer>
+        </div>
+    </body>
+</html>
