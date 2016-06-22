@@ -1,0 +1,117 @@
+===== The total scores of the individual respondents on the pretest and the posttest =====
+
+Flashcard condition : dict_values([10, 2, 0, 9, 10, 2, 9, 7, 6, 0, 18, 7, 10])
+Flashmap condition  : dict_values([6, 2, 10, 8, 11, 7, 0, 9, 0, 6, 7, 5])
+
+
+===== Statistics on the reproduction questions of the test =====
+
+=== Flashcard condition ===
+
+Pretest             : sample = 13, min =  0, max =  3, mean =  0.92, variance =  1.41, skew =  0.77, kurtosis = -0.96
+Posttest            : sample = 13, min =  0, max =  6, mean =  2.38, variance =  5.42, skew =  0.42, kurtosis = -1.35
+Mann-Whitney-U test : u-statistic = -2.016, p-value =  0.0551
+
+=== Flashmap condition ===
+
+Pretest             : sample = 12, min =  0, max =  1, mean =  0.50, variance =  0.27, skew =  0.00, kurtosis = -2.00
+Posttest            : sample = 12, min =  0, max =  7, mean =  3.17, variance =  4.88, skew =  0.20, kurtosis = -0.88
+Mann-Whitney-U test : u-statistic = -4.070, p-value =  0.0005
+
+=== Pre-test differences ===
+
+Mann-Whitney-U test : u-statistic =  1.136, p-value =  0.2678
+
+=== Post-test differences ===
+
+Mann-Whitney-U test : u-statistic = -0.860, p-value =  0.3988
+
+=== General pre- and posttests ===
+
+Pretest             : sample = 25, min =  0, max =  3, mean =  0.72, variance =  0.88, skew =  1.20, kurtosis =  0.56
+Posttest            : sample = 25, min =  0, max =  7, mean =  2.76, variance =  5.11, skew =  0.28, kurtosis = -1.16
+Mann-Whitney-U test : u-statistic = -4.170, p-value =  0.0001
+
+=== Learning gains ===
+
+Flashcard condition : sample = 13, min = -3, max =  6, mean =  1.46, variance =  7.10, skew =  0.42, kurtosis = -0.59
+Flashmap condition  : sample = 12, min =  0, max =  7, mean =  2.67, variance =  4.79, skew =  0.72, kurtosis = -0.44
+Total learning gain : sample = 25, min = -3, max =  7, mean =  2.04, variance =  6.12, skew =  0.34, kurtosis = -0.42
+
+Normality tests:
+Flashcard condition : z-statistic =  0.636, p-value =  0.7276
+Flashmap condition  : z-statistic =  1.802, p-value =  0.4062
+
+Welch's t-test      : t-statistic = -1.239, p-value =  0.2278
+Mann-Whitney-U test : u-statistic = -1.229, p-value =  0.2313
+
+
+===== Statistics on the explanation questions of the test =====
+
+=== Flashcard condition ===
+
+Pretest             : sample = 13, min =  0, max =  5, mean =  0.92, variance =  1.91, skew =  2.11, kurtosis =  3.98
+Posttest            : sample = 13, min =  0, max =  7, mean =  2.69, variance =  5.56, skew =  0.26, kurtosis = -0.98
+Mann-Whitney-U test : u-statistic = -2.333, p-value =  0.0283
+
+=== Flashmap condition ===
+
+Pretest             : sample = 12, min =  0, max =  6, mean =  2.25, variance =  4.75, skew =  0.66, kurtosis = -0.85
+Posttest            : sample = 12, min =  0, max =  6, mean =  1.75, variance =  3.84, skew =  0.97, kurtosis = -0.20
+Mann-Whitney-U test : u-statistic =  0.591, p-value =  0.5606
+
+=== Pre-test differences ===
+
+Mann-Whitney-U test : u-statistic = -1.833, p-value =  0.0797
+
+=== Post-test differences ===
+
+Mann-Whitney-U test : u-statistic =  1.081, p-value =  0.2908
+
+=== General pre- and posttests ===
+
+Pretest             : sample = 25, min =  0, max =  6, mean =  1.56, variance =  3.59, skew =  1.26, kurtosis =  0.42
+Posttest            : sample = 25, min =  0, max =  7, mean =  2.24, variance =  4.77, skew =  0.59, kurtosis = -0.77
+Mann-Whitney-U test : u-statistic = -1.176, p-value =  0.2455
+
+=== Learning gains ===
+
+Flashcard condition : sample = 13, min = -1, max =  5, mean =  1.77, variance =  5.53, skew =  0.09, kurtosis = -1.59
+Flashmap condition  : sample = 12, min = -4, max =  6, mean = -0.50, variance =  7.55, skew =  0.91, kurtosis =  0.74
+Total learning gain : sample = 25, min = -4, max =  6, mean =  0.68, variance =  7.56, skew =  0.27, kurtosis = -0.76
+
+Normality tests:
+Flashcard condition : z-statistic =  5.483, p-value =  0.0645
+Flashmap condition  : z-statistic =  4.829, p-value =  0.0894
+
+Welch's t-test      : t-statistic =  2.211, p-value =  0.0379
+Mann-Whitney-U test : u-statistic =  2.225, p-value =  0.0362
+
+
+===== Corrected statistics on the explanation questions of the test =====
+
+=== Average pre- and posttest score per test item ===
+
+0: 0.23076923076923078, 0.8
+1: 0.3333333333333333, 0.3333333333333333
+2: 0.0, 0.0
+3: 0.5, 1.5
+4: 0.14285714285714285, 1.2
+5: 0.8333333333333334, 0.6
+6: 0.2727272727272727, 0.0
+7: 0.5, 1.3333333333333333
+8: 0.0, 0.14285714285714285
+9: 0.2222222222222222, 1.8181818181818181
+
+=== Learning gains ===
+
+Flashcard condition : sample = 13, min = -5, max =  1, mean = -2.35, variance =  5.22, skew =  0.23, kurtosis = -0.87
+Flashmap condition  : sample = 12, min = -6, max =  0, mean = -3.50, variance =  4.75, skew =  0.25, kurtosis = -0.43
+Total learning gain : sample = 25, min = -6, max =  1, mean = -2.90, variance =  5.13, skew =  0.25, kurtosis = -0.59
+
+Normality tests:
+Flashcard condition : z-statistic =  0.441, p-value =  0.8022
+Flashmap condition  : z-statistic =  0.289, p-value =  0.8654
+
+Welch's t-test      : t-statistic =  1.291, p-value =  0.2097
+Mann-Whitney-U test : u-statistic =  1.288, p-value =  0.2105

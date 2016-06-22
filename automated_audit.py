@@ -22,7 +22,7 @@ for user in db.users.find():
                 if (not in_auto):
                     if (fcard["answer"] == ""):
                         print("User: " + user["name"] + ", Id: " + fcard["id"])
-                        db.audits.update({"name": "auto"}, {"$push": {"flashcards": {"name": user["name"], "id" : fcard["id"], "reponse_scores": []}}})
+                        db.audits.update({"name": "auto"}, {"$push": {"flashcards": {"name": user["name"], "id" : fcard["id"], "response_scores": []}}})
                     else:
                         resp_model = db.flashcards.find_one({"id": fcard["id"]})["response_model"]
                         full_answer = True
@@ -30,7 +30,7 @@ for user in db.users.find():
                             if (fcard["answer"].lower().find(resp.lower()) == -1): full_answer = False
                         if (full_answer):
                             print(fcard["answer"])
-                            db.audits.update({"name": "auto"}, {"$push": {"flashcards": {"name": user["name"], "id" : fcard["id"], "reponse_scores": resp_model}}})
+                            db.audits.update({"name": "auto"}, {"$push": {"flashcards": {"name": user["name"], "id" : fcard["id"], "response_scores": resp_model}}})
                 else: to_audit_flashcards += 1
             for item in test["items"]:
                 in_auto = False
@@ -41,7 +41,7 @@ for user in db.users.find():
                 if (not in_auto):
                     if (item["answer"] == ""):
                         print(item["answer"])
-                        db.audits.update({"name": "auto"}, {"$push": {"items": {"name": user["name"], "id" : item["id"], "reponse_scores": []}}})
+                        db.audits.update({"name": "auto"}, {"$push": {"items": {"name": user["name"], "id" : item["id"], "response_scores": []}}})
                 else: to_audit_items += 1
 print("To audit flashcards: " + str(to_audit_flashcards))
 print("To audit items: " + str(to_audit_items))

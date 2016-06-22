@@ -1,0 +1,17 @@
+=== Perceived usefulness ===
+
+Flashcard condition : sample = 14, min =  0, max =  2, mean =  0.68, variance =  0.32, skew =  0.42, kurtosis =  0.67
+Normality test      : z-statistic =  2.510, p-value =  0.2850
+Flashmap condition  : sample = 12, min =  0, max =  1, mean =  0.74, variance =  0.16, skew = -1.70, kurtosis =  2.32
+Normality test      : z-statistic =  13.937, p-value =  0.0009
+T-test              : t-statistic = -0.335, p-value =  0.7406
+Mann-Whitney-U test : u-statistic = -0.326, p-value =  0.7470
+
+=== Perceived ease of use ===
+
+Flashcard condition : sample = 14, min =  0, max =  1, mean =  0.61, variance =  0.24, skew = -0.57, kurtosis = -0.34
+Normality test      : z-statistic =  1.319, p-value =  0.5171
+Flashmap condition  : sample = 12, min =  0, max =  1, mean =  0.73, variance =  0.13, skew =  1.14, kurtosis =  0.94
+Normality test      : z-statistic =  6.671, p-value =  0.0356
+T-test              : t-statistic = -0.672, p-value =  0.5084
+Mann-Whitney-U test : u-statistic = -0.655, p-value =  0.5187

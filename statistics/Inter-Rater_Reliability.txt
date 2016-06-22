@@ -1,0 +1,14 @@
+=== General data ===
+
+Amount of rated flashcards         : 10
+Amount of rated items              : 12
+Granted by both                    : 10
+Only granted by the teacher        :  1
+Only granted by the researcher     :  3
+Granted by none                    : 58
+Total amount of possible responses : 72
+
+=== Inter-relater reliability ===
+
+Proportionate agreement            : 0.9444
+Cohen's kappa                      : 0.8003

@@ -36,7 +36,8 @@ def add_test(data, name):
     )
 
 def provide_item(data, name):
-    to_review_fcards = list(db.irrfc.find())
+    to_review_fcards = list(db.testfcards.find())
+    random.shuffle(to_review_fcards)
     for fcard in db.audits.find_one({"name": name})["flashcards"]:
         for fc in to_review_fcards:
             if (fcard["name"] == fc["name"] and fcard["id"] == fc["id"]): to_review_fcards.remove(fc)
@@ -44,7 +45,8 @@ def provide_item(data, name):
         del to_review_fcards[0]["_id"]
         to_review_fcards[0]["fcard"] = True
         return {"keyword": "ITEM-RESPONSE", "data": to_review_fcards[0]}
-    to_review_items = list(db.irritms.find())
+    to_review_items = list(db.testitms.find())
+    random.shuffle(to_review_items)
     for item in db.audits.find_one({"name": name})["items"]:
         for itm in to_review_items:
             if (item["name"] == itm["name"] and item["id"] == itm["id"]): to_review_items.remove(itm)
@@ -52,27 +54,7 @@ def provide_item(data, name):
         del to_review_items[0]["_id"]
         to_review_items[0]["fcard"] = False
         return {"keyword": "ITEM-RESPONSE", "data": to_review_items[0]}
-    if (name == "mieke_vennink"): return {"keyword": "NO_MORE_ITEMS", "data": {}}
-    else:
-        if (db.irrfcards.count() == db.audits.aggregate([{"$project": {"name": "mieke_vennink", "count": {"$size": "$flashcards"}}}])["count"]
-                and db.irritms.count() == db.audits.aggregate([{"$project": {"name": "mieke_vennink", "count": {"$size": "$items"}}}])["count"]):
-            to_review_fcards = list(db.testfcards.find())
-            for fcard in db.audits.find({"name": name})["flashcards"]:
-                for fc in to_review_fcards:
-                    if (fcard["name"] == fc["name"] and fcard["id"] == fc["id"]): to_review_fcards.remove(fc)
-            if (len(to_review_fcards)):
-                del to_review_fcards[0]["_id"]
-                to_review_fcards[0]["fcard"] = True
-                return {"keyword": "ITEM-RESPONSE", "data": to_review_fcards[0]}
-            to_review_items = list(db.testitms.find())
-            for item in db.audits.find({"name": name})["items"]:
-                for itm in to_review_items:
-                    if (item["name"] == itm["name"] and item["id"] == itm["id"]): to_review_items.remove(itm)
-            if (len(to_review_items)):
-                del to_review_items[0]["_id"]
-                to_review_items[0]["fcard"] = False
-                return {"keyword": "ITEM-RESPONSE", "data": to_review_items[0]}
-        else: return {"keyword": "WAIT_FOR_PEER", "data": {}}
+    return {"keyword": "NO_MORE_ITEMS", "data": {}}
 
 def add_item(data, name):
     fcard = data["fcard"]

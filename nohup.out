@@ -1,0 +1,263 @@
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 379, in validate_fm
+    return provide_learning(data, name)
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 379, in validate_fm
+    return provide_learning(data, name)
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 379, in validate_fm
+    return provide_learning(data, name)
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 379, in validate_fm
+    return provide_learning(data, name)
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 379, in validate_fm
+    return provide_learning(data, name)
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 379, in validate_fm
+    return provide_learning(data, name)
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 379, in validate_fm
+    return provide_learning(data, name)
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 202, in provide_learning
+    if (user["flashmap_condition"]): msg = provide_flashedges(data, name)
+  File "server/main.py", line 267, in provide_flashedges
+    return new_flashedge(name)
+  File "server/main.py", line 282, in new_flashedge
+    edge = db.cmap.find_one()["edges"][i]
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 198, in provide_learning
+    return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 198, in provide_learning
+    return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 198, in provide_learning
+    return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 198, in provide_learning
+    return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/main.py", line 522, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/main.py", line 25, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/main.py", line 198, in provide_learning
+    return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[len(user["read_sources"])]}}
+IndexError: list index out of range
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/audit.py", line 123, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/audit.py", line 23, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/audit.py", line 82, in add_item
+    return provide_item(data, name)
+  File "server/audit.py", line 57, in provide_item
+    if (db.irrfcards.count() == db.audits.aggregate([{"$project": {"name": "mieke_vennink", "count": {"$size": "$flashcards"}}}])["count"]
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/collection.py", line 1671, in aggregate
+    read_concern=self.read_concern)
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/collection.py", line 205, in _command
+    read_concern=read_concern)
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/pool.py", line 213, in command
+    read_concern)
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/network.py", line 99, in command
+    helpers._check_command_response(response_doc, None, allowable_errors)
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/helpers.py", line 196, in _check_command_response
+    raise OperationFailure(msg % errmsg, code, response)
+pymongo.errors.OperationFailure: FieldPath 'mieke_vennink' doesn't start with $
+Exception in connection handler
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/websockets/server.py", line 78, in handler
+    yield from self.ws_handler(self, path)
+  File "server/audit.py", line 123, in handler
+    dec_sendmsg = consumer(dec_recvmsg)
+  File "server/audit.py", line 23, in consumer
+    if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
+  File "server/audit.py", line 57, in provide_item
+    if (db.irrfcards.count() == db.audits.aggregate([{"$project": {"name": "mieke_vennink", "count": {"$size": "$flashcards"}}}])["count"]
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/collection.py", line 1671, in aggregate
+    read_concern=self.read_concern)
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/collection.py", line 205, in _command
+    read_concern=read_concern)
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/pool.py", line 213, in command
+    read_concern)
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/network.py", line 99, in command
+    helpers._check_command_response(response_doc, None, allowable_errors)
+  File "/usr/local/lib/python3.5/dist-packages/pymongo/helpers.py", line 196, in _check_command_response
+    raise OperationFailure(msg % errmsg, code, response)
+pymongo.errors.OperationFailure: FieldPath 'mieke_vennink' doesn't start with $

@@ -89,7 +89,7 @@ function show_item(data) {
         response_model += "<input type='checkbox' value='" + data.response_model[i] + "' />" + data.response_model[i] + "<br />";
     }
     document.getElementById(cont).innerHTML += response_model + "</p>";
-    document.getElementById("panel").innerHTML = "<a href='#' onClick='undo()'>Vorige</a><a href='#' onClick='send_score()'>Volgende</a>";
+    document.getElementById("panel").innerHTML = "<a href='#' onClick='send_score()'>Volgende</a>";
     current_name = data.name;
     current_id = data.id;
     current_isFcard = data.fcard;
