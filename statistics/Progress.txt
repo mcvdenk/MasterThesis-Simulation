@@ -1,0 +1,558 @@
+
+===== All users with at least one response =====
+
+=== Amounts of responses ===
+
+Flashcard condition:
+['597', '751', '369', '37', '19', '37', '22', '100', '298', '323', '803', '14', '1275', '514', '372', '711', '519', '117', '672', '699', '382', '70', '403', '480', '541', '39', '670', '483', '114', '381']
+Descriptives        : sample = 30, min =  14, max =  1275, mean =  393.73, variance =  304.71, skew =  0.65, kurtosis =  0.39
+Normality test      : z-statistic =  3.558, p-value =  0.1688
+
+Flashmap condition:
+['1421', '381', '5', '186', '1322', '513', '800', '2', '767', '78', '107', '1277', '722', '16', '16', '16', '1957', '666', '138', '156', '662', '1019', '1181', '720', '501', '848', '48', '112']
+Descriptives        : sample = 28, min =  2, max =  1957, mean =  558.46, variance =  529.41, skew =  0.80, kurtosis = -0.10
+Normality test      : z-statistic =  3.766, p-value =  0.1522
+
+Combined conditions:
+Descriptives        : sample = 58, min =  2, max =  1957, mean =  473.26, variance =  432.31, skew =  1.09, kurtosis =  1.13
+Normality test      : z-statistic =  13.563, p-value =  0.0011
+
+Differences:
+Welch's t-test      : t-statistic = -1.439, p-value =  0.1575
+Mann-Whitney-U test : u-statistic = -1.465, p-value =  0.1486
+
+=== Amounts of responses per item ===
+
+Flashcard condition:
+[' 5.147', ' 6.474', ' 3.181', ' 0.319', ' 0.164', ' 0.319', ' 0.190', ' 0.862', ' 2.569', ' 2.784', ' 6.922', ' 0.121', '10.991', ' 4.431', ' 3.207', ' 6.129', ' 4.474', ' 1.009', ' 5.793', ' 6.026', ' 3.293', ' 0.603', ' 3.474', ' 4.138', ' 4.664', ' 0.336', ' 5.776', ' 4.164', ' 0.983', ' 3.284']
+Descriptives        : sample = 30, min =  0, max =  10, mean =  3.39, variance =  2.63, skew =  0.65, kurtosis =  0.39
+Normality test      : z-statistic =  3.558, p-value =  0.1688
+
+Flashmap condition:
+[' 7.105', ' 1.905', ' 0.025', ' 0.930', ' 6.610', ' 2.565', ' 4.000', ' 0.010', ' 3.835', ' 0.390', ' 0.535', ' 6.385', ' 3.610', ' 0.080', ' 0.080', ' 0.080', ' 9.785', ' 3.330', ' 0.690', ' 0.780', ' 3.310', ' 5.095', ' 5.905', ' 3.600', ' 2.505', ' 4.240', ' 0.240', ' 0.560']
+Descriptives        : sample = 28, min =  0, max =  9, mean =  2.79, variance =  2.65, skew =  0.80, kurtosis = -0.10
+Normality test      : z-statistic =  3.766, p-value =  0.1522
+
+Combined conditions:
+Descriptives        : sample = 58, min =  0, max =  10, mean =  3.10, variance =  2.63, skew =  0.70, kurtosis =  0.11
+Normality test      : z-statistic =  5.349, p-value =  0.0689
+
+Differences:
+Welch's t-test      : t-statistic =  0.869, p-value =  0.3888
+Mann-Whitney-U test : u-statistic =  0.869, p-value =  0.3887
+
+=== Amounts of learned items ===
+
+Flashcard condition:
+['64', '93', '59', '11', '3', '11', '12', '24', '46', '93', '93', '11', '86', '86', '48', '93', '74', '33', '93', '76', '48', '23', '59', '80', '93', '12', '93', '68', '19', '88']
+Descriptives        : sample = 30, min =  3, max =  93, mean =  56.40, variance =  32.65, skew = -0.29, kurtosis = -1.46
+Normality test      : z-statistic =  14.713, p-value =  0.0006
+
+Flashmap condition:
+['163', '54', '3', '62', '188', '78', '121', '2', '104', '19', '19', '200', '77', '16', '16', '16', '199', '104', '35', '38', '83', '199', '193', '134', '109', '199', '16', '46']
+Descriptives        : sample = 28, min =  2, max =  200, mean =  89.04, variance =  70.53, skew =  0.43, kurtosis = -1.24
+Normality test      : z-statistic =  6.766, p-value =  0.0339
+
+Combined conditions:
+Descriptives        : sample = 58, min =  2, max =  200, mean =  72.16, variance =  56.30, skew =  0.90, kurtosis =  0.11
+Normality test      : z-statistic =  7.953, p-value =  0.0188
+
+Differences:
+Welch's t-test      : t-statistic = -2.235, p-value =  0.0315
+Mann-Whitney-U test : u-statistic = -2.286, p-value =  0.0260
+
+=== Ratios of learned items ===
+
+Flashcard condition:
+['0.5517', '0.8017', '0.5086', '0.0948', '0.0259', '0.0948', '0.1034', '0.2069', '0.3966', '0.8017', '0.8017', '0.0948', '0.7414', '0.7414', '0.4138', '0.8017', '0.6379', '0.2845', '0.8017', '0.6552', '0.4138', '0.1983', '0.5086', '0.6897', '0.8017', '0.1034', '0.8017', '0.5862', '0.1638', '0.7586']
+Descriptives        : sample = 30, min =  0, max =  0, mean =  0.49, variance =  0.28, skew = -0.29, kurtosis = -1.46
+Normality test      : z-statistic =  14.713, p-value =  0.0006
+
+Flashmap condition:
+['0.8150', '0.2700', '0.0150', '0.3100', '0.9400', '0.3900', '0.6050', '0.0100', '0.5200', '0.0950', '0.0950', '1.0000', '0.3850', '0.0800', '0.0800', '0.0800', '0.9950', '0.5200', '0.1750', '0.1900', '0.4150', '0.9950', '0.9650', '0.6700', '0.5450', '0.9950', '0.0800', '0.2300']
+Descriptives        : sample = 28, min =  0, max =  1, mean =  0.45, variance =  0.35, skew =  0.43, kurtosis = -1.24
+Normality test      : z-statistic =  6.766, p-value =  0.0339
+
+Combined conditions:
+Descriptives        : sample = 58, min =  0, max =  1, mean =  0.47, variance =  0.32, skew =  0.13, kurtosis = -1.32
+Normality test      : z-statistic =  24.347, p-value =  0.0000
+
+Differences:
+Welch's t-test      : t-statistic =  0.487, p-value =  0.6280
+Mann-Whitney-U test : u-statistic =  0.491, p-value =  0.6251
+
+=== Ratios of correct and total responses ===
+
+Flashcard condition:
+['0.5471', '0.7085', '0.4846', '0.0855', '0.0218', '0.0750', '0.1034', '0.1994', '0.3563', '0.8017', '0.6632', '0.0948', '0.5829', '0.6391', '0.3543', '0.6862', '0.5020', '0.2741', '0.7046', '0.5528', '0.3075', '0.1875', '0.4141', '0.5865', '0.7449', '0.0884', '0.6405', '0.5380', '0.1382', '0.7574']
+Descriptives        : sample = 30, min =  0, max =  0, mean =  0.43, variance =  0.25, skew = -0.21, kurtosis = -1.38
+Normality test      : z-statistic =  10.791, p-value =  0.0045
+
+Flashmap condition:
+['0.6564', '0.2344', '0.0050', '0.2904', '0.8605', '0.3724', '0.5423', '0.0050', '0.4225', '0.0950', '0.0612', '0.9978', '0.3205', '0.0800', '0.0800', '0.0800', '0.8378', '0.4700', '0.1609', '0.1876', '0.3275', '0.9831', '0.9266', '0.6523', '0.5450', '0.9644', '0.0800', '0.2300']
+Descriptives        : sample = 28, min =  0, max =  0, mean =  0.41, variance =  0.33, skew =  0.53, kurtosis = -1.08
+Normality test      : z-statistic =  4.731, p-value =  0.0939
+
+Combined conditions:
+Descriptives        : sample = 58, min =  0, max =  0, mean =  0.42, variance =  0.29, skew =  0.28, kurtosis = -1.06
+Normality test      : z-statistic =  9.415, p-value =  0.0090
+
+Differences:
+Welch's t-test      : t-statistic =  0.237, p-value =  0.8133
+Mann-Whitney-U test : u-statistic =  0.240, p-value =  0.8114
+
+=== Total progressions ===
+
+Flashcard condition:
+['586', '600', '329', '28', '16', '28', '22', '96', '265', '323', '605', '14', '883', '403', '172', '544', '359', '111', '505', '494', '239', '65', '299', '388', '481', '33', '453', '408', '54', '380']
+Descriptives        : sample = 30, min =  14, max =  883, mean =  306.10, variance =  228.46, skew =  0.35, kurtosis = -0.52
+Normality test      : z-statistic =  0.947, p-value =  0.6229
+
+Flashmap condition:
+['803', '276', '2', '174', '1171', '474', '526', '1', '515', '78', '49', '1264', '586', '16', '16', '16', '1324', '543', '128', '150', '385', '959', '981', '651', '501', '785', '48', '112']
+Descriptives        : sample = 28, min =  1, max =  1324, mean =  447.64, variance =  415.06, skew =  0.66, kurtosis = -0.70
+Normality test      : z-statistic =  3.050, p-value =  0.2176
+
+Combined conditions:
+Descriptives        : sample = 58, min =  1, max =  1324, mean =  374.43, variance =  336.53, skew =  0.97, kurtosis =  0.48
+Normality test      : z-statistic =  9.827, p-value =  0.0073
+
+Differences:
+Welch's t-test      : t-statistic = -1.593, p-value =  0.1187
+Mann-Whitney-U test : u-statistic = -1.623, p-value =  0.1101
+
+=== Average progression per item ===
+
+Flashcard condition:
+[' 5.052', ' 5.172', ' 2.836', ' 0.241', ' 0.138', ' 0.241', ' 0.190', ' 0.828', ' 2.284', ' 2.784', ' 5.216', ' 0.121', ' 7.612', ' 3.474', ' 1.483', ' 4.690', ' 3.095', ' 0.957', ' 4.353', ' 4.259', ' 2.060', ' 0.560', ' 2.578', ' 3.345', ' 4.147', ' 0.284', ' 3.905', ' 3.517', ' 0.466', ' 3.276']
+Descriptives        : sample = 30, min =  0, max =  7, mean =  2.64, variance =  1.97, skew =  0.35, kurtosis = -0.52
+Normality test      : z-statistic =  0.947, p-value =  0.6229
+
+Flashmap condition:
+[' 4.015', ' 1.380', ' 0.010', ' 0.870', ' 5.855', ' 2.370', ' 2.630', ' 0.005', ' 2.575', ' 0.390', ' 0.245', ' 6.320', ' 2.930', ' 0.080', ' 0.080', ' 0.080', ' 6.620', ' 2.715', ' 0.640', ' 0.750', ' 1.925', ' 4.795', ' 4.905', ' 3.255', ' 2.505', ' 3.925', ' 0.240', ' 0.560']
+Descriptives        : sample = 28, min =  0, max =  6, mean =  2.24, variance =  2.08, skew =  0.66, kurtosis = -0.70
+Normality test      : z-statistic =  3.050, p-value =  0.2176
+
+Combined conditions:
+Descriptives        : sample = 58, min =  0, max =  7, mean =  2.45, variance =  2.01, skew =  0.49, kurtosis = -0.67
+Normality test      : z-statistic =  4.086, p-value =  0.1297
+
+Differences:
+Welch's t-test      : t-statistic =  0.753, p-value =  0.4547
+Mann-Whitney-U test : u-statistic =  0.754, p-value =  0.4539
+
+
+===== Only the users who finished both tests and the questionnary =====
+
+=== Amounts of responses ===
+
+Flashcard condition:
+['751', '369', '298', '803', '1275', '514', '372', '711', '519', '699', '382', '480', '541', '483']
+Descriptives        : sample = 14, min =  298, max =  1275, mean =  585.50, variance =  252.44, skew =  1.44, kurtosis =  1.95
+Normality test      : z-statistic =  11.328, p-value =  0.0035
+
+Flashmap condition:
+['1421', '381', '1322', '800', '767', '1277', '722', '1957', '666', '662', '1181', '720', '501']
+Descriptives        : sample = 13, min =  381, max =  1957, mean =  952.08, variance =  445.75, skew =  0.84, kurtosis = -0.10
+Normality test      : z-statistic =  2.835, p-value =  0.2423
+
+Combined conditions:
+Descriptives        : sample = 27, min =  298, max =  1957, mean =  762.00, variance =  398.00, skew =  1.29, kurtosis =  1.23
+Normality test      : z-statistic =  10.785, p-value =  0.0046
+
+Differences:
+Welch's t-test      : t-statistic = -2.603, p-value =  0.0176
+Mann-Whitney-U test : u-statistic = -2.655, p-value =  0.0136
+
+=== Amounts of responses per item ===
+
+Flashcard condition:
+[' 6.474', ' 3.181', ' 2.569', ' 6.922', '10.991', ' 4.431', ' 3.207', ' 6.129', ' 4.474', ' 6.026', ' 3.293', ' 4.138', ' 4.664', ' 4.164']
+Descriptives        : sample = 14, min =  2, max =  10, mean =  5.05, variance =  2.18, skew =  1.44, kurtosis =  1.95
+Normality test      : z-statistic =  11.328, p-value =  0.0035
+
+Flashmap condition:
+[' 7.105', ' 1.905', ' 6.610', ' 4.000', ' 3.835', ' 6.385', ' 3.610', ' 9.785', ' 3.330', ' 3.310', ' 5.905', ' 3.600', ' 2.505']
+Descriptives        : sample = 13, min =  1, max =  9, mean =  4.76, variance =  2.23, skew =  0.84, kurtosis = -0.10
+Normality test      : z-statistic =  2.835, p-value =  0.2423
+
+Combined conditions:
+Descriptives        : sample = 27, min =  1, max =  10, mean =  4.91, variance =  2.16, skew =  1.13, kurtosis =  0.99
+Normality test      : z-statistic =  8.687, p-value =  0.0130
+
+Differences:
+Welch's t-test      : t-statistic =  0.338, p-value =  0.7381
+Mann-Whitney-U test : u-statistic =  0.338, p-value =  0.7378
+
+=== Amounts of learned items ===
+
+Flashcard condition:
+['93', '59', '46', '93', '86', '86', '48', '93', '74', '76', '48', '80', '93', '68']
+Descriptives        : sample = 14, min =  46, max =  93, mean =  74.50, variance =  17.90, skew = -0.50, kurtosis = -1.22
+Normality test      : z-statistic =  2.651, p-value =  0.2656
+
+Flashmap condition:
+['163', '54', '188', '121', '104', '200', '77', '199', '104', '83', '193', '134', '109']
+Descriptives        : sample = 13, min =  54, max =  200, mean =  133.00, variance =  50.54, skew =  0.09, kurtosis = -1.36
+Normality test      : z-statistic =  2.566, p-value =  0.2772
+
+Combined conditions:
+Descriptives        : sample = 27, min =  46, max =  200, mean =  102.67, variance =  47.18, skew =  0.97, kurtosis = -0.17
+Normality test      : z-statistic =  4.974, p-value =  0.0832
+
+Differences:
+Welch's t-test      : t-statistic = -3.950, p-value =  0.0013
+Mann-Whitney-U test : u-statistic = -4.070, p-value =  0.0004
+
+=== Ratios of learned items ===
+
+Flashcard condition:
+['0.8017', '0.5086', '0.3966', '0.8017', '0.7414', '0.7414', '0.4138', '0.8017', '0.6379', '0.6552', '0.4138', '0.6897', '0.8017', '0.5862']
+Descriptives        : sample = 14, min =  0, max =  0, mean =  0.64, variance =  0.15, skew = -0.50, kurtosis = -1.22
+Normality test      : z-statistic =  2.651, p-value =  0.2656
+
+Flashmap condition:
+['0.8150', '0.2700', '0.9400', '0.6050', '0.5200', '1.0000', '0.3850', '0.9950', '0.5200', '0.4150', '0.9650', '0.6700', '0.5450']
+Descriptives        : sample = 13, min =  0, max =  1, mean =  0.66, variance =  0.25, skew =  0.09, kurtosis = -1.36
+Normality test      : z-statistic =  2.566, p-value =  0.2772
+
+Combined conditions:
+Descriptives        : sample = 27, min =  0, max =  1, mean =  0.65, variance =  0.20, skew =  0.05, kurtosis = -0.93
+Normality test      : z-statistic =  1.562, p-value =  0.4579
+
+Differences:
+Welch's t-test      : t-statistic = -0.280, p-value =  0.7825
+Mann-Whitney-U test : u-statistic = -0.285, p-value =  0.7781
+
+=== Ratios of correct and total responses ===
+
+Flashcard condition:
+['0.7085', '0.4846', '0.3563', '0.6632', '0.5829', '0.6391', '0.3543', '0.6862', '0.5020', '0.5528', '0.3075', '0.5865', '0.7449', '0.5380']
+Descriptives        : sample = 14, min =  0, max =  0, mean =  0.55, variance =  0.14, skew = -0.42, kurtosis = -0.91
+Normality test      : z-statistic =  1.059, p-value =  0.5889
+
+Flashmap condition:
+['0.6564', '0.2344', '0.8605', '0.5423', '0.4225', '0.9978', '0.3205', '0.8378', '0.4700', '0.3275', '0.9266', '0.6523', '0.5450']
+Descriptives        : sample = 13, min =  0, max =  0, mean =  0.60, variance =  0.25, skew =  0.18, kurtosis = -1.20
+Normality test      : z-statistic =  1.514, p-value =  0.4691
+
+Combined conditions:
+Descriptives        : sample = 27, min =  0, max =  0, mean =  0.57, variance =  0.20, skew =  0.29, kurtosis = -0.50
+Normality test      : z-statistic =  0.596, p-value =  0.7423
+
+Differences:
+Welch's t-test      : t-statistic = -0.629, p-value =  0.5368
+Mann-Whitney-U test : u-statistic = -0.642, p-value =  0.5265
+
+=== Total progressions ===
+
+Flashcard condition:
+['600', '329', '265', '605', '883', '403', '172', '544', '359', '494', '239', '388', '481', '408']
+Descriptives        : sample = 14, min =  172, max =  883, mean =  440.71, variance =  182.15, skew =  0.81, kurtosis =  0.60
+Normality test      : z-statistic =  4.035, p-value =  0.1330
+
+Flashmap condition:
+['803', '276', '1171', '526', '515', '1264', '586', '1324', '543', '385', '981', '651', '501']
+Descriptives        : sample = 13, min =  276, max =  1324, mean =  732.77, variance =  344.97, skew =  0.58, kurtosis = -1.03
+Normality test      : z-statistic =  1.868, p-value =  0.3931
+
+Combined conditions:
+Descriptives        : sample = 27, min =  172, max =  1324, mean =  581.33, variance =  305.99, skew =  1.11, kurtosis =  0.42
+Normality test      : z-statistic =  7.188, p-value =  0.0275
+
+Differences:
+Welch's t-test      : t-statistic = -2.721, p-value =  0.0141
+Mann-Whitney-U test : u-statistic = -2.780, p-value =  0.0102
+
+=== Average progression per item ===
+
+Flashcard condition:
+[' 5.172', ' 2.836', ' 2.284', ' 5.216', ' 7.612', ' 3.474', ' 1.483', ' 4.690', ' 3.095', ' 4.259', ' 2.060', ' 3.345', ' 4.147', ' 3.517']
+Descriptives        : sample = 14, min =  1, max =  7, mean =  3.80, variance =  1.57, skew =  0.81, kurtosis =  0.60
+Normality test      : z-statistic =  4.035, p-value =  0.1330
+
+Flashmap condition:
+[' 4.015', ' 1.380', ' 5.855', ' 2.630', ' 2.575', ' 6.320', ' 2.930', ' 6.620', ' 2.715', ' 1.925', ' 4.905', ' 3.255', ' 2.505']
+Descriptives        : sample = 13, min =  1, max =  6, mean =  3.66, variance =  1.72, skew =  0.58, kurtosis = -1.03
+Normality test      : z-statistic =  1.868, p-value =  0.3931
+
+Combined conditions:
+Descriptives        : sample = 27, min =  1, max =  7, mean =  3.73, variance =  1.62, skew =  0.67, kurtosis = -0.31
+Normality test      : z-statistic =  2.600, p-value =  0.2726
+
+Differences:
+Welch's t-test      : t-statistic =  0.213, p-value =  0.8333
+Mann-Whitney-U test : u-statistic =  0.214, p-value =  0.8326
+
+
+===== Only the responses from before the post-test =====
+
+=== Amounts of responses ===
+
+Flashcard condition:
+['636', '369', '298', '562', '1102', '391', '256', '707', '519', '694', '382', '480', '541', '479']
+Descriptives        : sample = 14, min =  256, max =  1102, mean =  529.71, variance =  214.67, skew =  1.25, kurtosis =  1.65
+Normality test      : z-statistic =  9.262, p-value =  0.0097
+
+Flashmap condition:
+['1156', '381', '720', '800', '765', '1277', '722', '917', '576', '662', '1181', '720', '501']
+Descriptives        : sample = 13, min =  381, max =  1277, mean =  798.31, variance =  268.85, skew =  0.44, kurtosis = -0.73
+Normality test      : z-statistic =  0.775, p-value =  0.6788
+
+Combined conditions:
+Descriptives        : sample = 27, min =  256, max =  1277, mean =  659.04, variance =  274.05, skew =  0.74, kurtosis = -0.20
+Normality test      : z-statistic =  3.148, p-value =  0.2073
+
+Differences:
+Welch's t-test      : t-statistic = -2.855, p-value =  0.0090
+Mann-Whitney-U test : u-statistic = -2.879, p-value =  0.0081
+
+=== Amounts of responses per item ===
+
+Flashcard condition:
+[' 5.483', ' 3.181', ' 2.569', ' 4.845', ' 9.500', ' 3.371', ' 2.207', ' 6.095', ' 4.474', ' 5.983', ' 3.293', ' 4.138', ' 4.664', ' 4.129']
+Descriptives        : sample = 14, min =  2, max =  9, mean =  4.57, variance =  1.85, skew =  1.25, kurtosis =  1.65
+Normality test      : z-statistic =  9.262, p-value =  0.0097
+
+Flashmap condition:
+[' 5.780', ' 1.905', ' 3.600', ' 4.000', ' 3.825', ' 6.385', ' 3.610', ' 4.585', ' 2.880', ' 3.310', ' 5.905', ' 3.600', ' 2.505']
+Descriptives        : sample = 13, min =  1, max =  6, mean =  3.99, variance =  1.34, skew =  0.44, kurtosis = -0.73
+Normality test      : z-statistic =  0.775, p-value =  0.6788
+
+Combined conditions:
+Descriptives        : sample = 27, min =  1, max =  9, mean =  4.29, variance =  1.62, skew =  1.19, kurtosis =  2.00
+Normality test      : z-statistic =  11.713, p-value =  0.0029
+
+Differences:
+Welch's t-test      : t-statistic =  0.928, p-value =  0.3626
+Mann-Whitney-U test : u-statistic =  0.917, p-value =  0.3677
+
+=== Amounts of learned items ===
+
+Flashcard condition:
+['84', '59', '46', '64', '86', '59', '48', '93', '74', '76', '48', '80', '93', '68']
+Descriptives        : sample = 14, min =  46, max =  93, mean =  69.86, variance =  16.38, skew = -0.07, kurtosis = -1.27
+Normality test      : z-statistic =  2.108, p-value =  0.3486
+
+Flashmap condition:
+['163', '54', '109', '121', '104', '200', '77', '121', '84', '83', '193', '134', '109']
+Descriptives        : sample = 13, min =  54, max =  200, mean =  119.38, variance =  43.91, skew =  0.57, kurtosis = -0.57
+Normality test      : z-statistic =  1.169, p-value =  0.5575
+
+Combined conditions:
+Descriptives        : sample = 27, min =  46, max =  200, mean =  93.70, variance =  40.74, skew =  1.23, kurtosis =  0.95
+Normality test      : z-statistic =  9.474, p-value =  0.0088
+
+Differences:
+Welch's t-test      : t-statistic = -3.827, p-value =  0.0016
+Mann-Whitney-U test : u-statistic = -3.940, p-value =  0.0006
+
+=== Ratios of learned items ===
+
+Flashcard condition:
+['0.7241', '0.5086', '0.3966', '0.5517', '0.7414', '0.5086', '0.4138', '0.8017', '0.6379', '0.6552', '0.4138', '0.6897', '0.8017', '0.5862']
+Descriptives        : sample = 14, min =  0, max =  0, mean =  0.60, variance =  0.14, skew = -0.07, kurtosis = -1.27
+Normality test      : z-statistic =  2.108, p-value =  0.3486
+
+Flashmap condition:
+['0.8150', '0.2700', '0.5450', '0.6050', '0.5200', '1.0000', '0.3850', '0.6050', '0.4200', '0.4150', '0.9650', '0.6700', '0.5450']
+Descriptives        : sample = 13, min =  0, max =  1, mean =  0.60, variance =  0.22, skew =  0.57, kurtosis = -0.57
+Normality test      : z-statistic =  1.169, p-value =  0.5575
+
+Combined conditions:
+Descriptives        : sample = 27, min =  0, max =  1, mean =  0.60, variance =  0.18, skew =  0.43, kurtosis = -0.30
+Normality test      : z-statistic =  1.145, p-value =  0.5640
+
+Differences:
+Welch's t-test      : t-statistic =  0.074, p-value =  0.9418
+Mann-Whitney-U test : u-statistic =  0.075, p-value =  0.9407
+
+=== Ratios of correct and total responses ===
+
+Flashcard condition:
+['0.6240', '0.4846', '0.3563', '0.4343', '0.5765', '0.4457', '0.3593', '0.6856', '0.5020', '0.5523', '0.3075', '0.5865', '0.7449', '0.5380']
+Descriptives        : sample = 14, min =  0, max =  0, mean =  0.51, variance =  0.13, skew =  0.08, kurtosis = -0.78
+Normality test      : z-statistic =  0.159, p-value =  0.9236
+
+Flashmap condition:
+['0.6929', '0.2344', '0.5098', '0.5423', '0.4230', '0.9978', '0.3205', '0.4706', '0.3753', '0.3275', '0.9266', '0.6523', '0.5450']
+Descriptives        : sample = 13, min =  0, max =  0, mean =  0.54, variance =  0.23, skew =  0.75, kurtosis = -0.33
+Normality test      : z-statistic =  2.113, p-value =  0.3477
+
+Combined conditions:
+Descriptives        : sample = 27, min =  0, max =  0, mean =  0.53, variance =  0.18, skew =  0.83, kurtosis =  0.59
+Normality test      : z-statistic =  5.177, p-value =  0.0751
+
+Differences:
+Welch's t-test      : t-statistic = -0.358, p-value =  0.7246
+Mann-Whitney-U test : u-statistic = -0.365, p-value =  0.7181
+
+=== Total progressions ===
+
+Flashcard condition:
+['486', '329', '265', '408', '808', '300', '118', '540', '359', '489', '239', '388', '481', '404']
+Descriptives        : sample = 14, min =  118, max =  808, mean =  401.00, variance =  163.74, skew =  0.75, kurtosis =  1.10
+Normality test      : z-statistic =  4.838, p-value =  0.0890
+
+Flashmap condition:
+['827', '276', '689', '526', '519', '1264', '586', '596', '462', '385', '981', '651', '501']
+Descriptives        : sample = 13, min =  276, max =  1264, mean =  635.62, variance =  262.03, skew =  1.08, kurtosis =  0.71
+Normality test      : z-statistic =  5.825, p-value =  0.0543
+
+Combined conditions:
+Descriptives        : sample = 27, min =  118, max =  1264, mean =  513.96, variance =  243.65, skew =  1.22, kurtosis =  1.81
+Normality test      : z-statistic =  11.536, p-value =  0.0031
+
+Differences:
+Welch's t-test      : t-statistic = -2.766, p-value =  0.0120
+Mann-Whitney-U test : u-statistic = -2.813, p-value =  0.0094
+
+=== Average progression per item ===
+
+Flashcard condition:
+[' 4.190', ' 2.836', ' 2.284', ' 3.517', ' 6.966', ' 2.586', ' 1.017', ' 4.655', ' 3.095', ' 4.216', ' 2.060', ' 3.345', ' 4.147', ' 3.483']
+Descriptives        : sample = 14, min =  1, max =  6, mean =  3.46, variance =  1.41, skew =  0.75, kurtosis =  1.10
+Normality test      : z-statistic =  4.838, p-value =  0.0890
+
+Flashmap condition:
+[' 4.135', ' 1.380', ' 3.445', ' 2.630', ' 2.595', ' 6.320', ' 2.930', ' 2.980', ' 2.310', ' 1.925', ' 4.905', ' 3.255', ' 2.505']
+Descriptives        : sample = 13, min =  1, max =  6, mean =  3.18, variance =  1.31, skew =  1.08, kurtosis =  0.71
+Normality test      : z-statistic =  5.825, p-value =  0.0543
+
+Combined conditions:
+Descriptives        : sample = 27, min =  1, max =  6, mean =  3.32, variance =  1.34, skew =  0.90, kurtosis =  0.92
+Normality test      : z-statistic =  6.499, p-value =  0.0388
+
+Differences:
+Welch's t-test      : t-statistic =  0.532, p-value =  0.5992
+Mann-Whitney-U test : u-statistic =  0.531, p-value =  0.6003
+
+
+===== Only the responses from after the post-test =====
+
+=== Amounts of responses ===
+
+Flashcard condition:
+['115', '241', '173', '123', '116', '4', '5', '4']
+Descriptives        : sample =  8, min =  4, max =  241, mean =  97.62, variance =  87.53, skew =  0.22, kurtosis = -1.10
+
+Flashmap condition:
+['265', '602', '2', '1040', '90']
+Descriptives        : sample =  5, min =  2, max =  1040, mean =  399.80, variance =  425.19, skew =  0.64, kurtosis = -1.05
+
+Combined conditions:
+Descriptives        : sample = 13, min =  2, max =  1040, mean =  213.85, variance =  296.89, skew =  1.93, kurtosis =  2.77
+Normality test      : z-statistic =  16.787, p-value =  0.0002
+
+Differences:
+Welch's t-test      : t-statistic = -1.569, p-value =  0.1883
+Mann-Whitney-U test : u-statistic = -1.995, p-value =  0.0715
+
+=== Amounts of responses per item ===
+
+Flashcard condition:
+[' 0.991', ' 2.078', ' 1.491', ' 1.060', ' 1.000', ' 0.034', ' 0.043', ' 0.034']
+Descriptives        : sample =  8, min =  0, max =  2, mean =  0.84, variance =  0.75, skew =  0.22, kurtosis = -1.10
+
+Flashmap condition:
+[' 1.325', ' 3.010', ' 0.010', ' 5.200', ' 0.450']
+Descriptives        : sample =  5, min =  0, max =  5, mean =  2.00, variance =  2.13, skew =  0.64, kurtosis = -1.05
+
+Combined conditions:
+Descriptives        : sample = 13, min =  0, max =  5, mean =  1.29, variance =  1.48, skew =  1.53, kurtosis =  1.82
+Normality test      : z-statistic =  11.587, p-value =  0.0030
+
+Differences:
+Welch's t-test      : t-statistic = -1.172, p-value =  0.2978
+Mann-Whitney-U test : u-statistic = -1.433, p-value =  0.1795
+
+=== Amounts of learned items ===
+
+Flashcard condition:
+['72', '78', '81', '63', '46', '4', '4', '3']
+Descriptives        : sample =  8, min =  3, max =  81, mean =  43.88, variance =  34.96, skew = -0.27, kurtosis = -1.70
+
+Flashmap condition:
+['115', '166', '2', '195', '45']
+Descriptives        : sample =  5, min =  2, max =  195, mean =  104.60, variance =  80.82, skew = -0.17, kurtosis = -1.50
+
+Combined conditions:
+Descriptives        : sample = 13, min =  2, max =  195, mean =  67.23, variance =  61.93, skew =  0.76, kurtosis = -0.33
+Normality test      : z-statistic =  2.171, p-value =  0.3377
+
+Differences:
+Welch's t-test      : t-statistic = -1.590, p-value =  0.1733
+Mann-Whitney-U test : u-statistic = -1.897, p-value =  0.0844
+
+=== Ratios of learned items ===
+
+Flashcard condition:
+['0.6207', '0.6724', '0.6983', '0.5431', '0.3966', '0.0345', '0.0345', '0.0259']
+Descriptives        : sample =  8, min =  0, max =  0, mean =  0.38, variance =  0.30, skew = -0.27, kurtosis = -1.70
+
+Flashmap condition:
+['0.5750', '0.8300', '0.0100', '0.9750', '0.2250']
+Descriptives        : sample =  5, min =  0, max =  0, mean =  0.52, variance =  0.40, skew = -0.17, kurtosis = -1.50
+
+Combined conditions:
+Descriptives        : sample = 13, min =  0, max =  0, mean =  0.43, variance =  0.34, skew = -0.04, kurtosis = -1.35
+Normality test      : z-statistic =  2.458, p-value =  0.2925
+
+Differences:
+Welch's t-test      : t-statistic = -0.690, p-value =  0.5130
+Mann-Whitney-U test : u-statistic = -0.742, p-value =  0.4737
+
+=== Ratios of correct and total responses ===
+
+Flashcard condition:
+['0.6185', '0.6168', '0.5733', '0.4932', '0.3293', '0.0345', '0.0345', '0.0259']
+Descriptives        : sample =  8, min =  0, max =  0, mean =  0.34, variance =  0.27, skew = -0.23, kurtosis = -1.73
+
+Flashmap condition:
+['0.3850', '0.7579', '0.0050', '0.8892', '0.2152']
+Descriptives        : sample =  5, min =  0, max =  0, mean =  0.45, variance =  0.37, skew =  0.07, kurtosis = -1.51
+
+Combined conditions:
+Descriptives        : sample = 13, min =  0, max =  0, mean =  0.38, variance =  0.30, skew =  0.09, kurtosis = -1.28
+Normality test      : z-statistic =  1.956, p-value =  0.3761
+
+Differences:
+Welch's t-test      : t-statistic = -0.574, p-value =  0.5845
+Mann-Whitney-U test : u-statistic = -0.619, p-value =  0.5484
+
+=== Total progressions ===
+
+Flashcard condition:
+['114', '206', '115', '105', '92', '4', '5', '4']
+Descriptives        : sample =  8, min =  4, max =  206, mean =  80.62, variance =  71.91, skew =  0.30, kurtosis = -0.85
+
+Flashmap condition:
+['151', '511', '1', '779', '81']
+Descriptives        : sample =  5, min =  1, max =  779, mean =  304.60, variance =  329.17, skew =  0.57, kurtosis = -1.30
+
+Combined conditions:
+Descriptives        : sample = 13, min =  1, max =  779, mean =  166.77, variance =  228.03, skew =  1.84, kurtosis =  2.26
+Normality test      : z-statistic =  14.953, p-value =  0.0006
+
+Differences:
+Welch's t-test      : t-statistic = -1.499, p-value =  0.2042
+Mann-Whitney-U test : u-statistic = -1.901, p-value =  0.0837
+
+=== Average progression per item ===
+
+Flashcard condition:
+[' 0.983', ' 1.776', ' 0.991', ' 0.905', ' 0.793', ' 0.034', ' 0.043', ' 0.034']
+Descriptives        : sample =  8, min =  0, max =  1, mean =  0.70, variance =  0.62, skew =  0.30, kurtosis = -0.85
+
+Flashmap condition:
+[' 0.755', ' 2.555', ' 0.005', ' 3.895', ' 0.405']
+Descriptives        : sample =  5, min =  0, max =  3, mean =  1.52, variance =  1.65, skew =  0.57, kurtosis = -1.30
+
+Combined conditions:
+Descriptives        : sample = 13, min =  0, max =  3, mean =  1.01, variance =  1.14, skew =  1.40, kurtosis =  1.19
+Normality test      : z-statistic =  9.117, p-value =  0.0105
+
+Differences:
+Welch's t-test      : t-statistic = -1.078, p-value =  0.3330
+Mann-Whitney-U test : u-statistic = -1.310, p-value =  0.2170
+

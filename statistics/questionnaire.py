@@ -19,7 +19,7 @@ f = open("Questionnaire.txt", "w")
 def wl(string = ""):
     f.write(string + "\n")
 
-def print_descriptions(lst):
+def print_descriptives(lst):
     n, (smin, smax), sm, sv, ss, sk = stats.describe(lst)
     smin = int(smin)
     smax = int(smax)
@@ -63,18 +63,18 @@ for user in db.users.find({"questionnaire": {"$exists": True}, "name": {"$ne": "
 
 wl("=== Perceived usefulness ===")
 wl()
-wl("Flashcard condition : " + print_descriptions(fcard_use))
+wl("Flashcard condition : " + print_descriptives(fcard_use))
 wl("Normality test      : " + print_normaltest(fcard_use))
-wl("Flashmap condition  : " + print_descriptions(fmap_use))
+wl("Flashmap condition  : " + print_descriptives(fmap_use))
 wl("Normality test      : " + print_normaltest(fmap_use))
 wl("T-test              : " + print_t_test(fcard_use, fmap_use))
 wl("Mann-Whitney-U test : " + print_mann_whitney_u_test(fcard_use, fmap_use))
 wl()
 wl("=== Perceived ease of use ===")
 wl()
-wl("Flashcard condition : " + print_descriptions(fcard_ease))
+wl("Flashcard condition : " + print_descriptives(fcard_ease))
 wl("Normality test      : " + print_normaltest(fcard_ease))
-wl("Flashmap condition  : " + print_descriptions(fmap_ease))
+wl("Flashmap condition  : " + print_descriptives(fmap_ease))
 wl("Normality test      : " + print_normaltest(fmap_ease))
 wl("T-test              : " + print_t_test(fcard_ease, fmap_ease))
 wl("Mann-Whitney-U test : " + print_mann_whitney_u_test(fcard_ease, fmap_ease))
