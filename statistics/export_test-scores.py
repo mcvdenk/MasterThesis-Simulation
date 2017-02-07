@@ -37,39 +37,34 @@ for user in db.users.find({"questionnaire": {"$exists": True}, "name": {"$nin": 
                 if (audit["name"] == user["name"] and audit["id"] == item["id"]): score = len(audit["response_scores"])
             fc_post[user["name"]][item["id"]] = score
 
-print(fc_pre)
-print(fc_post)
-print(fm_pre)
-print(fm_post)
-
 with open("test_data.csv", "w", newline='') as f:
     writer = csv.writer(f)
-    writer.writerow(["i" + str(i) for i in range(0,10)])
+    writer.writerow(["i" + str(i) for i in [r for r in range(0,10) if r != 2]])
     for key in fc_pre.keys():
         user_data = []
-        for i in range(0,10):
-            if (str(i) in fc_pre[key].keys()):
+        for i in [r for r in range(0,10) if r != 2]:
+            if (i != 2 and str(i) in fc_pre[key].keys()):
                 user_data.append(fc_pre[key][str(i)])
-            else: user_data.append("")
+            else: user_data.append("NA")
         writer.writerow(user_data)
     for key in fc_post.keys():
         user_data = []
-        for i in range(0,10):
-            if (str(i) in fc_post[key].keys()):
+        for i in [r for r in range(0,10) if r != 2]:
+            if (i != 2 and str(i) in fc_post[key].keys()):
                 user_data.append(fc_post[key][str(i)])
-            else: user_data.append("")
+            else: user_data.append("NA")
         writer.writerow(user_data)
     for key in fm_pre.keys():
         user_data = []
-        for i in range(0,10):
-            if (str(i) in fm_pre[key].keys()):
+        for i in [r for r in range(0,10) if r != 2]:
+            if (i != 2 and str(i) in fm_pre[key].keys()):
                 user_data.append(fm_pre[key][str(i)])
-            else: user_data.append("")
+            else: user_data.append("NA")
         writer.writerow(user_data)
     for key in fm_post.keys():
         user_data = []
-        for i in range(0,10):
-            if (str(i) in fm_post[key].keys()):
+        for i in [r for r in range(0,10) if r != 2]:
+            if (i != 2 and str(i) in fm_post[key].keys()):
                 user_data.append(fm_post[key][str(i)])
-            else: user_data.append("")
+            else: user_data.append("NA")
         writer.writerow(user_data)

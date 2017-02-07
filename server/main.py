@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+#Import of necessary libraries
 import asyncio
 import datetime
 import time
@@ -9,24 +10,35 @@ import websockets
 import json
 from pymongo import MongoClient
 
-PATH = 'mvdenk.com'
+#Data for the websocket and mongodb client
+PATH = '128.199.49.170'
 PORT = 5678
 dbclient = MongoClient()
 db = dbclient.flashmap
 active_sessions = {}
 
+#Preloading all sources from the different flashcards/-edges (the chapters from Laagland)
 SOURCES = []
 for edge in db.cmap.find_one()["edges"]:
     if (edge["source"] not in SOURCES): SOURCES.append(edge["source"])
 SOURCES.sort()
 
-# Calls the corresponding function to the switchcases dict. When the keyword is invalid, it returns a FAILURE response
 def consumer(recvmessage):
+    """ Map a keyword to a function
+
+    Keyword arguments:
+        recvmessage -- a dictionary containing the keyword and data
+    """
     if (recvmessage["keyword"] in switchcases): return switchcases[recvmessage["keyword"]](recvmessage["data"], recvmessage["user"])
     return {"keyword": "FAILURE", "data": {}}
 
-# Loads the whole concept map from the database
 def provide_map(data, name):
+    """Load the whole concept map from the database
+    
+    Keyword arguments:
+        data -- an ignored dictionary
+        name -- the username of the active user
+    """
     cmap = {"keyword" : "MAP-RESPONSE", "data" : {"nodes": {}, "edges": {}}}
 
     cursor = db.cmap.find_one()
@@ -36,8 +48,12 @@ def provide_map(data, name):
     
     return cmap
 
-# Checks whether the name already exists in the database, and adds it when needed
 def authenticate(data):
+    """Check whether a provided username already exists in the database, and add it when needed
+
+    Keyword arguments:
+        data -- a dictionary containing {"name": username}
+    """
     user = db.users.find_one({"name" : data["name"]})
     if (not user):
         db.users.insert_one({
@@ -64,11 +80,22 @@ def authenticate(data):
     return {"keyword" : "AUTHENTICATE-RESPONSE", "data" : {"success" : "LOGGED_IN"}}
 
 def request_descriptives(data):
+    """Return a descriptives form dictionary
+
+    Keyword arguments:
+        data -- an ignored dictionary
+    """
     req_msg = {"keyword" : "DESCRIPTIVES-REQUEST", "data": {}}
     db.logs.insert_one({str(math.floor(time.time())) : req_msg})
     return req_msg
 
 def add_descriptives(data, name):
+    """Set descriptives for a user entry in the database
+    
+    Keyword arguments:
+        data -- a dictionary containing a gender, birthdate and code entry
+        name -- the username
+    """
     db.logs.insert_one({str(math.floor(time.time())) : data})
     db.users.update(
         {"name" : name},
@@ -80,6 +107,11 @@ def add_descriptives(data, name):
     )
 
 def test(data):
+    """Return a test dictionary
+
+    Keyword arguments:
+        data -- an ignored dictionary
+    """
     req_msg = {"keyword" : "TEST-REQUEST", "data": {"flashcards" : [], "items" : []}}
     available_flashcards = db.fcards.find_one()["flashcards"]
     available_items = db.itembank.find_one()["questions"]
@@ -98,6 +130,12 @@ def test(data):
     return req_msg
 
 def add_test(data, name):
+    """Add a test to a user entry in the database
+
+    Keyword arguments:
+        data -- a dictionary containing both flashcard and item responses, containing the answer and flashcard/item id
+        name -- the username
+    """
     db.logs.insert_one({str(math.floor(time.time())) : data})
     db.users.update(
         {"name" : name},
@@ -105,6 +143,11 @@ def add_test(data, name):
     )
 
 def questionnaire(data):
+    """Return a questionnaire dictionary
+
+    Keyword arguments:
+        data -- an ignored dictionary
+    """
     useful_items = []
     ease_items = []
 
@@ -139,6 +182,12 @@ def questionnaire(data):
     return {"keyword" : "QUESTIONNAIRE-REQUEST", "data": {"perceived_usefulness" : useful_items, "perceived_ease_of_use" : ease_items}}
 
 def add_questionnaire(data, name):
+    """Set a questionnaire for a user entry in the database
+
+    Keyword arguments:
+        data -- a dictionary containing both perceived usefulness and ease of use responses, containing the answer and item id
+        name -- the username
+    """
     db.logs.insert_one({str(math.floor(time.time())) : data})
     db.users.update(
         {"name" : name},
@@ -146,6 +195,12 @@ def add_questionnaire(data, name):
     )
 
 def provide_learned_items(data, name):
+    """Return a dictionary containing data on the learning progress of a user
+
+    Keyword arguments:
+        data -- an ignored dictionary
+        name -- the username
+    """
     msg = {"keyword" : "", "data" : {}}
     flashedges = db.users.find_one({"name" : name})["flashedges"]
     for flashedge in flashedges:
@@ -182,6 +237,12 @@ def provide_learned_items(data, name):
     return msg
 
 def provide_learning(data, name):
+    """Return a message containing a source request or a response from provide_flashedges() or provide_flashcard, and a boolean whether the user already learned for 15 minutes on this day and how many days the user has been active
+
+    Keyword arguments:
+        data -- an ignored dictionary
+        name -- the username
+    """
     user = db.users.find_one({"name": name})
     all_flashedges = user["flashedges"]
     if (not (len(all_flashedges) or user["sessions"][-1]["source_prompted"])): return {"keyword" : "READ_SOURCE-REQUEST", "data": {"source" : SOURCES[0]}}
@@ -209,6 +270,11 @@ def provide_learning(data, name):
     return msg
 
 def learning_time_reached(name):
+    """Returns whether a user has already reached 15 minutes of learning on this day
+
+    Keyword arguments:
+        name -- the username
+    """
     times = []
     learn_time = 0
     for edge in db.users.find_one({"name": name})["flashedges"]:
@@ -222,6 +288,12 @@ def learning_time_reached(name):
     return learn_time > 15*60
 
 def provide_flashcard(data, name):
+    """If there is a due flashcard, return the most due, else run new_flashcard()
+    
+    Keyword arguments:
+        data -- an ignored dictionary
+        name -- a username
+    """
     flashcards = db.users.find_one({"name": name})["flashedges"]
     if (len(flashcards)):
         flashcards = sorted(flashcards, key=lambda k: k["due"])
@@ -231,7 +303,11 @@ def provide_flashcard(data, name):
     return new_flashcard(name)
 
 def new_flashcard(name):
-    #TODO: check prerequisites
+    """If there is a flashcard not yet present in the user's list of flashedges, return the first entry, else return a no more flashedges message
+    
+    Keyword arguments:
+        name -- the username
+    """
     i = len(db.users.find_one({"name": name})["flashedges"])
     if (i >= len(db.fcards.find_one()["flashcards"])):
         db.users.update({"name": name}, {"$push": {"successfull_days" : time.time()}})
@@ -254,9 +330,20 @@ def new_flashcard(name):
     return build_flashcard(card)
 
 def build_flashcard(card):
+    """Convert a card dictionary to a network message
+
+    Keyword arguments:
+        card -- a dictionary containing the data for the flashcard
+    """
     return {"keyword" : "LEARN-RESPONSE(fc)", "data" : card}
 
 def provide_flashedges(data, name):
+    """If there is a due flashedge, return the most due (and its direct siblings), else run new_flashcard()
+    
+    Keyword arguments:
+        data -- an ignored dictionary
+        name -- a username
+    """
     user = db.users.find_one({"name": name})
     flashedges = user["flashedges"]
     if (len(flashedges)):
@@ -267,7 +354,11 @@ def provide_flashedges(data, name):
     return new_flashedge(name)
 
 def new_flashedge(name):
-    #TODO: check prerequisites
+    """If there is a flashedg not yet present in the user's list of flashedges, return the first entry (and its direct siblings), else return a no more flashedges message
+    
+    Keyword arguments:
+        name -- the username
+    """
     user = db.users.find_one({"name": name})
     edges = user["flashedges"]
     sources = user["read_sources"]
@@ -314,6 +405,12 @@ def new_flashedge(name):
     return build_partial_map(edge, user)
 
 def build_partial_map(flashedge, user):
+    """Return a network message containing a partial map from the general concept map, containing all parent nodes and direct siblings of the directed node of the provided edge
+
+    Keyword arguments:
+        edge -- a dictionary containing the data for the flashedge
+        user -- the username
+    """
     edges = db.cmap.find_one()["edges"]
     nodes = db.cmap.find_one()["nodes"]
     cmap = {"nodes": [], "edges": find_prerequisites(flashedge, [], edges, user["read_sources"])}
@@ -336,6 +433,14 @@ def build_partial_map(flashedge, user):
     return msg
 
 def find_prerequisites(postreq, prereqs, edges, sources):
+    """Return a list of parent edges given a certain edge from a list of edges, filtered by a list of sources
+
+    Keyword arguments:
+        postreq -- the edge which is currently investigated for parent edges
+        prerqs -- a list of already found parent edges (starts usually empty, necessary for recursion)
+        edges -- a complete list of all edges within the concept map
+        sources -- a list of the currently read sources, edges which have a source not included in this list  will not be included in the resulting list
+    """
     prereqs.append(postreq)
     for db_edge in edges:
         if (db_edge["to"] == postreq["from"] and db_edge not in prereqs and db_edge["source"] in sources):
@@ -344,6 +449,13 @@ def find_prerequisites(postreq, prereqs, edges, sources):
     return prereqs
 
 def validate_fm(data, name):
+    """Add provided responses to flashedges given a username
+    
+    Keyword arguments:
+        data -- a dictionary containing the flashedges with the responses
+        data.edge.correct -- a boolean value for the response corresponding with the edge
+        name -- the username
+    """
     for edge in data["edges"]:
         due = time.time()
         edge_exists = False
@@ -379,6 +491,13 @@ def validate_fm(data, name):
     return provide_learning(data, name)
 
 def validate_fc(data, name):
+    """Add a provided response to a flashedge given a username
+    
+    Keyword arguments:
+        data -- a dictionary containing the flascard with the response
+        data.correct -- a boolean value for the response corresponding with the flashcard
+        name -- the username
+    """
     due = next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == data["id"])["due"]
     db.users.update(
         {"name" : name, "flashedges.id" : data["id"]},
@@ -399,6 +518,12 @@ def validate_fc(data, name):
     return provide_learning(data, name)
 
 def undo(data, name):
+    """Remove the response added most recently to any flashedge of a provided user
+
+    Keyword arguments:
+        data -- an ignored dictionary
+        name -- the username
+    """
     latest = 0
     edgeI = ""
     user = db.users.find_one({"name": name})
@@ -419,7 +544,12 @@ def undo(data, name):
     return provide_learning(data, name)
 
 def schedule(id_, name):
-    #TODO: implement memreflex algorithm
+    """Return a timestamp for when a given flashedge is due for repetition
+
+    Keyword arguments:
+        id_ -- the id of the flashedge
+        name -- the username
+    """
     responses = sorted(
             next(fe for fe in db.users.find_one({"name": name})["flashedges"] if fe["id"] == id_)["responses"],
             key=lambda k: k['end'])
@@ -431,6 +561,13 @@ def schedule(id_, name):
     return time.time() + min(5**exp, 2000000)
 
 def add_source(data, name):
+    """Add a source to the list of read sources of a user
+
+    Keyword arguments:
+        data -- a dictionary
+        data.source -- the to be added source
+        name -- the username
+    """
     db.users.update(
         {"name" : name},
         {"$push" : {"read_sources": str(data["source"])}}
@@ -456,9 +593,15 @@ switchcases = {
 }
 
 def provide_active_sessions():
+    """Provide the number of currently active sessions"""
     return {"keyword" : "ACTIVE_SESSIONS", "data" : len(active_sessions)}
 
 def successful_days(name):
+    """Provide the number of days the user was sufficiently active (longer than 15 minutes)
+
+    Keyword arguments:
+        name -- the username
+    """
     user = db.users.find_one({"name": name})
     days = []
     if ("successfull_days" in user):
@@ -471,8 +614,13 @@ def successful_days(name):
             if (datetime.date.fromtimestamp(day) not in days): days.append(datetime.date.fromtimestamp(day))
     return len(days)
 
-# Receives messages from a client, parses the json file to an object, passes them to consumer() and sends the result back to the client
 async def handler(websocket, path):
+    """Receive messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client
+
+    Keyword arguments:
+        websocket -- the websocket being used for receiving and sending messages to a client
+        path -- the IP address used to host the websocket
+    """
     try:
         loginmsg = json.loads(await websocket.recv())
         if (loginmsg["data"]["name"] == "active_sessions"):

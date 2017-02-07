@@ -190,7 +190,7 @@ digraph Flashmaps {
     n1.2.1.9.1 [label="When examined separately, only the effect for low verbal ability was statistically detectable \cite{nesbit2}"];
     n1.2.1.9.2 [label="It cannot be concluded that maps do not benefit higher-ability students \cite{nesbit2}"];
     n1.2.1.10 [label="In comparison with activities such as reading text passages, attending lectures, and participating in class discussions, concept mapping activities are more effective for attaining kowledge retention and transfer \cite{nesbit2}"];
-    n1.2.1.10.1 [label="Much of this benefit may be due to greater learner engagement occasioned by concept mapping in comparison with reading and leistening, rather than the properties of the concept map as an information medium \cite{nesbit2}"];
+    n1.2.1.10.1 [label="Much of this benefit may be due to greater learner engagement occasioned by concept mapping in comparison with reading and listening, rather than the properties of the concept map as an information medium \cite{nesbit2}"];
     n1.2.1.11 [label="It was found that studying concept or knowledge maps is somewhat more effect for retaining knowledge than studying text passages, lists, and outlines \cite{nesbit2}"];
     n1.2.1.11.1 [label="Assists in recall of both central ideas and detail ideas, but the effect may be stronger for central ideas \cite{nesbit2}"];
     n1.2.2 [label="As an assessment tool"];
