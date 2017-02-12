@@ -1,10 +1,9 @@
-class Edge:
-    def __init__(self, id_, label, card_question, card_answer):
-        self.id_ = id_
-        self.label = label
-        self.card_question = card_question
-        self.card_answer = card_answer
-    
-    def __init__(self, id_, label):
-        self.id_ = id_
-        self.label = label
+from mongoengine import Document
+from node import *
+
+class Edge(EmbeddedDocument):
+    id = StringField(required=True, unique=True, primary_key=True)
+    from_node = ReferenceField(Node, db_field = "from", required=True)
+    to_node = ReferenceField(Node, db_field = "to", required=True)
+    label = StringField(default = "")
+    sources = ListField(StringField, default = [])
