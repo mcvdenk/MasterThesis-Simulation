@@ -1,6 +1,7 @@
 from mongoengine import *
 from test_item import *
 
-class Item_Response(Document):
+class ItemResponse(Document):
+    connect('flashmap')
     answer = StringField(default="")
-    item = ReferenceField(Test_Item)
+    item = ReferenceField(TestItem)

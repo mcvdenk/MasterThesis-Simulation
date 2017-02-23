@@ -1,5 +1,6 @@
 from flash_instance import *
 from flashcard import *
 
-class Flashmap_Instance(Flash_Instance):
+class FlashmapInstance(FlashInstance):
+    connect('flashmap')
     reference = ReferenceField(Flashcard, required = True)

@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>handler &#8212; Flashmap server 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for handler</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">websockets</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">consumer</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="n">PATH</span> <span class="o">=</span> <span class="s1">&#39;128.199.49.170&#39;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="mi">5678</span>
+
+<div class="viewcode-block" id="handler"><a class="viewcode-back" href="../handler.html#handler.handler">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">websocket</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client</span>
+
+<span class="sd">    args:</span>
+<span class="sd">        websocket -- the websocket being used for receiving and sending messages to a client</span>
+<span class="sd">        path -- the IP address used to host the websocket</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">consumer</span> <span class="o">=</span> <span class="n">Consumer</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">enc_recvmsg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+        <span class="n">dec_recvmsg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">enc_recvmsg</span><span class="p">)</span>
+        <span class="n">dec_sendmsg</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="n">consumer</span><span class="p">(</span><span class="n">dec_recvmsg</span><span class="p">[</span><span class="s2">&quot;keyword&quot;</span><span class="p">],</span><span class="n">dec_recvmsg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+        <span class="n">enc_sendmsg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dec_sendmsg</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">enc_sendmsg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">websockets</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionClosed</span><span class="p">:</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="n">connection_closed</span><span class="p">()</span></div>
+    
+
+
+<span class="c1">#    try:</span>
+<span class="c1">#        loginmsg = json.loads(await websocket.recv())</span>
+<span class="c1">#        if (loginmsg[&quot;data&quot;][&quot;name&quot;] == &quot;active_sessions&quot;):</span>
+<span class="c1">#            await websocket.send(json.dumps(provide_active_sessions()))</span>
+<span class="c1">#            websocket.close()</span>
+<span class="c1">#            return</span>
+<span class="c1">#        if (loginmsg[&quot;data&quot;][&quot;name&quot;] == &quot;questionnaire&quot;):</span>
+<span class="c1">#            await websocket.send(json.dumps(questionnaire(loginmsg[&quot;data&quot;][&quot;name&quot;])))</span>
+<span class="c1">#            return</span>
+<span class="c1">#        db.logs.insert_one({str(math.floor(time.time())) : loginmsg})</span>
+<span class="c1">#        assert loginmsg[&quot;keyword&quot;] == &quot;AUTHENTICATE-REQUEST&quot;</span>
+<span class="c1">#        auth_msg = authenticate(loginmsg[&quot;data&quot;])</span>
+<span class="c1">#        active_sessions[websocket] = {</span>
+<span class="c1">#            &quot;name&quot; : loginmsg[&quot;data&quot;][&quot;name&quot;],</span>
+<span class="c1">#            &quot;mongosession&quot; : len(db.users.find_one({&quot;name&quot; : loginmsg[&quot;data&quot;][&quot;name&quot;]})[&quot;sessions&quot;]) - 1</span>
+<span class="c1">#        }</span>
+<span class="c1">#        user = db.users.find_one({&quot;name&quot; : loginmsg[&quot;data&quot;][&quot;name&quot;]})</span>
+<span class="c1">#        if (user[&quot;gender&quot;] == &quot;unknown&quot;):</span>
+<span class="c1">#            await websocket.send(json.dumps(consumer.request_descriptives(loginmsg[&quot;data&quot;])))</span>
+<span class="c1">#            add_descriptives(json.loads(await websocket.recv())[&quot;data&quot;], loginmsg[&quot;data&quot;][&quot;name&quot;])</span>
+<span class="c1">#        if (len(user[&quot;tests&quot;]) &lt; 1):</span>
+<span class="c1">#            await websocket.send(json.dumps(test(loginmsg[&quot;data&quot;])))</span>
+<span class="c1">#            add_test(json.loads(await websocket.recv())[&quot;data&quot;], loginmsg[&quot;data&quot;][&quot;name&quot;])</span>
+<span class="c1">#        if (successful_days(loginmsg[&quot;data&quot;][&quot;name&quot;]) &gt; 5):</span>
+<span class="c1">#            if (len(user[&quot;tests&quot;]) &lt; 2):</span>
+<span class="c1">#                await websocket.send(json.dumps(test(loginmsg[&quot;data&quot;])))</span>
+<span class="c1">#                add_test(json.loads(await websocket.recv())[&quot;data&quot;], loginmsg[&quot;data&quot;][&quot;name&quot;])</span>
+<span class="c1">#            if (&quot;questionnaire&quot; not in user):</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, M.C. van den Enk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

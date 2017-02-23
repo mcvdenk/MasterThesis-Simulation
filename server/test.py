@@ -4,8 +4,10 @@ from item_response import *
 import random
 
 class Test(EmbeddedDocument):
-    flashcard_responses = ListField(EmbeddedDocumentField(Flashcard_Response), default = [])
-    item_responses = ListField(EmbeddedDocumentField(Item_Response), default = [])
+    connect('flashmap')
+
+    flashcard_responses = ListField(EmbeddedDocumentField('FlashcardResponse'), default = [])
+    item_responses = ListField(EmbeddedDocumentField('ItemResponse'), default = [])
 
     def __init__(self, flashcards, items, prev_flashcards = [], prev_items = [], **data):
         data['flashcard_responses'] = generate_test(flashcards, prev_flashcards)
@@ -19,3 +21,10 @@ class Test(EmbeddedDocument):
                     items.remove(item)
                 break
         return random.sample(items, k = 5)
+
+    def append_flashcard(flashcard, answer):
+        flashcard_responses.append(FlashcardResponse(flashcard = flashcard, answer = answer))
+
+
+    def append_item(item, answer):
+        item_responses.append(ItemResponse(item = item, answer = answer))

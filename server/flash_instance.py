@@ -1,6 +1,8 @@
-from mongoengine import EmbeddedDocument
+from mongoengine import *
 from flashedge_response import *
 
-class Flash_Instance(EmbeddedDocument)
-    responses = ListField(EmbeddedDocumentField(Flashedge_Response), default = [])
+class FlashInstance(EmbeddedDocument):
+    meta = {'allow_inheritance': True}
+    connect('flashmap')
+    responses = ListField(EmbeddedDocumentField(FlashedgeResponse), default = [])
     reference = GenericReferenceField(required = True)

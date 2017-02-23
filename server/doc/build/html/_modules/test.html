@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>test &#8212; Flashmap server 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for test</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">flashcard_response</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">item_response</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<div class="viewcode-block" id="Test"><a class="viewcode-back" href="../test.html#test.Test">[docs]</a><span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
+    <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
+
+    <span class="n">flashcard_responses</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="s1">&#39;FlashcardResponse&#39;</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="n">item_responses</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="s1">&#39;ItemResponse&#39;</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flashcards</span><span class="p">,</span> <span class="n">items</span><span class="p">,</span> <span class="n">prev_flashcards</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">prev_items</span> <span class="o">=</span> <span class="p">[],</span> <span class="o">**</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;flashcard_responses&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">generate_test</span><span class="p">(</span><span class="n">flashcards</span><span class="p">,</span> <span class="n">prev_flashcards</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_responses&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">generate_test</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">prev_items</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Test</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Test.generate_test"><a class="viewcode-back" href="../test.html#test.Test.generate_test">[docs]</a>    <span class="k">def</span> <span class="nf">generate_test</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">prev_items</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">prev_item</span> <span class="ow">in</span> <span class="n">prev_items</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">prev_item</span> <span class="ow">is</span> <span class="n">item</span><span class="p">):</span>
+                    <span class="n">items</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Test.append_flashcard"><a class="viewcode-back" href="../test.html#test.Test.append_flashcard">[docs]</a>    <span class="k">def</span> <span class="nf">append_flashcard</span><span class="p">(</span><span class="n">flashcard</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+        <span class="n">flashcard_responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FlashcardResponse</span><span class="p">(</span><span class="n">flashcard</span> <span class="o">=</span> <span class="n">flashcard</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Test.append_item"><a class="viewcode-back" href="../test.html#test.Test.append_item">[docs]</a>    <span class="k">def</span> <span class="nf">append_item</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+        <span class="n">item_responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ItemResponse</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="p">))</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, M.C. van den Enk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

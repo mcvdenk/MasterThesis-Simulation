@@ -1,6 +1,7 @@
-from mongoengine import EmbeddedDocument
+from mongoengine import *
 from flashcard import *
 
-class Flashcard_Response(EmbeddedDocument):
+class FlashcardResponse(EmbeddedDocument):
+    connect('flashmap')
     answer = StringField(default = "")
     flashcard = ReferenceField(Flashcard)

@@ -1,6 +1,7 @@
 from mongoengine import *
 
-class Questionnaire_Item(Document):
+class QuestionnaireItem(Document):
+    connect('flashmap')
     usefullness = BooleanField(required=True)
     positive_phrasing = StringField(required=True)
     negative_phrasing = StringField(required=True)

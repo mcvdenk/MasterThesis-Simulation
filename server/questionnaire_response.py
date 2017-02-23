@@ -1,6 +1,7 @@
 from mongoengine import *
 from questionnaire_item import *
 
-class Questionnaire_Response(EmbeddedDocument):
-    questionnaire_item = ReferenceField(Questionnaire_Item, required=True)
-    formulation = BooleanField()
+class QuestionnaireResponse(EmbeddedDocument):
+    connect('flashmap')
+    questionnaire_item = ReferenceField(QuestionnaireItem, required=True)
+    answer = IntField(min_value=-2, max_value=2)

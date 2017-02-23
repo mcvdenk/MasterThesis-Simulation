@@ -1,5 +1,6 @@
 from flash_instance import *
 from edge import *
 
-class Flashmap_Instance(Flash_Instance):
+class FlashmapInstance(FlashInstance):
+    connect('flashmap')
     reference = ReferenceField(Edge, required=True)

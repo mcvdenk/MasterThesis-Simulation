@@ -1,0 +1,1200 @@
+{
+    "to": "mluther",
+    "source": "13.1",
+    "label": "geleid door",
+    "from": "protestantisme"
+}
+{
+    "to": "jcalvijn",
+    "source": "13.1",
+    "label": "geleid door",
+    "from": "protestantisme"
+}
+{
+    "to": "boekdrukkunst",
+    "source": "13.1",
+    "label": "verspreid door",
+    "from": "protestantisme"
+}
+{
+    "to": "nederlanden",
+    "source": "13.1",
+    "label": "bezetter van",
+    "from": "spanje"
+}
+{
+    "to": "koningen",
+    "source": "13.1",
+    "label": "geregeerd door",
+    "from": "spanje"
+}
+{
+    "to": "karelv",
+    "source": "13.1",
+    "label": "positie vervuld door",
+    "from": "koningen"
+}
+{
+    "to": "fillipsii",
+    "source": "13.1",
+    "label": "positie vervuld door",
+    "from": "koningen"
+}
+{
+    "to": "fillipsii",
+    "source": "13.1",
+    "label": "opgevolgd door",
+    "from": "karelv"
+}
+{
+    "to": "centralisatie",
+    "source": "13.1",
+    "label": "wilden",
+    "from": "koningen"
+}
+{
+    "to": "geloofsvervolging",
+    "source": "13.1",
+    "label": "leidde tot",
+    "from": "centralisatie"
+}
+{
+    "to": "katholicisme",
+    "source": "13.1",
+    "label": "van",
+    "from": "centralisatie"
+}
+{
+    "to": "protestantisme",
+    "source": "13.1",
+    "label": "van",
+    "from": "geloofsvervolging"
+}
+{
+    "to": "nederlanden",
+    "source": "13.1",
+    "label": "door",
+    "from": "verzet"
+}
+{
+    "to": "verzet",
+    "source": "13.1",
+    "label": "leidde tot",
+    "from": "geloofsvervolging"
+}
+{
+    "to": "wvoranje",
+    "source": "13.1",
+    "label": "onder leiding van",
+    "from": "verzet"
+}
+{
+    "to": "80jarigeoorlog",
+    "source": "13.1",
+    "label": "leidde tot",
+    "from": "verzet"
+}
+{
+    "to": "calvinisten",
+    "source": "13.2",
+    "label": "aangehangen door",
+    "from": "protestantisme"
+}
+{
+    "to": "handelscentrum",
+    "source": "13.2",
+    "label": "was",
+    "from": "antwerpen"
+}
+{
+    "to": "handelscentrum",
+    "source": "13.2",
+    "label": "werd",
+    "from": "amsterdam"
+}
+{
+    "to": "vlucht",
+    "source": "13.2",
+    "label": "leidde tot",
+    "from": "geloofsvervolging"
+}
+{
+    "to": "kooplieden",
+    "source": "13.2",
+    "label": "van",
+    "from": "vlucht"
+}
+{
+    "to": "calvinisten",
+    "source": "13.2",
+    "label": "van",
+    "from": "vlucht"
+}
+{
+    "to": "antwerpen",
+    "source": "13.2",
+    "label": "vanaf",
+    "from": "vlucht"
+}
+{
+    "to": "amsterdam",
+    "source": "13.2",
+    "label": "naar",
+    "from": "vlucht"
+}
+{
+    "to": "groei",
+    "source": "13.2",
+    "label": "leidde tot",
+    "from": "vlucht"
+}
+{
+    "to": "amsterdam",
+    "source": "13.2",
+    "label": "van",
+    "from": "groei"
+}
+{
+    "to": "regenten",
+    "source": "13.2",
+    "label": "bestuurd door",
+    "from": "nederlanden"
+}
+{
+    "to": "stedelijkecultuur",
+    "source": "13.2",
+    "label": "wilden",
+    "from": "regenten"
+}
+{
+    "to": "regenten",
+    "source": "13.2",
+    "label": "gefinancierd door",
+    "from": "kunst"
+}
+{
+    "to": "regenten",
+    "source": "13.2",
+    "label": "gefinancierd door",
+    "from": "literatuur"
+}
+{
+    "to": "stedelijkegedragscode",
+    "source": "13.2",
+    "label": "droeg bij aan",
+    "from": "kunst"
+}
+{
+    "to": "stedelijkegedragscode",
+    "source": "13.2",
+    "label": "droeg bij aan",
+    "from": "literatuur"
+}
+{
+    "to": "stedelijkecultuur",
+    "source": "13.2",
+    "label": "vormde",
+    "from": "stedelijkegedragscode"
+}
+{
+    "to": "gewenstongewenst",
+    "source": "13.2",
+    "label": "gaf aan",
+    "from": "stedelijkegedragscode"
+}
+{
+    "to": "boers",
+    "source": "13.2",
+    "label": "voorbeeld ongewenst",
+    "from": "gewenstongewenst"
+}
+{
+    "to": "boerengezelschap",
+    "source": "13.2",
+    "label": "voorbeeld",
+    "from": "stedelijkegedragscode"
+}
+{
+    "to": "gabredero",
+    "source": "13.2",
+    "label": "geschreven door",
+    "from": "boerengezelschap"
+}
+{
+    "to": "boers",
+    "source": "13.2",
+    "label": "beschrijft",
+    "from": "boerengezelschap"
+}
+{
+    "to": "conflicten",
+    "source": "13.2",
+    "label": "leidt tot",
+    "from": "boers"
+}
+{
+    "to": "onmatiggedrag",
+    "source": "13.2",
+    "label": "werd gezien als",
+    "from": "boers"
+}
+{
+    "to": "alcoholisme",
+    "source": "13.2",
+    "label": "bijvoorbeeld",
+    "from": "onmatiggedrag"
+}
+{
+    "to": "seksongeremd",
+    "source": "13.2",
+    "label": "bijvoorbeeld",
+    "from": "onmatiggedrag"
+}
+{
+    "to": "jongeren",
+    "source": "13.2",
+    "label": "leidde tot bevolkingsgroep",
+    "from": "groei"
+}
+{
+    "to": "moraal",
+    "source": "13.2",
+    "label": "hadden",
+    "from": "calvinisten"
+}
+{
+    "to": "geslachtsverkeer",
+    "source": "13.2",
+    "label": "ten opzichte van",
+    "from": "moraal"
+}
+{
+    "to": "moraal",
+    "source": "13.2",
+    "label": "richtte zich op",
+    "from": "lyriek"
+}
+{
+    "to": "moraal",
+    "source": "13.2",
+    "label": "moesten leven met",
+    "from": "jongeren"
+}
+{
+    "to": "goudeneeuw",
+    "source": "13.3",
+    "label": "luidde in",
+    "from": "groei"
+}
+{
+    "to": "oudekamer",
+    "source": "13.3.1",
+    "label": "voorbeeld",
+    "from": "rederijkerskamer"
+}
+{
+    "to": "dichters",
+    "source": "13.3.1",
+    "label": "bestond uit",
+    "from": "rederijkerskamer"
+}
+{
+    "to": "amsterdam",
+    "source": "13.3.1",
+    "label": "gevestigd in",
+    "from": "oudekamer"
+}
+{
+    "to": "gabredero",
+    "source": "13.3.1",
+    "label": "schoolde",
+    "from": "oudekamer"
+}
+{
+    "to": "pchooft",
+    "source": "13.3.1",
+    "label": "schoolde",
+    "from": "oudekamer"
+}
+{
+    "to": "witlavendel",
+    "source": "13.3.1",
+    "label": "voorbeeld",
+    "from": "rederijkerskamer"
+}
+{
+    "to": "amsterdam",
+    "source": "13.3.1",
+    "label": "gevestigd in",
+    "from": "witlavendel"
+}
+{
+    "to": "jvdvondel",
+    "source": "13.3.1",
+    "label": "schoolde",
+    "from": "witlavendel"
+}
+{
+    "to": "opinierenderol",
+    "source": "13.3.1",
+    "label": "had als functie",
+    "from": "rederijkerskamer"
+}
+{
+    "to": "protestantisme",
+    "source": "13.3.1",
+    "label": "over",
+    "from": "opinierenderol"
+}
+{
+    "to": "renaissance",
+    "source": "13.3.1",
+    "label": "over",
+    "from": "opinierenderol"
+}
+{
+    "to": "humanisme",
+    "source": "13.3.1",
+    "label": "over",
+    "from": "opinierenderol"
+}
+{
+    "to": "republikeinsestadstaten",
+    "source": "13.3.2",
+    "label": "vond plaats in",
+    "from": "renaissance"
+}
+{
+    "to": "1415eeuw",
+    "source": "13.3.2",
+    "label": "gedurende",
+    "from": "renaissance"
+}
+{
+    "to": "klassiekeoudheid",
+    "source": "13.3.2",
+    "label": "herorientatie op",
+    "from": "renaissance"
+}
+{
+    "to": "klassiekekunst",
+    "source": "13.3.2",
+    "label": "bracht voort",
+    "from": "klassiekeoudheid"
+}
+{
+    "to": "klassiekeideeen",
+    "source": "13.3.2",
+    "label": "bracht voort",
+    "from": "klassiekeoudheid"
+}
+{
+    "to": "translatio",
+    "source": "13.3.2",
+    "label": "werd verwerkt door",
+    "from": "klassiekeoudheid"
+}
+{
+    "to": "imitatio",
+    "source": "13.3.2",
+    "label": "werd verwerkt door",
+    "from": "klassiekeoudheid"
+}
+{
+    "to": "aemulatio",
+    "source": "13.3.2",
+    "label": "werd verwerkt door",
+    "from": "klassiekeoudheid"
+}
+{
+    "to": "toneel",
+    "source": "13.3.2",
+    "label": "bracht voort",
+    "from": "klassiekeoudheid"
+}
+{
+    "to": "poezie",
+    "source": "13.3.2",
+    "label": "bracht voort",
+    "from": "klassiekeoudheid"
+}
+{
+    "to": "imitatio",
+    "source": "13.3.2",
+    "label": "werd gebruikt voor",
+    "from": "translatio"
+}
+{
+    "to": "aemulatio",
+    "source": "13.3.2",
+    "label": "werd gebruikt voor",
+    "from": "imitatio"
+}
+{
+    "to": "renliteratuur",
+    "source": "13.3.2",
+    "label": "bracht voort",
+    "from": "renaissance"
+}
+{
+    "to": "toneel",
+    "source": "13.3.2",
+    "label": "nam over",
+    "from": "renliteratuur"
+}
+{
+    "to": "komedie",
+    "source": "13.3.2",
+    "label": "klassiek genre",
+    "from": "toneel"
+}
+{
+    "to": "tragedie",
+    "source": "13.3.2",
+    "label": "klassiek genre",
+    "from": "toneel"
+}
+{
+    "to": "renliteratuur",
+    "source": "13.3.2",
+    "label": "stroming",
+    "from": "literatuur"
+}
+{
+    "to": "mythologie",
+    "source": "13.3.2",
+    "label": "pronkte met",
+    "from": "renliteratuur"
+}
+{
+    "to": "mythologie",
+    "source": "13.3.2",
+    "label": "bracht voort",
+    "from": "klassiekeoudheid"
+}
+{
+    "to": "emblematiek",
+    "source": "13.3.2",
+    "label": "nieuw genre",
+    "from": "renliteratuur"
+}
+{
+    "to": "sonnet",
+    "source": "13.3.2",
+    "label": "nieuw genre",
+    "from": "poezie"
+}
+{
+    "to": "sonnet",
+    "source": "13.3.2",
+    "label": "nieuw genre",
+    "from": "renliteratuur"
+}
+{
+    "to": "zelfontplooiing",
+    "source": "13.3.3",
+    "label": "belangrijk concept",
+    "from": "humanisme"
+}
+{
+    "to": "menswaardigheid",
+    "source": "13.3.3",
+    "label": "belangrijk concept",
+    "from": "humanisme"
+}
+{
+    "to": "verdraagzaamheid",
+    "source": "13.3.3",
+    "label": "pleitte voor",
+    "from": "humanisme"
+}
+{
+    "to": "menswetenschappen",
+    "source": "13.3.3",
+    "label": "wijdde zich aan",
+    "from": "humanisme"
+}
+{
+    "to": "natuurwetenschappen",
+    "source": "13.3.3",
+    "label": "wijdde zich aan",
+    "from": "humanisme"
+}
+{
+    "to": "onderscheidmensdier",
+    "source": "13.3.3",
+    "label": "maakte",
+    "from": "menswetenschappen"
+}
+{
+    "to": "taal",
+    "source": "13.3.3",
+    "label": "door",
+    "from": "onderscheidmensdier"
+}
+{
+    "to": "grammatica",
+    "source": "13.3.3",
+    "label": "met behulp van",
+    "from": "taal"
+}
+{
+    "to": "retorica",
+    "source": "13.3.3",
+    "label": "met behulp van",
+    "from": "taal"
+}
+{
+    "to": "ethiek",
+    "source": "13.3.3",
+    "label": "door",
+    "from": "onderscheidmensdier"
+}
+{
+    "to": "poezie",
+    "source": "13.3.3",
+    "label": "geleverd door",
+    "from": "ethiek"
+}
+{
+    "to": "geschiedenis",
+    "source": "13.3.3",
+    "label": "geleverd door",
+    "from": "ethiek"
+}
+{
+    "to": "erasmus",
+    "source": "13.3.3",
+    "label": "belangrijke humanist",
+    "from": "humanisme"
+}
+{
+    "to": "verzoening",
+    "source": "13.3.3",
+    "label": "probeerde",
+    "from": "humanisme"
+}
+{
+    "to": "klassiekeoudheid",
+    "source": "13.3.3",
+    "label": "van",
+    "from": "verzoening"
+}
+{
+    "to": "christendom",
+    "source": "13.3.3",
+    "label": "van",
+    "from": "verzoening"
+}
+{
+    "to": "stoicisme",
+    "source": "13.3.3",
+    "label": "herleefde",
+    "from": "humanisme"
+}
+{
+    "to": "tirannie",
+    "source": "13.3.3",
+    "label": "standvastigheid tegen",
+    "from": "stoicisme"
+}
+{
+    "to": "dvcoornhert",
+    "source": "13.3.3",
+    "label": "belangrijke humanist",
+    "from": "humanisme"
+}
+{
+    "to": "zedelijkeverbetering",
+    "source": "13.3.3",
+    "label": "streefde na",
+    "from": "dvcoornhert"
+}
+{
+    "to": "zelfkennis",
+    "source": "13.3.3",
+    "label": "streefde na",
+    "from": "dvcoornhert"
+}
+{
+    "to": "godsdienstvrijheid",
+    "source": "13.3.3",
+    "label": "streefde na",
+    "from": "dvcoornhert"
+}
+{
+    "to": "godsdienstvrijheid",
+    "source": "13.3.3",
+    "label": "waren tegen",
+    "from": "calvinisten"
+}
+{
+    "to": "godsdienstvrijheid",
+    "source": "13.3.3",
+    "label": "waren tegen",
+    "from": "koningen"
+}
+{
+    "to": "boekdrukkunst",
+    "source": "13.3.3",
+    "label": "verspreid door",
+    "from": "renaissance"
+}
+{
+    "to": "reizen",
+    "source": "13.3.3",
+    "label": "verspreid door",
+    "from": "renaissance"
+}
+{
+    "to": "boekdrukkunst",
+    "source": "13.3.3",
+    "label": "verspreid door",
+    "from": "humanisme"
+}
+{
+    "to": "reizen",
+    "source": "13.3.3",
+    "label": "verspreid door",
+    "from": "humanisme"
+}
+{
+    "to": "nederlandseliteratuur",
+    "source": "13.3.4",
+    "label": "in Nederland",
+    "from": "literatuur"
+}
+{
+    "to": "mecenas",
+    "source": "13.3.4",
+    "label": "vroeger afhankelijk van",
+    "from": "nederlandseliteratuur"
+}
+{
+    "to": "adellijk",
+    "source": "13.3.4",
+    "label": "waren",
+    "from": "mecenas"
+}
+{
+    "to": "kerkelijk",
+    "source": "13.3.4",
+    "label": "waren",
+    "from": "mecenas"
+}
+{
+    "to": "regenten",
+    "source": "13.3.4",
+    "label": "vervangen door",
+    "from": "mecenas"
+}
+{
+    "to": "maatschappelijketaak",
+    "source": "13.3.4",
+    "label": "had",
+    "from": "nederlandseliteratuur"
+}
+{
+    "to": "beleren",
+    "source": "13.3.4",
+    "label": "was",
+    "from": "maatschappelijketaak"
+}
+{
+    "to": "moraliseren",
+    "source": "13.3.4",
+    "label": "was",
+    "from": "maatschappelijketaak"
+}
+{
+    "to": "kritiek",
+    "source": "13.3.4",
+    "label": "was",
+    "from": "maatschappelijketaak"
+}
+{
+    "to": "horatius",
+    "source": "13.3.4",
+    "label": "geinspireerd door",
+    "from": "maatschappelijketaak"
+}
+{
+    "to": "utile",
+    "source": "13.3.4",
+    "label": "dichtkunst moest .. bieden",
+    "from": "horatius"
+}
+{
+    "to": "dulce",
+    "source": "13.3.4",
+    "label": "dichtkunst moest .. bieden",
+    "from": "horatius"
+}
+{
+    "to": "strijdliteratuur",
+    "source": "13.4",
+    "label": "groep werken",
+    "from": "nederlandseliteratuur"
+}
+{
+    "to": "actualiteit",
+    "source": "13.4",
+    "label": "verwees naar",
+    "from": "strijdliteratuur"
+}
+{
+    "to": "actie",
+    "source": "13.4",
+    "label": "stimuleerde tot",
+    "from": "strijdliteratuur"
+}
+{
+    "to": "verzet",
+    "source": "13.4",
+    "label": "voor",
+    "from": "actie"
+}
+{
+    "to": "geusenliederen",
+    "source": "13.4",
+    "label": "voorbeeld",
+    "from": "strijdliteratuur"
+}
+{
+    "to": "wilhelmus",
+    "source": "13.4",
+    "label": "bevatte",
+    "from": "geusenliederen"
+}
+{
+    "to": "renliteratuur",
+    "source": "13.4",
+    "label": "groep werken",
+    "from": "nederlandseliteratuur"
+}
+{
+    "to": "motto",
+    "source": "13.4.1",
+    "label": "bevat",
+    "from": "emblematiek"
+}
+{
+    "to": "pictura",
+    "source": "13.4.1",
+    "label": "bevat",
+    "from": "emblematiek"
+}
+{
+    "to": "subscriptio",
+    "source": "13.4.1",
+    "label": "bevat",
+    "from": "emblematiek"
+}
+{
+    "to": "waarheid",
+    "source": "13.4.1",
+    "label": "illustreert",
+    "from": "emblematiek"
+}
+{
+    "to": "dieperebetekenis",
+    "source": "13.4.1",
+    "label": "heeft",
+    "from": "emblematiek"
+}
+{
+    "to": "analogiedenken",
+    "source": "13.4.1",
+    "label": "maakt gebruik van",
+    "from": "emblematiek"
+}
+{
+    "to": "creationisme",
+    "source": "13.4.1",
+    "label": "maakt argument dat",
+    "from": "analogiedenken"
+}
+{
+    "to": "toeval",
+    "source": "13.4.1",
+    "label": "en daarom",
+    "from": "creationisme"
+}
+{
+    "to": "jcats",
+    "source": "13.4.1",
+    "label": "populaire auteur",
+    "from": "emblematiek"
+}
+{
+    "to": "silenusalcibiadis",
+    "source": "13.4.1",
+    "label": "publiceerde",
+    "from": "jcats"
+}
+{
+    "to": "lyriek",
+    "source": "13.4.2",
+    "label": "genre",
+    "from": "renliteratuur"
+}
+{
+    "to": "liefde",
+    "source": "13.4.2",
+    "label": "stelde centraal",
+    "from": "lyriek"
+}
+{
+    "to": "platonischeliefde",
+    "source": "13.4.2",
+    "label": "in de vorm van",
+    "from": "liefde"
+}
+{
+    "to": "zinnelijkeliefde",
+    "source": "13.4.2",
+    "label": "in de vorm van",
+    "from": "liefde"
+}
+{
+    "to": "platonischeliefde",
+    "source": "13.4.2",
+    "label": "toegestaan als",
+    "from": "zinnelijkeliefde"
+}
+{
+    "to": "petrarkisme",
+    "source": "13.4.2",
+    "label": "sloot aan op",
+    "from": "lyriek"
+}
+{
+    "to": "petrarca",
+    "source": "13.4.2",
+    "label": "genoemd naar",
+    "from": "petrarkisme"
+}
+{
+    "to": "beeldenconventies",
+    "source": "13.4.2",
+    "label": "gebruikte",
+    "from": "petrarkisme"
+}
+{
+    "to": "paradoxen",
+    "source": "13.4.2",
+    "label": "waaronder",
+    "from": "beeldenconventies"
+}
+{
+    "to": "antithese",
+    "source": "13.4.2",
+    "label": "waaronder",
+    "from": "beeldenconventies"
+}
+{
+    "to": "liefdesklacht",
+    "source": "13.4.2",
+    "label": "stelde centraal",
+    "from": "petrarkisme"
+}
+{
+    "to": "platonischeliefde",
+    "source": "13.4.2",
+    "label": "verheerlijkte",
+    "from": "petrarkisme"
+}
+{
+    "to": "ideaalbeeld",
+    "source": "13.4.2",
+    "label": "gericht aan",
+    "from": "liefdesklacht"
+}
+{
+    "to": "literaireelite",
+    "source": "13.4.2",
+    "label": "begrepen door",
+    "from": "beeldenconventies"
+}
+{
+    "to": "zelfbeheersing",
+    "source": "13.4.2",
+    "label": "pleitte voor",
+    "from": "petrarkisme"
+}
+{
+    "to": "geslachtsverkeer",
+    "source": "13.4.2",
+    "label": "ten opzichte van",
+    "from": "zelfbeheersing"
+}
+{
+    "to": "nieuweliedboeken",
+    "source": "13.4.2",
+    "label": "geschreven in",
+    "from": "lyriek"
+}
+{
+    "to": "veertienversregels",
+    "source": "13.4.3",
+    "label": "bestond uit",
+    "from": "sonnet"
+}
+{
+    "to": "octaaf",
+    "source": "13.4.3",
+    "label": "bestond uit",
+    "from": "veertienversregels"
+}
+{
+    "to": "sextet",
+    "source": "13.4.3",
+    "label": "bestond uit",
+    "from": "veertienversregels"
+}
+{
+    "to": "volta",
+    "source": "13.4.3",
+    "label": "bestond uit",
+    "from": "sonnet"
+}
+{
+    "to": "octaaf",
+    "source": "13.4.3",
+    "label": "na",
+    "from": "volta"
+}
+{
+    "to": "sextet",
+    "source": "13.4.3",
+    "label": "voor",
+    "from": "volta"
+}
+{
+    "to": "petrarkisme",
+    "source": "13.4.3",
+    "label": "sloot aan op",
+    "from": "sonnet"
+}
+{
+    "to": "pchooft",
+    "source": "13.4.3",
+    "label": "belangrijkste dichter",
+    "from": "sonnet"
+}
+{
+    "to": "stedelijkegedragscode",
+    "source": "13.4.4",
+    "label": "met als ethisch-didactisch doel",
+    "from": "toneel"
+}
+{
+    "to": "publiek",
+    "source": "13.4.4",
+    "label": "geopend voor",
+    "from": "toneel"
+}
+{
+    "to": "amsterdam",
+    "source": "13.4.4",
+    "label": "grootste productie in",
+    "from": "toneel"
+}
+{
+    "to": "liefdadigeinstellingen",
+    "source": "13.4.4",
+    "label": "winst naar",
+    "from": "toneel"
+}
+{
+    "to": "liefdadigeinstellingen",
+    "source": "13.4.4",
+    "label": "hadden baat bij",
+    "from": "regenten"
+}
+{
+    "to": "opinierenderol",
+    "source": "13.4.4",
+    "label": "als functie",
+    "from": "toneel"
+}
+{
+    "to": "eerstenederduytscheacademie",
+    "source": "13.4.4",
+    "label": "theater",
+    "from": "toneel"
+}
+{
+    "to": "amsterdamseschouwburg",
+    "source": "13.4.4",
+    "label": "theater",
+    "from": "toneel"
+}
+{
+    "to": "spiegel",
+    "source": "13.4.4",
+    "label": "had als functie",
+    "from": "toneel"
+}
+{
+    "to": "ondergang",
+    "source": "13.4.4.1",
+    "label": "ging over",
+    "from": "tragedie"
+}
+{
+    "to": "hooggeplaatstpersonage",
+    "source": "13.4.4.1",
+    "label": "hoofdpersoon was",
+    "from": "ondergang"
+}
+{
+    "to": "klassiekeoudheid",
+    "source": "13.4.4.1",
+    "label": "inhoud verleend aan",
+    "from": "tragedie"
+}
+{
+    "to": "geschiedenis",
+    "source": "13.4.4.1",
+    "label": "inhoud verleend aan",
+    "from": "tragedie"
+}
+{
+    "to": "bijbel",
+    "source": "13.4.4.1",
+    "label": "inhoud verleend aan",
+    "from": "tragedie"
+}
+{
+    "to": "retorischdidactischtragedie",
+    "source": "13.4.4.1",
+    "label": "genre",
+    "from": "tragedie"
+}
+{
+    "to": "seneca",
+    "source": "13.4.4.1",
+    "label": "met als belangrijk voorbeeld",
+    "from": "retorischdidactischtragedie"
+}
+{
+    "to": "vijfbedrijven",
+    "source": "13.4.4.1",
+    "label": "bestond uit",
+    "from": "retorischdidactischtragedie"
+}
+{
+    "to": "aristotelestragedie",
+    "source": "13.4.4.1",
+    "label": "genre",
+    "from": "tragedie"
+}
+{
+    "to": "handelingsstructuur",
+    "source": "13.4.4.1",
+    "label": "gebaseerd op",
+    "from": "aristotelestragedie"
+}
+{
+    "to": "tijd",
+    "source": "13.4.4.1",
+    "label": "eenheid van",
+    "from": "handelingsstructuur"
+}
+{
+    "to": "plaats",
+    "source": "13.4.4.1",
+    "label": "eenheid van",
+    "from": "handelingsstructuur"
+}
+{
+    "to": "handeling",
+    "source": "13.4.4.1",
+    "label": "eenheid van",
+    "from": "handelingsstructuur"
+}
+{
+    "to": "aristoteles",
+    "source": "13.4.4.1",
+    "label": "bedacht door",
+    "from": "handelingsstructuur"
+}
+{
+    "to": "gvaemstel",
+    "source": "13.4.4.1",
+    "label": "voorbeeld",
+    "from": "tragedie"
+}
+{
+    "to": "jvdvondel",
+    "source": "13.4.4.1",
+    "label": "geschreven door",
+    "from": "gvaemstel"
+}
+{
+    "to": "laaggeplaatstpersonage",
+    "source": "13.4.4.2",
+    "label": "personages waren",
+    "from": "komedie"
+}
+{
+    "to": "spreektaal",
+    "source": "13.4.4.2",
+    "label": "gesproken in",
+    "from": "komedie"
+}
+{
+    "to": "happyend",
+    "source": "13.4.4.2",
+    "label": "eindigde met",
+    "from": "komedie"
+}
+{
+    "to": "warenar",
+    "source": "13.4.4.2",
+    "label": "voorbeeld",
+    "from": "komedie"
+}
+{
+    "to": "pchooft",
+    "source": "13.4.4.2",
+    "label": "geschreven door",
+    "from": "warenar"
+}
+{
+    "to": "klucht",
+    "source": "13.4.4.2",
+    "label": "nieuw genre",
+    "from": "toneel"
+}
+{
+    "to": "komedie",
+    "source": "13.4.4.2",
+    "label": "korter dan",
+    "from": "klucht"
+}
+{
+    "to": "grappigesituaties",
+    "source": "13.4.4.2",
+    "label": "toonden",
+    "from": "klucht"
+}
+{
+    "to": "primairelevensdriften",
+    "source": "13.4.4.2",
+    "label": "ging over",
+    "from": "klucht"
+}
+{
+    "to": "kvdkoe",
+    "source": "13.4.4.2",
+    "label": "voorbeeld",
+    "from": "klucht"
+}
+{
+    "to": "gabredero",
+    "source": "13.4.4.2",
+    "label": "geschreven door",
+    "from": "kvdkoe"
+}
