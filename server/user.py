@@ -16,6 +16,11 @@ class User(Document):
     sessions = ListField(EmbeddedDocumentField(Session), default = [])    
     questionnaire = ListField(EmbeddedDocumentField(QuestionnaireResponse))
 
+    def set_descriptives(birthdate, gender, code):
+        self.birthdate = birthdate
+        self.gender = gender
+        self.code = code
+
     def create_test(flashcards, items):
         prev_flashcards = []
         prev_items = []
@@ -35,8 +40,8 @@ class User(Document):
             test.append_item(card["item"], card["answer"])
         tests.append(test)
 
-    def set_descriptives(birthdate, gender, code):
-        self.birthdate = birthdate
-        self.gender = gender
-        self.code = code
+    def create_questionnaire(items):
+        #TODO: IMPLEMENT
 
+    def append_questionnaire(items):
+        #TODO: IMPLEMENT

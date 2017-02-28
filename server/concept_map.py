@@ -13,3 +13,14 @@ class ConceptMap(Document):
     connect('flashmap')
     nodes = ListField(ReferenceField(Node), default=Node.objects())
     edges = ListField(ReferenceField(Edge), default=Edge.objects())
+
+    def get_partial_map(edge):
+        """Returns a concept map containing only the parent and sibling edges together with the referred nodes
+
+        :param edge: The input edge
+        :type edge: Edge
+        :return: A concept map containing parent and sibling edges of edge together with the referred nodes
+        :rtype: ConceptMap
+        .. todo:: Implementation
+        """
+        pass

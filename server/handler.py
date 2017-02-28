@@ -9,9 +9,10 @@ PORT = 5678
 async def handler(websocket, path):
     """Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client
 
-    args:
-        websocket -- the websocket being used for receiving and sending messages to a client
-        path -- the IP address used to host the websocket
+    :param websocket: the websocket being used for receiving and sending messages to a client
+    :type websocket: Websocket
+    :param path: the IP address used to host the websocket
+    :type path: String
     """
     consumer = Consumer()
     try:

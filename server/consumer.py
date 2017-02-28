@@ -32,12 +32,12 @@ class Consumer():
     def __init__(self):
         connect('flashmap')
         #Preloading all sources from the different flashcards/-edges (the chapters from Laagland)
-        concept_map = ConceptMap.objects().first()
-        SOURCES = []
-        user = None
+        self.concept_map = ConceptMap.objects().first()
+        self.SOURCES = []
+        self.user = None
         for edge in concept_map.edges:
             if (edge.source not in SOURCES): SOURCES.append(edge.source)
-        SOURCES.sort()
+        self.SOURCES.sort()
 
 
     def consumer(keyword, data):
@@ -69,55 +69,10 @@ class Consumer():
         :return: The user with this username
         :rtype: User
         """
-        user = User.objects(name=name)
+        self.user = User.objects(name=name)
         if (not User):
-            user = User(
+            self.user = User(
                     name = name,
                     flashmap_condition = [True, False][len(User.objects())%2]
                     )
-        return user
-
-    def create_test():
-        """Creates a new :class:`test.Test` for the currently active :class:`user.User`
-
-        :return: A new test not containing items from previous tests
-        :rtype: Test
-        """
-        return user.create_test(Flashcard.objects(), TestItems.objects())
-    
-    def add_descriptives(gender, birthdate, code):
-        """Adds the provided descriptives to the active user
-        
-        :param gender: The gender of the user (restricted to 'male', 'female', or 'other')
-        :type gender: str
-        :param birthdate: The date of birth of the user
-        :type birthdate: datetime
-        :param code: A code affirming receiving the informed consent form
-        :type code: str
-        """
-        user.setDescriptives(gender, birthdate, code)
-        
-    def add_test(flashcards_dict, items_dict):
-        """Adds a :class:`test.Test` to the active :class:`user.User`
-
-        :param flashcards_dict: A dictionary containing flashcard id's and answers
-        :type flashcards_dict: dict(str, str)
-        :param items_dict: A dictionary containing test item id's and answers
-        :type items_dict: dict(str, str)
-        """
-        flashcard_responses = []
-        item_responses = []
-        for card in flashcards_dict:
-            flashcard = Flashcard.objects(_id = card["id"])
-            flashcard_responses.append({"flashcard": flashcard, "answer": card["answer"]})
-        for item in items_dict:
-            item = TestItem.objects(_id = card["id"])
-            item_responses.append({"item": item, "answer": item["answer"]})
-
-    def create_questionnaire():
-        """Creates a new :class:`questionnaire.Questionnaire`
-
-        :return: A new questionnaire
-        :rtype: Questionnaire
-        """
-        return user.create_test(QuestionnaireItem.objects())
+        return self.user
