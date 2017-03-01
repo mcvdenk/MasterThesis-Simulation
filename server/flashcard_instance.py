@@ -1,7 +1,7 @@
 from flash_instance import *
 from flashcard import *
 
-class FlashmapInstance(FlashInstance):
+class FlashmapInstance(Instance):
     """A class for storing responses from the flashmap system
 
     :param reference: The edge to which this instance refers
