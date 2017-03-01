@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="questionnaire_response module" href="questionnaire_response.html" />
+    <link rel="prev" title="questionnaire module" href="questionnaire.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,6 +50,20 @@
 <dt id="questionnaire_item.QuestionnaireItem">
 <em class="property">class </em><code class="descclassname">questionnaire_item.</code><code class="descname">QuestionnaireItem</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/questionnaire_item.html#QuestionnaireItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#questionnaire_item.QuestionnaireItem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.Document</span></code></p>
+<p>A class representing a single item on the questionnaire</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>usefullness</strong> &#8211; Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)</li>
+<li><strong>positive_phrasing</strong> (<em>StringField</em>) &#8211; The version of this item which is positively phrased</li>
+<li><strong>negative_phrasing</strong> (<em>StringField</em>) &#8211; The version of this item which is negatively phrased</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="exception">
 <dt id="questionnaire_item.QuestionnaireItem.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#questionnaire_item.QuestionnaireItem.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -105,6 +121,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="questionnaire.html" title="previous chapter">questionnaire module</a></li>
+      <li>Next: <a href="questionnaire_response.html" title="next chapter">questionnaire_response module</a></li>
   </ul></li>
 </ul>
 </div>

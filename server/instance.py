@@ -1,6 +1,6 @@
 from mongoengine import *
-from flashedge_response import *
 from datetime import datetime
+from response import *
 
 class Instance(EmbeddedDocument):
     """A class describing a general flash instance, which can either be a FlashmapInstance or a FlashcardInstance
@@ -9,12 +9,14 @@ class Instance(EmbeddedDocument):
     :type responses: ListField(EmbeddedDocumentField(Response))
     :param reference: A reference to either an edge in a concept map or a flashcard (defined within the subclass)
     :type reference: GenericReferenceField
+    :param due_date: The date this instance is due for repetition
+    :type due_date: DateTimeField
     """
     meta = {'allow_inheritance': True}
     connect('flashmap')
     responses = ListField(EmbeddedDocumentField(Response), default = [])
     reference = GenericReferenceField(required = True)
-    due_date = DateField(default = datetime.now())
+    due_date = DateTimeField(default = datetime.now())
 
     def schedule():
         """Reschedules this instance for review based on the previous responses

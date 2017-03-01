@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="edge module" href="edge.html" />
+    <link rel="prev" title="concept_map module" href="concept_map.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -55,50 +57,13 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>concept_map</strong> (<a class="reference internal" href="concept_map.html#concept_map.ConceptMap" title="concept_map.ConceptMap"><em>ConceptMap</em></a>) &#8211; The concept map object containing references to nodes and edges</li>
-<li><strong>SOURCES</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>]</em><em></em>) &#8211; All of the sources referenced to in the edges of the concept map</li>
+<li><strong>SOURCES</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>)</em><em></em>) &#8211; All of the sources referenced to in the edges of the concept map</li>
 <li><strong>user</strong> (<a class="reference internal" href="user.html#user.User" title="user.User"><em>User</em></a>) &#8211; The active user</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="consumer.Consumer.add_descriptives">
-<code class="descname">add_descriptives</code><span class="sig-paren">(</span><em>gender</em>, <em>birthdate</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.add_descriptives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.add_descriptives" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds the provided descriptives to the active user</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>gender</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The gender of the user (restricted to &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
-<li><strong>birthdate</strong> (<a class="reference external" href="https://docs.python.org/2/library/datetime.html#module-datetime" title="(in Python v2.7)"><em>datetime</em></a>) &#8211; The date of birth of the user</li>
-<li><strong>code</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A code affirming receiving the informed consent form</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="consumer.Consumer.add_test">
-<code class="descname">add_test</code><span class="sig-paren">(</span><em>flashcards_dict</em>, <em>items_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.add_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.add_test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a <a class="reference internal" href="test.html#test.Test" title="test.Test"><code class="xref py py-class docutils literal"><span class="pre">test.Test</span></code></a> to the active <a class="reference internal" href="user.html#user.User" title="user.User"><code class="xref py py-class docutils literal"><span class="pre">user.User</span></code></a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>flashcards_dict</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A dictionary containing flashcard id&#8217;s and answers</li>
-<li><strong>items_dict</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A dictionary containing test item id&#8217;s and answers</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="method">
 <dt id="consumer.Consumer.authenticate">
 <code class="descname">authenticate</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.authenticate" title="Permalink to this definition">¶</a></dt>
@@ -107,7 +72,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The username</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The username</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The user with this username</td>
 </tr>
@@ -119,55 +84,23 @@
 
 <dl class="method">
 <dt id="consumer.Consumer.consumer">
-<code class="descname">consumer</code><span class="sig-paren">(</span><em>keyword</em>, <em>data</em>, <em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.consumer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.consumer" title="Permalink to this definition">¶</a></dt>
+<code class="descname">consumer</code><span class="sig-paren">(</span><em>keyword</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.consumer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.consumer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pass data to the function corresponding to the provided keyword for the provided user</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>keyword</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; the keyword for which function to use</li>
-<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; the data necessary for executing the function</li>
+<li><strong>keyword</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; the keyword for which function to use</li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a><em>)</em><em></em>) &#8211; the data necessary for executing the function</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Contains the keyword and data to send over a websocket to a client</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a>(<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)">str</a>, <a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)">str</a> or <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a>)</p>
 </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="consumer.Consumer.create_questionnaire">
-<code class="descname">create_questionnaire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.create_questionnaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new <a class="reference internal" href="questionnaire.html#questionnaire.Questionnaire" title="questionnaire.Questionnaire"><code class="xref py py-class docutils literal"><span class="pre">questionnaire.Questionnaire</span></code></a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A new questionnaire</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="questionnaire.html#questionnaire.Questionnaire" title="questionnaire.Questionnaire">Questionnaire</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="consumer.Consumer.create_test">
-<code class="descname">create_test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.create_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.create_test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new <a class="reference internal" href="test.html#test.Test" title="test.Test"><code class="xref py py-class docutils literal"><span class="pre">test.Test</span></code></a> for the currently active <a class="reference internal" href="user.html#user.User" title="user.User"><code class="xref py py-class docutils literal"><span class="pre">user.User</span></code></a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A new test not containing items from previous tests</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="test.html#test.Test" title="test.Test">Test</a></td>
 </tr>
 </tbody>
 </table>
@@ -186,6 +119,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="concept_map.html" title="previous chapter">concept_map module</a></li>
+      <li>Next: <a href="edge.html" title="next chapter">edge module</a></li>
   </ul></li>
 </ul>
 </div>

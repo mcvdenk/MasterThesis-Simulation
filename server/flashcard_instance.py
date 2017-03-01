@@ -1,11 +1,11 @@
-from flash_instance import *
+from instance import *
 from flashcard import *
 
-class FlashmapInstance(Instance):
+class FlashcardInstance(Instance):
     """A class for storing responses from the flashmap system
 
     :param reference: The edge to which this instance refers
     :type reference: Edge
     """
     connect('flashmap')
-    reference = ReferenceField(Edge, required = True)
+    reference = ReferenceField(Flashcard, required = True)

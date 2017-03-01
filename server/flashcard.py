@@ -1,7 +1,7 @@
 from mongoengine import *
 
 class Flashcard(Document):
-    "A class representing a flashcard
+    """A class representing a flashcard
     :param question: The question on the front side of the flashcard
     :type question: StringField
     :param answer: The answer on the back side of the flashcard

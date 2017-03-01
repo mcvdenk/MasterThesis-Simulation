@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test module" href="test.html" />
+    <link rel="prev" title="response module" href="response.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,6 +50,21 @@
 <dt id="session.Session">
 <em class="property">class </em><code class="descclassname">session.</code><code class="descname">Session</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/session.html#Session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#session.Session" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.EmbeddedDocument</span></code></p>
+<p>A class representing a session the user was logged in</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>start</strong> (<em>DateTimeField</em>) &#8211; The time that the user logged in</li>
+<li><strong>end</strong> (<em>DateTimeField</em>) &#8211; The time that the user logged out</li>
+<li><strong>source_prompted</strong> (<em>BooleanField</em>) &#8211; Whether the user was asked to have read a certain source from SOURCES</li>
+<li><strong>browser</strong> (<em>StringField</em>) &#8211; The type of browser used to log in</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="session.Session.browser">
 <code class="descname">browser</code><a class="headerlink" href="#session.Session.browser" title="Permalink to this definition">¶</a></dt>
@@ -57,13 +74,18 @@
 <dl class="attribute">
 <dt id="session.Session.end">
 <code class="descname">end</code><a class="headerlink" href="#session.Session.end" title="Permalink to this definition">¶</a></dt>
-<dd><p>32-bit integer field.</p>
+<dd><p>Datetime field.</p>
+<p>Uses the python-dateutil library if available alternatively use time.strptime
+to parse the dates.  Note: python-dateutil&#8217;s parser is fully featured and when
+installed you can utilise it to convert varying types of date formats into valid
+python datetime objects.</p>
+<dl class="docutils">
+<dt>Note: Microseconds are rounded to the nearest millisecond.</dt>
+<dd>Pre UTC microsecond support is effectively broken.
+Use <code class="xref py py-class docutils literal"><span class="pre">ComplexDateTimeField</span></code> if you
+need accurate microsecond support.</dd>
+</dl>
 </dd></dl>
-
-<dl class="method">
-<dt id="session.Session.end_session">
-<code class="descname">end_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/session.html#Session.end_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#session.Session.end_session" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="session.Session.source_prompted">
@@ -77,7 +99,17 @@
 <dl class="attribute">
 <dt id="session.Session.start">
 <code class="descname">start</code><a class="headerlink" href="#session.Session.start" title="Permalink to this definition">¶</a></dt>
-<dd><p>32-bit integer field.</p>
+<dd><p>Datetime field.</p>
+<p>Uses the python-dateutil library if available alternatively use time.strptime
+to parse the dates.  Note: python-dateutil&#8217;s parser is fully featured and when
+installed you can utilise it to convert varying types of date formats into valid
+python datetime objects.</p>
+<dl class="docutils">
+<dt>Note: Microseconds are rounded to the nearest millisecond.</dt>
+<dd>Pre UTC microsecond support is effectively broken.
+Use <code class="xref py py-class docutils literal"><span class="pre">ComplexDateTimeField</span></code> if you
+need accurate microsecond support.</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -93,6 +125,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="response.html" title="previous chapter">response module</a></li>
+      <li>Next: <a href="test.html" title="next chapter">test module</a></li>
   </ul></li>
 </ul>
 </div>

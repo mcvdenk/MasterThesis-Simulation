@@ -7,20 +7,20 @@ server
    concept_map
    consumer
    edge
-   flash_instance
    flashcard
    flashcard_instance
-   flashcard_response
-   flashedge_response
    flashmap_instance
    handler
-   item_response
+   instance
    logentry
    node
    questionnaire
    questionnaire_item
    questionnaire_response
+   response
    session
    test
+   test_flashcard_response
    test_item
+   test_item_response
    user

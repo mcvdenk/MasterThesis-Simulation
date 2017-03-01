@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="questionnaire_item module" href="questionnaire_item.html" />
+    <link rel="prev" title="node module" href="node.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -46,44 +48,57 @@
 <span id="questionnaire-module"></span><h1>questionnaire module<a class="headerlink" href="#module-questionnaire" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="questionnaire.Questionnaire">
-<em class="property">class </em><code class="descclassname">questionnaire.</code><code class="descname">Questionnaire</code><span class="sig-paren">(</span><em>questionnaire_items</em>, <em>**data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/questionnaire.html#Questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#questionnaire.Questionnaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.Document</span></code></p>
-<dl class="exception">
-<dt id="questionnaire.Questionnaire.DoesNotExist">
-<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#questionnaire.Questionnaire.DoesNotExist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.errors.DoesNotExist</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="questionnaire.Questionnaire.MultipleObjectsReturned">
-<em class="property">exception </em><code class="descclassname">Questionnaire.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#questionnaire.Questionnaire.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.errors.MultipleObjectsReturned</span></code></p>
-</dd></dl>
-
+<em class="property">class </em><code class="descclassname">questionnaire.</code><code class="descname">Questionnaire</code><span class="sig-paren">(</span><em>pu_items</em>, <em>peou_items</em>, <em>**data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/questionnaire.html#Questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#questionnaire.Questionnaire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.EmbeddedDocument</span></code></p>
+<p>A class representing a stored questionnaire for a user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>perceived_usefulness_items</strong> (<em>ListField</em><em>(</em><a class="reference internal" href="questionnaire_response.html#questionnaire_response.QuestionnaireResponse" title="questionnaire_response.QuestionnaireResponse"><em>QuestionnaireResponse</em></a><em>)</em><em></em>) &#8211; Responses to the perceived usefulness items from TAM</li>
+<li><strong>perceived_ease_of_use_items</strong> (<em>ListField</em><em>(</em><a class="reference internal" href="questionnaire_response.html#questionnaire_response.QuestionnaireResponse" title="questionnaire_response.QuestionnaireResponse"><em>QuestionnaireResponse</em></a><em>)</em><em></em>) &#8211; Responses to the perceived ease of use item from TAM</li>
+<li><strong>good</strong> (<em>StringField</em>) &#8211; A description of what was good about the software according to the user</li>
+<li><strong>can_be_improved</strong> (<em>StringField</em>) &#8211; A description of what could be improved according to the user</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
-<dt id="questionnaire.Questionnaire.append_item">
-<code class="descclassname">Questionnaire.</code><code class="descname">append_item</code><span class="sig-paren">(</span><em>item</em>, <em>answer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/questionnaire.html#Questionnaire.append_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#questionnaire.Questionnaire.append_item" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="questionnaire.Questionnaire.generate_questionniare">
-<code class="descclassname">Questionnaire.</code><code class="descname">generate_questionniare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/questionnaire.html#Questionnaire.generate_questionniare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#questionnaire.Questionnaire.generate_questionniare" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="questionnaire.Questionnaire.append_answer">
+<code class="descname">append_answer</code><span class="sig-paren">(</span><em>item</em>, <em>phrasing</em>, <em>answer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/questionnaire.html#Questionnaire.append_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#questionnaire.Questionnaire.append_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends an answer to an item within the questionnaire</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>item</strong> (<a class="reference internal" href="questionnaire_item.html#questionnaire_item.QuestionnaireItem" title="questionnaire_item.QuestionnaireItem"><em>QuestionnaireItem</em></a>) &#8211; The item to which the answer refers</li>
+<li><strong>phrasing</strong> (<em>boolean</em>) &#8211; Whether the item is positively (True) phrased or negatively (False)</li>
+<li><strong>answer</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The answer to be appended</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="questionnaire.Questionnaire.id">
-<code class="descclassname">Questionnaire.</code><code class="descname">id</code><a class="headerlink" href="#questionnaire.Questionnaire.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A field wrapper around MongoDB&#8217;s ObjectIds.</p>
+<dt id="questionnaire.Questionnaire.can_be_improved">
+<code class="descname">can_be_improved</code><a class="headerlink" href="#questionnaire.Questionnaire.can_be_improved" title="Permalink to this definition">¶</a></dt>
+<dd><p>A unicode string field.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="questionnaire.Questionnaire.objects">
-<code class="descclassname">Questionnaire.</code><code class="descname">objects</code><em class="property"> = []</em><a class="headerlink" href="#questionnaire.Questionnaire.objects" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="questionnaire.Questionnaire.good">
+<code class="descname">good</code><a class="headerlink" href="#questionnaire.Questionnaire.good" title="Permalink to this definition">¶</a></dt>
+<dd><p>A unicode string field.</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="questionnaire.Questionnaire.perceived_ease_of_use_items">
-<code class="descclassname">Questionnaire.</code><code class="descname">perceived_ease_of_use_items</code><a class="headerlink" href="#questionnaire.Questionnaire.perceived_ease_of_use_items" title="Permalink to this definition">¶</a></dt>
+<code class="descname">perceived_ease_of_use_items</code><a class="headerlink" href="#questionnaire.Questionnaire.perceived_ease_of_use_items" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list field that wraps a standard field, allowing multiple instances
 of the field to be used as a list in the database.</p>
 <p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
@@ -95,7 +110,7 @@ of the field to be used as a list in the database.</p>
 
 <dl class="attribute">
 <dt id="questionnaire.Questionnaire.perceived_usefulness_items">
-<code class="descclassname">Questionnaire.</code><code class="descname">perceived_usefulness_items</code><a class="headerlink" href="#questionnaire.Questionnaire.perceived_usefulness_items" title="Permalink to this definition">¶</a></dt>
+<code class="descname">perceived_usefulness_items</code><a class="headerlink" href="#questionnaire.Questionnaire.perceived_usefulness_items" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list field that wraps a standard field, allowing multiple instances
 of the field to be used as a list in the database.</p>
 <p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
@@ -118,6 +133,8 @@ of the field to be used as a list in the database.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="node.html" title="previous chapter">node module</a></li>
+      <li>Next: <a href="questionnaire_item.html" title="next chapter">questionnaire_item module</a></li>
   </ul></li>
 </ul>
 </div>

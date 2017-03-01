@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="flashcard_instance module" href="flashcard_instance.html" />
+    <link rel="prev" title="edge module" href="edge.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,6 +50,15 @@
 <dt id="flashcard.Flashcard">
 <em class="property">class </em><code class="descclassname">flashcard.</code><code class="descname">Flashcard</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flashcard.html#Flashcard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flashcard.Flashcard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.Document</span></code></p>
+<p>A class representing a flashcard
+:param question: The question on the front side of the flashcard
+:type question: StringField
+:param answer: The answer on the back side of the flashcard
+:type answer: StringField
+:param sources: The sources where this flashcard are described (e.g. paragraph 13.2 of Laagland)
+:type sources: ListField(StringField)
+:param response_model: A list consisting of parts of valid responses to the question (for the test matrix)
+:type response_model: ListField(StringField)</p>
 <dl class="exception">
 <dt id="flashcard.Flashcard.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#flashcard.Flashcard.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -120,6 +131,8 @@ of the field to be used as a list in the database.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="edge.html" title="previous chapter">edge module</a></li>
+      <li>Next: <a href="flashcard_instance.html" title="next chapter">flashcard_instance module</a></li>
   </ul></li>
 </ul>
 </div>

@@ -44,24 +44,58 @@
             
   <h1>Source code for questionnaire</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">questionnaire_item</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">questionnaire_response</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
-<div class="viewcode-block" id="Questionnaire"><a class="viewcode-back" href="../questionnaire.html#questionnaire.Questionnaire">[docs]</a><span class="k">class</span> <span class="nc">Questionnaire</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+<div class="viewcode-block" id="Questionnaire"><a class="viewcode-back" href="../questionnaire.html#questionnaire.Questionnaire">[docs]</a><span class="k">class</span> <span class="nc">Questionnaire</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A class representing a stored questionnaire for a user</span>
+<span class="sd">    </span>
+<span class="sd">    :param perceived_usefulness_items: Responses to the perceived usefulness items from TAM</span>
+<span class="sd">    :type perceived_usefulness_items: ListField(QuestionnaireResponse)</span>
+<span class="sd">    :param perceived_ease_of_use_items: Responses to the perceived ease of use item from TAM</span>
+<span class="sd">    :type perceived_ease_of_use_items: ListField(QuestionnaireResponse)</span>
+<span class="sd">    :param good: A description of what was good about the software according to the user</span>
+<span class="sd">    :type good: StringField</span>
+<span class="sd">    :param can_be_improved: A description of what could be improved according to the user</span>
+<span class="sd">    :type can_be_improved: StringField</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
-    <span class="n">perceived_usefulness_items</span>  <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">QuestionnaireItem</span><span class="p">))</span>
-    <span class="n">perceived_ease_of_use_items</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">QuestionnaireItem</span><span class="p">))</span>
+    <span class="n">perceived_usefulness_items</span>  <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">QuestionnaireResponse</span><span class="p">))</span>
+    <span class="n">perceived_ease_of_use_items</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">QuestionnaireResponse</span><span class="p">))</span>
+    <span class="n">good</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">can_be_improved</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">questionnaire_items</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">):</span>
-        <span class="n">pu_items</span><span class="p">,</span> <span class="n">peaou_items</span> <span class="o">=</span> <span class="n">generate_questionnaire</span><span class="p">()</span>
-        <span class="nb">super</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perceived_usefulness_items</span> <span class="o">=</span> <span class="n">pu_items</span><span class="p">,</span> <span class="n">perceived_ease_of_use_items</span> <span class="o">=</span> <span class="n">peaou_items</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pu_items</span><span class="p">,</span> <span class="n">peou_items</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">pu1</span> <span class="o">=</span> <span class="p">[</span><span class="n">QuestionnaireResponse</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="n">resp</span><span class="p">,</span> <span class="n">phrasing</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">pu_items</span><span class="p">]</span>
+        <span class="n">pu2</span> <span class="o">=</span> <span class="p">[</span><span class="n">QuestionnaireResponse</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="n">resp</span><span class="p">,</span> <span class="n">phrasing</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">resp</span><span class="o">.</span><span class="n">phrasing</span><span class="p">)</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">pu1</span><span class="p">]</span>
+        <span class="n">peou1</span> <span class="o">=</span> <span class="p">[</span><span class="n">QuestionnaireResponse</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="n">resp</span><span class="p">,</span> <span class="n">phrasing</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">peou_items</span><span class="p">]</span>
+        <span class="n">peou2</span> <span class="o">=</span> <span class="p">[</span><span class="n">QuestionnaireResponse</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="n">resp</span><span class="p">,</span> <span class="n">phrasing</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">resp</span><span class="o">.</span><span class="n">phrasing</span><span class="p">)</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">peou1</span><span class="p">]</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pu1</span><span class="p">)</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pu2</span><span class="p">)</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">peou1</span><span class="p">)</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">peou2</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perceived_usefulness_items</span> <span class="o">=</span> <span class="n">pu1</span> <span class="o">+</span> <span class="n">pu2</span><span class="p">,</span> <span class="n">perceived_ease_of_use_items</span> <span class="o">=</span> <span class="n">peou1</span> <span class="o">+</span> <span class="n">peou2</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Questionnaire.generate_questionniare"><a class="viewcode-back" href="../questionnaire.html#questionnaire.Questionnaire.generate_questionniare">[docs]</a>    <span class="k">def</span> <span class="nf">generate_questionniare</span><span class="p">():</span>
-        <span class="c1">#TODO: implementation</span>
-        <span class="k">return</span></div>
+<div class="viewcode-block" id="Questionnaire.append_answer"><a class="viewcode-back" href="../questionnaire.html#questionnaire.Questionnaire.append_answer">[docs]</a>    <span class="k">def</span> <span class="nf">append_answer</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">phrasing</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Appends an answer to an item within the questionnaire</span>
 
-<div class="viewcode-block" id="Questionnaire.append_item"><a class="viewcode-back" href="../questionnaire.html#questionnaire.Questionnaire.append_item">[docs]</a>    <span class="k">def</span> <span class="nf">append_item</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
-        <span class="c1">#TODO: implementation</span>
-        <span class="k">return</span></div></div>
+<span class="sd">        :param item: The item to which the answer refers</span>
+<span class="sd">        :type item: QuestionnaireItem</span>
+<span class="sd">        :param phrasing: Whether the item is positively (True) phrased or negatively (False)</span>
+<span class="sd">        :type phrasing: boolean</span>
+<span class="sd">        :param answer: The answer to be appended</span>
+<span class="sd">        :type answer: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">usefulness</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">perceived_usefulness_items</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>
+                    <span class="n">r</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span>
+                    <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">perceived_ease_of_use_items</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>
+                    <span class="n">r</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span>
+                    <span class="k">break</span></div></div>
 </pre></div>
 
           </div>

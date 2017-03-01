@@ -27,6 +27,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="test_item_response module" href="test_item_response.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,6 +49,26 @@
 <dt id="user.User">
 <em class="property">class </em><code class="descclassname">user.</code><code class="descname">User</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.Document</span></code></p>
+<p>A class representing a user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flashmap_condition</strong> (<em>BooleanField</em>) &#8211; Whether the user uses the flashmap system (True) or the flashcard system (False)</li>
+<li><strong>birthdate</strong> (<em>DateTimeField</em>) &#8211; The birthdate of the user</li>
+<li><strong>read_sources</strong> (<em>ListField</em><em>(</em><em>StringField</em><em>)</em><em></em>) &#8211; A list of read sources by the user</li>
+<li><strong>gender</strong> (<em>StringField</em>) &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
+<li><strong>code</strong> (<em>StringField</em>) &#8211; The code from the user&#8217;s informed consent form</li>
+<li><strong>tests</strong> (<em>ListField</em><em>(</em><a class="reference internal" href="test.html#test.Test" title="test.Test"><em>Test</em></a><em>)</em><em></em>) &#8211; The pre- and posttest</li>
+<li><strong>questionnaire</strong> (<a class="reference internal" href="questionnaire.html#questionnaire.Questionnaire" title="questionnaire.Questionnaire"><em>Questionnaire</em></a>) &#8211; The questionnaire</li>
+<li><strong>instances</strong> &#8211; A list of instances storing the flashmap/flashcard data for the user</li>
+<li><strong>sessions</strong> (<a class="reference internal" href="session.html#session.Session" title="session.Session"><em>Session</em></a>) &#8211; A list of past sessions for this user</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="exception">
 <dt id="user.User.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user.User.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -61,9 +82,44 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="user.User.append_questionnaire">
+<code class="descclassname">User.</code><code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for appending a questionnairy to the user given responses</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">QuestionnaireItem</span></code> (key = &#8216;item&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+<li><strong>good</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what was good about the software according to the user</li>
+<li><strong>can_be_improved</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what can be improved about the software according to the user</li>
+<li><strong>email</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The email address of the user</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>..todo:: implementation</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="user.User.append_test">
 <code class="descclassname">User.</code><code class="descname">append_test</code><span class="sig-paren">(</span><em>flashcard_responses</em>, <em>item_responses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_test" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>A method for appending a test to the user given flashcard and item responses</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flashcard_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">Flashcard</span></code> (key = &#8216;card&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+<li><strong>item_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">TestItem</span></code> (key = &#8216;item&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>..todo:: fix</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="user.User.birthdate">
@@ -88,9 +144,37 @@ need accurate microsecond support.</dd>
 </dd></dl>
 
 <dl class="method">
+<dt id="user.User.create_questionnaire">
+<code class="descclassname">User.</code><code class="descname">create_questionnaire</code><span class="sig-paren">(</span><em>items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_questionnaire" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for creating a new questionnaire</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="questionnaire_item.html#questionnaire_item.QuestionnaireItem" title="questionnaire_item.QuestionnaireItem"><em>QuestionnaireItem</em></a><em>)</em><em></em>) &#8211; A list of questionnaire items</td>
+</tr>
+</tbody>
+</table>
+<p>..todo:: implementation</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="user.User.create_test">
 <code class="descclassname">User.</code><code class="descname">create_test</code><span class="sig-paren">(</span><em>flashcards</em>, <em>items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.create_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_test" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>A method for creating a new test with unique questions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flashcards</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em>)</em><em></em>) &#8211; A list of flashcards from the database</li>
+<li><strong>items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="test_item.html#test_item.TestItem" title="test_item.TestItem"><em>TestItem</em></a><em>)</em><em></em>) &#8211; A list of items from the database</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="user.User.flashmap_condition">
@@ -114,6 +198,18 @@ need accurate microsecond support.</dd>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="user.User.instances">
+<code class="descclassname">User.</code><code class="descname">instances</code><a class="headerlink" href="#user.User.instances" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list field that wraps a standard field, allowing multiple instances
+of the field to be used as a list in the database.</p>
+<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="user.User.name">
 <code class="descclassname">User.</code><code class="descname">name</code><a class="headerlink" href="#user.User.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>A unicode string field.</p>
@@ -127,13 +223,8 @@ need accurate microsecond support.</dd>
 <dl class="attribute">
 <dt id="user.User.questionnaire">
 <code class="descclassname">User.</code><code class="descname">questionnaire</code><a class="headerlink" href="#user.User.questionnaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
+<dd><p>An embedded document field - with a declared document_type.
+Only valid values are subclasses of <code class="xref py py-class docutils literal"><span class="pre">EmbeddedDocument</span></code>.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -163,7 +254,21 @@ of the field to be used as a list in the database.</p>
 <dl class="method">
 <dt id="user.User.set_descriptives">
 <code class="descclassname">User.</code><code class="descname">set_descriptives</code><span class="sig-paren">(</span><em>birthdate</em>, <em>gender</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.set_descriptives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.set_descriptives" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>A method for setting the descriptives of the user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>birthdate</strong> (<em>DateTime</em>) &#8211; The provided birthdate of the user</li>
+<li><strong>gender</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
+<li><strong>code</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The code from the informed consent form</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="user.User.tests">
@@ -190,6 +295,7 @@ of the field to be used as a list in the database.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="test_item_response.html" title="previous chapter">test_item_response module</a></li>
   </ul></li>
 </ul>
 </div>

@@ -1,4 +1,4 @@
-from flash_instance import *
+from instance import *
 from edge import *
 
 class FlashmapInstance(Instance):

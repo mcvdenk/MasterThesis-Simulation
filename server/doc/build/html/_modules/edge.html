@@ -47,12 +47,21 @@
 <span class="kn">from</span> <span class="nn">node</span> <span class="k">import</span> <span class="o">*</span>
 
 <div class="viewcode-block" id="Edge"><a class="viewcode-back" href="../edge.html#edge.Edge">[docs]</a><span class="k">class</span> <span class="nc">Edge</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A class representing an edge from a concept map</span>
+<span class="sd">    :param from_node: The parent node of the edge</span>
+<span class="sd">    :type from_node: Node</span>
+<span class="sd">    :param to_node: The child node of the edge</span>
+<span class="sd">    :type to_node: Node</span>
+<span class="sd">    :param label: A label describing the relation between from_node and to_node</span>
+<span class="sd">    :type label: StringField</span>
+<span class="sd">    :param source: The source where this edge is described (e.g. paragraph 13.2 from Laagland)</span>
+<span class="sd">    :type source: StringField</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
-    <span class="n">id_</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">from_node</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span> <span class="n">db_field</span> <span class="o">=</span> <span class="s2">&quot;from&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">to_node</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span> <span class="n">db_field</span> <span class="o">=</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">label</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-    <span class="n">source</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span></div>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span></div>
 </pre></div>
 
           </div>

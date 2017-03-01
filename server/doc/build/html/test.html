@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test_flashcard_response module" href="test_flashcard_response.html" />
+    <link rel="prev" title="session module" href="session.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,6 +50,19 @@
 <dt id="test.Test">
 <em class="property">class </em><code class="descclassname">test.</code><code class="descname">Test</code><span class="sig-paren">(</span><em>flashcards</em>, <em>items</em>, <em>prev_flashcards=[]</em>, <em>prev_items=[]</em>, <em>**data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#Test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.Test" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.EmbeddedDocument</span></code></p>
+<p>A class representing a pre- or posttest the user filled in</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>test_flashcard_responses</strong> (<a class="reference internal" href="test_flashcard_response.html#test_flashcard_response.TestFlashcardResponse" title="test_flashcard_response.TestFlashcardResponse"><em>TestFlashcardResponse</em></a>) &#8211; A list of responses to the flashcard questions on the test</li>
+<li><strong>test_item_responses</strong> (<a class="reference internal" href="test_item_response.html#test_item_response.TestItemResponse" title="test_item_response.TestItemResponse"><em>TestItemResponse</em></a>) &#8211; A list of responses to the item questions on the test</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="test.Test.append_flashcard">
 <code class="descname">append_flashcard</code><span class="sig-paren">(</span><em>flashcard</em>, <em>answer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#Test.append_flashcard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.Test.append_flashcard" title="Permalink to this definition">¶</a></dt>
@@ -58,9 +73,33 @@
 <code class="descname">append_item</code><span class="sig-paren">(</span><em>item</em>, <em>answer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#Test.append_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.Test.append_item" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="test.Test.generate_test">
+<code class="descname">generate_test</code><span class="sig-paren">(</span><em>items</em>, <em>prev_items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#Test.generate_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.Test.generate_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for taking five random items in a random order from the provided list of items without the items in the previous items</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em>) or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="test_item.html#test_item.TestItem" title="test_item.TestItem"><em>TestItem</em></a><em>)</em><em></em>) &#8211; The complete list of items</li>
+<li><strong>prev_items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em>) or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="test_item.html#test_item.TestItem" title="test_item.TestItem"><em>TestItem</em></a><em>)</em><em></em>) &#8211; The list of items to be excluded from the result</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Result:</th><td class="field-body"><p class="first">A sample of five items from items not included in prev_items</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(FlashcardResponse) or <a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="test_item_response.html#test_item_response.TestItemResponse" title="test_item_response.TestItemResponse">TestItemResponse</a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="attribute">
-<dt id="test.Test.flashcard_responses">
-<code class="descname">flashcard_responses</code><a class="headerlink" href="#test.Test.flashcard_responses" title="Permalink to this definition">¶</a></dt>
+<dt id="test.Test.test_flashcard_responses">
+<code class="descname">test_flashcard_responses</code><a class="headerlink" href="#test.Test.test_flashcard_responses" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list field that wraps a standard field, allowing multiple instances
 of the field to be used as a list in the database.</p>
 <p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
@@ -70,14 +109,9 @@ of the field to be used as a list in the database.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="test.Test.generate_test">
-<code class="descname">generate_test</code><span class="sig-paren">(</span><em>items</em>, <em>prev_items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#Test.generate_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.Test.generate_test" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
-<dt id="test.Test.item_responses">
-<code class="descname">item_responses</code><a class="headerlink" href="#test.Test.item_responses" title="Permalink to this definition">¶</a></dt>
+<dt id="test.Test.test_item_responses">
+<code class="descname">test_item_responses</code><a class="headerlink" href="#test.Test.test_item_responses" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list field that wraps a standard field, allowing multiple instances
 of the field to be used as a list in the database.</p>
 <p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
@@ -100,6 +134,8 @@ of the field to be used as a list in the database.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="session.html" title="previous chapter">session module</a></li>
+      <li>Next: <a href="test_flashcard_response.html" title="next chapter">test_flashcard_response module</a></li>
   </ul></li>
 </ul>
 </div>

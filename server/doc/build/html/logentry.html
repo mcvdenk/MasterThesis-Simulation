@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="node module" href="node.html" />
+    <link rel="prev" title="instance module" href="instance.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,6 +50,21 @@
 <dt id="logentry.LogEntry">
 <em class="property">class </em><code class="descclassname">logentry.</code><code class="descname">LogEntry</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logentry.html#LogEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logentry.LogEntry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.Document</span></code></p>
+<p>An object representing a incoming or outgoing network message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> (<a class="reference internal" href="user.html#user.User" title="user.User"><em>User</em></a>) &#8211; The user which was involved with this network message</li>
+<li><strong>keyword</strong> (<em>StringField</em>) &#8211; The network keyword</li>
+<li><strong>data</strong> (<em>DictField</em>) &#8211; The dictionary containing the necessary data</li>
+<li><strong>timestamp</strong> (<em>DateField</em>) &#8211; The time that this message was received or transmitted</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="exception">
 <dt id="logentry.LogEntry.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#logentry.LogEntry.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -151,6 +168,8 @@ triggered.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="instance.html" title="previous chapter">instance module</a></li>
+      <li>Next: <a href="node.html" title="next chapter">node module</a></li>
   </ul></li>
 </ul>
 </div>

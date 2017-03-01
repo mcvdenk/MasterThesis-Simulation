@@ -1,7 +1,7 @@
-flashcard_response module
+test_item_response module
 =========================
 
-.. automodule:: flashcard_response
+.. automodule:: test_item_response
     :members:
     :undoc-members:
     :show-inheritance:

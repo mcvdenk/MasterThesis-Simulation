@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="response module" href="response.html" />
+    <link rel="prev" title="questionnaire_item module" href="questionnaire_item.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,10 +50,33 @@
 <dt id="questionnaire_response.QuestionnaireResponse">
 <em class="property">class </em><code class="descclassname">questionnaire_response.</code><code class="descname">QuestionnaireResponse</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/questionnaire_response.html#QuestionnaireResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#questionnaire_response.QuestionnaireResponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.EmbeddedDocument</span></code></p>
+<p>A class for storing singular responses to questionnaire items</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>questionnaire_item</strong> (<a class="reference internal" href="questionnaire_item.html#questionnaire_item.QuestionnaireItem" title="questionnaire_item.QuestionnaireItem"><em>QuestionnaireItem</em></a>) &#8211; The questionnaire item to which this answer refers</li>
+<li><strong>answer</strong> (<em>IntField</em>) &#8211; The value of the likert-scale rating the user gave to this item (ranges from -2 to 2)</li>
+<li><strong>phrasing</strong> (<em>BooleanField</em>) &#8211; Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire_item</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="questionnaire_response.QuestionnaireResponse.answer">
 <code class="descname">answer</code><a class="headerlink" href="#questionnaire_response.QuestionnaireResponse.answer" title="Permalink to this definition">¶</a></dt>
 <dd><p>32-bit integer field.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="questionnaire_response.QuestionnaireResponse.phrasing">
+<code class="descname">phrasing</code><a class="headerlink" href="#questionnaire_response.QuestionnaireResponse.phrasing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean field type.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.1.2.</span></p>
+</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -105,6 +130,8 @@ triggered.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="questionnaire_item.html" title="previous chapter">questionnaire_item module</a></li>
+      <li>Next: <a href="response.html" title="next chapter">response module</a></li>
   </ul></li>
 </ul>
 </div>

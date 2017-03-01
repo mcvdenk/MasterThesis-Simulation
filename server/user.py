@@ -1,8 +1,8 @@
 from mongoengine import *
-from flash_instance import *
+from instance import *
 from test import *
 from session import *
-from questionnaire_response import *
+from questionnaire import *
 
 class User(Document):
     """A class representing a user
@@ -19,12 +19,12 @@ class User(Document):
     :type code: StringField
     :param tests: The pre- and posttest
     :type tests: ListField(Test)
-    :param sessions: The sessions this user had before
-    :type sessions: ListField(Session)
     :param questionnaire: The questionnaire
     :type questionnaire: Questionnaire
     :param instances: A list of instances storing the flashmap/flashcard data for the user
     :type instance: Instance
+    :param sessions: A list of past sessions for this user
+    :type sessions: Session
     """
     connect('flashmap')
     name = StringField(required=True, unique=True)
@@ -35,8 +35,8 @@ class User(Document):
     code = StringField()
     tests = ListField(EmbeddedDocumentField(Test))
     sessions = ListField(EmbeddedDocumentField(Session), default = [])    
-    questionnaire = EmbeddedField(Questionnaire)
-    instances = ListField(EmbeddedField(Instance))
+    questionnaire = EmbeddedDocumentField(Questionnaire)
+    instances = ListField(EmbeddedDocumentField(Instance))
 
     def set_descriptives(birthdate, gender, code):
         """A method for setting the descriptives of the user
@@ -77,6 +77,7 @@ class User(Document):
         :type flashcard_responses: dict
         :param item_responses: A list of dict objects containing a :class:`TestItem` (key = 'item') and an answer (key = 'answer')
         :type item_responses: dict
+        ..todo:: fix
         """
         test = Test()
         for card in flashcard_responses:

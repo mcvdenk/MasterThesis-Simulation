@@ -54,9 +54,10 @@
 <div class="viewcode-block" id="handler"><a class="viewcode-back" href="../handler.html#handler.handler">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">websocket</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client</span>
 
-<span class="sd">    args:</span>
-<span class="sd">        websocket -- the websocket being used for receiving and sending messages to a client</span>
-<span class="sd">        path -- the IP address used to host the websocket</span>
+<span class="sd">    :param websocket: the websocket being used for receiving and sending messages to a client</span>
+<span class="sd">    :type websocket: Websocket</span>
+<span class="sd">    :param path: the IP address used to host the websocket</span>
+<span class="sd">    :type path: String</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">consumer</span> <span class="o">=</span> <span class="n">Consumer</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>

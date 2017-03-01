@@ -69,7 +69,7 @@
 <span class="sd">    :param concept_map: The concept map object containing references to nodes and edges</span>
 <span class="sd">    :type concept_map: ConceptMap</span>
 <span class="sd">    :param SOURCES: All of the sources referenced to in the edges of the concept map</span>
-<span class="sd">    :type SOURCES: list[string]</span>
+<span class="sd">    :type SOURCES: list(str)</span>
 <span class="sd">    :param user: The active user</span>
 <span class="sd">    :type user: User</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -77,23 +77,23 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
         <span class="c1">#Preloading all sources from the different flashcards/-edges (the chapters from Laagland)</span>
-        <span class="n">concept_map</span> <span class="o">=</span> <span class="n">ConceptMap</span><span class="o">.</span><span class="n">objects</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
-        <span class="n">SOURCES</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">concept_map</span> <span class="o">=</span> <span class="n">ConceptMap</span><span class="o">.</span><span class="n">objects</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">concept_map</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SOURCES</span><span class="p">):</span> <span class="n">SOURCES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
-        <span class="n">SOURCES</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="Consumer.consumer"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.consumer">[docs]</a>    <span class="k">def</span> <span class="nf">consumer</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+<div class="viewcode-block" id="Consumer.consumer"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.consumer">[docs]</a>    <span class="k">def</span> <span class="nf">consumer</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Pass data to the function corresponding to the provided keyword for the provided user</span>
 
 <span class="sd">        :param keyword: the keyword for which function to use</span>
-<span class="sd">        :type keyword: string</span>
+<span class="sd">        :type keyword: str</span>
 <span class="sd">        :param data: the data necessary for executing the function</span>
-<span class="sd">        :type data: dict</span>
+<span class="sd">        :type data: dict(str, str or dict)</span>
 <span class="sd">        :return: Contains the keyword and data to send over a websocket to a client</span>
-<span class="sd">        :rtype: dict</span>
+<span class="sd">        :rtype: dict(str, str or dict)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;MAP-REQUEST&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">concept_map</span>
@@ -110,61 +110,17 @@
         <span class="sd">&quot;&quot;&quot;A function to either return an existing :class:`user.User` or a new :class:`user.User` based on the given name</span>
 
 <span class="sd">        :param name: The username</span>
-<span class="sd">        :type name: string</span>
+<span class="sd">        :type name: str</span>
 <span class="sd">        :return: The user with this username</span>
 <span class="sd">        :rtype: User</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">User</span><span class="p">):</span>
-            <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
                     <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span>
                     <span class="n">flashmap_condition</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span>
                     <span class="p">)</span>
-        <span class="k">return</span> <span class="n">user</span></div>
-
-<div class="viewcode-block" id="Consumer.create_test"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.create_test">[docs]</a>    <span class="k">def</span> <span class="nf">create_test</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot;Creates a new :class:`test.Test` for the currently active :class:`user.User`</span>
-
-<span class="sd">        :return: A new test not containing items from previous tests</span>
-<span class="sd">        :rtype: Test</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="n">create_test</span><span class="p">(</span><span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">(),</span> <span class="n">TestItems</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span></div>
-    
-<div class="viewcode-block" id="Consumer.add_descriptives"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.add_descriptives">[docs]</a>    <span class="k">def</span> <span class="nf">add_descriptives</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">birthdate</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Adds the provided descriptives to the active user</span>
-<span class="sd">        </span>
-<span class="sd">        :param gender: The gender of the user (restricted to &#39;male&#39;, &#39;female&#39;, or &#39;other&#39;)</span>
-<span class="sd">        :type gender: string</span>
-<span class="sd">        :param birthdate: The date of birth of the user</span>
-<span class="sd">        :type birthdate: datetime</span>
-<span class="sd">        :param code: A code affirming receiving the informed consent form</span>
-<span class="sd">        :type code: string</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">user</span><span class="o">.</span><span class="n">setDescriptives</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">birthdate</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span></div>
-        
-<div class="viewcode-block" id="Consumer.add_test"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.add_test">[docs]</a>    <span class="k">def</span> <span class="nf">add_test</span><span class="p">(</span><span class="n">flashcards_dict</span><span class="p">,</span> <span class="n">items_dict</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Adds a :class:`test.Test` to the active :class:`user.User`</span>
-
-<span class="sd">        :param flashcards_dict: A dictionary containing flashcard id&#39;s and answers</span>
-<span class="sd">        :type flashcards_dict: dict</span>
-<span class="sd">        :param items_dict: A dictionary containing test item id&#39;s and answers</span>
-<span class="sd">        :type items_dict: dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">flashcard_responses</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">item_responses</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">flashcards_dict</span><span class="p">:</span>
-            <span class="n">flashcard</span> <span class="o">=</span> <span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_id</span> <span class="o">=</span> <span class="n">card</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
-            <span class="n">flashcard_responses</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;flashcard&quot;</span><span class="p">:</span> <span class="n">flashcard</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="n">card</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">]})</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items_dict</span><span class="p">:</span>
-            <span class="n">item</span> <span class="o">=</span> <span class="n">TestItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_id</span> <span class="o">=</span> <span class="n">card</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
-            <span class="n">item_responses</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">]})</span></div>
-
-<div class="viewcode-block" id="Consumer.create_questionnaire"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.create_questionnaire">[docs]</a>    <span class="k">def</span> <span class="nf">create_questionnaire</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot;Creates a new :class:`questionnaire.Questionnaire`</span>
-
-<span class="sd">        :return: A new questionnaire</span>
-<span class="sd">        :rtype: Questionnaire</span>
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span></div></div>
 </pre></div>
 
           </div>
