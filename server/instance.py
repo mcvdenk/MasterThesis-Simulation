@@ -16,7 +16,7 @@ class Instance(EmbeddedDocument):
     connect('flashmap')
     responses = ListField(EmbeddedDocumentField(Response), default = [])
     reference = GenericReferenceField(required = True)
-    due_date = DateTimeField(default = datetime.now())
+    due_date = DateTimeField(default = datetime.now)
 
     def schedule():
         """Reschedules this instance for review based on the previous responses

@@ -14,7 +14,11 @@ class Session(EmbeddedDocument):
     :type browser: StringField
     """
     connect('flashmap')
-    start = DateTimeField(default = datetime.now())
+    start = DateTimeField(default = datetime.now)
     end = DateTimeField()
     source_prompted = BooleanField(default = False)
     browser = StringField()
+
+    def end_session():
+        """Closes this session"""
+        end = datetime.now()

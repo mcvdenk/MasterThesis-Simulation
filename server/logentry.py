@@ -18,4 +18,4 @@ class LogEntry(Document):
     user = ReferenceField(User, required=True)
     keyword = StringField(required=True)
     data = DictField(default = {})
-    timestamp = IntField(default = datetime.now().timestamp())
+    time = IntField(default = datetime.now)

@@ -12,6 +12,6 @@ class Response(EmbeddedDocument):
     :type correct: BooleanField
     """
     connect('flashmap')
-    start = DateTimeField(default = datetime.now())
+    start = DateTimeField(default = datetime.now)
     end = DateTimeField()
     correct = BooleanField()
