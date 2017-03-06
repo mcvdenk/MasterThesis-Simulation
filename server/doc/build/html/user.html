@@ -27,7 +27,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="test_item_response module" href="test_item_response.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -54,36 +53,24 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>flashmap_condition</strong> (<em>BooleanField</em>) &#8211; Whether the user uses the flashmap system (True) or the flashcard system (False)</li>
-<li><strong>birthdate</strong> (<em>DateTimeField</em>) &#8211; The birthdate of the user</li>
-<li><strong>read_sources</strong> (<em>ListField</em><em>(</em><em>StringField</em><em>)</em><em></em>) &#8211; A list of read sources by the user</li>
-<li><strong>gender</strong> (<em>StringField</em>) &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
-<li><strong>code</strong> (<em>StringField</em>) &#8211; The code from the user&#8217;s informed consent form</li>
-<li><strong>tests</strong> (<em>ListField</em><em>(</em><a class="reference internal" href="test.html#test.Test" title="test.Test"><em>Test</em></a><em>)</em><em></em>) &#8211; The pre- and posttest</li>
-<li><strong>questionnaire</strong> (<a class="reference internal" href="questionnaire.html#questionnaire.Questionnaire" title="questionnaire.Questionnaire"><em>Questionnaire</em></a>) &#8211; The questionnaire</li>
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flashmap_condition</strong> &#8211; Whether the user uses the flashmap system (True) or the flashcard system (False)</li>
+<li><strong>birthdate</strong> &#8211; The birthdate of the user</li>
+<li><strong>read_sources</strong> &#8211; A list of read sources by the user</li>
+<li><strong>gender</strong> &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/code.html#module-code" title="(in Python v2.7)"><strong>code</strong></a> &#8211; The code from the user&#8217;s informed consent form</li>
+<li><strong>tests</strong> &#8211; The pre- and posttest</li>
+<li><a class="reference internal" href="questionnaire.html#module-questionnaire" title="questionnaire"><strong>questionnaire</strong></a> &#8211; The questionnaire</li>
 <li><strong>instances</strong> &#8211; A list of instances storing the flashmap/flashcard data for the user</li>
-<li><strong>sessions</strong> (<a class="reference internal" href="session.html#session.Session" title="session.Session"><em>Session</em></a>) &#8211; A list of past sessions for this user</li>
+<li><strong>sessions</strong> &#8211; A list of past sessions for this user</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<dl class="exception">
-<dt id="user.User.DoesNotExist">
-<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user.User.DoesNotExist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.errors.DoesNotExist</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="user.User.MultipleObjectsReturned">
-<em class="property">exception </em><code class="descclassname">User.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user.User.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.errors.MultipleObjectsReturned</span></code></p>
-</dd></dl>
-
 <dl class="method">
 <dt id="user.User.append_questionnaire">
-<code class="descclassname">User.</code><code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
+<code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for appending a questionnairy to the user given responses</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -99,12 +86,15 @@
 </tr>
 </tbody>
 </table>
-<p>..todo:: implementation</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">implementation</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="user.User.append_test">
-<code class="descclassname">User.</code><code class="descname">append_test</code><span class="sig-paren">(</span><em>flashcard_responses</em>, <em>item_responses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_test" title="Permalink to this definition">¶</a></dt>
+<code class="descname">append_test</code><span class="sig-paren">(</span><em>flashcard_responses</em>, <em>item_responses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for appending a test to the user given flashcard and item responses</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -118,34 +108,15 @@
 </tr>
 </tbody>
 </table>
-<p>..todo:: fix</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.birthdate">
-<code class="descclassname">User.</code><code class="descname">birthdate</code><a class="headerlink" href="#user.User.birthdate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Datetime field.</p>
-<p>Uses the python-dateutil library if available alternatively use time.strptime
-to parse the dates.  Note: python-dateutil&#8217;s parser is fully featured and when
-installed you can utilise it to convert varying types of date formats into valid
-python datetime objects.</p>
-<dl class="docutils">
-<dt>Note: Microseconds are rounded to the nearest millisecond.</dt>
-<dd>Pre UTC microsecond support is effectively broken.
-Use <code class="xref py py-class docutils literal"><span class="pre">ComplexDateTimeField</span></code> if you
-need accurate microsecond support.</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.code">
-<code class="descclassname">User.</code><code class="descname">code</code><a class="headerlink" href="#user.User.code" title="Permalink to this definition">¶</a></dt>
-<dd><p>A unicode string field.</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">fix</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="user.User.create_questionnaire">
-<code class="descclassname">User.</code><code class="descname">create_questionnaire</code><span class="sig-paren">(</span><em>items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_questionnaire" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_questionnaire</code><span class="sig-paren">(</span><em>items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_questionnaire" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for creating a new questionnaire</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -155,12 +126,15 @@ need accurate microsecond support.</dd>
 </tr>
 </tbody>
 </table>
-<p>..todo:: implementation</p>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">implementation</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="user.User.create_test">
-<code class="descclassname">User.</code><code class="descname">create_test</code><span class="sig-paren">(</span><em>flashcards</em>, <em>items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.create_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_test" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_test</code><span class="sig-paren">(</span><em>flashcards</em>, <em>items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.create_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_test" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for creating a new test with unique questions</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -176,84 +150,9 @@ need accurate microsecond support.</dd>
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="user.User.flashmap_condition">
-<code class="descclassname">User.</code><code class="descname">flashmap_condition</code><a class="headerlink" href="#user.User.flashmap_condition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Boolean field type.</p>
-<div class="versionadded">
-<p><span class="versionmodified">New in version 0.1.2.</span></p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.gender">
-<code class="descclassname">User.</code><code class="descname">gender</code><a class="headerlink" href="#user.User.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A unicode string field.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.id">
-<code class="descclassname">User.</code><code class="descname">id</code><a class="headerlink" href="#user.User.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A field wrapper around MongoDB&#8217;s ObjectIds.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.instances">
-<code class="descclassname">User.</code><code class="descname">instances</code><a class="headerlink" href="#user.User.instances" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.name">
-<code class="descclassname">User.</code><code class="descname">name</code><a class="headerlink" href="#user.User.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A unicode string field.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.objects">
-<code class="descclassname">User.</code><code class="descname">objects</code><a class="headerlink" href="#user.User.objects" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.questionnaire">
-<code class="descclassname">User.</code><code class="descname">questionnaire</code><a class="headerlink" href="#user.User.questionnaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>An embedded document field - with a declared document_type.
-Only valid values are subclasses of <code class="xref py py-class docutils literal"><span class="pre">EmbeddedDocument</span></code>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.read_sources">
-<code class="descclassname">User.</code><code class="descname">read_sources</code><a class="headerlink" href="#user.User.read_sources" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="user.User.sessions">
-<code class="descclassname">User.</code><code class="descname">sessions</code><a class="headerlink" href="#user.User.sessions" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
-</dd></dl>
-
 <dl class="method">
 <dt id="user.User.set_descriptives">
-<code class="descclassname">User.</code><code class="descname">set_descriptives</code><span class="sig-paren">(</span><em>birthdate</em>, <em>gender</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.set_descriptives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.set_descriptives" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_descriptives</code><span class="sig-paren">(</span><em>birthdate</em>, <em>gender</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.set_descriptives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.set_descriptives" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for setting the descriptives of the user</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -270,18 +169,6 @@ of the field to be used as a list in the database.</p>
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="user.User.tests">
-<code class="descclassname">User.</code><code class="descname">tests</code><a class="headerlink" href="#user.User.tests" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -295,7 +182,6 @@ of the field to be used as a list in the database.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="test_item_response.html" title="previous chapter">test_item_response module</a></li>
   </ul></li>
 </ul>
 </div>

@@ -35,12 +35,12 @@
 
 \addto\extrasenglish{\def\pageautorefname{page}}
 
-\setcounter{tocdepth}{1}
-
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
 
 
 \title{Flashmap server Documentation}
-\date{Feb 23, 2017}
+\date{Mar 06, 2017}
 \release{1.0}
 \author{M.C. van den Enk}
 \newcommand{\sphinxlogo}{}
@@ -52,88 +52,50 @@
 \maketitle
 \sphinxtableofcontents
 \phantomsection\label{\detokenize{index::doc}}
-
-
 Contents:
 
 
-\chapter{concept\_map module}
-\label{\detokenize{concept_map:welcome-to-flashmap-server-s-documentation}}\label{\detokenize{concept_map:concept-map-module}}\label{\detokenize{concept_map::doc}}\label{\detokenize{concept_map:module-concept_map}}\index{concept\_map (module)}\index{ConceptMap (class in concept\_map)}
+\index{concept\_map (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{ConceptMap (class in concept\_map)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{concept\_map.}\sphinxbfcode{ConceptMap}}{\emph{*args}, \emph{**values}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-
 A class representing a concept map
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{nodes} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{node:node.Node}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Node}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- a list of nodes (by default all existing node documents)
+\sphinxstyleliteralstrong{nodes} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{node:node.Node}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Node}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- a list of nodes (by default all existing node documents)
 
 \item {} 
-\sphinxstyleliteralstrong{edges} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- a list of edges (by default all existing edge documents)
+\sphinxstyleliteralstrong{edges} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- a list of edges (by default all existing edge documents)
 
 \end{itemize}
 
 \end{description}\end{quote}
-\index{ConceptMap.DoesNotExist}
+\index{get\_partial\_map() (concept\_map.ConceptMap method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
+\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.get_partial_map}}\pysiglinewithargsret{\sphinxbfcode{get\_partial\_map}}{\emph{edge}}{}
+Returns a concept map containing only the parent and sibling edges together with the referred nodes
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{edge} ({\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}) -- The input edge
 
-\end{fulllineitems}
+\item[{Returns}] \leavevmode
+A concept map containing parent and sibling edges of edge together with the referred nodes
 
-\index{ConceptMap.MultipleObjectsReturned}
+\item[{Return type}] \leavevmode
+{\hyperref[\detokenize{concept_map:concept_map.ConceptMap}]{\sphinxcrossref{ConceptMap}}}
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{ConceptMap.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
+\end{description}\end{quote}
 
-\end{fulllineitems}
+\begin{sphinxadmonition}{note}{Todo}
 
-\index{edges (concept\_map.ConceptMap attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.edges}}\pysigline{\sphinxcode{ConceptMap.}\sphinxbfcode{edges}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
+Implementation
 \end{sphinxadmonition}
 
-\end{fulllineitems}
-
-\index{id (concept\_map.ConceptMap attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.id}}\pysigline{\sphinxcode{ConceptMap.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
-
-\end{fulllineitems}
-
-\index{nodes (concept\_map.ConceptMap attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.nodes}}\pysigline{\sphinxcode{ConceptMap.}\sphinxbfcode{nodes}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
-\index{objects (concept\_map.ConceptMap attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.objects}}\pysigline{\sphinxcode{ConceptMap.}\sphinxbfcode{objects}\sphinxstrong{ = {[}\textless{}ConceptMap: ConceptMap object\textgreater{}{]}}}
 \end{fulllineitems}
 
 
@@ -142,12 +104,13 @@ Required means it cannot be empty - as the default for ListFields is {[}{]}
 
 
 \chapter{consumer module}
-\label{\detokenize{consumer:module-consumer}}\label{\detokenize{consumer::doc}}\label{\detokenize{consumer:consumer-module}}\index{consumer (module)}\index{Consumer (class in consumer)}
+\label{\detokenize{consumer:consumer-module}}\label{\detokenize{consumer:concept-map-module}}\label{\detokenize{consumer:module-concept_map}}\label{\detokenize{consumer::doc}}\label{\detokenize{consumer:module-consumer}}\index{consumer (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{Consumer (class in consumer)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{consumer:consumer.Consumer}}\pysigline{\sphinxstrong{class }\sphinxcode{consumer.}\sphinxbfcode{Consumer}}
-Bases: \href{https://docs.python.org/2/library/functions.html\#object}{\sphinxcode{object}}
-
 This is the class from which the program is controlled. It can be used together with the {\hyperref[\detokenize{handler:module-handler}]{\sphinxcrossref{\sphinxcode{handler}}}} module in order to communicate with an external client over a websocket
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -163,47 +126,6 @@ This is the class from which the program is controlled. It can be used together 
 \end{itemize}
 
 \end{description}\end{quote}
-\index{add\_descriptives() (consumer.Consumer method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{consumer:consumer.Consumer.add_descriptives}}\pysiglinewithargsret{\sphinxbfcode{add\_descriptives}}{\emph{gender}, \emph{birthdate}, \emph{code}}{}
-Adds the provided descriptives to the active user
-\begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleliteralstrong{gender} (\href{https://docs.python.org/2/library/functions.html\#str}{\sphinxstyleliteralemphasis{str}}) -- The gender of the user (restricted to `male', `female', or `other')
-
-\item {} 
-\sphinxstyleliteralstrong{birthdate} (\href{https://docs.python.org/2/library/datetime.html\#module-datetime}{\sphinxstyleliteralemphasis{datetime}}) -- The date of birth of the user
-
-\item {} 
-\sphinxstyleliteralstrong{code} (\href{https://docs.python.org/2/library/functions.html\#str}{\sphinxstyleliteralemphasis{str}}) -- A code affirming receiving the informed consent form
-
-\end{itemize}
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{add\_test() (consumer.Consumer method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{consumer:consumer.Consumer.add_test}}\pysiglinewithargsret{\sphinxbfcode{add\_test}}{\emph{flashcards\_dict}, \emph{items\_dict}}{}
-Adds a {\hyperref[\detokenize{test:test.Test}]{\sphinxcrossref{\sphinxcode{test.Test}}}} to the active {\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{\sphinxcode{user.User}}}}
-\begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
-\item {} 
-\sphinxstyleliteralstrong{flashcards\_dict} (\href{https://docs.python.org/2/library/stdtypes.html\#dict}{\sphinxstyleliteralemphasis{dict}}\sphinxstyleliteralemphasis{(}\href{https://docs.python.org/2/library/functions.html\#str}{\sphinxstyleliteralemphasis{str}}\sphinxstyleliteralemphasis{, }\href{https://docs.python.org/2/library/functions.html\#str}{\sphinxstyleliteralemphasis{str}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A dictionary containing flashcard id's and answers
-
-\item {} 
-\sphinxstyleliteralstrong{items\_dict} (\href{https://docs.python.org/2/library/stdtypes.html\#dict}{\sphinxstyleliteralemphasis{dict}}\sphinxstyleliteralemphasis{(}\href{https://docs.python.org/2/library/functions.html\#str}{\sphinxstyleliteralemphasis{str}}\sphinxstyleliteralemphasis{, }\href{https://docs.python.org/2/library/functions.html\#str}{\sphinxstyleliteralemphasis{str}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A dictionary containing test item id's and answers
-
-\end{itemize}
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
 \index{authenticate() (consumer.Consumer method)}
 
 \begin{fulllineitems}
@@ -248,717 +170,148 @@ Contains the keyword and data to send over a websocket to a client
 
 \end{fulllineitems}
 
-\index{create\_questionnaire() (consumer.Consumer method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{consumer:consumer.Consumer.create_questionnaire}}\pysiglinewithargsret{\sphinxbfcode{create\_questionnaire}}{}{}
-Creates a new {\hyperref[\detokenize{questionnaire:questionnaire.Questionnaire}]{\sphinxcrossref{\sphinxcode{questionnaire.Questionnaire}}}}
-\begin{quote}\begin{description}
-\item[{Returns}] \leavevmode
-A new questionnaire
-
-\item[{Return type}] \leavevmode
-{\hyperref[\detokenize{questionnaire:questionnaire.Questionnaire}]{\sphinxcrossref{Questionnaire}}}
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{create\_test() (consumer.Consumer method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{consumer:consumer.Consumer.create_test}}\pysiglinewithargsret{\sphinxbfcode{create\_test}}{}{}
-Creates a new {\hyperref[\detokenize{test:test.Test}]{\sphinxcrossref{\sphinxcode{test.Test}}}} for the currently active {\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{\sphinxcode{user.User}}}}
-\begin{quote}\begin{description}
-\item[{Returns}] \leavevmode
-A new test not containing items from previous tests
-
-\item[{Return type}] \leavevmode
-{\hyperref[\detokenize{test:test.Test}]{\sphinxcrossref{Test}}}
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
 
 \end{fulllineitems}
 
 
 
 \chapter{edge module}
-\label{\detokenize{edge:edge-module}}\label{\detokenize{edge:module-edge}}\label{\detokenize{edge::doc}}\index{edge (module)}\index{Edge (class in edge)}
+\label{\detokenize{edge:module-edge}}\label{\detokenize{edge::doc}}\label{\detokenize{edge:edge-module}}\index{edge (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{Edge (class in edge)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{edge:edge.Edge}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{edge.}\sphinxbfcode{Edge}}{\emph{*args}, \emph{**values}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-\index{Edge.DoesNotExist}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
-
-\end{fulllineitems}
-
-\index{Edge.MultipleObjectsReturned}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{Edge.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
-
-\end{fulllineitems}
-
-\index{from\_node (edge.Edge attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.from_node}}\pysigline{\sphinxcode{Edge.}\sphinxbfcode{from\_node}}
-A reference to a document that will be automatically dereferenced on
-access (lazily).
-
-Use the \sphinxtitleref{reverse\_delete\_rule} to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse\_delete\_rule and an \sphinxtitleref{InvalidDocumentError}
-will be raised if trying to set on one of these Document / Field types.
-
-The options are:
-\begin{itemize}
-\item {} 
-DO\_NOTHING (0)  - don't do anything (default).
-
-\item {} 
-NULLIFY    (1)  - Updates the reference to null.
-
-\item {} 
-CASCADE    (2)  - Deletes the documents associated with the reference.
-
-\item {} 
-DENY       (3)  - Prevent the deletion of the reference object.
-
-\item {} 
-PULL       (4)  - Pull the reference from a \sphinxcode{ListField} of references
-
-\end{itemize}
-
-Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{Bar}\PYG{p}{(}\PYG{n}{Document}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{content} \PYG{o}{=} \PYG{n}{StringField}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{foo} \PYG{o}{=} \PYG{n}{ReferenceField}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{Foo}\PYG{o}{.}\PYG{n}{register\PYGZus{}delete\PYGZus{}rule}\PYG{p}{(}\PYG{n}{Bar}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{NULLIFY}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxtitleref{reverse\_delete\_rule} does not trigger pre / post delete signals to be
-triggered.
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{Changed in version 0.5: }added \sphinxtitleref{reverse\_delete\_rule}
-
-\end{fulllineitems}
-
-\index{id (edge.Edge attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.id}}\pysigline{\sphinxcode{Edge.}\sphinxbfcode{id}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{id\_ (edge.Edge attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.id_}}\pysigline{\sphinxcode{Edge.}\sphinxbfcode{id\_}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{label (edge.Edge attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.label}}\pysigline{\sphinxcode{Edge.}\sphinxbfcode{label}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{objects (edge.Edge attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.objects}}\pysigline{\sphinxcode{Edge.}\sphinxbfcode{objects}\sphinxstrong{ = {[}\textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, \textless{}Edge: Edge object\textgreater{}, `...(remaining elements truncated)...'{]}}}
-\end{fulllineitems}
-
-\index{source (edge.Edge attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.source}}\pysigline{\sphinxcode{Edge.}\sphinxbfcode{source}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
-\index{to\_node (edge.Edge attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{edge:edge.Edge.to_node}}\pysigline{\sphinxcode{Edge.}\sphinxbfcode{to\_node}}
-A reference to a document that will be automatically dereferenced on
-access (lazily).
-
-Use the \sphinxtitleref{reverse\_delete\_rule} to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse\_delete\_rule and an \sphinxtitleref{InvalidDocumentError}
-will be raised if trying to set on one of these Document / Field types.
-
-The options are:
-\begin{itemize}
-\item {} 
-DO\_NOTHING (0)  - don't do anything (default).
-
-\item {} 
-NULLIFY    (1)  - Updates the reference to null.
-
-\item {} 
-CASCADE    (2)  - Deletes the documents associated with the reference.
-
-\item {} 
-DENY       (3)  - Prevent the deletion of the reference object.
-
-\item {} 
-PULL       (4)  - Pull the reference from a \sphinxcode{ListField} of references
-
-\end{itemize}
-
-Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{Bar}\PYG{p}{(}\PYG{n}{Document}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{content} \PYG{o}{=} \PYG{n}{StringField}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{foo} \PYG{o}{=} \PYG{n}{ReferenceField}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{Foo}\PYG{o}{.}\PYG{n}{register\PYGZus{}delete\PYGZus{}rule}\PYG{p}{(}\PYG{n}{Bar}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{NULLIFY}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxtitleref{reverse\_delete\_rule} does not trigger pre / post delete signals to be
-triggered.
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{Changed in version 0.5: }added \sphinxtitleref{reverse\_delete\_rule}
-
-\end{fulllineitems}
-
-
-\end{fulllineitems}
-
-
-
-\chapter{flash\_instance module}
-\label{\detokenize{flash_instance:flash-instance-module}}\label{\detokenize{flash_instance::doc}}\label{\detokenize{flash_instance:module-flash_instance}}\index{flash\_instance (module)}\index{FlashInstance (class in flash\_instance)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flash_instance:flash_instance.FlashInstance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flash\_instance.}\sphinxbfcode{FlashInstance}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
-\index{reference (flash\_instance.FlashInstance attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flash_instance:flash_instance.FlashInstance.reference}}\pysigline{\sphinxbfcode{reference}}
-A reference to \sphinxstyleemphasis{any} \sphinxcode{Document} subclass
-that will be automatically dereferenced on access (lazily).
-
-\begin{sphinxadmonition}{note}{Note:}\begin{itemize}
-\item {} 
-Any documents used as a generic reference must be registered in the
-document registry.  Importing the model will automatically register
-it.
-
-\item {} 
-You can use the choices param to limit the acceptable Document types
-
-\end{itemize}
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{New in version 0.3.}
-
-\end{fulllineitems}
-
-\index{responses (flash\_instance.FlashInstance attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flash_instance:flash_instance.FlashInstance.responses}}\pysigline{\sphinxbfcode{responses}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
+A class representing an edge from a concept map
+:param from\_node: The parent node of the edge
+:type from\_node: Node
+:param to\_node: The child node of the edge
+:type to\_node: Node
+:param label: A label describing the relation between from\_node and to\_node
+:type label: StringField
+:param source: The source where this edge is described (e.g. paragraph 13.2 from Laagland)
+:type source: StringField
 
 \end{fulllineitems}
 
 
 
 \chapter{flashcard module}
-\label{\detokenize{flashcard:flashcard-module}}\label{\detokenize{flashcard::doc}}\label{\detokenize{flashcard:module-flashcard}}\index{flashcard (module)}\index{Flashcard (class in flashcard)}
+\label{\detokenize{flashcard:flashcard-module}}\label{\detokenize{flashcard:module-flashcard}}\label{\detokenize{flashcard::doc}}\index{flashcard (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{Flashcard (class in flashcard)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{flashcard:flashcard.Flashcard}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashcard.}\sphinxbfcode{Flashcard}}{\emph{*args}, \emph{**values}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-\index{Flashcard.DoesNotExist}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
-
-\end{fulllineitems}
-
-\index{Flashcard.MultipleObjectsReturned}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{Flashcard.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
-
-\end{fulllineitems}
-
-\index{answer (flashcard.Flashcard attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.answer}}\pysigline{\sphinxcode{Flashcard.}\sphinxbfcode{answer}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{id (flashcard.Flashcard attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.id}}\pysigline{\sphinxcode{Flashcard.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
-
-\end{fulllineitems}
-
-\index{objects (flashcard.Flashcard attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.objects}}\pysigline{\sphinxcode{Flashcard.}\sphinxbfcode{objects}\sphinxstrong{ = {[}{]}}}
-\end{fulllineitems}
-
-\index{question (flashcard.Flashcard attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.question}}\pysigline{\sphinxcode{Flashcard.}\sphinxbfcode{question}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{response\_model (flashcard.Flashcard attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.response_model}}\pysigline{\sphinxcode{Flashcard.}\sphinxbfcode{response\_model}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
-\index{sources (flashcard.Flashcard attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.sources}}\pysigline{\sphinxcode{Flashcard.}\sphinxbfcode{sources}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
+A class representing a flashcard
+:param question: The question on the front side of the flashcard
+:type question: StringField
+:param answer: The answer on the back side of the flashcard
+:type answer: StringField
+:param sources: The sources where this flashcard are described (e.g. paragraph 13.2 of Laagland)
+:type sources: ListField(StringField)
+:param response\_model: A list consisting of parts of valid responses to the question (for the test matrix)
+:type response\_model: ListField(StringField)
 
 \end{fulllineitems}
 
 
 
 \chapter{flashcard\_instance module}
-\label{\detokenize{flashcard_instance:module-flashcard_instance}}\label{\detokenize{flashcard_instance::doc}}\label{\detokenize{flashcard_instance:flashcard-instance-module}}\index{flashcard\_instance (module)}\index{FlashmapInstance (class in flashcard\_instance)}
+\label{\detokenize{flashcard_instance::doc}}\label{\detokenize{flashcard_instance:flashcard-instance-module}}\label{\detokenize{flashcard_instance:module-flashcard_instance}}\index{flashcard\_instance (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{FlashcardInstance (class in flashcard\_instance)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard_instance:flashcard_instance.FlashmapInstance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashcard\_instance.}\sphinxbfcode{FlashmapInstance}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: {\hyperref[\detokenize{flash_instance:flash_instance.FlashInstance}]{\sphinxcrossref{\sphinxcode{flash\_instance.FlashInstance}}}}
-\index{reference (flashcard\_instance.FlashmapInstance attribute)}
+\phantomsection\label{\detokenize{flashcard_instance:flashcard_instance.FlashcardInstance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashcard\_instance.}\sphinxbfcode{FlashcardInstance}}{\emph{*args}, \emph{**kwargs}}{}
+A class for storing responses from the flashmap system
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{reference} ({\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}) -- The edge to which this instance refers
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard_instance:flashcard_instance.FlashmapInstance.reference}}\pysigline{\sphinxbfcode{reference}}
-A reference to a document that will be automatically dereferenced on
-access (lazily).
-
-Use the \sphinxtitleref{reverse\_delete\_rule} to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse\_delete\_rule and an \sphinxtitleref{InvalidDocumentError}
-will be raised if trying to set on one of these Document / Field types.
-
-The options are:
-\begin{itemize}
-\item {} 
-DO\_NOTHING (0)  - don't do anything (default).
-
-\item {} 
-NULLIFY    (1)  - Updates the reference to null.
-
-\item {} 
-CASCADE    (2)  - Deletes the documents associated with the reference.
-
-\item {} 
-DENY       (3)  - Prevent the deletion of the reference object.
-
-\item {} 
-PULL       (4)  - Pull the reference from a \sphinxcode{ListField} of references
-
-\end{itemize}
-
-Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{Bar}\PYG{p}{(}\PYG{n}{Document}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{content} \PYG{o}{=} \PYG{n}{StringField}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{foo} \PYG{o}{=} \PYG{n}{ReferenceField}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{Foo}\PYG{o}{.}\PYG{n}{register\PYGZus{}delete\PYGZus{}rule}\PYG{p}{(}\PYG{n}{Bar}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{NULLIFY}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxtitleref{reverse\_delete\_rule} does not trigger pre / post delete signals to be
-triggered.
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{Changed in version 0.5: }added \sphinxtitleref{reverse\_delete\_rule}
-
-\end{fulllineitems}
-
-
-\end{fulllineitems}
-
-
-
-\chapter{flashcard\_response module}
-\label{\detokenize{flashcard_response:flashcard-response-module}}\label{\detokenize{flashcard_response::doc}}\label{\detokenize{flashcard_response:module-flashcard_response}}\index{flashcard\_response (module)}\index{FlashcardResponse (class in flashcard\_response)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard_response:flashcard_response.FlashcardResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashcard\_response.}\sphinxbfcode{FlashcardResponse}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
-\index{answer (flashcard\_response.FlashcardResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard_response:flashcard_response.FlashcardResponse.answer}}\pysigline{\sphinxbfcode{answer}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{flashcard (flashcard\_response.FlashcardResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashcard_response:flashcard_response.FlashcardResponse.flashcard}}\pysigline{\sphinxbfcode{flashcard}}
-A reference to a document that will be automatically dereferenced on
-access (lazily).
-
-Use the \sphinxtitleref{reverse\_delete\_rule} to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse\_delete\_rule and an \sphinxtitleref{InvalidDocumentError}
-will be raised if trying to set on one of these Document / Field types.
-
-The options are:
-\begin{itemize}
-\item {} 
-DO\_NOTHING (0)  - don't do anything (default).
-
-\item {} 
-NULLIFY    (1)  - Updates the reference to null.
-
-\item {} 
-CASCADE    (2)  - Deletes the documents associated with the reference.
-
-\item {} 
-DENY       (3)  - Prevent the deletion of the reference object.
-
-\item {} 
-PULL       (4)  - Pull the reference from a \sphinxcode{ListField} of references
-
-\end{itemize}
-
-Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{Bar}\PYG{p}{(}\PYG{n}{Document}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{content} \PYG{o}{=} \PYG{n}{StringField}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{foo} \PYG{o}{=} \PYG{n}{ReferenceField}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{Foo}\PYG{o}{.}\PYG{n}{register\PYGZus{}delete\PYGZus{}rule}\PYG{p}{(}\PYG{n}{Bar}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{NULLIFY}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxtitleref{reverse\_delete\_rule} does not trigger pre / post delete signals to be
-triggered.
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{Changed in version 0.5: }added \sphinxtitleref{reverse\_delete\_rule}
-
-\end{fulllineitems}
-
-
-\end{fulllineitems}
-
-
-
-\chapter{flashedge\_response module}
-\label{\detokenize{flashedge_response:flashedge-response-module}}\label{\detokenize{flashedge_response::doc}}\label{\detokenize{flashedge_response:module-flashedge_response}}\index{flashedge\_response (module)}\index{FlashedgeResponse (class in flashedge\_response)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashedge_response:flashedge_response.FlashedgeResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashedge\_response.}\sphinxbfcode{FlashedgeResponse}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
-\index{correct (flashedge\_response.FlashedgeResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashedge_response:flashedge_response.FlashedgeResponse.correct}}\pysigline{\sphinxbfcode{correct}}
-Boolean field type.
-
-\DUrole{versionmodified}{New in version 0.1.2.}
-
-\end{fulllineitems}
-
-\index{end (flashedge\_response.FlashedgeResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashedge_response:flashedge_response.FlashedgeResponse.end}}\pysigline{\sphinxbfcode{end}}
-32-bit integer field.
-
-\end{fulllineitems}
-
-\index{reference (flashedge\_response.FlashedgeResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashedge_response:flashedge_response.FlashedgeResponse.reference}}\pysigline{\sphinxbfcode{reference}}
-A reference to \sphinxstyleemphasis{any} \sphinxcode{Document} subclass
-that will be automatically dereferenced on access (lazily).
-
-\begin{sphinxadmonition}{note}{Note:}\begin{itemize}
-\item {} 
-Any documents used as a generic reference must be registered in the
-document registry.  Importing the model will automatically register
-it.
-
-\item {} 
-You can use the choices param to limit the acceptable Document types
-
-\end{itemize}
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{New in version 0.3.}
-
-\end{fulllineitems}
-
-\index{start (flashedge\_response.FlashedgeResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashedge_response:flashedge_response.FlashedgeResponse.start}}\pysigline{\sphinxbfcode{start}}
-32-bit integer field.
-
-\end{fulllineitems}
-
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{flashmap\_instance module}
-\label{\detokenize{flashmap_instance:flashmap-instance-module}}\label{\detokenize{flashmap_instance:module-flashmap_instance}}\label{\detokenize{flashmap_instance::doc}}\index{flashmap\_instance (module)}\index{FlashmapInstance (class in flashmap\_instance)}
+\label{\detokenize{flashmap_instance:flashmap-instance-module}}\label{\detokenize{flashmap_instance:module-flashmap_instance}}\label{\detokenize{flashmap_instance::doc}}\index{flashmap\_instance (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{FlashmapInstance (class in flashmap\_instance)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{flashmap_instance:flashmap_instance.FlashmapInstance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashmap\_instance.}\sphinxbfcode{FlashmapInstance}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: {\hyperref[\detokenize{flash_instance:flash_instance.FlashInstance}]{\sphinxcrossref{\sphinxcode{flash\_instance.FlashInstance}}}}
-\index{reference (flashmap\_instance.FlashmapInstance attribute)}
+A class for storing responses from the flashmap system
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{reference} ({\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}) -- The edge from the concept map to which this instance refers to
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{flashmap_instance:flashmap_instance.FlashmapInstance.reference}}\pysigline{\sphinxbfcode{reference}}
-A reference to a document that will be automatically dereferenced on
-access (lazily).
-
-Use the \sphinxtitleref{reverse\_delete\_rule} to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse\_delete\_rule and an \sphinxtitleref{InvalidDocumentError}
-will be raised if trying to set on one of these Document / Field types.
-
-The options are:
-\begin{itemize}
-\item {} 
-DO\_NOTHING (0)  - don't do anything (default).
-
-\item {} 
-NULLIFY    (1)  - Updates the reference to null.
-
-\item {} 
-CASCADE    (2)  - Deletes the documents associated with the reference.
-
-\item {} 
-DENY       (3)  - Prevent the deletion of the reference object.
-
-\item {} 
-PULL       (4)  - Pull the reference from a \sphinxcode{ListField} of references
-
-\end{itemize}
-
-Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{Bar}\PYG{p}{(}\PYG{n}{Document}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{content} \PYG{o}{=} \PYG{n}{StringField}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{foo} \PYG{o}{=} \PYG{n}{ReferenceField}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{Foo}\PYG{o}{.}\PYG{n}{register\PYGZus{}delete\PYGZus{}rule}\PYG{p}{(}\PYG{n}{Bar}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{NULLIFY}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxtitleref{reverse\_delete\_rule} does not trigger pre / post delete signals to be
-triggered.
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{Changed in version 0.5: }added \sphinxtitleref{reverse\_delete\_rule}
-
-\end{fulllineitems}
-
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{handler module}
-\label{\detokenize{handler:module-handler}}\label{\detokenize{handler:handler-module}}\label{\detokenize{handler::doc}}\index{handler (module)}\index{handler() (in module handler)}
+\label{\detokenize{handler:handler-module}}\label{\detokenize{handler:module-handler}}\label{\detokenize{handler::doc}}\index{handler (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{handler() (in module handler)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{handler:handler.handler}}\pysiglinewithargsret{\sphinxcode{handler.}\sphinxbfcode{handler}}{\emph{websocket}, \emph{path}}{}
 Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client
-\begin{description}
-\item[{args:}] \leavevmode
-websocket -- the websocket being used for receiving and sending messages to a client
-path -- the IP address used to host the websocket
-
-\end{description}
-
-\end{fulllineitems}
-
-
-
-\chapter{item\_response module}
-\label{\detokenize{item_response:item-response-module}}\label{\detokenize{item_response::doc}}\label{\detokenize{item_response:module-item_response}}\index{item\_response (module)}\index{ItemResponse (class in item\_response)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{item_response:item_response.ItemResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{item\_response.}\sphinxbfcode{ItemResponse}}{\emph{*args}, \emph{**values}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-\index{ItemResponse.DoesNotExist}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{item_response:item_response.ItemResponse.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
-
-\end{fulllineitems}
-
-\index{ItemResponse.MultipleObjectsReturned}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{item_response:item_response.ItemResponse.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{ItemResponse.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
-
-\end{fulllineitems}
-
-\index{answer (item\_response.ItemResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{item_response:item_response.ItemResponse.answer}}\pysigline{\sphinxcode{ItemResponse.}\sphinxbfcode{answer}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{id (item\_response.ItemResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{item_response:item_response.ItemResponse.id}}\pysigline{\sphinxcode{ItemResponse.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
-
-\end{fulllineitems}
-
-\index{item (item\_response.ItemResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{item_response:item_response.ItemResponse.item}}\pysigline{\sphinxcode{ItemResponse.}\sphinxbfcode{item}}
-A reference to a document that will be automatically dereferenced on
-access (lazily).
-
-Use the \sphinxtitleref{reverse\_delete\_rule} to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse\_delete\_rule and an \sphinxtitleref{InvalidDocumentError}
-will be raised if trying to set on one of these Document / Field types.
-
-The options are:
-\begin{itemize}
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-DO\_NOTHING (0)  - don't do anything (default).
+\sphinxstyleliteralstrong{websocket} (\sphinxstyleliteralemphasis{Websocket}) -- the websocket being used for receiving and sending messages to a client
 
 \item {} 
-NULLIFY    (1)  - Updates the reference to null.
-
-\item {} 
-CASCADE    (2)  - Deletes the documents associated with the reference.
-
-\item {} 
-DENY       (3)  - Prevent the deletion of the reference object.
-
-\item {} 
-PULL       (4)  - Pull the reference from a \sphinxcode{ListField} of references
+\sphinxstyleliteralstrong{path} (\sphinxstyleliteralemphasis{String}) -- the IP address used to host the websocket
 
 \end{itemize}
 
-Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{Bar}\PYG{p}{(}\PYG{n}{Document}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{content} \PYG{o}{=} \PYG{n}{StringField}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{foo} \PYG{o}{=} \PYG{n}{ReferenceField}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{Foo}\PYG{o}{.}\PYG{n}{register\PYGZus{}delete\PYGZus{}rule}\PYG{p}{(}\PYG{n}{Bar}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{NULLIFY}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxtitleref{reverse\_delete\_rule} does not trigger pre / post delete signals to be
-triggered.
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{Changed in version 0.5: }added \sphinxtitleref{reverse\_delete\_rule}
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
-\index{objects (item\_response.ItemResponse attribute)}
+
+
+\chapter{instance module}
+\label{\detokenize{instance:module-instance}}\label{\detokenize{instance::doc}}\label{\detokenize{instance:instance-module}}\index{instance (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{Instance (class in instance)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{item_response:item_response.ItemResponse.objects}}\pysigline{\sphinxcode{ItemResponse.}\sphinxbfcode{objects}\sphinxstrong{ = {[}{]}}}
+\phantomsection\label{\detokenize{instance:instance.Instance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{instance.}\sphinxbfcode{Instance}}{\emph{*args}, \emph{**kwargs}}{}
+A class describing a general flash instance, which can either be a FlashmapInstance or a FlashcardInstance
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{responses} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}\sphinxstyleliteralemphasis{EmbeddedDocumentField}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{response:response.Response}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Response}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of responses provided to this instance (an empty list by default)
+
+\item {} 
+\sphinxstyleliteralstrong{reference} (\sphinxstyleliteralemphasis{GenericReferenceField}) -- A reference to either an edge in a concept map or a flashcard (defined within the subclass)
+
+\item {} 
+\sphinxstyleliteralstrong{due\_date} (\sphinxstyleliteralemphasis{DateTimeField}) -- The date this instance is due for repetition
+
+\end{itemize}
+
+\end{description}\end{quote}
+\index{schedule() (instance.Instance method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{instance:instance.Instance.schedule}}\pysiglinewithargsret{\sphinxbfcode{schedule}}{}{}
+Reschedules this instance for review based on the previous responses
+.. todo:: Implementation
+
 \end{fulllineitems}
 
 
@@ -967,254 +320,105 @@ triggered.
 
 
 \chapter{logentry module}
-\label{\detokenize{logentry:module-logentry}}\label{\detokenize{logentry::doc}}\label{\detokenize{logentry:logentry-module}}\index{logentry (module)}\index{LogEntry (class in logentry)}
+\label{\detokenize{logentry:logentry-module}}\label{\detokenize{logentry::doc}}\label{\detokenize{logentry:module-logentry}}\index{logentry (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{LogEntry (class in logentry)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{logentry:logentry.LogEntry}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{logentry.}\sphinxbfcode{LogEntry}}{\emph{*args}, \emph{**values}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-\index{LogEntry.DoesNotExist}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{logentry:logentry.LogEntry.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
-
-\end{fulllineitems}
-
-\index{LogEntry.MultipleObjectsReturned}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{logentry:logentry.LogEntry.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{LogEntry.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
-
-\end{fulllineitems}
-
-\index{data (logentry.LogEntry attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{logentry:logentry.LogEntry.data}}\pysigline{\sphinxcode{LogEntry.}\sphinxbfcode{data}}
-A dictionary field that wraps a standard Python dictionary. This is
-similar to an embedded document, but the structure is not defined.
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for DictFields is \{\}
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{New in version 0.3.}
-
-\DUrole{versionmodified}{Changed in version 0.5: }- Can now handle complex / varying types of data
-
-\end{fulllineitems}
-
-\index{id (logentry.LogEntry attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{logentry:logentry.LogEntry.id}}\pysigline{\sphinxcode{LogEntry.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
-
-\end{fulllineitems}
-
-\index{keyword (logentry.LogEntry attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{logentry:logentry.LogEntry.keyword}}\pysigline{\sphinxcode{LogEntry.}\sphinxbfcode{keyword}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{objects (logentry.LogEntry attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{logentry:logentry.LogEntry.objects}}\pysigline{\sphinxcode{LogEntry.}\sphinxbfcode{objects}\sphinxstrong{ = {[}{]}}}
-\end{fulllineitems}
-
-\index{timestamp (logentry.LogEntry attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{logentry:logentry.LogEntry.timestamp}}\pysigline{\sphinxcode{LogEntry.}\sphinxbfcode{timestamp}}
-32-bit integer field.
-
-\end{fulllineitems}
-
-\index{user (logentry.LogEntry attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{logentry:logentry.LogEntry.user}}\pysigline{\sphinxcode{LogEntry.}\sphinxbfcode{user}}
-A reference to a document that will be automatically dereferenced on
-access (lazily).
-
-Use the \sphinxtitleref{reverse\_delete\_rule} to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse\_delete\_rule and an \sphinxtitleref{InvalidDocumentError}
-will be raised if trying to set on one of these Document / Field types.
-
-The options are:
-\begin{itemize}
+An object representing a incoming or outgoing network message
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-DO\_NOTHING (0)  - don't do anything (default).
+\sphinxstyleliteralstrong{user} ({\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{\sphinxstyleliteralemphasis{User}}}}) -- The user which was involved with this network message
 
 \item {} 
-NULLIFY    (1)  - Updates the reference to null.
+\sphinxstyleliteralstrong{keyword} (\sphinxstyleliteralemphasis{StringField}) -- The network keyword
 
 \item {} 
-CASCADE    (2)  - Deletes the documents associated with the reference.
+\sphinxstyleliteralstrong{data} (\sphinxstyleliteralemphasis{DictField}) -- The dictionary containing the necessary data
 
 \item {} 
-DENY       (3)  - Prevent the deletion of the reference object.
-
-\item {} 
-PULL       (4)  - Pull the reference from a \sphinxcode{ListField} of references
+\sphinxstyleliteralstrong{timestamp} (\sphinxstyleliteralemphasis{DateField}) -- The time that this message was received or transmitted
 
 \end{itemize}
 
-Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{Bar}\PYG{p}{(}\PYG{n}{Document}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{content} \PYG{o}{=} \PYG{n}{StringField}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{foo} \PYG{o}{=} \PYG{n}{ReferenceField}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{Foo}\PYG{o}{.}\PYG{n}{register\PYGZus{}delete\PYGZus{}rule}\PYG{p}{(}\PYG{n}{Bar}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{NULLIFY}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxtitleref{reverse\_delete\_rule} does not trigger pre / post delete signals to be
-triggered.
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{Changed in version 0.5: }added \sphinxtitleref{reverse\_delete\_rule}
-
-\end{fulllineitems}
-
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{node module}
-\label{\detokenize{node:module-node}}\label{\detokenize{node:node-module}}\label{\detokenize{node::doc}}\index{node (module)}\index{Node (class in node)}
+\label{\detokenize{node:module-node}}\label{\detokenize{node::doc}}\label{\detokenize{node:node-module}}\index{node (module)}\index{Node (class in node)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{node:node.Node}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{node.}\sphinxbfcode{Node}}{\emph{*args}, \emph{**values}}{}
 Bases: \sphinxcode{mongoengine.document.Document}
-\index{Node.DoesNotExist}
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{node:node.Node.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
+A class for representing nodes in the concept map
+\begin{quote}\begin{description}
+\item[{Variables}] \leavevmode
+\sphinxstyleliteralstrong{label} -- The label appearing within the node
 
-\end{fulllineitems}
-
-\index{Node.MultipleObjectsReturned}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{node:node.Node.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{Node.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
-
-\end{fulllineitems}
-
-\index{id (node.Node attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{node:node.Node.id}}\pysigline{\sphinxcode{Node.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
-
-\end{fulllineitems}
-
-\index{label (node.Node attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{node:node.Node.label}}\pysigline{\sphinxcode{Node.}\sphinxbfcode{label}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{objects (node.Node attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{node:node.Node.objects}}\pysigline{\sphinxcode{Node.}\sphinxbfcode{objects}\sphinxstrong{ = {[}\textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, \textless{}Node: Node object\textgreater{}, `...(remaining elements truncated)...'{]}}}
-\end{fulllineitems}
-
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{questionnaire module}
-\label{\detokenize{questionnaire:module-questionnaire}}\label{\detokenize{questionnaire::doc}}\label{\detokenize{questionnaire:questionnaire-module}}\index{questionnaire (module)}\index{Questionnaire (class in questionnaire)}
+\label{\detokenize{questionnaire:questionnaire-module}}\label{\detokenize{questionnaire::doc}}\label{\detokenize{questionnaire:module-questionnaire}}\index{questionnaire (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{Questionnaire (class in questionnaire)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire.}\sphinxbfcode{Questionnaire}}{\emph{questionnaire\_items}, \emph{**data}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-\index{Questionnaire.DoesNotExist}
+\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire.}\sphinxbfcode{Questionnaire}}{\emph{pu\_items}, \emph{peou\_items}, \emph{**data}}{}
+A class representing a stored questionnaire for a user
+\begin{quote}\begin{description}
+\item[{Variables}] \leavevmode
+\sphinxstyleliteralstrong{perceived\_ease\_of\_use\_items} -- Responses to the perceived ease of use item from TAM
+
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{good} (\sphinxstyleliteralemphasis{StringField}) -- A description of what was good about the software according to the user
+
+\item {} 
+\sphinxstyleliteralstrong{can\_be\_improved} (\sphinxstyleliteralemphasis{StringField}) -- A description of what could be improved according to the user
+
+\end{itemize}
+
+\end{description}\end{quote}
+\index{append\_answer() (questionnaire.Questionnaire method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
+\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.append_answer}}\pysiglinewithargsret{\sphinxbfcode{append\_answer}}{\emph{item}, \emph{phrasing}, \emph{answer}}{}
+Appends an answer to an item within the questionnaire
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{item} ({\hyperref[\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{QuestionnaireItem}}}}) -- The item to which the answer refers
 
-\end{fulllineitems}
+\item {} 
+\sphinxstyleliteralstrong{phrasing} (\sphinxstyleliteralemphasis{boolean}) -- Whether the item is positively (True) phrased or negatively (False)
 
-\index{Questionnaire.MultipleObjectsReturned}
+\item {} 
+\sphinxstyleliteralstrong{answer} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- The answer to be appended
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{Questionnaire.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
+\end{itemize}
 
-\end{fulllineitems}
-
-\index{append\_item() (questionnaire.Questionnaire method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.append_item}}\pysiglinewithargsret{\sphinxcode{Questionnaire.}\sphinxbfcode{append\_item}}{\emph{item}, \emph{answer}}{}
-\end{fulllineitems}
-
-\index{generate\_questionniare() (questionnaire.Questionnaire method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.generate_questionniare}}\pysiglinewithargsret{\sphinxcode{Questionnaire.}\sphinxbfcode{generate\_questionniare}}{}{}
-\end{fulllineitems}
-
-\index{id (questionnaire.Questionnaire attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.id}}\pysigline{\sphinxcode{Questionnaire.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
-
-\end{fulllineitems}
-
-\index{objects (questionnaire.Questionnaire attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.objects}}\pysigline{\sphinxcode{Questionnaire.}\sphinxbfcode{objects}\sphinxstrong{ = {[}{]}}}
-\end{fulllineitems}
-
-\index{perceived\_ease\_of\_use\_items (questionnaire.Questionnaire attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.perceived_ease_of_use_items}}\pysigline{\sphinxcode{Questionnaire.}\sphinxbfcode{perceived\_ease\_of\_use\_items}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 \index{perceived\_usefulness\_items (questionnaire.Questionnaire attribute)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.perceived_usefulness_items}}\pysigline{\sphinxcode{Questionnaire.}\sphinxbfcode{perceived\_usefulness\_items}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
+\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.perceived_usefulness_items}}\pysigline{\sphinxbfcode{perceived\_usefulness\_items}}
+Responses to the perceived usefulness items from TAM
+:type: list(QuestionnaireResponses)
 
 \end{fulllineitems}
 
@@ -1224,496 +428,390 @@ Required means it cannot be empty - as the default for ListFields is {[}{]}
 
 
 \chapter{questionnaire\_item module}
-\label{\detokenize{questionnaire_item:questionnaire-item-module}}\label{\detokenize{questionnaire_item::doc}}\label{\detokenize{questionnaire_item:module-questionnaire_item}}\index{questionnaire\_item (module)}\index{QuestionnaireItem (class in questionnaire\_item)}
+\label{\detokenize{questionnaire_item:questionnaire-item-module}}\label{\detokenize{questionnaire_item:module-questionnaire_item}}\label{\detokenize{questionnaire_item::doc}}\index{questionnaire\_item (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{QuestionnaireItem (class in questionnaire\_item)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire\_item.}\sphinxbfcode{QuestionnaireItem}}{\emph{*args}, \emph{**values}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-\index{QuestionnaireItem.DoesNotExist}
+A class representing a single item on the questionnaire
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{usefullness} -- Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
+\item {} 
+\sphinxstyleliteralstrong{positive\_phrasing} (\sphinxstyleliteralemphasis{StringField}) -- The version of this item which is positively phrased
 
-\end{fulllineitems}
+\item {} 
+\sphinxstyleliteralstrong{negative\_phrasing} (\sphinxstyleliteralemphasis{StringField}) -- The version of this item which is negatively phrased
 
-\index{QuestionnaireItem.MultipleObjectsReturned}
+\end{itemize}
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{QuestionnaireItem.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
-
-\end{fulllineitems}
-
-\index{id (questionnaire\_item.QuestionnaireItem attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem.id}}\pysigline{\sphinxcode{QuestionnaireItem.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
-
-\end{fulllineitems}
-
-\index{negative\_phrasing (questionnaire\_item.QuestionnaireItem attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem.negative_phrasing}}\pysigline{\sphinxcode{QuestionnaireItem.}\sphinxbfcode{negative\_phrasing}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{objects (questionnaire\_item.QuestionnaireItem attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem.objects}}\pysigline{\sphinxcode{QuestionnaireItem.}\sphinxbfcode{objects}\sphinxstrong{ = {[}{]}}}
-\end{fulllineitems}
-
-\index{positive\_phrasing (questionnaire\_item.QuestionnaireItem attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem.positive_phrasing}}\pysigline{\sphinxcode{QuestionnaireItem.}\sphinxbfcode{positive\_phrasing}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{usefullness (questionnaire\_item.QuestionnaireItem attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem.usefullness}}\pysigline{\sphinxcode{QuestionnaireItem.}\sphinxbfcode{usefullness}}
-Boolean field type.
-
-\DUrole{versionmodified}{New in version 0.1.2.}
-
-\end{fulllineitems}
-
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{questionnaire\_response module}
-\label{\detokenize{questionnaire_response:module-questionnaire_response}}\label{\detokenize{questionnaire_response::doc}}\label{\detokenize{questionnaire_response:questionnaire-response-module}}\index{questionnaire\_response (module)}\index{QuestionnaireResponse (class in questionnaire\_response)}
+\label{\detokenize{questionnaire_response:questionnaire-response-module}}\label{\detokenize{questionnaire_response::doc}}\label{\detokenize{questionnaire_response:module-questionnaire_response}}\index{questionnaire\_response (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{QuestionnaireResponse (class in questionnaire\_response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{questionnaire_response:questionnaire_response.QuestionnaireResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire\_response.}\sphinxbfcode{QuestionnaireResponse}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
-\index{answer (questionnaire\_response.QuestionnaireResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_response:questionnaire_response.QuestionnaireResponse.answer}}\pysigline{\sphinxbfcode{answer}}
-32-bit integer field.
-
-\end{fulllineitems}
-
-\index{questionnaire\_item (questionnaire\_response.QuestionnaireResponse attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire_response:questionnaire_response.QuestionnaireResponse.questionnaire_item}}\pysigline{\sphinxbfcode{questionnaire\_item}}
-A reference to a document that will be automatically dereferenced on
-access (lazily).
-
-Use the \sphinxtitleref{reverse\_delete\_rule} to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse\_delete\_rule and an \sphinxtitleref{InvalidDocumentError}
-will be raised if trying to set on one of these Document / Field types.
-
-The options are:
-\begin{itemize}
+A class for storing singular responses to questionnaire items
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-DO\_NOTHING (0)  - don't do anything (default).
+\sphinxstyleliteralstrong{questionnaire\_item} ({\hyperref[\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{QuestionnaireItem}}}}) -- The questionnaire item to which this answer refers
 
 \item {} 
-NULLIFY    (1)  - Updates the reference to null.
+\sphinxstyleliteralstrong{answer} (\sphinxstyleliteralemphasis{IntField}) -- The value of the likert-scale rating the user gave to this item (ranges from -2 to 2)
 
 \item {} 
-CASCADE    (2)  - Deletes the documents associated with the reference.
-
-\item {} 
-DENY       (3)  - Prevent the deletion of the reference object.
-
-\item {} 
-PULL       (4)  - Pull the reference from a \sphinxcode{ListField} of references
+\sphinxstyleliteralstrong{phrasing} (\sphinxstyleliteralemphasis{BooleanField}) -- Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire\_item
 
 \end{itemize}
 
-Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{Bar}\PYG{p}{(}\PYG{n}{Document}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{content} \PYG{o}{=} \PYG{n}{StringField}\PYG{p}{(}\PYG{p}{)}
-    \PYG{n}{foo} \PYG{o}{=} \PYG{n}{ReferenceField}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{n}{Foo}\PYG{o}{.}\PYG{n}{register\PYGZus{}delete\PYGZus{}rule}\PYG{p}{(}\PYG{n}{Bar}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{foo}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{NULLIFY}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{note}{Note:}
-\sphinxtitleref{reverse\_delete\_rule} does not trigger pre / post delete signals to be
-triggered.
-\end{sphinxadmonition}
-
-\DUrole{versionmodified}{Changed in version 0.5: }added \sphinxtitleref{reverse\_delete\_rule}
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
+
+
+\chapter{response module}
+\label{\detokenize{response:response-module}}\label{\detokenize{response::doc}}\label{\detokenize{response:module-response}}\index{response (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{Response (class in response)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{response:response.Response}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{response.}\sphinxbfcode{Response}}{\emph{*args}, \emph{**kwargs}}{}
+A class representing a singular response to an \sphinxcode{Instance}.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{start} (\sphinxstyleliteralemphasis{DateTimeField}) -- The moment the parent \sphinxcode{Instance} was sent to the client
+
+\item {} 
+\sphinxstyleliteralstrong{end} (\sphinxstyleliteralemphasis{DateTimeField}) -- The moment the answer from the client was received
+
+\item {} 
+\sphinxstyleliteralstrong{correct} (\sphinxstyleliteralemphasis{BooleanField}) -- Whether the answer to the \sphinxcode{Instance} was correct (True) or incorrect (False)
+
+\end{itemize}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{session module}
-\label{\detokenize{session:session-module}}\label{\detokenize{session::doc}}\label{\detokenize{session:module-session}}\index{session (module)}\index{Session (class in session)}
+\label{\detokenize{session:module-session}}\label{\detokenize{session::doc}}\label{\detokenize{session:session-module}}\index{session (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{Session (class in session)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{session:session.Session}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{session.}\sphinxbfcode{Session}}{\emph{*args}, \emph{**kwargs}}{}
-Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
-\index{browser (session.Session attribute)}
+A class representing a session the user was logged in
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{start} (\sphinxstyleliteralemphasis{DateTimeField}) -- The time that the user logged in
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{session:session.Session.browser}}\pysigline{\sphinxbfcode{browser}}
-A unicode string field.
+\item {} 
+\sphinxstyleliteralstrong{end} (\sphinxstyleliteralemphasis{DateTimeField}) -- The time that the user logged out
 
-\end{fulllineitems}
+\item {} 
+\sphinxstyleliteralstrong{source\_prompted} (\sphinxstyleliteralemphasis{BooleanField}) -- Whether the user was asked to have read a certain source from SOURCES
 
-\index{end (session.Session attribute)}
+\item {} 
+\sphinxstyleliteralstrong{browser} (\sphinxstyleliteralemphasis{StringField}) -- The type of browser used to log in
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{session:session.Session.end}}\pysigline{\sphinxbfcode{end}}
-32-bit integer field.
+\end{itemize}
 
-\end{fulllineitems}
-
-\index{end\_session() (session.Session method)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{session:session.Session.end_session}}\pysiglinewithargsret{\sphinxbfcode{end\_session}}{}{}
-\end{fulllineitems}
-
-\index{source\_prompted (session.Session attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{session:session.Session.source_prompted}}\pysigline{\sphinxbfcode{source\_prompted}}
-Boolean field type.
-
-\DUrole{versionmodified}{New in version 0.1.2.}
-
-\end{fulllineitems}
-
-\index{start (session.Session attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{session:session.Session.start}}\pysigline{\sphinxbfcode{start}}
-32-bit integer field.
-
-\end{fulllineitems}
-
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{test module}
-\label{\detokenize{test:module-test}}\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}\index{test (module)}\index{Test (class in test)}
+\label{\detokenize{test:module-test}}\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}\index{test (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{Test (class in test)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test:test.Test}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test.}\sphinxbfcode{Test}}{\emph{flashcards}, \emph{items}, \emph{prev\_flashcards={[}{]}}, \emph{prev\_items={[}{]}}, \emph{**data}}{}
-Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
-\index{append\_flashcard() (test.Test method)}
+A class representing a pre- or posttest the user filled in
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{test\_flashcard\_responses} ({\hyperref[\detokenize{test_flashcard_response:test_flashcard_response.TestFlashcardResponse}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestFlashcardResponse}}}}) -- A list of responses to the flashcard questions on the test
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test:test.Test.append_flashcard}}\pysiglinewithargsret{\sphinxbfcode{append\_flashcard}}{\emph{flashcard}, \emph{answer}}{}
-\end{fulllineitems}
+\item {} 
+\sphinxstyleliteralstrong{test\_item\_responses} ({\hyperref[\detokenize{test_item_response:test_item_response.TestItemResponse}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestItemResponse}}}}) -- A list of responses to the item questions on the test
 
-\index{append\_item() (test.Test method)}
+\end{itemize}
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test:test.Test.append_item}}\pysiglinewithargsret{\sphinxbfcode{append\_item}}{\emph{item}, \emph{answer}}{}
-\end{fulllineitems}
-
-\index{flashcard\_responses (test.Test attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test:test.Test.flashcard_responses}}\pysigline{\sphinxbfcode{flashcard\_responses}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
+\end{description}\end{quote}
 \index{generate\_test() (test.Test method)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test:test.Test.generate_test}}\pysiglinewithargsret{\sphinxbfcode{generate\_test}}{\emph{items}, \emph{prev\_items}}{}
+A method for taking five random items in a random order from the provided list of items without the items in the previous items
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{items} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{flashcard:flashcard.Flashcard}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Flashcard}}}}\sphinxstyleliteralemphasis{) or }\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{test_item:test_item.TestItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestItem}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- The complete list of items
+
+\item {} 
+\sphinxstyleliteralstrong{prev\_items} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{flashcard:flashcard.Flashcard}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Flashcard}}}}\sphinxstyleliteralemphasis{) or }\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{test_item:test_item.TestItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestItem}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- The list of items to be excluded from the result
+
+\end{itemize}
+
+\item[{Result}] \leavevmode
+A sample of five items from items not included in prev\_items
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/functions.html\#list}{list}(FlashcardResponse) or \href{https://docs.python.org/2/library/functions.html\#list}{list}({\hyperref[\detokenize{test_item_response:test_item_response.TestItemResponse}]{\sphinxcrossref{TestItemResponse}}})
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
-\index{item\_responses (test.Test attribute)}
+
+\end{fulllineitems}
+
+
+
+\chapter{test\_flashcard\_response module}
+\label{\detokenize{test_flashcard_response:test-flashcard-response-module}}\label{\detokenize{test_flashcard_response:module-test_flashcard_response}}\label{\detokenize{test_flashcard_response::doc}}\index{test\_flashcard\_response (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{TestFlashcardResponse (class in test\_flashcard\_response)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{test:test.Test.item_responses}}\pysigline{\sphinxbfcode{item\_responses}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
+\phantomsection\label{\detokenize{test_flashcard_response:test_flashcard_response.TestFlashcardResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_flashcard\_response.}\sphinxbfcode{TestFlashcardResponse}}{\emph{*args}, \emph{**kwargs}}{}
+An answer for a flashcard item within a pre- or posttest
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{answer} (\sphinxstyleliteralemphasis{StringField}) -- The answer provided by the user
 
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
+\item {} 
+\sphinxstyleliteralstrong{flashcard} (\sphinxstyleliteralemphasis{StringField}) -- The flashcard to which this response refers to
 
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
+\end{itemize}
 
-\end{fulllineitems}
-
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{test\_item module}
-\label{\detokenize{test_item:test-item-module}}\label{\detokenize{test_item::doc}}\label{\detokenize{test_item:module-test_item}}\index{test\_item (module)}\index{TestItem (class in test\_item)}
+\label{\detokenize{test_item::doc}}\label{\detokenize{test_item:module-test_item}}\label{\detokenize{test_item:test-item-module}}\index{test\_item (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{TestItem (class in test\_item)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test_item:test_item.TestItem}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_item.}\sphinxbfcode{TestItem}}{\emph{*args}, \emph{**values}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-\index{TestItem.DoesNotExist}
+A class representing an item from a pre- or posttest
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{question} (\sphinxstyleliteralemphasis{STringField}) -- The question for this item
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test_item:test_item.TestItem.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
+\item {} 
+\sphinxstyleliteralstrong{sources} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}\sphinxstyleliteralemphasis{StringField}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of sources relevant to this question
 
-\end{fulllineitems}
+\item {} 
+\sphinxstyleliteralstrong{response\_model} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}\sphinxstyleliteralemphasis{StringField}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of the parts of a valid answer used for the test matrix
 
-\index{TestItem.MultipleObjectsReturned}
+\end{itemize}
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test_item:test_item.TestItem.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{TestItem.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
-
-\end{fulllineitems}
-
-\index{id (test\_item.TestItem attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test_item:test_item.TestItem.id}}\pysigline{\sphinxcode{TestItem.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
-\index{objects (test\_item.TestItem attribute)}
+
+
+\chapter{test\_item\_response module}
+\label{\detokenize{test_item_response:test-item-response-module}}\label{\detokenize{test_item_response::doc}}\label{\detokenize{test_item_response:module-test_item_response}}\index{test\_item\_response (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{TestItemResponse (class in test\_item\_response)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{test_item:test_item.TestItem.objects}}\pysigline{\sphinxcode{TestItem.}\sphinxbfcode{objects}\sphinxstrong{ = {[}{]}}}
-\end{fulllineitems}
+\phantomsection\label{\detokenize{test_item_response:test_item_response.TestItemResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_item\_response.}\sphinxbfcode{TestItemResponse}}{\emph{*args}, \emph{**values}}{}
+A class representing singular answers to test items
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{answer} (\sphinxstyleliteralemphasis{StringField}) -- The answer to item provided by the user
 
-\index{question (test\_item.TestItem attribute)}
+\item {} 
+\sphinxstyleliteralstrong{item} ({\hyperref[\detokenize{test_item:test_item.TestItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestItem}}}}) -- The specific item this response refers to
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test_item:test_item.TestItem.question}}\pysigline{\sphinxcode{TestItem.}\sphinxbfcode{question}}
-A unicode string field.
+\end{itemize}
 
-\end{fulllineitems}
-
-\index{response\_model (test\_item.TestItem attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test_item:test_item.TestItem.response_model}}\pysigline{\sphinxcode{TestItem.}\sphinxbfcode{response\_model}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
-\index{source (test\_item.TestItem attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{test_item:test_item.TestItem.source}}\pysigline{\sphinxcode{TestItem.}\sphinxbfcode{source}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{user module}
-\label{\detokenize{user:module-user}}\label{\detokenize{user:user-module}}\label{\detokenize{user::doc}}\index{user (module)}\index{User (class in user)}
+\label{\detokenize{user:module-user}}\label{\detokenize{user::doc}}\label{\detokenize{user:user-module}}\index{user (module)}\begin{quote}\begin{description}
+\item[{show-inheritance}] \leavevmode
+\end{description}\end{quote}
+\index{User (class in user)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{user:user.User}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{user.}\sphinxbfcode{User}}{\emph{*args}, \emph{**values}}{}
-Bases: \sphinxcode{mongoengine.document.Document}
-\index{User.DoesNotExist}
+A class representing a user
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{flashmap\_condition} (\sphinxstyleliteralemphasis{BooleanField}) -- Whether the user uses the flashmap system (True) or the flashcard system (False)
+
+\item {} 
+\sphinxstyleliteralstrong{birthdate} (\sphinxstyleliteralemphasis{DateTimeField}) -- The birthdate of the user
+
+\item {} 
+\sphinxstyleliteralstrong{read\_sources} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}\sphinxstyleliteralemphasis{StringField}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of read sources by the user
+
+\item {} 
+\sphinxstyleliteralstrong{gender} (\sphinxstyleliteralemphasis{StringField}) -- The gender of the user (can be either `male', `female', or `other')
+
+\item {} 
+\sphinxstyleliteralstrong{code} (\sphinxstyleliteralemphasis{StringField}) -- The code from the user's informed consent form
+
+\item {} 
+\sphinxstyleliteralstrong{tests} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{test:test.Test}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Test}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- The pre- and posttest
+
+\item {} 
+\sphinxstyleliteralstrong{questionnaire} ({\hyperref[\detokenize{questionnaire:questionnaire.Questionnaire}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Questionnaire}}}}) -- The questionnaire
+
+\item {} 
+\sphinxstyleliteralstrong{instances} -- A list of instances storing the flashmap/flashcard data for the user
+
+\item {} 
+\sphinxstyleliteralstrong{sessions} ({\hyperref[\detokenize{session:session.Session}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Session}}}}) -- A list of past sessions for this user
+
+\end{itemize}
+
+\end{description}\end{quote}
+\index{append\_questionnaire() (user.User method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.DoesNotExist}}\pysigline{\sphinxstrong{exception }\sphinxbfcode{DoesNotExist}}
-Bases: \sphinxcode{mongoengine.errors.DoesNotExist}
+\phantomsection\label{\detokenize{user:user.User.append_questionnaire}}\pysiglinewithargsret{\sphinxbfcode{append\_questionnaire}}{\emph{responses}, \emph{good}, \emph{can\_be\_improved}, \emph{email}}{}
+A method for appending a questionnairy to the user given responses
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{responses} (\href{https://docs.python.org/2/library/stdtypes.html\#dict}{\sphinxstyleliteralemphasis{dict}}) -- A list of dict objects containing a \sphinxcode{QuestionnaireItem} (key = `item') and an answer (key = `answer')
 
-\end{fulllineitems}
+\item {} 
+\sphinxstyleliteralstrong{good} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- A description of what was good about the software according to the user
 
-\index{User.MultipleObjectsReturned}
+\item {} 
+\sphinxstyleliteralstrong{can\_be\_improved} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- A description of what can be improved about the software according to the user
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.MultipleObjectsReturned}}\pysigline{\sphinxstrong{exception }\sphinxcode{User.}\sphinxbfcode{MultipleObjectsReturned}}
-Bases: \sphinxcode{mongoengine.errors.MultipleObjectsReturned}
+\item {} 
+\sphinxstyleliteralstrong{email} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- The email address of the user
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+..todo:: implementation
 
 \end{fulllineitems}
 
 \index{append\_test() (user.User method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.append_test}}\pysiglinewithargsret{\sphinxcode{User.}\sphinxbfcode{append\_test}}{\emph{flashcard\_responses}, \emph{item\_responses}}{}
-\end{fulllineitems}
+\phantomsection\label{\detokenize{user:user.User.append_test}}\pysiglinewithargsret{\sphinxbfcode{append\_test}}{\emph{flashcard\_responses}, \emph{item\_responses}}{}
+A method for appending a test to the user given flashcard and item responses
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{flashcard\_responses} (\href{https://docs.python.org/2/library/stdtypes.html\#dict}{\sphinxstyleliteralemphasis{dict}}) -- A list of dict objects containing a \sphinxcode{Flashcard} (key = `card') and an answer (key = `answer')
 
-\index{birthdate (user.User attribute)}
+\item {} 
+\sphinxstyleliteralstrong{item\_responses} (\href{https://docs.python.org/2/library/stdtypes.html\#dict}{\sphinxstyleliteralemphasis{dict}}) -- A list of dict objects containing a \sphinxcode{TestItem} (key = `item') and an answer (key = `answer')
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.birthdate}}\pysigline{\sphinxcode{User.}\sphinxbfcode{birthdate}}
-Datetime field.
+\end{itemize}
 
-Uses the python-dateutil library if available alternatively use time.strptime
-to parse the dates.  Note: python-dateutil's parser is fully featured and when
-installed you can utilise it to convert varying types of date formats into valid
-python datetime objects.
-\begin{description}
-\item[{Note: Microseconds are rounded to the nearest millisecond.}] \leavevmode
-Pre UTC microsecond support is effectively broken.
-Use \sphinxcode{ComplexDateTimeField} if you
-need accurate microsecond support.
+\end{description}\end{quote}
 
-\end{description}
+..todo:: fix
 
 \end{fulllineitems}
 
-\index{code (user.User attribute)}
+\index{create\_questionnaire() (user.User method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.code}}\pysigline{\sphinxcode{User.}\sphinxbfcode{code}}
-A unicode string field.
+\phantomsection\label{\detokenize{user:user.User.create_questionnaire}}\pysiglinewithargsret{\sphinxbfcode{create\_questionnaire}}{\emph{items}}{}
+A method for creating a new questionnaire
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{items} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{QuestionnaireItem}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of questionnaire items
+
+\end{description}\end{quote}
+
+..todo:: implementation
 
 \end{fulllineitems}
 
 \index{create\_test() (user.User method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.create_test}}\pysiglinewithargsret{\sphinxcode{User.}\sphinxbfcode{create\_test}}{\emph{flashcards}, \emph{items}}{}
-\end{fulllineitems}
+\phantomsection\label{\detokenize{user:user.User.create_test}}\pysiglinewithargsret{\sphinxbfcode{create\_test}}{\emph{flashcards}, \emph{items}}{}
+A method for creating a new test with unique questions
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{flashcards} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{flashcard:flashcard.Flashcard}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Flashcard}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of flashcards from the database
 
-\index{flashmap\_condition (user.User attribute)}
+\item {} 
+\sphinxstyleliteralstrong{items} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{test_item:test_item.TestItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestItem}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of items from the database
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.flashmap_condition}}\pysigline{\sphinxcode{User.}\sphinxbfcode{flashmap\_condition}}
-Boolean field type.
+\end{itemize}
 
-\DUrole{versionmodified}{New in version 0.1.2.}
-
-\end{fulllineitems}
-
-\index{gender (user.User attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.gender}}\pysigline{\sphinxcode{User.}\sphinxbfcode{gender}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{id (user.User attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.id}}\pysigline{\sphinxcode{User.}\sphinxbfcode{id}}
-A field wrapper around MongoDB's ObjectIds.
-
-\end{fulllineitems}
-
-\index{name (user.User attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.name}}\pysigline{\sphinxcode{User.}\sphinxbfcode{name}}
-A unicode string field.
-
-\end{fulllineitems}
-
-\index{objects (user.User attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.objects}}\pysigline{\sphinxcode{User.}\sphinxbfcode{objects}}
-\end{fulllineitems}
-
-\index{questionnaire (user.User attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.questionnaire}}\pysigline{\sphinxcode{User.}\sphinxbfcode{questionnaire}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
-\index{read\_sources (user.User attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.read_sources}}\pysigline{\sphinxcode{User.}\sphinxbfcode{read\_sources}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
-
-\end{fulllineitems}
-
-\index{sessions (user.User attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.sessions}}\pysigline{\sphinxcode{User.}\sphinxbfcode{sessions}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
-
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
-
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 \index{set\_descriptives() (user.User method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.set_descriptives}}\pysiglinewithargsret{\sphinxcode{User.}\sphinxbfcode{set\_descriptives}}{\emph{birthdate}, \emph{gender}, \emph{code}}{}
-\end{fulllineitems}
+\phantomsection\label{\detokenize{user:user.User.set_descriptives}}\pysiglinewithargsret{\sphinxbfcode{set\_descriptives}}{\emph{birthdate}, \emph{gender}, \emph{code}}{}
+A method for setting the descriptives of the user
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{birthdate} (\sphinxstyleliteralemphasis{DateTime}) -- The provided birthdate of the user
 
-\index{tests (user.User attribute)}
+\item {} 
+\sphinxstyleliteralstrong{gender} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- The gender of the user (can be either `male', `female', or `other')
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.tests}}\pysigline{\sphinxcode{User.}\sphinxbfcode{tests}}
-A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.
+\item {} 
+\sphinxstyleliteralstrong{code} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- The code from the informed consent form
 
-If using with ReferenceFields see: \DUrole{xref,std,std-ref}{one-to-many-with-listfields}
+\end{itemize}
 
-\begin{sphinxadmonition}{note}{Note:}
-Required means it cannot be empty - as the default for ListFields is {[}{]}
-\end{sphinxadmonition}
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1726,12 +824,12 @@ Required means it cannot be empty - as the default for ListFields is {[}{]}
 \label{\detokenize{index:indices-and-tables}}\begin{itemize}
 \item {} 
 \DUrole{xref,std,std-ref}{genindex}
-
-\item {} 
-\DUrole{xref,std,std-ref}{modindex}
-
+* \DUrole{xref,std,std-ref}{modindex}
+\begin{itemize}
 \item {} 
 \DUrole{xref,std,std-ref}{search}
+
+\end{itemize}
 
 \end{itemize}
 
@@ -1747,18 +845,15 @@ Required means it cannot be empty - as the default for ListFields is {[}{]}
 \item {\sphinxstyleindexentry{edge}}\sphinxstyleindexpageref{edge:\detokenize{module-edge}}
 \indexspace
 \bigletter{f}
-\item {\sphinxstyleindexentry{flash\_instance}}\sphinxstyleindexpageref{flash_instance:\detokenize{module-flash_instance}}
 \item {\sphinxstyleindexentry{flashcard}}\sphinxstyleindexpageref{flashcard:\detokenize{module-flashcard}}
 \item {\sphinxstyleindexentry{flashcard\_instance}}\sphinxstyleindexpageref{flashcard_instance:\detokenize{module-flashcard_instance}}
-\item {\sphinxstyleindexentry{flashcard\_response}}\sphinxstyleindexpageref{flashcard_response:\detokenize{module-flashcard_response}}
-\item {\sphinxstyleindexentry{flashedge\_response}}\sphinxstyleindexpageref{flashedge_response:\detokenize{module-flashedge_response}}
 \item {\sphinxstyleindexentry{flashmap\_instance}}\sphinxstyleindexpageref{flashmap_instance:\detokenize{module-flashmap_instance}}
 \indexspace
 \bigletter{h}
 \item {\sphinxstyleindexentry{handler}}\sphinxstyleindexpageref{handler:\detokenize{module-handler}}
 \indexspace
 \bigletter{i}
-\item {\sphinxstyleindexentry{item\_response}}\sphinxstyleindexpageref{item_response:\detokenize{module-item_response}}
+\item {\sphinxstyleindexentry{instance}}\sphinxstyleindexpageref{instance:\detokenize{module-instance}}
 \indexspace
 \bigletter{l}
 \item {\sphinxstyleindexentry{logentry}}\sphinxstyleindexpageref{logentry:\detokenize{module-logentry}}
@@ -1771,12 +866,17 @@ Required means it cannot be empty - as the default for ListFields is {[}{]}
 \item {\sphinxstyleindexentry{questionnaire\_item}}\sphinxstyleindexpageref{questionnaire_item:\detokenize{module-questionnaire_item}}
 \item {\sphinxstyleindexentry{questionnaire\_response}}\sphinxstyleindexpageref{questionnaire_response:\detokenize{module-questionnaire_response}}
 \indexspace
+\bigletter{r}
+\item {\sphinxstyleindexentry{response}}\sphinxstyleindexpageref{response:\detokenize{module-response}}
+\indexspace
 \bigletter{s}
 \item {\sphinxstyleindexentry{session}}\sphinxstyleindexpageref{session:\detokenize{module-session}}
 \indexspace
 \bigletter{t}
 \item {\sphinxstyleindexentry{test}}\sphinxstyleindexpageref{test:\detokenize{module-test}}
+\item {\sphinxstyleindexentry{test\_flashcard\_response}}\sphinxstyleindexpageref{test_flashcard_response:\detokenize{module-test_flashcard_response}}
 \item {\sphinxstyleindexentry{test\_item}}\sphinxstyleindexpageref{test_item:\detokenize{module-test_item}}
+\item {\sphinxstyleindexentry{test\_item\_response}}\sphinxstyleindexpageref{test_item_response:\detokenize{module-test_item_response}}
 \indexspace
 \bigletter{u}
 \item {\sphinxstyleindexentry{user}}\sphinxstyleindexpageref{user:\detokenize{module-user}}

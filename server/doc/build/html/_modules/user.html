@@ -52,23 +52,23 @@
 <div class="viewcode-block" id="User"><a class="viewcode-back" href="../user.html#user.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a user</span>
 
-<span class="sd">    :param flashmap_condition: Whether the user uses the flashmap system (True) or the flashcard system (False)</span>
+<span class="sd">    :cvar flashmap_condition: Whether the user uses the flashmap system (True) or the flashcard system (False)</span>
 <span class="sd">    :type flashmap_condition: BooleanField</span>
-<span class="sd">    :param birthdate: The birthdate of the user</span>
+<span class="sd">    :cvar birthdate: The birthdate of the user</span>
 <span class="sd">    :type birthdate: DateTimeField</span>
-<span class="sd">    :param read_sources: A list of read sources by the user</span>
+<span class="sd">    :cvar read_sources: A list of read sources by the user</span>
 <span class="sd">    :type read_sources: ListField(StringField)</span>
-<span class="sd">    :param gender: The gender of the user (can be either &#39;male&#39;, &#39;female&#39;, or &#39;other&#39;)</span>
+<span class="sd">    :cvar gender: The gender of the user (can be either &#39;male&#39;, &#39;female&#39;, or &#39;other&#39;)</span>
 <span class="sd">    :type gender: StringField</span>
-<span class="sd">    :param code: The code from the user&#39;s informed consent form</span>
+<span class="sd">    :cvar code: The code from the user&#39;s informed consent form</span>
 <span class="sd">    :type code: StringField</span>
-<span class="sd">    :param tests: The pre- and posttest</span>
+<span class="sd">    :cvar tests: The pre- and posttest</span>
 <span class="sd">    :type tests: ListField(Test)</span>
-<span class="sd">    :param questionnaire: The questionnaire</span>
+<span class="sd">    :cvar questionnaire: The questionnaire</span>
 <span class="sd">    :type questionnaire: Questionnaire</span>
-<span class="sd">    :param instances: A list of instances storing the flashmap/flashcard data for the user</span>
+<span class="sd">    :cvar instances: A list of instances storing the flashmap/flashcard data for the user</span>
 <span class="sd">    :type instance: Instance</span>
-<span class="sd">    :param sessions: A list of past sessions for this user</span>
+<span class="sd">    :cvar sessions: A list of past sessions for this user</span>
 <span class="sd">    :type sessions: Session</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
@@ -122,7 +122,7 @@
 <span class="sd">        :type flashcard_responses: dict</span>
 <span class="sd">        :param item_responses: A list of dict objects containing a :class:`TestItem` (key = &#39;item&#39;) and an answer (key = &#39;answer&#39;)</span>
 <span class="sd">        :type item_responses: dict</span>
-<span class="sd">        ..todo:: fix</span>
+<span class="sd">        .. todo:: fix</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">test</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">flashcard_responses</span><span class="p">:</span>
@@ -136,8 +136,9 @@
 
 <span class="sd">        :param items: A list of questionnaire items</span>
 <span class="sd">        :type items: list(QuestionnaireItem)</span>
-<span class="sd">        ..todo:: implementation</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+<span class="sd">        .. todo:: implementation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="User.append_questionnaire"><a class="viewcode-back" href="../user.html#user.User.append_questionnaire">[docs]</a>    <span class="k">def</span> <span class="nf">append_questionnaire</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">good</span><span class="p">,</span> <span class="n">can_be_improved</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A method for appending a questionnairy to the user given responses</span>
@@ -150,8 +151,9 @@
 <span class="sd">        :type can_be_improved: string</span>
 <span class="sd">        :param email: The email address of the user</span>
 <span class="sd">        :type email: string</span>
-<span class="sd">        ..todo:: implementation</span>
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
+<span class="sd">        .. todo:: implementation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
 </pre></div>
 
           </div>

@@ -27,8 +27,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="logentry module" href="logentry.html" />
-    <link rel="prev" title="handler module" href="handler.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -64,53 +62,6 @@
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="instance.Instance.due_date">
-<code class="descname">due_date</code><a class="headerlink" href="#instance.Instance.due_date" title="Permalink to this definition">¶</a></dt>
-<dd><p>Datetime field.</p>
-<p>Uses the python-dateutil library if available alternatively use time.strptime
-to parse the dates.  Note: python-dateutil&#8217;s parser is fully featured and when
-installed you can utilise it to convert varying types of date formats into valid
-python datetime objects.</p>
-<dl class="docutils">
-<dt>Note: Microseconds are rounded to the nearest millisecond.</dt>
-<dd>Pre UTC microsecond support is effectively broken.
-Use <code class="xref py py-class docutils literal"><span class="pre">ComplexDateTimeField</span></code> if you
-need accurate microsecond support.</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="instance.Instance.reference">
-<code class="descname">reference</code><a class="headerlink" href="#instance.Instance.reference" title="Permalink to this definition">¶</a></dt>
-<dd><p>A reference to <em>any</em> <code class="xref py py-class docutils literal"><span class="pre">Document</span></code> subclass
-that will be automatically dereferenced on access (lazily).</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<ul class="last simple">
-<li>Any documents used as a generic reference must be registered in the
-document registry.  Importing the model will automatically register
-it.</li>
-<li>You can use the choices param to limit the acceptable Document types</li>
-</ul>
-</div>
-<div class="versionadded">
-<p><span class="versionmodified">New in version 0.3.</span></p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="instance.Instance.responses">
-<code class="descname">responses</code><a class="headerlink" href="#instance.Instance.responses" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
-</dd></dl>
-
 <dl class="method">
 <dt id="instance.Instance.schedule">
 <code class="descname">schedule</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/instance.html#Instance.schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#instance.Instance.schedule" title="Permalink to this definition">¶</a></dt>
@@ -131,8 +82,6 @@ of the field to be used as a list in the database.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="handler.html" title="previous chapter">handler module</a></li>
-      <li>Next: <a href="logentry.html" title="next chapter">logentry module</a></li>
   </ul></li>
 </ul>
 </div>

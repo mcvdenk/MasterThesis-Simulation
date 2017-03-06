@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  23 FEB 2017 14:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  6 MAR 2017 16:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1050,43 +1050,38 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 
 ] [2
 
-] [1]
-[2
-
 ]
-Chapter 1.
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 1.
+
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 1.
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 70.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 68.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1.
- [3] [4
+ [1] [2
+
+]
+Chapter 1.
+[3] [4
 
 ]
 Chapter 2.
-[5] [6]
+[5] [6
+
+]
 Chapter 3.
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 345.
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 347.
+[7] [8
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
-File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-) [7
-
-] [8]
+]
 Chapter 4.
-[9
-
-] [10
+[9] [10
 
 ]
 Chapter 5.
@@ -1118,11 +1113,11 @@ Chapter 11.
 
 ]
 Chapter 12.
-[25] [26]
-Chapter 13.
-[27
+[25] [26
 
-] [28
+]
+Chapter 13.
+[27] [28
 
 ]
 Chapter 14.
@@ -1146,113 +1141,57 @@ Chapter 18.
 
 ]
 Chapter 19.
-[39] [40
+[39] [40]
+Chapter 20.
+[41
+
+] [42
 
 ]
-Chapter 20.
-[41] [42]
-Chapter 21.
+
+LaTeX Warning: Reference `concept_map:module-concept_map' on page 43 undefined 
+on input line 841.
+
 [43
-
-] [44
-
-] [45
 
 
 ] (./Flashmapserver.ind
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
-[]\T1/ptm/m/n/10 answer (flash-card_response.FlashcardResponse at-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--33
-[]\T1/ptm/m/n/10 correct (flashedge_response.FlashedgeResponse at-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
-[]\T1/ptm/m/n/10 flashcard (flash-card_response.FlashcardResponse at-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
-[]\T1/ptm/m/n/10 generate_questionniare() (ques-tion-naire.Questionnaire
- []
-
-[46
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-[]\T1/ptm/m/n/10 negative_phrasing (ques-tion-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-\T1/ptm/m/n/10 naire_item.QuestionnaireItem at-tribute),
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
-[]\T1/ptm/m/n/10 perceived_ease_of_use_items (ques-tion-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 156--158
-[]\T1/ptm/m/n/10 questionnaire_item (ques-tion-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 156--158
-\T1/ptm/m/n/10 naire_response.QuestionnaireResponse at-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
 []\T1/ptm/m/n/10 QuestionnaireResponse (class in ques-tion-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
-[]\T1/ptm/m/n/10 reference (flash-card_instance.FlashmapInstance at-
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+[]\T1/ptm/m/n/10 TestFlashcardResponse (class in
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
-[]\T1/ptm/m/n/10 reference (flashedge_response.FlashedgeResponse
- []
+[44
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
-[]\T1/ptm/m/n/10 reference (flashmap_instance.FlashmapInstance at-
- []
-
-[47]
-Underfull \hbox (badness 8075) in paragraph at lines 202--203
-[]\T1/ptm/m/n/10 usefullness (ques-tion-naire_item.QuestionnaireItem at-
- []
-
-[48
+] [45
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1787.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1787.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 887.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 887.
  (./Flashmapserver.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1787.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1787.
-
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 887.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 887.
 Package rerunfilecheck Info: File `Flashmapserver.out' has not changed.
-(rerunfilecheck)             Checksum: 165E977243A086CF97800A8D700A2CAE;3091.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1787.
+(rerunfilecheck)             Checksum: E79D0F85843E19D66E1A494D7A6D165D;2919.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 887.
  ) 
 Here is how much of TeX's memory you used:
- 13928 strings out of 493304
- 195631 string characters out of 6139871
- 285979 words of memory out of 5000000
- 16871 multiletter control sequences out of 15000+600000
- 47186 words of font info for 69 fonts, out of 8000000 for 9000
+ 13685 strings out of 493304
+ 189635 string characters out of 6139871
+ 279652 words of memory out of 5000000
+ 16745 multiletter control sequences out of 15000+600000
+ 43040 words of font info for 59 fonts, out of 8000000 for 9000
  958 hyphenation exceptions out of 8191
- 37i,12n,45p,1115b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,45p,730b,635s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
@@ -1262,10 +1201,10 @@ uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on Flashmapserver.pdf (52 pages, 168687 bytes).
+Output written on Flashmapserver.pdf (49 pages, 148485 bytes).
 PDF statistics:
- 764 PDF objects out of 1000 (max. 8388607)
- 689 compressed objects within 7 object streams
- 203 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 552 PDF objects out of 1000 (max. 8388607)
+ 482 compressed objects within 5 object streams
+ 103 named destinations out of 1000 (max. 500000)
+ 189 words of extra memory for PDF output out of 10000 (max. 10000000)
 

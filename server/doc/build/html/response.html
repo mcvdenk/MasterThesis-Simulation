@@ -27,8 +27,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="session module" href="session.html" />
-    <link rel="prev" title="questionnaire_response module" href="questionnaire_response.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -64,47 +62,6 @@
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="response.Response.correct">
-<code class="descname">correct</code><a class="headerlink" href="#response.Response.correct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Boolean field type.</p>
-<div class="versionadded">
-<p><span class="versionmodified">New in version 0.1.2.</span></p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="response.Response.end">
-<code class="descname">end</code><a class="headerlink" href="#response.Response.end" title="Permalink to this definition">¶</a></dt>
-<dd><p>Datetime field.</p>
-<p>Uses the python-dateutil library if available alternatively use time.strptime
-to parse the dates.  Note: python-dateutil&#8217;s parser is fully featured and when
-installed you can utilise it to convert varying types of date formats into valid
-python datetime objects.</p>
-<dl class="docutils">
-<dt>Note: Microseconds are rounded to the nearest millisecond.</dt>
-<dd>Pre UTC microsecond support is effectively broken.
-Use <code class="xref py py-class docutils literal"><span class="pre">ComplexDateTimeField</span></code> if you
-need accurate microsecond support.</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="response.Response.start">
-<code class="descname">start</code><a class="headerlink" href="#response.Response.start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Datetime field.</p>
-<p>Uses the python-dateutil library if available alternatively use time.strptime
-to parse the dates.  Note: python-dateutil&#8217;s parser is fully featured and when
-installed you can utilise it to convert varying types of date formats into valid
-python datetime objects.</p>
-<dl class="docutils">
-<dt>Note: Microseconds are rounded to the nearest millisecond.</dt>
-<dd>Pre UTC microsecond support is effectively broken.
-Use <code class="xref py py-class docutils literal"><span class="pre">ComplexDateTimeField</span></code> if you
-need accurate microsecond support.</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -118,8 +75,6 @@ need accurate microsecond support.</dd>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="questionnaire_response.html" title="previous chapter">questionnaire_response module</a></li>
-      <li>Next: <a href="session.html" title="next chapter">session module</a></li>
   </ul></li>
 </ul>
 </div>

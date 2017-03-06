@@ -7,23 +7,23 @@ from questionnaire import *
 class User(Document):
     """A class representing a user
 
-    :param flashmap_condition: Whether the user uses the flashmap system (True) or the flashcard system (False)
+    :cvar flashmap_condition: Whether the user uses the flashmap system (True) or the flashcard system (False)
     :type flashmap_condition: BooleanField
-    :param birthdate: The birthdate of the user
+    :cvar birthdate: The birthdate of the user
     :type birthdate: DateTimeField
-    :param read_sources: A list of read sources by the user
+    :cvar read_sources: A list of read sources by the user
     :type read_sources: ListField(StringField)
-    :param gender: The gender of the user (can be either 'male', 'female', or 'other')
+    :cvar gender: The gender of the user (can be either 'male', 'female', or 'other')
     :type gender: StringField
-    :param code: The code from the user's informed consent form
+    :cvar code: The code from the user's informed consent form
     :type code: StringField
-    :param tests: The pre- and posttest
+    :cvar tests: The pre- and posttest
     :type tests: ListField(Test)
-    :param questionnaire: The questionnaire
+    :cvar questionnaire: The questionnaire
     :type questionnaire: Questionnaire
-    :param instances: A list of instances storing the flashmap/flashcard data for the user
+    :cvar instances: A list of instances storing the flashmap/flashcard data for the user
     :type instance: Instance
-    :param sessions: A list of past sessions for this user
+    :cvar sessions: A list of past sessions for this user
     :type sessions: Session
     """
     connect('flashmap')
@@ -77,7 +77,7 @@ class User(Document):
         :type flashcard_responses: dict
         :param item_responses: A list of dict objects containing a :class:`TestItem` (key = 'item') and an answer (key = 'answer')
         :type item_responses: dict
-        ..todo:: fix
+        .. todo:: fix
         """
         test = Test()
         for card in flashcard_responses:
@@ -91,8 +91,9 @@ class User(Document):
 
         :param items: A list of questionnaire items
         :type items: list(QuestionnaireItem)
-        ..todo:: implementation
+        .. todo:: implementation
         """
+        pass
 
     def append_questionnaire(responses, good, can_be_improved, email):
         """A method for appending a questionnairy to the user given responses
@@ -105,5 +106,6 @@ class User(Document):
         :type can_be_improved: string
         :param email: The email address of the user
         :type email: string
-        ..todo:: implementation
+        .. todo:: implementation
         """
+        pass

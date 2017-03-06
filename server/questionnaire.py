@@ -5,9 +5,7 @@ import random
 class Questionnaire(EmbeddedDocument):
     """A class representing a stored questionnaire for a user
     
-    :param perceived_usefulness_items: Responses to the perceived usefulness items from TAM
-    :type perceived_usefulness_items: ListField(QuestionnaireResponse)
-    :param perceived_ease_of_use_items: Responses to the perceived ease of use item from TAM
+    :cvar perceived_ease_of_use_items: Responses to the perceived ease of use item from TAM
     :type perceived_ease_of_use_items: ListField(QuestionnaireResponse)
     :param good: A description of what was good about the software according to the user
     :type good: StringField
@@ -16,6 +14,9 @@ class Questionnaire(EmbeddedDocument):
     """
     connect('flashmap')
     perceived_usefulness_items  = ListField(EmbeddedDocumentField(QuestionnaireResponse))
+    """Responses to the perceived usefulness items from TAM
+    :type: list(QuestionnaireResponses)
+    """
     perceived_ease_of_use_items = ListField(EmbeddedDocumentField(QuestionnaireResponse))
     good = StringField()
     can_be_improved = StringField()

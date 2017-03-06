@@ -27,8 +27,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="questionnaire_item module" href="questionnaire_item.html" />
-    <link rel="prev" title="node module" href="node.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -55,9 +53,10 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>perceived_usefulness_items</strong> (<em>ListField</em><em>(</em><a class="reference internal" href="questionnaire_response.html#questionnaire_response.QuestionnaireResponse" title="questionnaire_response.QuestionnaireResponse"><em>QuestionnaireResponse</em></a><em>)</em><em></em>) &#8211; Responses to the perceived usefulness items from TAM</li>
-<li><strong>perceived_ease_of_use_items</strong> (<em>ListField</em><em>(</em><a class="reference internal" href="questionnaire_response.html#questionnaire_response.QuestionnaireResponse" title="questionnaire_response.QuestionnaireResponse"><em>QuestionnaireResponse</em></a><em>)</em><em></em>) &#8211; Responses to the perceived ease of use item from TAM</li>
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><p class="first"><strong>perceived_ease_of_use_items</strong> &#8211; Responses to the perceived ease of use item from TAM</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>good</strong> (<em>StringField</em>) &#8211; A description of what was good about the software according to the user</li>
 <li><strong>can_be_improved</strong> (<em>StringField</em>) &#8211; A description of what could be improved according to the user</li>
 </ul>
@@ -85,39 +84,10 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="questionnaire.Questionnaire.can_be_improved">
-<code class="descname">can_be_improved</code><a class="headerlink" href="#questionnaire.Questionnaire.can_be_improved" title="Permalink to this definition">¶</a></dt>
-<dd><p>A unicode string field.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="questionnaire.Questionnaire.good">
-<code class="descname">good</code><a class="headerlink" href="#questionnaire.Questionnaire.good" title="Permalink to this definition">¶</a></dt>
-<dd><p>A unicode string field.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="questionnaire.Questionnaire.perceived_ease_of_use_items">
-<code class="descname">perceived_ease_of_use_items</code><a class="headerlink" href="#questionnaire.Questionnaire.perceived_ease_of_use_items" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
 <dt id="questionnaire.Questionnaire.perceived_usefulness_items">
 <code class="descname">perceived_usefulness_items</code><a class="headerlink" href="#questionnaire.Questionnaire.perceived_usefulness_items" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
+<dd><p>Responses to the perceived usefulness items from TAM
+:type: list(QuestionnaireResponses)</p>
 </dd></dl>
 
 </dd></dl>
@@ -133,8 +103,6 @@ of the field to be used as a list in the database.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="node.html" title="previous chapter">node module</a></li>
-      <li>Next: <a href="questionnaire_item.html" title="next chapter">questionnaire_item module</a></li>
   </ul></li>
 </ul>
 </div>

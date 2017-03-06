@@ -27,8 +27,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="handler module" href="handler.html" />
-    <link rel="prev" title="flashcard_instance module" href="flashcard_instance.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -59,44 +57,6 @@
 </tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="flashmap_instance.FlashmapInstance.reference">
-<code class="descname">reference</code><a class="headerlink" href="#flashmap_instance.FlashmapInstance.reference" title="Permalink to this definition">¶</a></dt>
-<dd><p>A reference to a document that will be automatically dereferenced on
-access (lazily).</p>
-<p>Use the <cite>reverse_delete_rule</cite> to handle what should happen if the document
-the field is referencing is deleted.  EmbeddedDocuments, DictFields and
-MapFields does not support reverse_delete_rule and an <cite>InvalidDocumentError</cite>
-will be raised if trying to set on one of these Document / Field types.</p>
-<p>The options are:</p>
-<blockquote>
-<div><ul class="simple">
-<li>DO_NOTHING (0)  - don&#8217;t do anything (default).</li>
-<li>NULLIFY    (1)  - Updates the reference to null.</li>
-<li>CASCADE    (2)  - Deletes the documents associated with the reference.</li>
-<li>DENY       (3)  - Prevent the deletion of the reference object.</li>
-<li>PULL       (4)  - Pull the reference from a <code class="xref py py-class docutils literal"><span class="pre">ListField</span></code> of references</li>
-</ul>
-</div></blockquote>
-<p>Alternative syntax for registering delete rules (useful when implementing
-bi-directional delete rules)</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">foo</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="s1">&#39;Foo&#39;</span><span class="p">)</span>
-
-<span class="n">Foo</span><span class="o">.</span><span class="n">register_delete_rule</span><span class="p">(</span><span class="n">Bar</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="n">NULLIFY</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><cite>reverse_delete_rule</cite> does not trigger pre / post delete signals to be
-triggered.</p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified">Changed in version 0.5: </span>added <cite>reverse_delete_rule</cite></p>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -110,8 +70,6 @@ triggered.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="flashcard_instance.html" title="previous chapter">flashcard_instance module</a></li>
-      <li>Next: <a href="handler.html" title="next chapter">handler module</a></li>
   </ul></li>
 </ul>
 </div>

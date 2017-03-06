@@ -2,208 +2,99 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter A
-  \item add\_descriptives() (consumer.Consumer method), \hyperpage{5}
-  \item add\_test() (consumer.Consumer method), \hyperpage{5}
-  \item answer (flashcard.Flashcard attribute), \hyperpage{11}
-  \item answer (flashcard\_response.FlashcardResponse attribute), \hyperpage{15}
-  \item answer (item\_response.ItemResponse attribute), \hyperpage{23}
-  \item answer (questionnaire\_response.QuestionnaireResponse attribute), \hyperpage{33}
-  \item append\_flashcard() (test.Test method), \hyperpage{37}
-  \item append\_item() (questionnaire.Questionnaire method), \hyperpage{29}
-  \item append\_item() (test.Test method), \hyperpage{37}
-  \item append\_test() (user.User method), \hyperpage{41}
-  \item authenticate() (consumer.Consumer method), \hyperpage{5}
-
-  \indexspace
-  \bigletter B
-  \item birthdate (user.User attribute), \hyperpage{41}
-  \item browser (session.Session attribute), \hyperpage{35}
+  \item append\_answer() (questionnaire.Questionnaire method), \hyperpage{21}
+  \item append\_questionnaire() (user.User method), \hyperpage{39}
+  \item append\_test() (user.User method), \hyperpage{39}
+  \item authenticate() (consumer.Consumer method), \hyperpage{3}
 
   \indexspace
   \bigletter C
-  \item code (user.User attribute), \hyperpage{41}
-  \item concept\_map (module), \hyperpage{3}
-  \item ConceptMap (class in concept\_map), \hyperpage{3}
-  \item ConceptMap.DoesNotExist, \hyperpage{3}
-  \item ConceptMap.MultipleObjectsReturned, \hyperpage{3}
-  \item Consumer (class in consumer), \hyperpage{5}
-  \item consumer (module), \hyperpage{5}
-  \item consumer() (consumer.Consumer method), \hyperpage{5}
-  \item correct (flashedge\_response.FlashedgeResponse attribute), \hyperpage{17}
-  \item create\_questionnaire() (consumer.Consumer method), \hyperpage{6}
-  \item create\_test() (consumer.Consumer method), \hyperpage{6}
-  \item create\_test() (user.User method), \hyperpage{41}
-
-  \indexspace
-  \bigletter D
-  \item data (logentry.LogEntry attribute), \hyperpage{25}
+  \item concept\_map (module), \hyperpage{1}
+  \item ConceptMap (class in concept\_map), \hyperpage{1}
+  \item Consumer (class in consumer), \hyperpage{3}
+  \item consumer (module), \hyperpage{3}
+  \item consumer() (consumer.Consumer method), \hyperpage{3}
+  \item create\_questionnaire() (user.User method), \hyperpage{40}
+  \item create\_test() (user.User method), \hyperpage{40}
 
   \indexspace
   \bigletter E
-  \item Edge (class in edge), \hyperpage{7}
-  \item edge (module), \hyperpage{7}
-  \item Edge.DoesNotExist, \hyperpage{7}
-  \item Edge.MultipleObjectsReturned, \hyperpage{7}
-  \item edges (concept\_map.ConceptMap attribute), \hyperpage{3}
-  \item end (flashedge\_response.FlashedgeResponse attribute), \hyperpage{17}
-  \item end (session.Session attribute), \hyperpage{35}
-  \item end\_session() (session.Session method), \hyperpage{35}
+  \item Edge (class in edge), \hyperpage{5}
+  \item edge (module), \hyperpage{5}
 
   \indexspace
   \bigletter F
-  \item flash\_instance (module), \hyperpage{9}
-  \item Flashcard (class in flashcard), \hyperpage{11}
-  \item flashcard (flashcard\_response.FlashcardResponse attribute), \hyperpage{15}
-  \item flashcard (module), \hyperpage{11}
-  \item Flashcard.DoesNotExist, \hyperpage{11}
-  \item Flashcard.MultipleObjectsReturned, \hyperpage{11}
-  \item flashcard\_instance (module), \hyperpage{13}
-  \item flashcard\_response (module), \hyperpage{15}
-  \item flashcard\_responses (test.Test attribute), \hyperpage{37}
-  \item FlashcardResponse (class in flashcard\_response), \hyperpage{15}
-  \item flashedge\_response (module), \hyperpage{17}
-  \item FlashedgeResponse (class in flashedge\_response), \hyperpage{17}
-  \item FlashInstance (class in flash\_instance), \hyperpage{9}
-  \item flashmap\_condition (user.User attribute), \hyperpage{41}
-  \item flashmap\_instance (module), \hyperpage{19}
-  \item FlashmapInstance (class in flashcard\_instance), \hyperpage{13}
-  \item FlashmapInstance (class in flashmap\_instance), \hyperpage{19}
-  \item from\_node (edge.Edge attribute), \hyperpage{7}
+  \item Flashcard (class in flashcard), \hyperpage{7}
+  \item flashcard (module), \hyperpage{7}
+  \item flashcard\_instance (module), \hyperpage{9}
+  \item FlashcardInstance (class in flashcard\_instance), \hyperpage{9}
+  \item flashmap\_instance (module), \hyperpage{11}
+  \item FlashmapInstance (class in flashmap\_instance), \hyperpage{11}
 
   \indexspace
   \bigletter G
-  \item gender (user.User attribute), \hyperpage{41}
-  \item generate\_questionniare() (questionnaire.Questionnaire method), \hyperpage{29}
-  \item generate\_test() (test.Test method), \hyperpage{37}
+  \item generate\_test() (test.Test method), \hyperpage{31}
+  \item get\_partial\_map() (concept\_map.ConceptMap method), \hyperpage{1}
 
   \indexspace
   \bigletter H
-  \item handler (module), \hyperpage{21}
-  \item handler() (in module handler), \hyperpage{21}
+  \item handler (module), \hyperpage{13}
+  \item handler() (in module handler), \hyperpage{13}
 
   \indexspace
   \bigletter I
-  \item id (concept\_map.ConceptMap attribute), \hyperpage{3}
-  \item id (edge.Edge attribute), \hyperpage{7}
-  \item id (flashcard.Flashcard attribute), \hyperpage{11}
-  \item id (item\_response.ItemResponse attribute), \hyperpage{23}
-  \item id (logentry.LogEntry attribute), \hyperpage{25}
-  \item id (node.Node attribute), \hyperpage{27}
-  \item id (questionnaire.Questionnaire attribute), \hyperpage{29}
-  \item id (questionnaire\_item.QuestionnaireItem attribute), \hyperpage{31}
-  \item id (test\_item.TestItem attribute), \hyperpage{39}
-  \item id (user.User attribute), \hyperpage{41}
-  \item id\_ (edge.Edge attribute), \hyperpage{7}
-  \item item (item\_response.ItemResponse attribute), \hyperpage{23}
-  \item item\_response (module), \hyperpage{23}
-  \item item\_responses (test.Test attribute), \hyperpage{37}
-  \item ItemResponse (class in item\_response), \hyperpage{23}
-  \item ItemResponse.DoesNotExist, \hyperpage{23}
-  \item ItemResponse.MultipleObjectsReturned, \hyperpage{23}
-
-  \indexspace
-  \bigletter K
-  \item keyword (logentry.LogEntry attribute), \hyperpage{25}
+  \item Instance (class in instance), \hyperpage{15}
+  \item instance (module), \hyperpage{15}
 
   \indexspace
   \bigletter L
-  \item label (edge.Edge attribute), \hyperpage{7}
-  \item label (node.Node attribute), \hyperpage{27}
-  \item LogEntry (class in logentry), \hyperpage{25}
-  \item logentry (module), \hyperpage{25}
-  \item LogEntry.DoesNotExist, \hyperpage{25}
-  \item LogEntry.MultipleObjectsReturned, \hyperpage{25}
+  \item LogEntry (class in logentry), \hyperpage{17}
+  \item logentry (module), \hyperpage{17}
 
   \indexspace
   \bigletter N
-  \item name (user.User attribute), \hyperpage{41}
-  \item negative\_phrasing (questionnaire\_item.QuestionnaireItem attribute), \hyperpage{31}
-  \item Node (class in node), \hyperpage{27}
-  \item node (module), \hyperpage{27}
-  \item Node.DoesNotExist, \hyperpage{27}
-  \item Node.MultipleObjectsReturned, \hyperpage{27}
-  \item nodes (concept\_map.ConceptMap attribute), \hyperpage{3}
-
-  \indexspace
-  \bigletter O
-  \item objects (concept\_map.ConceptMap attribute), \hyperpage{3}
-  \item objects (edge.Edge attribute), \hyperpage{8}
-  \item objects (flashcard.Flashcard attribute), \hyperpage{11}
-  \item objects (item\_response.ItemResponse attribute), \hyperpage{23}
-  \item objects (logentry.LogEntry attribute), \hyperpage{25}
-  \item objects (node.Node attribute), \hyperpage{27}
-  \item objects (questionnaire.Questionnaire attribute), \hyperpage{29}
-  \item objects (questionnaire\_item.QuestionnaireItem attribute), \hyperpage{31}
-  \item objects (test\_item.TestItem attribute), \hyperpage{39}
-  \item objects (user.User attribute), \hyperpage{41}
+  \item Node (class in node), \hyperpage{19}
+  \item node (module), \hyperpage{19}
 
   \indexspace
   \bigletter P
-  \item perceived\_ease\_of\_use\_items (questionnaire.Questionnaire attribute), \hyperpage{29}
-  \item perceived\_usefulness\_items (questionnaire.Questionnaire attribute), \hyperpage{29}
-  \item positive\_phrasing (questionnaire\_item.QuestionnaireItem attribute), \hyperpage{31}
+  \item perceived\_usefulness\_items (questionnaire.Questionnaire attribute), \hyperpage{21}
 
   \indexspace
   \bigletter Q
-  \item question (flashcard.Flashcard attribute), \hyperpage{11}
-  \item question (test\_item.TestItem attribute), \hyperpage{39}
-  \item Questionnaire (class in questionnaire), \hyperpage{29}
-  \item questionnaire (module), \hyperpage{29}
-  \item questionnaire (user.User attribute), \hyperpage{41}
-  \item Questionnaire.DoesNotExist, \hyperpage{29}
-  \item Questionnaire.MultipleObjectsReturned, \hyperpage{29}
-  \item questionnaire\_item (module), \hyperpage{31}
-  \item questionnaire\_item (questionnaire\_response.QuestionnaireResponse attribute), 
-		\hyperpage{33}
-  \item questionnaire\_response (module), \hyperpage{33}
-  \item QuestionnaireItem (class in questionnaire\_item), \hyperpage{31}
-  \item QuestionnaireItem.DoesNotExist, \hyperpage{31}
-  \item QuestionnaireItem.MultipleObjectsReturned, \hyperpage{31}
-  \item QuestionnaireResponse (class in questionnaire\_response), \hyperpage{33}
+  \item Questionnaire (class in questionnaire), \hyperpage{21}
+  \item questionnaire (module), \hyperpage{21}
+  \item questionnaire\_item (module), \hyperpage{23}
+  \item questionnaire\_response (module), \hyperpage{25}
+  \item QuestionnaireItem (class in questionnaire\_item), \hyperpage{23}
+  \item QuestionnaireResponse (class in questionnaire\_response), \hyperpage{25}
 
   \indexspace
   \bigletter R
-  \item read\_sources (user.User attribute), \hyperpage{42}
-  \item reference (flash\_instance.FlashInstance attribute), \hyperpage{9}
-  \item reference (flashcard\_instance.FlashmapInstance attribute), \hyperpage{13}
-  \item reference (flashedge\_response.FlashedgeResponse attribute), \hyperpage{17}
-  \item reference (flashmap\_instance.FlashmapInstance attribute), \hyperpage{19}
-  \item response\_model (flashcard.Flashcard attribute), \hyperpage{11}
-  \item response\_model (test\_item.TestItem attribute), \hyperpage{39}
-  \item responses (flash\_instance.FlashInstance attribute), \hyperpage{9}
+  \item Response (class in response), \hyperpage{27}
+  \item response (module), \hyperpage{27}
 
   \indexspace
   \bigletter S
-  \item Session (class in session), \hyperpage{35}
-  \item session (module), \hyperpage{35}
-  \item sessions (user.User attribute), \hyperpage{42}
-  \item set\_descriptives() (user.User method), \hyperpage{42}
-  \item source (edge.Edge attribute), \hyperpage{8}
-  \item source (test\_item.TestItem attribute), \hyperpage{39}
-  \item source\_prompted (session.Session attribute), \hyperpage{35}
-  \item sources (flashcard.Flashcard attribute), \hyperpage{11}
-  \item start (flashedge\_response.FlashedgeResponse attribute), \hyperpage{17}
-  \item start (session.Session attribute), \hyperpage{35}
+  \item schedule() (instance.Instance method), \hyperpage{15}
+  \item Session (class in session), \hyperpage{29}
+  \item session (module), \hyperpage{29}
+  \item set\_descriptives() (user.User method), \hyperpage{40}
 
   \indexspace
   \bigletter T
-  \item Test (class in test), \hyperpage{37}
-  \item test (module), \hyperpage{37}
-  \item test\_item (module), \hyperpage{39}
-  \item TestItem (class in test\_item), \hyperpage{39}
-  \item TestItem.DoesNotExist, \hyperpage{39}
-  \item TestItem.MultipleObjectsReturned, \hyperpage{39}
-  \item tests (user.User attribute), \hyperpage{42}
-  \item timestamp (logentry.LogEntry attribute), \hyperpage{25}
-  \item to\_node (edge.Edge attribute), \hyperpage{8}
+  \item Test (class in test), \hyperpage{31}
+  \item test (module), \hyperpage{31}
+  \item test\_flashcard\_response (module), \hyperpage{33}
+  \item test\_item (module), \hyperpage{35}
+  \item test\_item\_response (module), \hyperpage{37}
+  \item TestFlashcardResponse (class in test\_flashcard\_response), \hyperpage{33}
+  \item TestItem (class in test\_item), \hyperpage{35}
+  \item TestItemResponse (class in test\_item\_response), \hyperpage{37}
 
   \indexspace
   \bigletter U
-  \item usefullness (questionnaire\_item.QuestionnaireItem attribute), \hyperpage{31}
-  \item User (class in user), \hyperpage{41}
-  \item user (logentry.LogEntry attribute), \hyperpage{25}
-  \item user (module), \hyperpage{41}
-  \item User.DoesNotExist, \hyperpage{41}
-  \item User.MultipleObjectsReturned, \hyperpage{41}
+  \item User (class in user), \hyperpage{39}
+  \item user (module), \hyperpage{39}
 
 \end{theindex}

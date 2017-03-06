@@ -27,8 +27,6 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="consumer module" href="consumer.html" />
-    <link rel="prev" title="Indices and tables" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -56,40 +54,16 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>nodes</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="node.html#node.Node" title="node.Node"><em>Node</em></a><em>)</em><em></em>) &#8211; a list of nodes (by default all existing node documents)</li>
-<li><strong>edges</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; a list of edges (by default all existing edge documents)</li>
+<li><strong>nodes</strong> (<em>ListField</em><em>(</em><a class="reference internal" href="node.html#node.Node" title="node.Node"><em>Node</em></a><em>)</em><em></em>) &#8211; a list of nodes (by default all existing node documents)</li>
+<li><strong>edges</strong> (<em>ListField</em><em>(</em><a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; a list of edges (by default all existing edge documents)</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<dl class="exception">
-<dt id="concept_map.ConceptMap.DoesNotExist">
-<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#concept_map.ConceptMap.DoesNotExist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.errors.DoesNotExist</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="concept_map.ConceptMap.MultipleObjectsReturned">
-<em class="property">exception </em><code class="descclassname">ConceptMap.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#concept_map.ConceptMap.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.errors.MultipleObjectsReturned</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="concept_map.ConceptMap.edges">
-<code class="descclassname">ConceptMap.</code><code class="descname">edges</code><a class="headerlink" href="#concept_map.ConceptMap.edges" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
-</dd></dl>
-
 <dl class="method">
 <dt id="concept_map.ConceptMap.get_partial_map">
-<code class="descclassname">ConceptMap.</code><code class="descname">get_partial_map</code><span class="sig-paren">(</span><em>edge</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/concept_map.html#ConceptMap.get_partial_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.get_partial_map" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_partial_map</code><span class="sig-paren">(</span><em>edge</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/concept_map.html#ConceptMap.get_partial_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.get_partial_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a concept map containing only the parent and sibling edges together with the referred nodes</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -109,29 +83,6 @@ of the field to be used as a list in the database.</p>
 </div>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="concept_map.ConceptMap.id">
-<code class="descclassname">ConceptMap.</code><code class="descname">id</code><a class="headerlink" href="#concept_map.ConceptMap.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>A field wrapper around MongoDB&#8217;s ObjectIds.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="concept_map.ConceptMap.nodes">
-<code class="descclassname">ConceptMap.</code><code class="descname">nodes</code><a class="headerlink" href="#concept_map.ConceptMap.nodes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list field that wraps a standard field, allowing multiple instances
-of the field to be used as a list in the database.</p>
-<p>If using with ReferenceFields see: <span class="xref std std-ref">one-to-many-with-listfields</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Required means it cannot be empty - as the default for ListFields is []</p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="concept_map.ConceptMap.objects">
-<code class="descclassname">ConceptMap.</code><code class="descname">objects</code><em class="property"> = [&lt;ConceptMap: ConceptMap object&gt;]</em><a class="headerlink" href="#concept_map.ConceptMap.objects" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </div>
@@ -145,8 +96,6 @@ of the field to be used as a list in the database.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Indices and tables</a></li>
-      <li>Next: <a href="consumer.html" title="next chapter">consumer module</a></li>
   </ul></li>
 </ul>
 </div>

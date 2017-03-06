@@ -51,9 +51,9 @@
     <span class="sd">&quot;&quot;&quot;A class representing a concept map</span>
 
 <span class="sd">    :param nodes: a list of nodes (by default all existing node documents)</span>
-<span class="sd">    :type nodes: list(Node)</span>
+<span class="sd">    :type nodes: ListField(Node)</span>
 <span class="sd">    :param edges: a list of edges (by default all existing edge documents)</span>
-<span class="sd">    :type edges: list(Edge)</span>
+<span class="sd">    :type edges: ListField(Edge)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
     <span class="n">nodes</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Node</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="n">Node</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span>
