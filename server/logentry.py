@@ -5,13 +5,13 @@ from datetime import datetime
 class LogEntry(Document):
     """An object representing a incoming or outgoing network message
 
-    :param user: The user which was involved with this network message
+    :cvar user: The user which was involved with this network message
     :type user: User
-    :param keyword: The network keyword
+    :cvar keyword: The network keyword
     :type keyword: StringField
-    :param data: The dictionary containing the necessary data
+    :cvar data: The dictionary containing the necessary data
     :type data: DictField
-    :param timestamp: The time that this message was received or transmitted
+    :cvar timestamp: The time that this message was received or transmitted
     :type timestamp: DateField
     """
     connect('flashmap')

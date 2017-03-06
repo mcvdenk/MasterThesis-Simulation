@@ -50,11 +50,11 @@
 <div class="viewcode-block" id="Instance"><a class="viewcode-back" href="../instance.html#instance.Instance">[docs]</a><span class="k">class</span> <span class="nc">Instance</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class describing a general flash instance, which can either be a FlashmapInstance or a FlashcardInstance</span>
 
-<span class="sd">    :param responses: A list of responses provided to this instance (an empty list by default)</span>
+<span class="sd">    :cvar responses: A list of responses provided to this instance (an empty list by default)</span>
 <span class="sd">    :type responses: ListField(EmbeddedDocumentField(Response))</span>
-<span class="sd">    :param reference: A reference to either an edge in a concept map or a flashcard (defined within the subclass)</span>
+<span class="sd">    :cvar reference: A reference to either an edge in a concept map or a flashcard (defined within the subclass)</span>
 <span class="sd">    :type reference: GenericReferenceField</span>
-<span class="sd">    :param due_date: The date this instance is due for repetition</span>
+<span class="sd">    :cvar due_date: The date this instance is due for repetition</span>
 <span class="sd">    :type due_date: DateTimeField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allow_inheritance&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>

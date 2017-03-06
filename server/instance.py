@@ -5,11 +5,11 @@ from response import *
 class Instance(EmbeddedDocument):
     """A class describing a general flash instance, which can either be a FlashmapInstance or a FlashcardInstance
 
-    :param responses: A list of responses provided to this instance (an empty list by default)
+    :cvar responses: A list of responses provided to this instance (an empty list by default)
     :type responses: ListField(EmbeddedDocumentField(Response))
-    :param reference: A reference to either an edge in a concept map or a flashcard (defined within the subclass)
+    :cvar reference: A reference to either an edge in a concept map or a flashcard (defined within the subclass)
     :type reference: GenericReferenceField
-    :param due_date: The date this instance is due for repetition
+    :cvar due_date: The date this instance is due for repetition
     :type due_date: DateTimeField
     """
     meta = {'allow_inheritance': True}

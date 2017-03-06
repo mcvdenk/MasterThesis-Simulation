@@ -4,7 +4,7 @@ from flashcard import *
 class FlashcardInstance(Instance):
     """A class for storing responses from the flashmap system
 
-    :param reference: The edge to which this instance refers
+    :cvar reference: The edge to which this instance refers
     :type reference: Edge
     """
     connect('flashmap')

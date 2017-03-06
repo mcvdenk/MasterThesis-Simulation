@@ -48,11 +48,11 @@
 <div class="viewcode-block" id="QuestionnaireItem"><a class="viewcode-back" href="../questionnaire_item.html#questionnaire_item.QuestionnaireItem">[docs]</a><span class="k">class</span> <span class="nc">QuestionnaireItem</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a single item on the questionnaire</span>
 
-<span class="sd">    :param usefullness: Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)</span>
+<span class="sd">    :cvar usefullness: Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)</span>
 <span class="sd">    :type usefulness: BooleanField</span>
-<span class="sd">    :param positive_phrasing: The version of this item which is positively phrased</span>
+<span class="sd">    :cvar positive_phrasing: The version of this item which is positively phrased</span>
 <span class="sd">    :type positive_phrasing: StringField</span>
-<span class="sd">    :param negative_phrasing: The version of this item which is negatively phrased</span>
+<span class="sd">    :cvar negative_phrasing: The version of this item which is negatively phrased</span>
 <span class="sd">    :type negative_phrasing: StringField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>

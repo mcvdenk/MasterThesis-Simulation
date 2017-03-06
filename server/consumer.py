@@ -21,11 +21,11 @@ class Consumer():
     """
     This is the class from which the program is controlled. It can be used together with the :mod:`handler` module in order to communicate with an external client over a websocket 
 
-    :param concept_map: The concept map object containing references to nodes and edges
+    :cvar concept_map: The concept map object containing references to nodes and edges
     :type concept_map: ConceptMap
-    :param SOURCES: All of the sources referenced to in the edges of the concept map
+    :cvar SOURCES: All of the sources referenced to in the edges of the concept map
     :type SOURCES: list(str)
-    :param user: The active user
+    :cvar user: The active user
     :type user: User
     """
 

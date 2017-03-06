@@ -4,13 +4,13 @@ from datetime import datetime
 class Session(EmbeddedDocument):
     """A class representing a session the user was logged in
 
-    :param start: The time that the user logged in
+    :cvar start: The time that the user logged in
     :type start: DateTimeField
-    :param end: The time that the user logged out
+    :cvar end: The time that the user logged out
     :type end: DateTimeField
-    :param source_prompted: Whether the user was asked to have read a certain source from SOURCES
+    :cvar source_prompted: Whether the user was asked to have read a certain source from SOURCES
     :type source_prompted: BooleanField
-    :param browser: The type of browser used to log in
+    :cvar browser: The type of browser used to log in
     :type browser: StringField
     """
     connect('flashmap')

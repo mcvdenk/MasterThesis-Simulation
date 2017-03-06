@@ -49,11 +49,11 @@
 <div class="viewcode-block" id="Response"><a class="viewcode-back" href="../response.html#response.Response">[docs]</a><span class="k">class</span> <span class="nc">Response</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a singular response to an :class:`Instance`.</span>
 
-<span class="sd">    :param start: The moment the parent :class:`Instance` was sent to the client</span>
+<span class="sd">    :cvar start: The moment the parent :class:`Instance` was sent to the client</span>
 <span class="sd">    :type start: DateTimeField</span>
-<span class="sd">    :param end: The moment the answer from the client was received</span>
+<span class="sd">    :cvar end: The moment the answer from the client was received</span>
 <span class="sd">    :type end: DateTimeField</span>
-<span class="sd">    :param correct: Whether the answer to the :class:`Instance` was correct (True) or incorrect (False)</span>
+<span class="sd">    :cvar correct: Whether the answer to the :class:`Instance` was correct (True) or incorrect (False)</span>
 <span class="sd">    :type correct: BooleanField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>

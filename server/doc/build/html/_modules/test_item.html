@@ -48,11 +48,11 @@
 <div class="viewcode-block" id="TestItem"><a class="viewcode-back" href="../test_item.html#test_item.TestItem">[docs]</a><span class="k">class</span> <span class="nc">TestItem</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing an item from a pre- or posttest</span>
 
-<span class="sd">    :param question: The question for this item</span>
+<span class="sd">    :cvar question: The question for this item</span>
 <span class="sd">    :type question: STringField</span>
-<span class="sd">    :param sources: A list of sources relevant to this question</span>
+<span class="sd">    :cvar sources: A list of sources relevant to this question</span>
 <span class="sd">    :type sources: ListField(StringField)</span>
-<span class="sd">    :param response_model: A list of the parts of a valid answer used for the test matrix</span>
+<span class="sd">    :cvar response_model: A list of the parts of a valid answer used for the test matrix</span>
 <span class="sd">    :type response_model: ListField(StringField)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>

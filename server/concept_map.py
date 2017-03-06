@@ -5,9 +5,9 @@ from edge import *
 class ConceptMap(Document):
     """A class representing a concept map
 
-    :param nodes: a list of nodes (by default all existing node documents)
+    :cvar nodes: a list of nodes (by default all existing node documents)
     :type nodes: ListField(Node)
-    :param edges: a list of edges (by default all existing edge documents)
+    :cvar edges: a list of edges (by default all existing edge documents)
     :type edges: ListField(Edge)
     """
     connect('flashmap')

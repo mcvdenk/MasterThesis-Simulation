@@ -49,13 +49,13 @@
 <div class="viewcode-block" id="Session"><a class="viewcode-back" href="../session.html#session.Session">[docs]</a><span class="k">class</span> <span class="nc">Session</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a session the user was logged in</span>
 
-<span class="sd">    :param start: The time that the user logged in</span>
+<span class="sd">    :cvar start: The time that the user logged in</span>
 <span class="sd">    :type start: DateTimeField</span>
-<span class="sd">    :param end: The time that the user logged out</span>
+<span class="sd">    :cvar end: The time that the user logged out</span>
 <span class="sd">    :type end: DateTimeField</span>
-<span class="sd">    :param source_prompted: Whether the user was asked to have read a certain source from SOURCES</span>
+<span class="sd">    :cvar source_prompted: Whether the user was asked to have read a certain source from SOURCES</span>
 <span class="sd">    :type source_prompted: BooleanField</span>
-<span class="sd">    :param browser: The type of browser used to log in</span>
+<span class="sd">    :cvar browser: The type of browser used to log in</span>
 <span class="sd">    :type browser: StringField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>

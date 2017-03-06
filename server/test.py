@@ -6,9 +6,9 @@ import random
 class Test(EmbeddedDocument):
     """A class representing a pre- or posttest the user filled in
 
-    :param test_flashcard_responses: A list of responses to the flashcard questions on the test
+    :cvar test_flashcard_responses: A list of responses to the flashcard questions on the test
     :type test_flashcard_responses: TestFlashcardResponse
-    :param test_item_responses: A list of responses to the item questions on the test
+    :cvar test_item_responses: A list of responses to the item questions on the test
     :type test_item_responses: TestItemResponse
     """
     connect('flashmap')

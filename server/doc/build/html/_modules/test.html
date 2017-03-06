@@ -51,9 +51,9 @@
 <div class="viewcode-block" id="Test"><a class="viewcode-back" href="../test.html#test.Test">[docs]</a><span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a pre- or posttest the user filled in</span>
 
-<span class="sd">    :param test_flashcard_responses: A list of responses to the flashcard questions on the test</span>
+<span class="sd">    :cvar test_flashcard_responses: A list of responses to the flashcard questions on the test</span>
 <span class="sd">    :type test_flashcard_responses: TestFlashcardResponse</span>
-<span class="sd">    :param test_item_responses: A list of responses to the item questions on the test</span>
+<span class="sd">    :cvar test_item_responses: A list of responses to the item questions on the test</span>
 <span class="sd">    :type test_item_responses: TestItemResponse</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
@@ -82,12 +82,12 @@
                 <span class="k">break</span>
         <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Test.append_flashcard"><a class="viewcode-back" href="../test.html#test.Test.append_flashcard">[docs]</a>    <span class="k">def</span> <span class="nf">append_flashcard</span><span class="p">(</span><span class="n">flashcard</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
-        <span class="n">flashcard_responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FlashcardResponse</span><span class="p">(</span><span class="n">flashcard</span> <span class="o">=</span> <span class="n">flashcard</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="p">))</span></div>
+    <span class="k">def</span> <span class="nf">append_flashcard</span><span class="p">(</span><span class="n">flashcard</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+        <span class="n">flashcard_responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FlashcardResponse</span><span class="p">(</span><span class="n">flashcard</span> <span class="o">=</span> <span class="n">flashcard</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="Test.append_item"><a class="viewcode-back" href="../test.html#test.Test.append_item">[docs]</a>    <span class="k">def</span> <span class="nf">append_item</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
-        <span class="n">item_responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ItemResponse</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="p">))</span></div></div>
+    <span class="k">def</span> <span class="nf">append_item</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+        <span class="n">item_responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ItemResponse</span><span class="p">(</span><span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="p">))</span></div>
 </pre></div>
 
           </div>

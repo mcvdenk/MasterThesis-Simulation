@@ -49,11 +49,11 @@
 <div class="viewcode-block" id="QuestionnaireResponse"><a class="viewcode-back" href="../questionnaire_response.html#questionnaire_response.QuestionnaireResponse">[docs]</a><span class="k">class</span> <span class="nc">QuestionnaireResponse</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class for storing singular responses to questionnaire items</span>
 
-<span class="sd">    :param questionnaire_item: The questionnaire item to which this answer refers</span>
+<span class="sd">    :cvar questionnaire_item: The questionnaire item to which this answer refers</span>
 <span class="sd">    :type questionnaire_item: QuestionnaireItem</span>
-<span class="sd">    :param answer: The value of the likert-scale rating the user gave to this item (ranges from -2 to 2)</span>
+<span class="sd">    :cvar answer: The value of the likert-scale rating the user gave to this item (ranges from -2 to 2)</span>
 <span class="sd">    :type answer: IntField</span>
-<span class="sd">    :param phrasing: Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire_item</span>
+<span class="sd">    :cvar phrasing: Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire_item</span>
 <span class="sd">    :type phrasing: BooleanField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>

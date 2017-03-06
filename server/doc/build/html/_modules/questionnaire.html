@@ -50,18 +50,17 @@
 <div class="viewcode-block" id="Questionnaire"><a class="viewcode-back" href="../questionnaire.html#questionnaire.Questionnaire">[docs]</a><span class="k">class</span> <span class="nc">Questionnaire</span><span class="p">(</span><span class="n">EmbeddedDocument</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a stored questionnaire for a user</span>
 <span class="sd">    </span>
+<span class="sd">    :cvar perceived_usefulness_items: Responses to the perceived usefulness items from TAM</span>
+<span class="sd">    :type perceived_usefulness_items: list(QuestionnaireResponses)</span>
 <span class="sd">    :cvar perceived_ease_of_use_items: Responses to the perceived ease of use item from TAM</span>
 <span class="sd">    :type perceived_ease_of_use_items: ListField(QuestionnaireResponse)</span>
-<span class="sd">    :param good: A description of what was good about the software according to the user</span>
+<span class="sd">    :cvar good: A description of what was good about the software according to the user</span>
 <span class="sd">    :type good: StringField</span>
-<span class="sd">    :param can_be_improved: A description of what could be improved according to the user</span>
+<span class="sd">    :cvar can_be_improved: A description of what could be improved according to the user</span>
 <span class="sd">    :type can_be_improved: StringField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
     <span class="n">perceived_usefulness_items</span>  <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">QuestionnaireResponse</span><span class="p">))</span>
-    <span class="sd">&quot;&quot;&quot;Responses to the perceived usefulness items from TAM</span>
-<span class="sd">    :type: list(QuestionnaireResponses)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">perceived_ease_of_use_items</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">QuestionnaireResponse</span><span class="p">))</span>
     <span class="n">good</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
     <span class="n">can_be_improved</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>

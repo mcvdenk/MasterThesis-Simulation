@@ -50,13 +50,13 @@
 <div class="viewcode-block" id="LogEntry"><a class="viewcode-back" href="../logentry.html#logentry.LogEntry">[docs]</a><span class="k">class</span> <span class="nc">LogEntry</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;An object representing a incoming or outgoing network message</span>
 
-<span class="sd">    :param user: The user which was involved with this network message</span>
+<span class="sd">    :cvar user: The user which was involved with this network message</span>
 <span class="sd">    :type user: User</span>
-<span class="sd">    :param keyword: The network keyword</span>
+<span class="sd">    :cvar keyword: The network keyword</span>
 <span class="sd">    :type keyword: StringField</span>
-<span class="sd">    :param data: The dictionary containing the necessary data</span>
+<span class="sd">    :cvar data: The dictionary containing the necessary data</span>
 <span class="sd">    :type data: DictField</span>
-<span class="sd">    :param timestamp: The time that this message was received or transmitted</span>
+<span class="sd">    :cvar timestamp: The time that this message was received or transmitted</span>
 <span class="sd">    :type timestamp: DateField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>

@@ -4,11 +4,11 @@ from questionnaire_item import *
 class QuestionnaireResponse(EmbeddedDocument):
     """A class for storing singular responses to questionnaire items
 
-    :param questionnaire_item: The questionnaire item to which this answer refers
+    :cvar questionnaire_item: The questionnaire item to which this answer refers
     :type questionnaire_item: QuestionnaireItem
-    :param answer: The value of the likert-scale rating the user gave to this item (ranges from -2 to 2)
+    :cvar answer: The value of the likert-scale rating the user gave to this item (ranges from -2 to 2)
     :type answer: IntField
-    :param phrasing: Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire_item
+    :cvar phrasing: Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire_item
     :type phrasing: BooleanField
     """
     connect('flashmap')
