@@ -1,7 +1,9 @@
 server
 ======
+
 .. toctree::
    :maxdepth: 4
+
    concept_map
    consumer
    edge

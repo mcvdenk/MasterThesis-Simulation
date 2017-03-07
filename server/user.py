@@ -68,6 +68,7 @@ class User(Document):
             for item in test.item_responses:
                 prev_items.append(item.item)
         test = Testflashcards(flashcards, items = items, prev_flashcards = prev_flashcards, prev_items = prev_items)
+        tests.append(test)
         return test
 
     def append_test(flashcard_responses, item_responses):
@@ -77,20 +78,19 @@ class User(Document):
         :type flashcard_responses: dict
         :param item_responses: A list of dict objects containing a :class:`TestItem` (key = 'item') and an answer (key = 'answer')
         :type item_responses: dict
-        .. todo:: fix
         """
-        test = Test()
+        test = tests[-1]
         for card in flashcard_responses:
             test.append_flashcard(card["flashcard"], card["answer"])
         for item in item_responses:
             test.append_item(item["item"], item["answer"])
-        tests.append(test)
 
     def create_questionnaire(items):
         """A method for creating a new questionnaire
 
         :param items: A list of questionnaire items
         :type items: list(QuestionnaireItem)
+
         .. todo:: implementation
         """
         pass
@@ -106,12 +106,13 @@ class User(Document):
         :type can_be_improved: string
         :param email: The email address of the user
         :type email: string
+
         .. todo:: implementation
         """
         pass
 
     def get_due_instance():
-        """Returns the most due instance
+        """Returns the instance with the oldest due date
 
         :return: Either the instance with the lowest due date or a None object
         :rtype: Instance

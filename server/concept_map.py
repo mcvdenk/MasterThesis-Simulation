@@ -21,7 +21,6 @@ class ConceptMap(Document):
         :type edge: Edge
         :return: A concept map containing parent and sibling edges of edge together with the referred nodes
         :rtype: ConceptMap
-        .. todo:: Implementation
         """
         result = ConceptMap(nodes = [edge.to_node], edges = [])
         
