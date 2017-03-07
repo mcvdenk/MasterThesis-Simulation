@@ -25,6 +25,8 @@ class User(Document):
     :type instance: Instance
     :cvar sessions: A list of past sessions for this user
     :type sessions: Session
+    :cvar email: The email address for this user
+    :type email: EmailField
     """
     connect('flashmap')
     name = StringField(required=True, unique=True)
@@ -37,6 +39,7 @@ class User(Document):
     sessions = ListField(EmbeddedDocumentField(Session), default = [])    
     questionnaire = EmbeddedDocumentField(Questionnaire)
     instances = ListField(EmbeddedDocumentField(Instance))
+    email = EmailField()
 
     def set_descriptives(birthdate, gender, code):
         """A method for setting the descriptives of the user
@@ -59,6 +62,8 @@ class User(Document):
         :type flashcards: list(Flashcard)
         :param items: A list of items from the database
         :type items: list(TestItem)
+        :return: A dict containing a list of FlashcardResponses and TestItemResponses
+        :rtype: dict(string, Response)
         """
         prev_flashcards = []
         prev_items = []
@@ -69,7 +74,8 @@ class User(Document):
                 prev_items.append(item.item)
         test = Testflashcards(flashcards, items = items, prev_flashcards = prev_flashcards, prev_items = prev_items)
         tests.append(test)
-        return test
+        return {'flashcards' : [fcard.flashcard for fcard in test.flashcards],
+                'items' : [item.item for item in test.items]}
 
     def append_test(flashcard_responses, item_responses):
         """A method for appending a test to the user given flashcard and item responses
@@ -85,31 +91,35 @@ class User(Document):
         for item in item_responses:
             test.append_item(item["item"], item["answer"])
 
-    def create_questionnaire(items):
+    def create_questionnaire(pu_items, peou_items):
         """A method for creating a new questionnaire
 
-        :param items: A list of questionnaire items
+        :param pu_items: A list of questionnaire items
         :type items: list(QuestionnaireItem)
-
-        .. todo:: implementation
+        :param pu_items: A list of questionnaire items
+        :type items: list(QuestionnaireItem)
+        :return: A randomised list of questionnaire items
+        :rtype: list(QuestionnaireItem)
         """
-        pass
+        questionnaire = Questionnaire(pu_items, peou_items)
+        return [item.questionnaire_item for item in questionnaire.perceived_usefulness_items]\
+                + [item.questionnaire_item for item in questionnaire.perceived_ease_of_use_items]
 
-    def append_questionnaire(responses, good, can_be_improved, email):
+    def append_questionnaire(responses, good, can_be_improved):
         """A method for appending a questionnairy to the user given responses
         
-        :param responses: A list of dict objects containing a :class:`QuestionnaireItem` (key = 'item') and an answer (key = 'answer')
+        :param responses: A list of dict objects containing a :class:`QuestionnaireItem` (key = 'item'), the phrasing (key = 'phrasing') and an answer (key = 'answer')
         :type responses: dict
         :param good: A description of what was good about the software according to the user
         :type good: string
         :param can_be_improved: A description of what can be improved about the software according to the user
         :type can_be_improved: string
-        :param email: The email address of the user
-        :type email: string
-
-        .. todo:: implementation
         """
-        pass
+        for response in responses:
+            questionnaire.append_answer(response['item'],
+                    response['phrasing'], response['answer'])
+            questionnaire.good = good
+            questionnaire.can_be_improved = can_be_improved
 
     def get_due_instance():
         """Returns the instance with the oldest due date

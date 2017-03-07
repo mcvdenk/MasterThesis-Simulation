@@ -63,6 +63,7 @@
 <li><a class="reference internal" href="questionnaire.html#module-questionnaire" title="questionnaire"><strong>questionnaire</strong></a> &#8211; The questionnaire</li>
 <li><strong>instances</strong> &#8211; A list of instances storing the flashmap/flashcard data for the user</li>
 <li><strong>sessions</strong> &#8211; A list of past sessions for this user</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/email.html#module-email" title="(in Python v2.7)"><strong>email</strong></a> &#8211; The email address for this user</li>
 </ul>
 </td>
 </tr>
@@ -70,26 +71,21 @@
 </table>
 <dl class="method">
 <dt id="user.User.append_questionnaire">
-<code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
+<code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for appending a questionnairy to the user given responses</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">QuestionnaireItem</span></code> (key = &#8216;item&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+<li><strong>responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">QuestionnaireItem</span></code> (key = &#8216;item&#8217;), the phrasing (key = &#8216;phrasing&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
 <li><strong>good</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what was good about the software according to the user</li>
 <li><strong>can_be_improved</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what can be improved about the software according to the user</li>
-<li><strong>email</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The email address of the user</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">implementation</p>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -108,28 +104,30 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-1">
-<p class="first admonition-title">Todo</p>
-<p class="last">fix</p>
-</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="user.User.create_questionnaire">
-<code class="descname">create_questionnaire</code><span class="sig-paren">(</span><em>items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_questionnaire" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_questionnaire</code><span class="sig-paren">(</span><em>pu_items</em>, <em>peou_items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_questionnaire" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for creating a new questionnaire</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="questionnaire_item.html#questionnaire_item.QuestionnaireItem" title="questionnaire_item.QuestionnaireItem"><em>QuestionnaireItem</em></a><em>)</em><em></em>) &#8211; A list of questionnaire items</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pu_items</strong> &#8211; A list of questionnaire items</li>
+<li><strong>pu_items</strong> &#8211; A list of questionnaire items</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A randomised list of questionnaire items</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="questionnaire_item.html#questionnaire_item.QuestionnaireItem" title="questionnaire_item.QuestionnaireItem">QuestionnaireItem</a>)</p>
+</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-2">
-<p class="first admonition-title">Todo</p>
-<p class="last">implementation</p>
-</div>
 </dd></dl>
 
 <dl class="method">
@@ -140,10 +138,16 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>flashcards</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em>)</em><em></em>) &#8211; A list of flashcards from the database</li>
 <li><strong>items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="test_item.html#test_item.TestItem" title="test_item.TestItem"><em>TestItem</em></a><em>)</em><em></em>) &#8211; A list of items from the database</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dict containing a list of FlashcardResponses and TestItemResponses</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a>(<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)">string</a>, <a class="reference internal" href="response.html#response.Response" title="response.Response">Response</a>)</p>
 </td>
 </tr>
 </tbody>
@@ -153,7 +157,7 @@
 <dl class="method">
 <dt id="user.User.get_due_instance">
 <code class="descname">get_due_instance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.get_due_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.get_due_instance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the most due instance</p>
+<dd><p>Returns the instance with the oldest due date</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
