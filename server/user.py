@@ -109,3 +109,17 @@ class User(Document):
         .. todo:: implementation
         """
         pass
+
+    def get_due_instance():
+        """Returns the most due instance
+
+        :return: Either the instance with the lowest due date or a None object
+        :rtype: Instance
+        """
+        result = None
+        lowest_due_date = datetime.now()
+        for instance in instances:
+            if (instance.due_date < lowest_due_date):
+                result = instance
+                lowest_due_date = instance.due_date
+        return result
