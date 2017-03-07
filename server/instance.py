@@ -19,10 +19,10 @@ class Instance(EmbeddedDocument):
     due_date = DateTimeField(default = datetime.now)
 
     def schedule():
-        """Returns a date for this instance for review based on the previous responses"""
+        """Reschedules this instance for review based on the previous responses"""
         exp = 1
-        if (not len(responses)): return 0
+        if (not len(responses)): return
         for resp in responses.sort(key = lambda r: r.response.end):
             if (not resp.correct): exp = 1;
             else: exp += 1
-        return datetime.now() + min(5**exp, 2000000)
+        due_date = datetime.now() + min(5**exp, 2000000)
