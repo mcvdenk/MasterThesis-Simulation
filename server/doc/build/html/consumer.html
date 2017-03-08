@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="edge module" href="edge.html" />
+    <link rel="prev" title="concept_map module" href="concept_map.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -65,16 +67,28 @@
 <dl class="method">
 <dt id="consumer.Consumer.authenticate">
 <code class="descname">authenticate</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.authenticate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A function to either return an existing <a class="reference internal" href="user.html#user.User" title="user.User"><code class="xref py py-class docutils literal"><span class="pre">user.User</span></code></a> or a new <a class="reference internal" href="user.html#user.User" title="user.User"><code class="xref py py-class docutils literal"><span class="pre">user.User</span></code></a> based on the given name</p>
+<dd><p>A function to either set self.user to an existing <a class="reference internal" href="user.html#user.User" title="user.User"><code class="xref py py-class docutils literal"><span class="pre">user.User</span></code></a> or to a new User based on the given name</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The username</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The user with this username</td>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="consumer.Consumer.check_prerequisites">
+<code class="descname">check_prerequisites</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.check_prerequisites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.check_prerequisites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the user still has to fill in forms and returns the appropriate message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict containing the appropriate keyword and data for this user</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="user.html#user.User" title="user.User">User</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
 </tr>
 </tbody>
 </table>
@@ -104,6 +118,38 @@
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="consumer.Consumer.create_questionnaire">
+<code class="descname">create_questionnaire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.create_questionnaire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a questionnaire for this user (using user.create_questionnaire())</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict object fit for sending to the user</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="consumer.Consumer.create_test">
+<code class="descname">create_test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.create_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.create_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a test for this user (using user.create_test())</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict object fit for sending to the user</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -117,6 +163,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="concept_map.html" title="previous chapter">concept_map module</a></li>
+      <li>Next: <a href="edge.html" title="next chapter">edge module</a></li>
   </ul></li>
 </ul>
 </div>

@@ -98,7 +98,7 @@ ws.onmessage = function (event) {
         case "LEARN-RESPONSE(fc)":
             show_card(msg.data, msg.time_up, msg.successful_days);
             break;
-        case "NO_MORE_FLASHEDGES":
+        case "NO_MORE_INSTANCES":
             done_learning(msg.data, msg.successful_days);
             break;
         case "READ_SOURCE-REQUEST":

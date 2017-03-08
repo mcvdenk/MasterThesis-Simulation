@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="logentry module" href="logentry.html" />
+    <link rel="prev" title="handler module" href="handler.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -63,9 +65,29 @@
 </tbody>
 </table>
 <dl class="method">
+<dt id="instance.Instance.finalise_response">
+<code class="descname">finalise_response</code><span class="sig-paren">(</span><em>correct</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/instance.html#Instance.finalise_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#instance.Instance.finalise_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the correctness value for the final response and sets the end date to now</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>correct</strong> (<em>boolean</em>) &#8211; Whether the response was correct</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="instance.Instance.schedule">
 <code class="descname">schedule</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/instance.html#Instance.schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#instance.Instance.schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reschedules this instance for review based on the previous responses</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="instance.Instance.start_response">
+<code class="descname">start_response</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/instance.html#Instance.start_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#instance.Instance.start_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new response to this instance</p>
 </dd></dl>
 
 </dd></dl>
@@ -81,6 +103,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="handler.html" title="previous chapter">handler module</a></li>
+      <li>Next: <a href="logentry.html" title="next chapter">logentry module</a></li>
   </ul></li>
 </ul>
 </div>

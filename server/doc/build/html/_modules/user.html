@@ -52,8 +52,6 @@
 <div class="viewcode-block" id="User"><a class="viewcode-back" href="../user.html#user.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a user</span>
 
-<span class="sd">    :cvar flashmap_condition: Whether the user uses the flashmap system (True) or the flashcard system (False)</span>
-<span class="sd">    :type flashmap_condition: BooleanField</span>
 <span class="sd">    :cvar birthdate: The birthdate of the user</span>
 <span class="sd">    :type birthdate: DateTimeField</span>
 <span class="sd">    :cvar read_sources: A list of read sources by the user</span>
@@ -75,16 +73,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">flashmap_condition</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">birthdate</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
     <span class="n">read_sources</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">])</span>
     <span class="n">code</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
-    <span class="n">tests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Test</span><span class="p">))</span>
+    <span class="n">tests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Test</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="n">sessions</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Session</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>    
     <span class="n">questionnaire</span> <span class="o">=</span> <span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Questionnaire</span><span class="p">)</span>
     <span class="n">instances</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Instance</span><span class="p">))</span>
     <span class="n">email</span> <span class="o">=</span> <span class="n">EmailField</span><span class="p">()</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allow_inheritance&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;abstract&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 
 <div class="viewcode-block" id="User.set_descriptives"><a class="viewcode-back" href="../user.html#user.User.set_descriptives">[docs]</a>    <span class="k">def</span> <span class="nf">set_descriptives</span><span class="p">(</span><span class="n">birthdate</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A method for setting the descriptives of the user</span>
@@ -178,7 +177,41 @@
             <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">due_date</span> <span class="o">&lt;</span> <span class="n">lowest_due_date</span><span class="p">):</span>
                 <span class="n">result</span> <span class="o">=</span> <span class="n">instance</span>
                 <span class="n">lowest_due_date</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">due_date</span>
-        <span class="k">return</span> <span class="n">result</span></div></div>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">reference</span></div>
+    
+<div class="viewcode-block" id="User.add_new_instance"><a class="viewcode-back" href="../user.html#user.User.add_new_instance">[docs]</a>    <span class="k">def</span> <span class="nf">add_new_instance</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;To be implemented in a specific subclass&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="User.start_response"><a class="viewcode-back" href="../user.html#user.User.start_response">[docs]</a>    <span class="k">def</span> <span class="nf">start_response</span><span class="p">(</span><span class="n">instance</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Starts a new response within this instance</span>
+
+<span class="sd">        :param instance: The instance to which the response refers</span>
+<span class="sd">        :type instance: Instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">start_response</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="User.validate"><a class="viewcode-back" href="../user.html#user.User.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">correct</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Finalises a :class:`Response` within an existing :class:`Instance`</span>
+<span class="sd">        </span>
+<span class="sd">        :param instance_id: The id of the instance which the response refers to</span>
+<span class="sd">        :type instance: ObjectID</span>
+<span class="sd">        :param correct: Whether the response provided by the user was correct or not</span>
+<span class="sd">        :type correct: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="n">get_instance_by_id</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">finalise_response</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">get_instance_by_id</span><span class="p">(</span><span class="n">instance_id</span><span class="p">):</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">instances</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">instance_id</span><span class="p">:</span>
+                <span class="n">instance</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="n">instance</span>
+
+<div class="viewcode-block" id="User.provide_learned_items"><a class="viewcode-back" href="../user.html#user.User.provide_learned_items">[docs]</a>    <span class="k">def</span> <span class="nf">provide_learned_items</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;To be implemented at the specific subclass&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
 </pre></div>
 
           </div>

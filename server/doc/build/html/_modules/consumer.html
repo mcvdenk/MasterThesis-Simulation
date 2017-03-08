@@ -52,7 +52,8 @@
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
 
-<span class="kn">from</span> <span class="nn">user</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">flashmap_user</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">flashcard_user</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">concept_map</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">flashcard</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">questionnaire</span> <span class="k">import</span> <span class="o">*</span>
@@ -94,33 +95,106 @@
 <span class="sd">        :type data: dict(str, str or dict)</span>
 <span class="sd">        :return: Contains the keyword and data to send over a websocket to a client</span>
 <span class="sd">        :rtype: dict(str, str or dict)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;MAP-REQUEST&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">concept_map</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;AUTHENTICATE-REQUEST&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;LEARNED_ITEMS-REQUEST&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">provide_learned_items</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;LEARN-REQUEST&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">provide_learning</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;VALIDATE(fm)&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">validate_fm</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;edges&quot;</span><span class="p">],</span> <span class="n">user</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;VALIDATE(fc)&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">validate_fc</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;correct&quot;</span><span class="p">],</span> <span class="n">user</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;UNDO&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">undo</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;READ_SOURCE-RESPONSE&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="n">add_source</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]),</span> <span class="n">user</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;keyword&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILURE&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{}}</span></div>
+<span class="sd">        .. todo: Implement LEARNED_ITEMS-REQUEST, LEARN-REQUEST, VALIDATE, UNDO, READ_SOURCE-RESPONSE</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;FAILURE&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;AUTHENTICATE-REQUEST&quot;</span><span class="p">):</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">check_prerequisites</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;DESCRIPTIVES-RESPONSE&quot;</span><span class="p">):</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">set_descriptives</span><span class="p">(</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;birthdate&#39;</span><span class="p">],</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">],</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">])</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">check_prerequisites</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;TEST-RESPONSE&quot;</span><span class="p">):</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">append_test</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;flashcard_responses&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;item_responses&#39;</span><span class="p">])</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">check_prerequisites</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;QUESTIONNAIRE-RESPONSE&quot;</span><span class="p">):</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">append_questionnaire</span><span class="p">(</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;responses&#39;</span><span class="p">],</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;good&#39;</span><span class="p">],</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;can_be_improved&#39;</span><span class="p">])</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_prerequisites</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;LEARNED_ITEMS-REQUEST&quot;</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;LEARN-REQUEST&quot;</span><span class="p">):</span> 
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">provide_learning</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;VALIDATE&quot;</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;UNDO&quot;</span><span class="p">):</span> 
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;READ_SOURCE-RESPONSE&quot;</span><span class="p">):</span> 
+            <span class="k">pass</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">cascade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
 
 <div class="viewcode-block" id="Consumer.authenticate"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A function to either return an existing :class:`user.User` or a new :class:`user.User` based on the given name</span>
+        <span class="sd">&quot;&quot;&quot;A function to either set self.user to an existing :class:`user.User` or to a new User based on the given name</span>
 
 <span class="sd">        :param name: The username</span>
 <span class="sd">        :type name: str</span>
-<span class="sd">        :return: The user with this username</span>
-<span class="sd">        :rtype: User</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">User</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
-                    <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span>
-                    <span class="n">flashmap_condition</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span>
-                    <span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span></div></div>
+            <span class="k">if</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">][</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">%</span><span class="mi">2</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">FlashmapUser</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">FlashcardUser</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Consumer.check_prerequisites"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.check_prerequisites">[docs]</a>    <span class="k">def</span> <span class="nf">check_prerequisites</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Checks whether the user still has to fill in forms and returns the appropriate message</span>
+
+<span class="sd">        :return: A dict containing the appropriate keyword and data for this user</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span> <span class="p">:</span> <span class="p">{}}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">code</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DESCRIPTIVES-REQUEST&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">tests</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TEST-REQUEST&quot;</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_test</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">succesfull_days</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">tests</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TEST-REQUEST&quot;</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_test</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">questionnaire</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;QUESTIONNAIRE-REQUEST&quot;</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_questionnaire</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;AUTHENTICATE-RESPONSE&quot;</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+<div class="viewcode-block" id="Consumer.create_test"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.create_test">[docs]</a>    <span class="k">def</span> <span class="nf">create_test</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Creates a test for this user (using user.create_test())</span>
+
+<span class="sd">        :return: A dict object fit for sending to the user</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="n">create_test</span><span class="p">(</span><span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">(),</span> <span class="n">TestItem</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Consumer.create_questionnaire"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.create_questionnaire">[docs]</a>    <span class="k">def</span> <span class="nf">create_questionnaire</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Creates a questionnaire for this user (using user.create_questionnaire())</span>
+
+<span class="sd">        :return: A dict object fit for sending to the user</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="n">create_questionnaire</span><span class="p">(</span>
+                <span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">usefull</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                <span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">usefull</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">provide_learning</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">get_due_instance</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">add_instance</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NO_MORE_INSTANCES&#39;</span>
+            <span class="k">return</span> <span class="n">msg</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Edge</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">msg</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">msg</span></div>
 </pre></div>
 
           </div>

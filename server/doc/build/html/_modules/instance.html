@@ -63,6 +63,22 @@
     <span class="n">reference</span> <span class="o">=</span> <span class="n">GenericReferenceField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
     <span class="n">due_date</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
 
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allow_inheritance&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;abstract&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+<div class="viewcode-block" id="Instance.start_response"><a class="viewcode-back" href="../instance.html#instance.Instance.start_response">[docs]</a>    <span class="k">def</span> <span class="nf">start_response</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Adds a new response to this instance&quot;&quot;&quot;</span>
+        <span class="n">responses</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Response</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Instance.finalise_response"><a class="viewcode-back" href="../instance.html#instance.Instance.finalise_response">[docs]</a>    <span class="k">def</span> <span class="nf">finalise_response</span><span class="p">(</span><span class="n">correct</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the correctness value for the final response and sets the end date to now</span>
+
+<span class="sd">        :param correct: Whether the response was correct</span>
+<span class="sd">        :type correct: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">responses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">correct</span> <span class="o">=</span> <span class="n">correct</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="Instance.schedule"><a class="viewcode-back" href="../instance.html#instance.Instance.schedule">[docs]</a>    <span class="k">def</span> <span class="nf">schedule</span><span class="p">():</span>
         <span class="sd">&quot;&quot;&quot;Reschedules this instance for review based on the previous responses&quot;&quot;&quot;</span>
         <span class="n">exp</span> <span class="o">=</span> <span class="mi">1</span>

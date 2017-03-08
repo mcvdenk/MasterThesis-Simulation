@@ -27,6 +27,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="test_item_response module" href="test_item_response.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -54,7 +55,6 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>flashmap_condition</strong> &#8211; Whether the user uses the flashmap system (True) or the flashcard system (False)</li>
 <li><strong>birthdate</strong> &#8211; The birthdate of the user</li>
 <li><strong>read_sources</strong> &#8211; A list of read sources by the user</li>
 <li><strong>gender</strong> &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
@@ -69,6 +69,12 @@
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="user.User.add_new_instance">
+<code class="descname">add_new_instance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.add_new_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.add_new_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>To be implemented in a specific subclass</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="user.User.append_questionnaire">
 <code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
@@ -171,6 +177,12 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="user.User.provide_learned_items">
+<code class="descname">provide_learned_items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.provide_learned_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.provide_learned_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>To be implemented at the specific subclass</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="user.User.set_descriptives">
 <code class="descname">set_descriptives</code><span class="sig-paren">(</span><em>birthdate</em>, <em>gender</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.set_descriptives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.set_descriptives" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for setting the descriptives of the user</p>
@@ -182,6 +194,38 @@
 <li><strong>birthdate</strong> (<em>DateTime</em>) &#8211; The provided birthdate of the user</li>
 <li><strong>gender</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
 <li><strong>code</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The code from the informed consent form</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.start_response">
+<code class="descname">start_response</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.start_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.start_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts a new response within this instance</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>instance</strong> (<a class="reference internal" href="instance.html#instance.Instance" title="instance.Instance"><em>Instance</em></a>) &#8211; The instance to which the response refers</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>instance_id</em>, <em>correct</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finalises a <code class="xref py py-class docutils literal"><span class="pre">Response</span></code> within an existing <code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>instance_id</strong> &#8211; The id of the instance which the response refers to</li>
+<li><strong>correct</strong> (<em>boolean</em>) &#8211; Whether the response provided by the user was correct or not</li>
 </ul>
 </td>
 </tr>
@@ -202,6 +246,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="test_item_response.html" title="previous chapter">test_item_response module</a></li>
   </ul></li>
 </ul>
 </div>

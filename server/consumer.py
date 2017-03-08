@@ -7,7 +7,8 @@ import random
 import math
 from mongoengine import *
 
-from user import *
+from flashmap_user import *
+from flashcard_user import *
 from concept_map import *
 from flashcard import *
 from questionnaire import *
@@ -49,30 +50,103 @@ class Consumer():
         :type data: dict(str, str or dict)
         :return: Contains the keyword and data to send over a websocket to a client
         :rtype: dict(str, str or dict)
-        """
 
-        if (keyword == "MAP-REQUEST"): return concept_map
-        elif (keyword == "AUTHENTICATE-REQUEST"): return authenticate(data["name"])
-        elif (keyword == "LEARNED_ITEMS-REQUEST"): return provide_learned_items(user)
-        elif (keyword == "LEARN-REQUEST"): return provide_learning(user)
-        elif (keyword == "VALIDATE(fm)"): return validate_fm(data["edges"], user)
-        elif (keyword == "VALIDATE(fc)"): return validate_fc(data["id"], data["correct"], user)
-        elif (keyword == "UNDO"): return undo(user)
-        elif (keyword == "READ_SOURCE-RESPONSE"): return add_source(str(data["source"]), user)
-        else: return {"keyword": "FAILURE", "data": {}}
+        .. todo: Implement LEARNED_ITEMS-REQUEST, LEARN-REQUEST, VALIDATE, UNDO, READ_SOURCE-RESPONSE
+        """
+        msg = {'keyword': "FAILURE", 'data': {}}
+        if (keyword == "AUTHENTICATE-REQUEST"): 
+            self.user = authenticate(data["name"])
+            msg = check_prerequisites()
+        elif (keyword == "DESCRIPTIVES-RESPONSE"):
+            user.set_descriptives(
+                    data['birthdate'],
+                    data['gender'],
+                    data['code'])
+            msg = check_prerequisites()
+        elif (keyword == "TEST-RESPONSE"):
+            user.append_test(data['flashcard_responses'], data['item_responses'])
+            msg = check_prerequisites()
+        elif (keyword == "QUESTIONNAIRE-RESPONSE"):
+            user.append_questionnaire(
+                    data['responses'],
+                    data['good'],
+                    data['can_be_improved'])
+            msg['keyword'] = check_prerequisites()
+        elif (keyword == "LEARNED_ITEMS-REQUEST"):
+            pass
+        elif (keyword == "LEARN-REQUEST"): 
+            msg = provide_learning()
+        elif (keyword == "VALIDATE"):
+            pass
+        elif (keyword == "UNDO"): 
+            pass
+        elif (keyword == "READ_SOURCE-RESPONSE"): 
+            pass
+        user.save(cascade = True)
+        return msg
 
     def authenticate(name):
-        """A function to either return an existing :class:`user.User` or a new :class:`user.User` based on the given name
+        """A function to either set self.user to an existing :class:`user.User` or to a new User based on the given name
 
         :param name: The username
         :type name: str
-        :return: The user with this username
-        :rtype: User
         """
         self.user = User.objects(name=name)
         if (not User):
-            self.user = User(
-                    name = name,
-                    flashmap_condition = [True, False][len(User.objects())%2]
-                    )
-        return self.user
+            if [True, False][User.objects.count()%2]:
+                self.user = FlashmapUser(name = name)
+            else:
+                self.user = FlashcardUser(name = name)
+    
+    def check_prerequisites():
+        """Checks whether the user still has to fill in forms and returns the appropriate message
+
+        :return: A dict containing the appropriate keyword and data for this user
+        :rtype: dict
+        """
+        msg = {'keyword': "", 'data' : {}}
+        if (user.code is None): msg['keyword'] = "DESCRIPTIVES-REQUEST"
+        elif (len(user.tests) < 1):
+            msg['keyword'] = "TEST-REQUEST"
+            msg['data'] = create_test()
+        elif (user.succesfull_days > 5):
+            if (len(user.tests) < 2):
+                msg['keyword'] = "TEST-REQUEST"
+                msg['data'] = create_test()
+            if (user.questionnaire is None):
+                msg['keyword'] = "QUESTIONNAIRE-REQUEST"
+                msg['data'] = create_questionnaire()
+        else: msg['keyword'] = "AUTHENTICATE-RESPONSE"
+        return msg
+
+    def create_test():
+        """Creates a test for this user (using user.create_test())
+
+        :return: A dict object fit for sending to the user
+        :rtype: dict
+        """
+        return user.create_test(Flashcard.objects(), TestItem.objects())
+
+    def create_questionnaire():
+        """Creates a questionnaire for this user (using user.create_questionnaire())
+
+        :return: A dict object fit for sending to the user
+        :rtype: dict
+        """
+        return user.create_questionnaire(
+                QuestionnaireItem.objects(usefull = True),
+                QuestionnaireItem.objects(usefull = False)
+                )
+
+    def provide_learning():
+        msg = {'keyword': "", 'data': {}}
+        item = user.get_due_instance()
+        if item == None:
+            item = user.add_instance()
+        if item == None:
+            msg['keyword'] = 'NO_MORE_INSTANCES'
+            return msg
+        if isinstance(item, Edge):
+            return msg
+        else:
+            return msg

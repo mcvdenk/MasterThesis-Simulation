@@ -7,8 +7,6 @@ from questionnaire import *
 class User(Document):
     """A class representing a user
 
-    :cvar flashmap_condition: Whether the user uses the flashmap system (True) or the flashcard system (False)
-    :type flashmap_condition: BooleanField
     :cvar birthdate: The birthdate of the user
     :type birthdate: DateTimeField
     :cvar read_sources: A list of read sources by the user
@@ -30,16 +28,17 @@ class User(Document):
     """
     connect('flashmap')
     name = StringField(required=True, unique=True)
-    flashmap_condition = BooleanField(required=True)
     birthdate = DateTimeField()
     read_sources = ListField(StringField(), default = [])
     gender = StringField(choices = ['male', 'female', 'other'])
     code = StringField()
-    tests = ListField(EmbeddedDocumentField(Test))
+    tests = ListField(EmbeddedDocumentField(Test), default = [])
     sessions = ListField(EmbeddedDocumentField(Session), default = [])    
     questionnaire = EmbeddedDocumentField(Questionnaire)
     instances = ListField(EmbeddedDocumentField(Instance))
     email = EmailField()
+
+    meta = {'allow_inheritance': True, 'abstract': True}
 
     def set_descriptives(birthdate, gender, code):
         """A method for setting the descriptives of the user
@@ -133,4 +132,38 @@ class User(Document):
             if (instance.due_date < lowest_due_date):
                 result = instance
                 lowest_due_date = instance.due_date
-        return result
+        return result.reference
+    
+    def add_new_instance():
+        """To be implemented in a specific subclass"""
+        pass
+
+    def start_response(instance):
+        """Starts a new response within this instance
+
+        :param instance: The instance to which the response refers
+        :type instance: Instance
+        """
+        instance.start_response()
+
+    def validate(instance_id, correct):
+        """Finalises a :class:`Response` within an existing :class:`Instance`
+        
+        :param instance_id: The id of the instance which the response refers to
+        :type instance: ObjectID
+        :param correct: Whether the response provided by the user was correct or not
+        :type correct: boolean
+        """
+        instance = get_instance_by_id(instance_id)
+        instance.finalise_response(correct)
+
+    def get_instance_by_id(instance_id):
+        instance = None
+        for i in instances:
+            if i.id == instance_id:
+                instance = i
+        return instance
+
+    def provide_learned_items():
+        """To be implemented at the specific subclass"""
+        pass

@@ -18,6 +18,22 @@ class Instance(EmbeddedDocument):
     reference = GenericReferenceField(required = True)
     due_date = DateTimeField(default = datetime.now)
 
+    meta = {'allow_inheritance': True, 'abstract': True}
+
+    def start_response():
+        """Adds a new response to this instance"""
+        responses.add(Response())
+
+    def finalise_response(correct):
+        """Sets the correctness value for the final response and sets the end date to now
+
+        :param correct: Whether the response was correct
+        :type correct: boolean
+        """
+        response = responses[-1]
+        response.correct = correct
+        response.end = datetime.now()
+
     def schedule():
         """Reschedules this instance for review based on the previous responses"""
         exp = 1
