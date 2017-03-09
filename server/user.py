@@ -7,6 +7,10 @@ from questionnaire import *
 class User(Document):
     """A class representing a user
 
+    :cvar name: The username
+    :cvar type: StringField
+    :cvar condition: The condition of the user ("FLASHMAP" or "FLASHCARD")
+    :cvar type: StringField
     :cvar birthdate: The birthdate of the user
     :type birthdate: DateTimeField
     :cvar read_sources: A list of read sources by the user
@@ -28,6 +32,7 @@ class User(Document):
     """
     connect('flashmap')
     name = StringField(required=True, unique=True)
+    condition = StringField(required=True, choices = ['FLASHMAP', 'FLASHCARD'])
     birthdate = DateTimeField()
     read_sources = ListField(StringField(), default = [])
     gender = StringField(choices = ['male', 'female', 'other'])
@@ -37,8 +42,6 @@ class User(Document):
     questionnaire = EmbeddedDocumentField(Questionnaire)
     instances = ListField(EmbeddedDocumentField(Instance))
     email = EmailField()
-
-    meta = {'allow_inheritance': True, 'abstract': True}
 
     def set_descriptives(birthdate, gender, code):
         """A method for setting the descriptives of the user
@@ -134,9 +137,22 @@ class User(Document):
                 lowest_due_date = instance.due_date
         return result.reference
     
-    def add_new_instance():
-        """To be implemented in a specific subclass"""
-        pass
+    def add_new_instance(references):
+        """Adds a new :class:`Instance` to this user
+
+        :param reference: A set of flashcards or edges for which to add a new instance
+        :type reference: list(Flashcard or Edge)
+        :return: The reference for which a new instance was added
+        :rtype: Flashcard or Edge
+        """
+        for card in references:
+            if ref not in [instance.reference for instance in instances]:
+                if condition is "FLASHMAP":
+                    instances.append(FlashmapInstance(reference=ref))
+                elif condition is "FLASHCARD":
+                    instances.append(FlashcardInstance(reference=ref))
+                return ref
+        return None
 
     def start_response(instance):
         """Starts a new response within this instance

@@ -74,3 +74,27 @@ class ConceptMap(Document):
                     and e.source in sources):
                 result.append(e)
         return result
+
+    def to_dict():
+        """Returns a dictionary representation of this object
+
+        The representation is compatible for use with vis.js, with 'nodes' entries containing an 'id' and 'label', and 'edges' entries containing an 'id', 'label', 'from', 'to', and an additional 'source' entry
+
+        :result: The dictionary representation
+        :rtype: dict
+        """
+        result = {'nodes': [], 'edges': []}
+        for n in nodes:
+            result['nodes'].append({
+                'id': str(n.id),
+                'label': n.label,
+                })
+        for e in edges:
+            result['edges'].append({
+                'id': str(e.id),
+                'label': e.label,
+                'from': str(e.from_id),
+                'to': str(e.to_id),
+                'sources': e.sources,
+                })
+        return result

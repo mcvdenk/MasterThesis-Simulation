@@ -16,3 +16,18 @@ class Flashcard(Document):
     answer = StringField(required=True)
     sources = ListField(StringField, default = [])
     response_model = ListField(StringField, default = [])
+
+    def to_dict():
+        """Returns a dictionary representation of this object
+
+        It contains an 'id', 'question', 'answer', and 'sources' entry
+
+        :return: The dictionary representation of this object
+        :rtype: dict
+        """
+        return {
+                'id': str(id),
+                'question': question,
+                'answer': answer,
+                'sources': sources,
+                }

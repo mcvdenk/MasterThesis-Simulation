@@ -51,7 +51,7 @@ class Consumer():
         :return: Contains the keyword and data to send over a websocket to a client
         :rtype: dict(str, str or dict)
 
-        .. todo: Implement LEARNED_ITEMS-REQUEST, LEARN-REQUEST, VALIDATE, UNDO, READ_SOURCE-RESPONSE
+        .. todo: Implement LEARNED_ITEMS-REQUEST, READ_SOURCE-RESPONSE, VALIDATE, UNDO, READ_READ_SOURCE-RESPONSE
         """
         msg = {'keyword': "FAILURE", 'data': {}}
         if (keyword == "AUTHENTICATE-REQUEST"): 
@@ -76,11 +76,13 @@ class Consumer():
             pass
         elif (keyword == "LEARN-REQUEST"): 
             msg = provide_learning()
+        elif (keyword == "READ_SOURCE-RESPONSE"):
+            pass
         elif (keyword == "VALIDATE"):
             pass
         elif (keyword == "UNDO"): 
             pass
-        elif (keyword == "READ_SOURCE-RESPONSE"): 
+        elif (keyword == "READ_READ_SOURCE-RESPONSE"): 
             pass
         user.save(cascade = True)
         return msg
@@ -139,14 +141,35 @@ class Consumer():
                 )
 
     def provide_learning():
+        """Provides a dict containing relevant information for learning
+        
+        Provides a dict containing the keyword "NO_MORE_INSTANCES", "READ_SOURCE-REQUEST", or "LEARNING-RESPONSE" and relevant data (the source string for "READ_SOURCE-REQUEST" or either the output of :func:`ConceptMap.to_dict()` with an added 'learning' entry or the output of :func:`Flashcard.to_dict()` for "LEARNING-RESPONSE" with an added condition entry)
+
+        :return: A dict containing 'keyword' and the relevant 'data' described above
+        :rtype: dict
+        """
         msg = {'keyword': "", 'data': {}}
         item = user.get_due_instance()
         if item == None:
             item = user.add_instance()
         if item == None:
-            msg['keyword'] = 'NO_MORE_INSTANCES'
-            return msg
-        if isinstance(item, Edge):
-            return msg
+            msg['keyword'] = "NO_MORE_INSTANCES"
+        elif item.source not in user.sources:
+            msg['keyword'] = "READ_SOURCE-REQUEST"
+            msg['data'] = {'source': item.source}
         else:
-            return msg
+            msg['keyword'] = "LEARNING-RESPONSE" 
+            if user.condition is "FLASHMAP":
+                cmap = concept_map.get_partial_map(item)
+                dmap = cmap.to_dict()
+                for i in concept_map.get_siblings(item).append(item)
+                    for edge in dmap['edges']:
+                        if edge['id'] == str(i.id) and user.check_due(i):
+                            edge['learning'] = True
+                        else:
+                            edge['learning'] = False
+                msg['data'] = dmap
+            elif user.condition is "FLASHCARD":
+                msg['data'] = item.to_dict()
+            msg['data']['condition'] = user.condition
+        return msg
