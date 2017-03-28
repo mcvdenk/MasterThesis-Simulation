@@ -40,7 +40,6 @@ class Consumer():
             if (edge.source not in SOURCES): SOURCES.append(edge.source)
         self.SOURCES.sort()
 
-
     def consumer(keyword, data):
         """Pass data to the function corresponding to the provided keyword for the provided user
 
@@ -51,7 +50,7 @@ class Consumer():
         :return: Contains the keyword and data to send over a websocket to a client
         :rtype: dict(str, str or dict)
 
-        .. todo: Implement LEARNED_ITEMS-REQUEST, READ_SOURCE-RESPONSE, VALIDATE, UNDO, READ_READ_SOURCE-RESPONSE
+        .. todo: Implement LEARNED_ITEMS-REQUEST, READ_SOURCE-RESPONSE, VALIDATE, UNDO
         """
         msg = {'keyword': "FAILURE", 'data': {}}
         if (keyword == "AUTHENTICATE-REQUEST"): 
