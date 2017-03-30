@@ -40,10 +40,14 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
+    'sphinxcontrib.plantuml',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# Plantuml configuration
+plantuml = 'java -jar ../utils/plantuml.jar'
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:

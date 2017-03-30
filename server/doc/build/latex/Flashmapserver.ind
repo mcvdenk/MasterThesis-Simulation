@@ -2,126 +2,126 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter A
-  \item add\_new\_instance() (user.User method), \hyperpage{39}
-  \item add\_source() (consumer.Consumer method), \hyperpage{3}
-  \item append\_answer() (questionnaire.Questionnaire method), \hyperpage{21}
-  \item append\_flashcard() (test.Test method), \hyperpage{31}
-  \item append\_item() (test.Test method), \hyperpage{31}
-  \item append\_questionnaire() (user.User method), \hyperpage{39}
-  \item append\_test() (user.User method), \hyperpage{40}
-  \item authenticate() (consumer.Consumer method), \hyperpage{3}
+  \item add\_new\_instance() (user.User method), \hyperpage{11}
+  \item add\_source() (consumer.Consumer method), \hyperpage{4}
+  \item append\_answer() (questionnaire.Questionnaire method), \hyperpage{8}
+  \item append\_flashcard() (test.Test method), \hyperpage{10}
+  \item append\_item() (test.Test method), \hyperpage{10}
+  \item append\_questionnaire() (user.User method), \hyperpage{12}
+  \item append\_test() (user.User method), \hyperpage{12}
+  \item authenticate() (consumer.Consumer method), \hyperpage{4}
 
   \indexspace
   \bigletter C
-  \item check\_due() (instance.Instance method), \hyperpage{15}
-  \item check\_prerequisites() (consumer.Consumer method), \hyperpage{3}
-  \item concept\_map (module), \hyperpage{1}
-  \item ConceptMap (class in concept\_map), \hyperpage{1}
-  \item Consumer (class in consumer), \hyperpage{3}
-  \item consumer (module), \hyperpage{3}
-  \item consumer() (consumer.Consumer method), \hyperpage{3}
-  \item create\_questionnaire() (consumer.Consumer method), \hyperpage{3}
-  \item create\_questionnaire() (user.User method), \hyperpage{40}
-  \item create\_test() (consumer.Consumer method), \hyperpage{3}
-  \item create\_test() (user.User method), \hyperpage{40}
+  \item check\_due() (instance.Instance method), \hyperpage{7}
+  \item check\_prerequisites() (consumer.Consumer method), \hyperpage{4}
+  \item concept\_map (module), \hyperpage{3}
+  \item ConceptMap (class in concept\_map), \hyperpage{3}
+  \item Consumer (class in consumer), \hyperpage{4}
+  \item consumer (module), \hyperpage{4}
+  \item consumer() (consumer.Consumer method), \hyperpage{4}
+  \item create\_questionnaire() (consumer.Consumer method), \hyperpage{5}
+  \item create\_questionnaire() (user.User method), \hyperpage{12}
+  \item create\_test() (consumer.Consumer method), \hyperpage{5}
+  \item create\_test() (user.User method), \hyperpage{12}
 
   \indexspace
   \bigletter E
   \item Edge (class in edge), \hyperpage{5}
   \item edge (module), \hyperpage{5}
-  \item end\_session() (session.Session method), \hyperpage{29}
+  \item end\_session() (session.Session method), \hyperpage{9}
 
   \indexspace
   \bigletter F
-  \item finalise\_response() (instance.Instance method), \hyperpage{15}
-  \item find\_nodes() (concept\_map.ConceptMap method), \hyperpage{1}
-  \item find\_prerequisites() (concept\_map.ConceptMap method), \hyperpage{1}
-  \item find\_siblings() (concept\_map.ConceptMap method), \hyperpage{1}
-  \item Flashcard (class in flashcard), \hyperpage{7}
-  \item flashcard (module), \hyperpage{7}
-  \item flashcard\_instance (module), \hyperpage{9}
-  \item FlashcardInstance (class in flashcard\_instance), \hyperpage{9}
-  \item flashmap\_instance (module), \hyperpage{11}
-  \item FlashmapInstance (class in flashmap\_instance), \hyperpage{11}
+  \item finalise\_response() (instance.Instance method), \hyperpage{7}
+  \item find\_nodes() (concept\_map.ConceptMap method), \hyperpage{3}
+  \item find\_prerequisites() (concept\_map.ConceptMap method), \hyperpage{3}
+  \item find\_siblings() (concept\_map.ConceptMap method), \hyperpage{3}
+  \item Flashcard (class in flashcard), \hyperpage{6}
+  \item flashcard (module), \hyperpage{6}
+  \item flashcard\_instance (module), \hyperpage{6}
+  \item FlashcardInstance (class in flashcard\_instance), \hyperpage{6}
+  \item flashmap\_instance (module), \hyperpage{6}
+  \item FlashmapInstance (class in flashmap\_instance), \hyperpage{6}
 
   \indexspace
   \bigletter G
-  \item generate\_test() (test.Test method), \hyperpage{31}
-  \item get\_due\_instance() (user.User method), \hyperpage{40}
-  \item get\_exponent() (instance.Instance method), \hyperpage{15}
-  \item get\_instance\_by\_id() (user.User method), \hyperpage{40}
-  \item get\_partial\_map() (concept\_map.ConceptMap method), \hyperpage{1}
+  \item generate\_test() (test.Test method), \hyperpage{10}
+  \item get\_due\_instance() (user.User method), \hyperpage{12}
+  \item get\_exponent() (instance.Instance method), \hyperpage{7}
+  \item get\_instance\_by\_id() (user.User method), \hyperpage{12}
+  \item get\_partial\_map() (concept\_map.ConceptMap method), \hyperpage{4}
 
   \indexspace
   \bigletter H
-  \item handler (module), \hyperpage{13}
-  \item handler() (in module handler), \hyperpage{13}
+  \item handler (module), \hyperpage{6}
+  \item handler() (in module handler), \hyperpage{6}
 
   \indexspace
   \bigletter I
-  \item Instance (class in instance), \hyperpage{15}
-  \item instance (module), \hyperpage{15}
+  \item Instance (class in instance), \hyperpage{7}
+  \item instance (module), \hyperpage{7}
 
   \indexspace
   \bigletter L
-  \item learning\_message() (consumer.Consumer method), \hyperpage{4}
-  \item LogEntry (class in logentry), \hyperpage{17}
-  \item logentry (module), \hyperpage{17}
+  \item learning\_message() (consumer.Consumer method), \hyperpage{5}
+  \item LogEntry (class in logentry), \hyperpage{7}
+  \item logentry (module), \hyperpage{7}
 
   \indexspace
   \bigletter N
-  \item Node (class in node), \hyperpage{19}
-  \item node (module), \hyperpage{19}
+  \item Node (class in node), \hyperpage{8}
+  \item node (module), \hyperpage{8}
 
   \indexspace
   \bigletter P
-  \item provide\_learned\_items() (consumer.Consumer method), \hyperpage{4}
-  \item provide\_learning() (consumer.Consumer method), \hyperpage{4}
+  \item provide\_learned\_items() (consumer.Consumer method), \hyperpage{5}
+  \item provide\_learning() (consumer.Consumer method), \hyperpage{5}
 
   \indexspace
   \bigletter Q
-  \item Questionnaire (class in questionnaire), \hyperpage{21}
-  \item questionnaire (module), \hyperpage{21}
-  \item questionnaire\_item (module), \hyperpage{23}
-  \item questionnaire\_response (module), \hyperpage{25}
-  \item QuestionnaireItem (class in questionnaire\_item), \hyperpage{23}
-  \item QuestionnaireResponse (class in questionnaire\_response), \hyperpage{25}
+  \item Questionnaire (class in questionnaire), \hyperpage{8}
+  \item questionnaire (module), \hyperpage{8}
+  \item questionnaire\_item (module), \hyperpage{8}
+  \item questionnaire\_response (module), \hyperpage{9}
+  \item QuestionnaireItem (class in questionnaire\_item), \hyperpage{8}
+  \item QuestionnaireResponse (class in questionnaire\_response), \hyperpage{9}
 
   \indexspace
   \bigletter R
-  \item Response (class in response), \hyperpage{27}
-  \item response (module), \hyperpage{27}
+  \item Response (class in response), \hyperpage{9}
+  \item response (module), \hyperpage{9}
 
   \indexspace
   \bigletter S
-  \item schedule() (instance.Instance method), \hyperpage{15}
-  \item Session (class in session), \hyperpage{29}
-  \item session (module), \hyperpage{29}
-  \item set\_descriptives() (user.User method), \hyperpage{40}
-  \item start\_response() (instance.Instance method), \hyperpage{15}
-  \item start\_response() (user.User method), \hyperpage{41}
+  \item schedule() (instance.Instance method), \hyperpage{7}
+  \item Session (class in session), \hyperpage{9}
+  \item session (module), \hyperpage{9}
+  \item set\_descriptives() (user.User method), \hyperpage{13}
+  \item start\_response() (instance.Instance method), \hyperpage{7}
+  \item start\_response() (user.User method), \hyperpage{13}
 
   \indexspace
   \bigletter T
-  \item Test (class in test), \hyperpage{31}
-  \item test (module), \hyperpage{31}
-  \item test\_flashcard\_response (module), \hyperpage{33}
-  \item test\_item (module), \hyperpage{35}
-  \item test\_item\_response (module), \hyperpage{37}
-  \item TestFlashcardResponse (class in test\_flashcard\_response), \hyperpage{33}
-  \item TestItem (class in test\_item), \hyperpage{35}
-  \item TestItemResponse (class in test\_item\_response), \hyperpage{37}
-  \item to\_dict() (concept\_map.ConceptMap method), \hyperpage{2}
-  \item to\_dict() (flashcard.Flashcard method), \hyperpage{7}
+  \item Test (class in test), \hyperpage{9}
+  \item test (module), \hyperpage{9}
+  \item test\_flashcard\_response (module), \hyperpage{10}
+  \item test\_item (module), \hyperpage{10}
+  \item test\_item\_response (module), \hyperpage{11}
+  \item TestFlashcardResponse (class in test\_flashcard\_response), \hyperpage{10}
+  \item TestItem (class in test\_item), \hyperpage{10}
+  \item TestItemResponse (class in test\_item\_response), \hyperpage{11}
+  \item to\_dict() (concept\_map.ConceptMap method), \hyperpage{4}
+  \item to\_dict() (flashcard.Flashcard method), \hyperpage{6}
 
   \indexspace
   \bigletter U
-  \item User (class in user), \hyperpage{39}
-  \item user (module), \hyperpage{39}
+  \item User (class in user), \hyperpage{11}
+  \item user (module), \hyperpage{11}
 
   \indexspace
   \bigletter V
-  \item validate() (consumer.Consumer method), \hyperpage{4}
-  \item validate() (user.User method), \hyperpage{41}
+  \item validate() (consumer.Consumer method), \hyperpage{5}
+  \item validate() (user.User method), \hyperpage{13}
 
 \end{theindex}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  30 MAR 2017 14:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  30 MAR 2017 15:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1051,115 +1051,50 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 ] [2
 
 ]
-Chapter 1.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 1.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+<plantuml-fcf841cc13d4bda935dafb228cda97ac42647c7d.png, id=144, 1856.9375pt x 1
+220.56pt>
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 57.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
+File: plantuml-fcf841cc13d4bda935dafb228cda97ac42647c7d.png Graphic file (type 
+png)
+
+<use plantuml-fcf841cc13d4bda935dafb228cda97ac42647c7d.png>
+Package pdftex.def Info: plantuml-fcf841cc13d4bda935dafb228cda97ac42647c7d.png 
+used on input line 57.
+(pdftex.def)             Requested size: 469.75502pt x 308.77097pt.
+ [1 <./plantuml-fcf841cc13d4bda935dafb228cda97ac42647c7d.png (PNG copy)>] [2
+
+]
+Chapter 1.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 1.
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 68.
-
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 73.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1.
- [1
-
-] [2]
-Chapter 2.
+ [3]
 LaTeX Font Info:    Font shape `T1/pcr/bx/it' in size <10> not available
 (Font)              Font shape `T1/pcr/b/it' tried instead on input line 1.
 LaTeX Font Info:    Font shape `T1/pcr/b/it' in size <10> not available
 (Font)              Font shape `T1/pcr/b/sl' tried instead on input line 1.
-[3
-
-] [4]
-Chapter 3.
-[5
-
-] [6
-
-]
-Chapter 4.
-[7] [8
-
-]
-Chapter 5.
-[9] [10
-
-]
-Chapter 6.
-[11] [12
-
-]
-Chapter 7.
-[13] [14
-
-]
-Chapter 8.
-[15] [16
-
-]
-Chapter 9.
-[17] [18
-
-]
-Chapter 10.
-[19] [20
-
-]
-Chapter 11.
-[21] [22
-
-]
-Chapter 12.
-[23] [24
-
-]
-Chapter 13.
-[25] [26
-
-]
-Chapter 14.
-[27] [28
-
-]
-Chapter 15.
-[29] [30
-
-]
-Chapter 16.
-[31] [32
-
-]
-Chapter 17.
-[33] [34
-
-]
-Chapter 18.
-[35] [36
-
-]
-Chapter 19.
-[37] [38
-
-]
-Chapter 20.
-
-Underfull \hbox (badness 10000) in paragraph at lines 1--1068
+ [4] [5] [6]
+[7] [8] [9] [10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 1--1073
 []\T1/pcr/b/n/10 responses \T1/ptm/m/n/10 ([][]\T1/pcr/m/sl/10 list[][]([][]dic
 t[][])\T1/ptm/m/n/10 ) -- A list of dict ob-jects con-tain-ing a
  []
 
-[39] [40] [41] [42
+[12] [13] [14
 
 ]
-Chapter 21.
-[43] [44
+Chapter 2.
+[15] [16
 
-] [45
+] [17
 
 
 ] (./Flashmapserver.ind
@@ -1167,7 +1102,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
 []\T1/ptm/m/n/10 QuestionnaireResponse (class in ques-tion-
  []
 
-[46
+[18
 
 
 ]
@@ -1175,27 +1110,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 111--112
 []\T1/ptm/m/n/10 TestFlashcardResponse (class in
  []
 
-[47
+[19
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1304.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1304.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1309.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1309.
  (./Flashmapserver.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1304.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1304.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1309.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1309.
 
 Package rerunfilecheck Info: File `Flashmapserver.out' has not changed.
-(rerunfilecheck)             Checksum: 2B32E922E99AFBDBF87A7700CB07C860;3060.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1304.
+(rerunfilecheck)             Checksum: A599A170D4FE90046F035A50FF5FC906;3368.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1309.
  ) 
 Here is how much of TeX's memory you used:
- 13741 strings out of 493304
- 190895 string characters out of 6139871
- 281742 words of memory out of 5000000
- 16771 multiletter control sequences out of 15000+600000
- 43786 words of font info for 61 fonts, out of 8000000 for 9000
+ 13747 strings out of 493304
+ 191420 string characters out of 6139871
+ 283064 words of memory out of 5000000
+ 16789 multiletter control sequences out of 15000+600000
+ 45077 words of font info for 67 fonts, out of 8000000 for 9000
  958 hyphenation exceptions out of 8191
- 37i,12n,45p,730b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,12n,45p,730b,645s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/courier/ucrbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
@@ -1206,10 +1141,10 @@ texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on Flashmapserver.pdf (51 pages, 163578 bytes).
+Output written on Flashmapserver.pdf (23 pages, 253058 bytes).
 PDF statistics:
- 666 PDF objects out of 1000 (max. 8388607)
- 592 compressed objects within 6 object streams
- 130 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 548 PDF objects out of 1000 (max. 8388607)
+ 501 compressed objects within 6 object streams
+ 103 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 

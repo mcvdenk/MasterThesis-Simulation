@@ -1,3 +1,8 @@
+Class diagram
+=============
+
+.. uml:: classdiagram.uml
+
 Contents:
 =========
 .. toctree::
