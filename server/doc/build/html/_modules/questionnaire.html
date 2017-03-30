@@ -86,6 +86,9 @@
 <span class="sd">        :param answer: The answer to be appended</span>
 <span class="sd">        :type answer: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">QuestionnaireItem</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">phrasing</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">usefulness</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">perceived_usefulness_items</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>

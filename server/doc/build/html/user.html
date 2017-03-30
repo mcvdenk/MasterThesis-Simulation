@@ -100,7 +100,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">QuestionnaireItem</span></code> (key = &#8216;item&#8217;), the phrasing (key = &#8216;phrasing&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+<li><strong>responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a><em>)</em><em></em>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">QuestionnaireItem</span></code> (key = &#8216;item&#8217;), the phrasing (key = &#8216;phrasing&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
 <li><strong>good</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what was good about the software according to the user</li>
 <li><strong>can_be_improved</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what can be improved about the software according to the user</li>
 </ul>
@@ -193,9 +193,21 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="user.User.provide_learned_items">
-<code class="descname">provide_learned_items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.provide_learned_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.provide_learned_items" title="Permalink to this definition">¶</a></dt>
-<dd><p>To be implemented at the specific subclass</p>
+<dt id="user.User.get_instance_by_id">
+<code class="descname">get_instance_by_id</code><span class="sig-paren">(</span><em>instance_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.get_instance_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.get_instance_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves an instance based on a provided instance id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>instance_id</strong> (<em>ObjectId</em>) &#8211; The id of the instance to be requested</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The instance or None if no instance with instance_id exists</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="instance.html#instance.Instance" title="instance.Instance">Instance</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">

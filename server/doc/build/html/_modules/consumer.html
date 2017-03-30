@@ -96,6 +96,8 @@
 
 <span class="sd">        .. todo: Implement LEARNED_ITEMS-REQUEST</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;FAILURE&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{}}</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;AUTHENTICATE-REQUEST&quot;</span><span class="p">):</span> 
             <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
@@ -138,6 +140,7 @@
 <span class="sd">        :param name: The username</span>
 <span class="sd">        :type name: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span>  <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">User</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">][</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">%</span><span class="mi">2</span><span class="p">]:</span>
@@ -206,7 +209,15 @@
             <span class="n">msg</span> <span class="o">=</span> <span class="n">learning_message</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">msg</span></div>
 
-    <span class="k">def</span> <span class="nf">learning_message</span><span class="p">(</span><span class="n">instance</span><span class="p">):</span>
+<div class="viewcode-block" id="Consumer.learning_message"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.learning_message">[docs]</a>    <span class="k">def</span> <span class="nf">learning_message</span><span class="p">(</span><span class="n">instance</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generates a learning message for the provided instance</span>
+
+<span class="sd">        :param instance: The instance which has to be rehearsed</span>
+<span class="sd">        :type instance: Instance</span>
+<span class="sd">        :return: The message with keyword &quot;LEARNING RESPONSE&quot; and data containing the partial concept map or flashcard dict representation</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">Instance</span><span class="p">)</span>
         <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;LEARNING-RESPONSE&quot;</span> 
         <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
             <span class="n">cmap</span> <span class="o">=</span> <span class="n">concept_map</span><span class="o">.</span><span class="n">get_partial_map</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
@@ -221,7 +232,7 @@
         <span class="k">elif</span> <span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
             <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
         <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;condition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">condition</span>
-        <span class="k">return</span> <span class="n">msg</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
 
 
 <div class="viewcode-block" id="Consumer.add_source"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.add_source">[docs]</a>    <span class="k">def</span> <span class="nf">add_source</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
@@ -230,6 +241,7 @@
 <span class="sd">        :param source: The source to be added</span>
 <span class="sd">        :type source: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="n">users</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Consumer.validate"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">responses</span><span class="p">):</span>
@@ -238,8 +250,10 @@
 <span class="sd">        :param responses: A list of responses containing an instance id and a boolean correctness value</span>
 <span class="sd">        :type responses: list(dict)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
-            <span class="n">user</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">])</span></div>
+            <span class="n">user</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">ObjectId</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]),</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="Consumer.provide_learned_items"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.provide_learned_items">[docs]</a>    <span class="k">def</span> <span class="nf">provide_learned_items</span><span class="p">():</span>
         <span class="sd">&quot;&quot;&quot;Provides an overview of all learning</span>

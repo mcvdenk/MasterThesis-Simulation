@@ -98,6 +98,10 @@
 <span class="sd">        :param code: The code from the informed consent form</span>
 <span class="sd">        :type code: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">birthdate</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">gender</span> <span class="ow">is</span> <span class="s1">&#39;male&#39;</span> <span class="ow">or</span> <span class="n">gender</span> <span class="ow">is</span> <span class="s1">&#39;female&#39;</span> <span class="ow">or</span> <span class="n">gender</span> <span class="ow">is</span> <span class="s1">&#39;other&#39;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">birthdate</span> <span class="o">=</span> <span class="n">birthdate</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span></div>
@@ -112,6 +116,10 @@
 <span class="sd">        :return: A dict containing a list of FlashcardResponses and TestItemResponses</span>
 <span class="sd">        :rtype: dict(string, Response)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">flashcards</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">card</span><span class="p">,</span> <span class="n">Flashcard</span><span class="p">)</span> <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">flashcards</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">TestItem</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">)</span>
         <span class="n">prev_flashcards</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">prev_items</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
@@ -132,6 +140,8 @@
 <span class="sd">        :param item_responses: A list of dict objects containing a :class:`TestItem` (key = &#39;item&#39;) and an answer (key = &#39;answer&#39;)</span>
 <span class="sd">        :type item_responses: dict</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">flashcard_responses</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item_responses</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
         <span class="n">test</span> <span class="o">=</span> <span class="n">tests</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">flashcard_responses</span><span class="p">:</span>
             <span class="n">test</span><span class="o">.</span><span class="n">append_flashcard</span><span class="p">(</span><span class="n">card</span><span class="p">[</span><span class="s2">&quot;flashcard&quot;</span><span class="p">],</span> <span class="n">card</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">])</span>
@@ -148,6 +158,10 @@
 <span class="sd">        :return: A randomised list of questionnaire items</span>
 <span class="sd">        :rtype: list(QuestionnaireItem)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pu_items</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">QuestionnaireItem</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pu_items</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">peou_items</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">QuestionnaireItem</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">peou_items</span><span class="p">)</span>
         <span class="n">questionnaire</span> <span class="o">=</span> <span class="n">Questionnaire</span><span class="p">(</span><span class="n">pu_items</span><span class="p">,</span> <span class="n">peou_items</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">questionnaire_item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">questionnaire</span><span class="o">.</span><span class="n">perceived_usefulness_items</span><span class="p">]</span>\
                 <span class="o">+</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">questionnaire_item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">questionnaire</span><span class="o">.</span><span class="n">perceived_ease_of_use_items</span><span class="p">]</span></div>
@@ -156,12 +170,16 @@
         <span class="sd">&quot;&quot;&quot;A method for appending a questionnairy to the user given responses</span>
 <span class="sd">        </span>
 <span class="sd">        :param responses: A list of dict objects containing a :class:`QuestionnaireItem` (key = &#39;item&#39;), the phrasing (key = &#39;phrasing&#39;) and an answer (key = &#39;answer&#39;)</span>
-<span class="sd">        :type responses: dict</span>
+<span class="sd">        :type responses: list(dict)</span>
 <span class="sd">        :param good: A description of what was good about the software according to the user</span>
 <span class="sd">        :type good: string</span>
 <span class="sd">        :param can_be_improved: A description of what can be improved about the software according to the user</span>
 <span class="sd">        :type can_be_improved: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">good</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">can_be_improved</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
             <span class="n">questionnaire</span><span class="o">.</span><span class="n">append_answer</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">],</span>
                     <span class="n">response</span><span class="p">[</span><span class="s1">&#39;phrasing&#39;</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span>
@@ -190,6 +208,8 @@
 <span class="sd">        :return: The reference for which a new instance was added</span>
 <span class="sd">        :rtype: Flashcard or Edge</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">references</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">Flashcard</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">Edge</span><span class="p">))</span> <span class="k">for</span> <span class="n">reference</span> <span class="ow">in</span> <span class="n">references</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">references</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">ref</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="n">instances</span><span class="p">]:</span>
                 <span class="k">if</span> <span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
@@ -205,6 +225,7 @@
 <span class="sd">        :param instance: The instance to which the response refers</span>
 <span class="sd">        :type instance: Instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">Instance</span><span class="p">)</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">start_response</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="User.validate"><a class="viewcode-back" href="../user.html#user.User.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">correct</span><span class="p">):</span>
@@ -215,19 +236,25 @@
 <span class="sd">        :param correct: Whether the response provided by the user was correct or not</span>
 <span class="sd">        :type correct: boolean</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">ObjectId</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="n">get_instance_by_id</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">finalise_response</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">get_instance_by_id</span><span class="p">(</span><span class="n">instance_id</span><span class="p">):</span>
+<div class="viewcode-block" id="User.get_instance_by_id"><a class="viewcode-back" href="../user.html#user.User.get_instance_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_instance_by_id</span><span class="p">(</span><span class="n">instance_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieves an instance based on a provided instance id</span>
+
+<span class="sd">        :param instance_id: The id of the instance to be requested</span>
+<span class="sd">        :type instance_id: ObjectId</span>
+<span class="sd">        :return: The instance or None if no instance with instance_id exists</span>
+<span class="sd">        :rtype: Instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">ObjectId</span><span class="p">)</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">instances</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">instance_id</span><span class="p">:</span>
                 <span class="n">instance</span> <span class="o">=</span> <span class="n">i</span>
-        <span class="k">return</span> <span class="n">instance</span>
-
-<div class="viewcode-block" id="User.provide_learned_items"><a class="viewcode-back" href="../user.html#user.User.provide_learned_items">[docs]</a>    <span class="k">def</span> <span class="nf">provide_learned_items</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot;To be implemented at the specific subclass&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="k">return</span> <span class="n">instance</span></div>
 
     <span class="k">def</span> <span class="nf">retrieve_recent_instance</span><span class="p">():</span>
         <span class="n">most_recent</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
