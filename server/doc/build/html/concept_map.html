@@ -27,6 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="consumer module" href="consumer.html" />
+    <link rel="prev" title="Contents:" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -61,6 +63,24 @@
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="concept_map.ConceptMap.find_nodes">
+<code class="descname">find_nodes</code><span class="sig-paren">(</span><em>edges</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/concept_map.html#ConceptMap.find_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.find_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the from and to nodes given a list of edges</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edges</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; The list of edges for which to find the nodes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The list of nodes referred to in the edges</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="node.html#node.Node" title="node.Node">Node</a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="concept_map.ConceptMap.find_prerequisites">
 <code class="descname">find_prerequisites</code><span class="sig-paren">(</span><em>postreq</em>, <em>prereqs</em>, <em>sources</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/concept_map.html#ConceptMap.find_prerequisites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.find_prerequisites" title="Permalink to this definition">¶</a></dt>
@@ -129,6 +149,23 @@
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="concept_map.ConceptMap.to_dict">
+<code class="descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/concept_map.html#ConceptMap.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary representation of this object</p>
+<p>The representation is compatible for use with vis.js, with &#8216;nodes&#8217; entries containing an &#8216;id&#8217; and &#8216;label&#8217;, and &#8216;edges&#8217; entries containing an &#8216;id&#8217;, &#8216;label&#8217;, &#8216;from&#8217;, &#8216;to&#8217;, and an additional &#8216;source&#8217; entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Result:</th><td class="field-body">The dictionary representation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -142,6 +179,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Contents:</a></li>
+      <li>Next: <a href="consumer.html" title="next chapter">consumer module</a></li>
   </ul></li>
 </ul>
 </div>

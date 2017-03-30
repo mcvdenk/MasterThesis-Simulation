@@ -56,7 +56,7 @@
 
 
 \chapter{concept\_map module}
-\label{\detokenize{concept_map:concept-map-module}}\label{\detokenize{concept_map:contents}}\label{\detokenize{concept_map:module-concept_map}}\label{\detokenize{concept_map::doc}}\index{concept\_map (module)}\index{ConceptMap (class in concept\_map)}
+\label{\detokenize{concept_map:concept-map-module}}\label{\detokenize{concept_map::doc}}\label{\detokenize{concept_map:contents}}\label{\detokenize{concept_map:module-concept_map}}\index{concept\_map (module)}\index{ConceptMap (class in concept\_map)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{concept\_map.}\sphinxbfcode{ConceptMap}}{\emph{*args}, \emph{**values}}{}
@@ -74,6 +74,25 @@ A class representing a concept map
 \end{itemize}
 
 \end{description}\end{quote}
+\index{find\_nodes() (concept\_map.ConceptMap method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.find_nodes}}\pysiglinewithargsret{\sphinxbfcode{find\_nodes}}{\emph{edges}}{}
+Returns the from and to nodes given a list of edges
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{edges} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- The list of edges for which to find the nodes
+
+\item[{Returns}] \leavevmode
+The list of nodes referred to in the edges
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/functions.html\#list}{list}({\hyperref[\detokenize{node:node.Node}]{\sphinxcrossref{Node}}})
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{find\_prerequisites() (concept\_map.ConceptMap method)}
 
 \begin{fulllineitems}
@@ -293,6 +312,22 @@ A dict object fit for sending to the user
 
 \end{fulllineitems}
 
+\index{provide\_learned\_items() (consumer.Consumer method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{consumer:consumer.Consumer.provide_learned_items}}\pysiglinewithargsret{\sphinxbfcode{provide\_learned\_items}}{}{}
+Provides an overview of all learning
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+A partial concept map containing all instances for this user or a message containing progress information
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/stdtypes.html\#dict}{dict}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{provide\_learning() (consumer.Consumer method)}
 
 \begin{fulllineitems}
@@ -399,7 +434,7 @@ The dictionary representation of this object
 
 
 \chapter{flashcard\_instance module}
-\label{\detokenize{flashcard_instance:module-flashcard_instance}}\label{\detokenize{flashcard_instance:flashcard-instance-module}}\label{\detokenize{flashcard_instance::doc}}\index{flashcard\_instance (module)}\index{FlashcardInstance (class in flashcard\_instance)}
+\label{\detokenize{flashcard_instance:module-flashcard_instance}}\label{\detokenize{flashcard_instance::doc}}\label{\detokenize{flashcard_instance:flashcard-instance-module}}\index{flashcard\_instance (module)}\index{FlashcardInstance (class in flashcard\_instance)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{flashcard_instance:flashcard_instance.FlashcardInstance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashcard\_instance.}\sphinxbfcode{FlashcardInstance}}{\emph{*args}, \emph{**kwargs}}{}
@@ -417,7 +452,7 @@ A class for storing responses from the flashmap system
 
 
 \chapter{flashmap\_instance module}
-\label{\detokenize{flashmap_instance:module-flashmap_instance}}\label{\detokenize{flashmap_instance:flashmap-instance-module}}\label{\detokenize{flashmap_instance::doc}}\index{flashmap\_instance (module)}\index{FlashmapInstance (class in flashmap\_instance)}
+\label{\detokenize{flashmap_instance:flashmap-instance-module}}\label{\detokenize{flashmap_instance::doc}}\label{\detokenize{flashmap_instance:module-flashmap_instance}}\index{flashmap\_instance (module)}\index{FlashmapInstance (class in flashmap\_instance)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{flashmap_instance:flashmap_instance.FlashmapInstance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashmap\_instance.}\sphinxbfcode{FlashmapInstance}}{\emph{*args}, \emph{**kwargs}}{}
@@ -435,7 +470,7 @@ A class for storing responses from the flashmap system
 
 
 \chapter{handler module}
-\label{\detokenize{handler:handler-module}}\label{\detokenize{handler:module-handler}}\label{\detokenize{handler::doc}}\index{handler (module)}\index{handler() (in module handler)}
+\label{\detokenize{handler:handler-module}}\label{\detokenize{handler::doc}}\label{\detokenize{handler:module-handler}}\index{handler (module)}\index{handler() (in module handler)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{handler:handler.handler}}\pysiglinewithargsret{\sphinxcode{handler.}\sphinxbfcode{handler}}{\emph{websocket}, \emph{path}}{}
@@ -457,7 +492,7 @@ Initiate an asyncio thread which receives messages from a client, parse the json
 
 
 \chapter{instance module}
-\label{\detokenize{instance:instance-module}}\label{\detokenize{instance::doc}}\label{\detokenize{instance:module-instance}}\index{instance (module)}\index{Instance (class in instance)}
+\label{\detokenize{instance:instance-module}}\label{\detokenize{instance:module-instance}}\label{\detokenize{instance::doc}}\index{instance (module)}\index{Instance (class in instance)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{instance:instance.Instance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{instance.}\sphinxbfcode{Instance}}{\emph{*args}, \emph{**kwargs}}{}
@@ -478,6 +513,22 @@ A class describing a general flash instance, which can either be a FlashmapInsta
 \end{itemize}
 
 \end{description}\end{quote}
+\index{check\_due() (instance.Instance method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{instance:instance.Instance.check_due}}\pysiglinewithargsret{\sphinxbfcode{check\_due}}{}{}
+Checks whether this instance is due for repetition
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Whether the due datetime is earlier than the current datetime
+
+\item[{Return type}] \leavevmode
+boolean
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{finalise\_response() (instance.Instance method)}
 
 \begin{fulllineitems}
@@ -486,6 +537,22 @@ Sets the correctness value for the final response and sets the end date to now
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
 \sphinxstyleliteralstrong{correct} (\sphinxstyleliteralemphasis{boolean}) -- Whether the response was correct
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_exponent() (instance.Instance method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{instance:instance.Instance.get_exponent}}\pysiglinewithargsret{\sphinxbfcode{get\_exponent}}{}{}
+Determines the exponent for the rescheduling of this instance
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+The amount of times this instance was answered correctly since the previous incorrect answer
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/functions.html\#int}{int}
 
 \end{description}\end{quote}
 
@@ -513,7 +580,7 @@ Adds a new response to this instance
 
 
 \chapter{logentry module}
-\label{\detokenize{logentry:module-logentry}}\label{\detokenize{logentry:logentry-module}}\label{\detokenize{logentry::doc}}\index{logentry (module)}\index{LogEntry (class in logentry)}
+\label{\detokenize{logentry::doc}}\label{\detokenize{logentry:logentry-module}}\label{\detokenize{logentry:module-logentry}}\index{logentry (module)}\index{LogEntry (class in logentry)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{logentry:logentry.LogEntry}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{logentry.}\sphinxbfcode{LogEntry}}{\emph{*args}, \emph{**values}}{}
@@ -561,7 +628,7 @@ A class for representing nodes in the concept map
 
 
 \chapter{questionnaire module}
-\label{\detokenize{questionnaire:questionnaire-module}}\label{\detokenize{questionnaire::doc}}\label{\detokenize{questionnaire:module-questionnaire}}\index{questionnaire (module)}\index{Questionnaire (class in questionnaire)}
+\label{\detokenize{questionnaire:questionnaire-module}}\label{\detokenize{questionnaire:module-questionnaire}}\label{\detokenize{questionnaire::doc}}\index{questionnaire (module)}\index{Questionnaire (class in questionnaire)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire.}\sphinxbfcode{Questionnaire}}{\emph{pu\_items}, \emph{peou\_items}, \emph{**data}}{}
@@ -613,7 +680,7 @@ Appends an answer to an item within the questionnaire
 
 
 \chapter{questionnaire\_item module}
-\label{\detokenize{questionnaire_item:questionnaire-item-module}}\label{\detokenize{questionnaire_item:module-questionnaire_item}}\label{\detokenize{questionnaire_item::doc}}\index{questionnaire\_item (module)}\index{QuestionnaireItem (class in questionnaire\_item)}
+\label{\detokenize{questionnaire_item:questionnaire-item-module}}\label{\detokenize{questionnaire_item::doc}}\label{\detokenize{questionnaire_item:module-questionnaire_item}}\index{questionnaire\_item (module)}\index{QuestionnaireItem (class in questionnaire\_item)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire\_item.}\sphinxbfcode{QuestionnaireItem}}{\emph{*args}, \emph{**values}}{}
@@ -640,7 +707,7 @@ A class representing a single item on the questionnaire
 
 
 \chapter{questionnaire\_response module}
-\label{\detokenize{questionnaire_response:questionnaire-response-module}}\label{\detokenize{questionnaire_response:module-questionnaire_response}}\label{\detokenize{questionnaire_response::doc}}\index{questionnaire\_response (module)}\index{QuestionnaireResponse (class in questionnaire\_response)}
+\label{\detokenize{questionnaire_response:module-questionnaire_response}}\label{\detokenize{questionnaire_response::doc}}\label{\detokenize{questionnaire_response:questionnaire-response-module}}\index{questionnaire\_response (module)}\index{QuestionnaireResponse (class in questionnaire\_response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{questionnaire_response:questionnaire_response.QuestionnaireResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire\_response.}\sphinxbfcode{QuestionnaireResponse}}{\emph{*args}, \emph{**kwargs}}{}
@@ -667,7 +734,7 @@ A class for storing singular responses to questionnaire items
 
 
 \chapter{response module}
-\label{\detokenize{response:response-module}}\label{\detokenize{response:module-response}}\label{\detokenize{response::doc}}\index{response (module)}\index{Response (class in response)}
+\label{\detokenize{response:module-response}}\label{\detokenize{response:response-module}}\label{\detokenize{response::doc}}\index{response (module)}\index{Response (class in response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{response:response.Response}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{response.}\sphinxbfcode{Response}}{\emph{*args}, \emph{**kwargs}}{}
@@ -694,7 +761,7 @@ A class representing a singular response to an \sphinxcode{Instance}.
 
 
 \chapter{session module}
-\label{\detokenize{session:session-module}}\label{\detokenize{session:module-session}}\label{\detokenize{session::doc}}\index{session (module)}\index{Session (class in session)}
+\label{\detokenize{session:module-session}}\label{\detokenize{session::doc}}\label{\detokenize{session:session-module}}\index{session (module)}\index{Session (class in session)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{session:session.Session}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{session.}\sphinxbfcode{Session}}{\emph{*args}, \emph{**kwargs}}{}
@@ -732,7 +799,7 @@ Closes this session
 
 
 \chapter{test module}
-\label{\detokenize{test:module-test}}\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}\index{test (module)}\index{Test (class in test)}
+\label{\detokenize{test:test-module}}\label{\detokenize{test:module-test}}\label{\detokenize{test::doc}}\index{test (module)}\index{Test (class in test)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test:test.Test}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test.}\sphinxbfcode{Test}}{\emph{flashcards}, \emph{items}, \emph{prev\_flashcards={[}{]}}, \emph{prev\_items={[}{]}}, \emph{**data}}{}
@@ -781,7 +848,7 @@ A sample of five items from items not included in prev\_items
 
 
 \chapter{test\_flashcard\_response module}
-\label{\detokenize{test_flashcard_response:test-flashcard-response-module}}\label{\detokenize{test_flashcard_response:module-test_flashcard_response}}\label{\detokenize{test_flashcard_response::doc}}\index{test\_flashcard\_response (module)}\index{TestFlashcardResponse (class in test\_flashcard\_response)}
+\label{\detokenize{test_flashcard_response::doc}}\label{\detokenize{test_flashcard_response:test-flashcard-response-module}}\label{\detokenize{test_flashcard_response:module-test_flashcard_response}}\index{test\_flashcard\_response (module)}\index{TestFlashcardResponse (class in test\_flashcard\_response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test_flashcard_response:test_flashcard_response.TestFlashcardResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_flashcard\_response.}\sphinxbfcode{TestFlashcardResponse}}{\emph{*args}, \emph{**kwargs}}{}
@@ -805,7 +872,7 @@ An answer for a flashcard item within a pre- or posttest
 
 
 \chapter{test\_item module}
-\label{\detokenize{test_item:test-item-module}}\label{\detokenize{test_item::doc}}\label{\detokenize{test_item:module-test_item}}\index{test\_item (module)}\index{TestItem (class in test\_item)}
+\label{\detokenize{test_item:module-test_item}}\label{\detokenize{test_item:test-item-module}}\label{\detokenize{test_item::doc}}\index{test\_item (module)}\index{TestItem (class in test\_item)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test_item:test_item.TestItem}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_item.}\sphinxbfcode{TestItem}}{\emph{*args}, \emph{**values}}{}
@@ -832,7 +899,7 @@ A class representing an item from a pre- or posttest
 
 
 \chapter{test\_item\_response module}
-\label{\detokenize{test_item_response:module-test_item_response}}\label{\detokenize{test_item_response:test-item-response-module}}\label{\detokenize{test_item_response::doc}}\index{test\_item\_response (module)}\index{TestItemResponse (class in test\_item\_response)}
+\label{\detokenize{test_item_response:test-item-response-module}}\label{\detokenize{test_item_response::doc}}\label{\detokenize{test_item_response:module-test_item_response}}\index{test\_item\_response (module)}\index{TestItemResponse (class in test\_item\_response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test_item_response:test_item_response.TestItemResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_item\_response.}\sphinxbfcode{TestItemResponse}}{\emph{*args}, \emph{**values}}{}
@@ -856,7 +923,7 @@ A class representing singular answers to test items
 
 
 \chapter{user module}
-\label{\detokenize{user:module-user}}\label{\detokenize{user:user-module}}\label{\detokenize{user::doc}}\index{user (module)}\index{User (class in user)}
+\label{\detokenize{user:module-user}}\label{\detokenize{user::doc}}\label{\detokenize{user:user-module}}\index{user (module)}\index{User (class in user)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{user:user.User}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{user.}\sphinxbfcode{User}}{\emph{*args}, \emph{**values}}{}

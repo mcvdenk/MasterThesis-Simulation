@@ -67,16 +67,27 @@
 <span class="sd">        :return: A concept map containing parent and sibling edges of edge together with the referred nodes</span>
 <span class="sd">        :rtype: ConceptMap</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">ConceptMap</span><span class="p">(</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">to_node</span><span class="p">],</span> <span class="n">edges</span> <span class="o">=</span> <span class="p">[])</span>
-        
+        <span class="n">result</span> <span class="o">=</span> <span class="n">ConceptMap</span><span class="p">(</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">edges</span> <span class="o">=</span> <span class="p">[])</span>
         <span class="n">result</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">find_prerequisites</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="p">[],</span> <span class="n">sources</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">from_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">from_node</span><span class="p">)</span>
-        
-        <span class="n">siblings</span> <span class="o">+=</span> <span class="n">find_siblings</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">partial_edges</span><span class="p">)</span>
-        <span class="n">result</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">sibling</span><span class="o">.</span><span class="n">to_node</span> <span class="k">for</span> <span class="n">sibling</span> <span class="ow">in</span> <span class="n">siblings</span><span class="p">))</span>
-        
+        <span class="n">siblings</span> <span class="o">=</span> <span class="n">find_siblings</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">partial_edges</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">siblings</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="n">find_nodes</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="ConceptMap.find_nodes"><a class="viewcode-back" href="../concept_map.html#concept_map.ConceptMap.find_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">find_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the from and to nodes given a list of edges</span>
+
+<span class="sd">        :param edges: The list of edges for which to find the nodes</span>
+<span class="sd">        :type edges: list(Edge)</span>
+<span class="sd">        :return: The list of nodes referred to in the edges</span>
+<span class="sd">        :rtype: list(Node)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">from_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">from_node</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">to_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">to_node</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="ConceptMap.find_prerequisites"><a class="viewcode-back" href="../concept_map.html#concept_map.ConceptMap.find_prerequisites">[docs]</a>    <span class="k">def</span> <span class="nf">find_prerequisites</span><span class="p">(</span><span class="n">postreq</span><span class="p">,</span> <span class="n">prereqs</span><span class="p">,</span> <span class="n">sources</span><span class="p">):</span>

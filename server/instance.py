@@ -34,11 +34,27 @@ class Instance(EmbeddedDocument):
         response.correct = correct
         response.end = datetime.now()
 
-    def schedule():
-        """Reschedules this instance for review based on the previous responses"""
+    def check_due():
+        """Checks whether this instance is due for repetition
+
+        :return: Whether the due datetime is earlier than the current datetime
+        :rtype: boolean
+        """
+        return due_date < datetime.now()
+
+    def get_exponent():
+        """Determines the exponent for the rescheduling of this instance
+
+        :return: The amount of times this instance was answered correctly since the previous incorrect answer
+        :rtype: int
+        """
         exp = 1
-        if (not len(responses)): return
         for resp in responses.sort(key = lambda r: r.response.end):
             if (not resp.correct): exp = 1;
             else: exp += 1
-        due_date = datetime.now() + min(5**exp, 2000000)
+        return exp
+
+    def schedule():
+        """Reschedules this instance for review based on the previous responses"""
+        if (not len(responses)): return
+        due_date = datetime.now() + min(5**get_exponent(), 2000000)

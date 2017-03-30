@@ -71,7 +71,7 @@ class Consumer():
                     data['can_be_improved'])
             msg['keyword'] = check_prerequisites()
         elif (keyword == "LEARNED_ITEMS-REQUEST"):
-            pass
+            msg = provide_learned_items()
         elif (keyword == "LEARN-REQUEST"): 
             msg = provide_learning()
         elif (keyword == "READ_SOURCE-RESPONSE"):
@@ -195,3 +195,30 @@ class Consumer():
         """
         for response in responses:
             user.validate(response['id'], response['correct'])
+
+    def provide_learned_items():
+        """Provides an overview of all learning
+
+        :return: A partial concept map containing all instances for this user or a message containing progress information
+        :rtype: dict
+        """
+        msg = {'keyword': "LEARNED_ITEMS-RESPONSE", 'data' : {}}
+        if user.condition is "FLASHMAP":
+            edges = [instance.reference for instance in user.instances]
+            nodes = concept_map.find_nodes(edges)
+            result_map = ConceptMap(nodes, edges)
+            msg['data'] = result_map.to_dict()
+        elif user.condition is "FLASHCARD":
+            msg["data"] = {"due" : 0, "new": 0, "learning": 0, "learned": 0, "not_seen": 0}
+            for flashcard in flashcards:
+                seen = False
+                for instance in user.instances:
+                    if (instance.reference is flashcard):
+                        seen = True
+                        if (instance.check_due): msg["data"]["due"] += 1
+                        if (instance.get_exponent() < 2): msg["data"]["new"] += 1
+                        elif (instance.get_exponent() < 6): msg["data"]["learning"] += 1
+                        else: msg["data"]["learned"] += 1
+                if (not seen): msg["data"]["not_seen"] += 1
+        msg['data']['condition'] = user.condition
+        return msg

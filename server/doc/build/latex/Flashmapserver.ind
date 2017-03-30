@@ -11,6 +11,7 @@
 
   \indexspace
   \bigletter C
+  \item check\_due() (instance.Instance method), \hyperpage{15}
   \item check\_prerequisites() (consumer.Consumer method), \hyperpage{3}
   \item concept\_map (module), \hyperpage{1}
   \item ConceptMap (class in concept\_map), \hyperpage{1}
@@ -31,6 +32,7 @@
   \indexspace
   \bigletter F
   \item finalise\_response() (instance.Instance method), \hyperpage{15}
+  \item find\_nodes() (concept\_map.ConceptMap method), \hyperpage{1}
   \item find\_prerequisites() (concept\_map.ConceptMap method), \hyperpage{1}
   \item find\_siblings() (concept\_map.ConceptMap method), \hyperpage{1}
   \item Flashcard (class in flashcard), \hyperpage{7}
@@ -44,6 +46,7 @@
   \bigletter G
   \item generate\_test() (test.Test method), \hyperpage{31}
   \item get\_due\_instance() (user.User method), \hyperpage{40}
+  \item get\_exponent() (instance.Instance method), \hyperpage{15}
   \item get\_partial\_map() (concept\_map.ConceptMap method), \hyperpage{1}
 
   \indexspace
@@ -68,6 +71,7 @@
 
   \indexspace
   \bigletter P
+  \item provide\_learned\_items() (consumer.Consumer method), \hyperpage{4}
   \item provide\_learned\_items() (user.User method), \hyperpage{40}
   \item provide\_learning() (consumer.Consumer method), \hyperpage{4}
 
@@ -104,7 +108,7 @@
   \item TestFlashcardResponse (class in test\_flashcard\_response), \hyperpage{33}
   \item TestItem (class in test\_item), \hyperpage{35}
   \item TestItemResponse (class in test\_item\_response), \hyperpage{37}
-  \item to\_dict() (concept\_map.ConceptMap method), \hyperpage{1}
+  \item to\_dict() (concept\_map.ConceptMap method), \hyperpage{2}
   \item to\_dict() (flashcard.Flashcard method), \hyperpage{7}
 
   \indexspace

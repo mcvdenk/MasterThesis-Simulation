@@ -22,16 +22,27 @@ class ConceptMap(Document):
         :return: A concept map containing parent and sibling edges of edge together with the referred nodes
         :rtype: ConceptMap
         """
-        result = ConceptMap(nodes = [edge.to_node], edges = [])
-        
+        result = ConceptMap(nodes = [], edges = [])
         result.edges = find_prerequisites(edge, [], sources)
-        for e in result.edges:
-            if (edge.from_node not in result.nodes):
-                result.nodes.append(edge.from_node)
-        
-        siblings += find_siblings(edge, sources, partial_edges)
-        result.nodes.append(next(sibling.to_node for sibling in siblings))
-        
+        siblings = find_siblings(edge, sources, partial_edges)
+        result.edges.extend(siblings)
+        result.nodes = find_nodes(result.edges)
+        return result
+
+    def find_nodes(edges):
+        """Returns the from and to nodes given a list of edges
+
+        :param edges: The list of edges for which to find the nodes
+        :type edges: list(Edge)
+        :return: The list of nodes referred to in the edges
+        :rtype: list(Node)
+        """
+        result = []
+        for edge in edges:
+            if edge.from_node not in result:
+                result.append(edge.from_node)
+            if edge.to_node not in result:
+                result.append(edge.to_node)
         return result
 
     def find_prerequisites(postreq, prereqs, sources):
