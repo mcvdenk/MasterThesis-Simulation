@@ -1,6 +1,9 @@
 # TODO LIST
 
-* Implement LEARNED_ITEMS-REQUEST
+* ~~Implement LEARNED_ITEMS-REQUEST~~
 * ~~Implement READ_SOURCE-RESPONSE~~
 * ~~Implement VALIDATE~~
-* Implement UNDO
+* ~~Implement UNDO~~
+* Build unit tests
+* Adapt client.js
+* Black-box testing
