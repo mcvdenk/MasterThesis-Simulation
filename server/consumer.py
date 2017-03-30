@@ -7,8 +7,7 @@ import random
 import math
 from mongoengine import *
 
-from flashmap_user import *
-from flashcard_user import *
+from user import *
 from concept_map import *
 from flashcard import *
 from questionnaire import *
@@ -50,7 +49,7 @@ class Consumer():
         :return: Contains the keyword and data to send over a websocket to a client
         :rtype: dict(str, str or dict)
 
-        .. todo: Implement LEARNED_ITEMS-REQUEST, UNDO
+        .. todo: Implement LEARNED_ITEMS-REQUEST
         """
         msg = {'keyword': "FAILURE", 'data': {}}
         if (keyword == "AUTHENTICATE-REQUEST"): 
@@ -82,7 +81,9 @@ class Consumer():
             validate(data['responses'])
             msg = provide_learning()
         elif (keyword == "UNDO"): 
-            pass
+            recent_instance = user.retrieve_recent_instance()
+            if recent_instance is not None:
+                msg = learning_message(recent_instance)
         user.save(cascade = True)
         return msg
 
@@ -148,30 +149,35 @@ class Consumer():
         :rtype: dict
         """
         msg = {'keyword': "", 'data': {}}
-        item = user.get_due_instance()
-        if item == None:
-            item = user.add_instance()
-        if item == None:
+        instance = user.get_due_instance()
+        if instance == None:
+            instance = user.add_instance()
+        if instance == None:
             msg['keyword'] = "NO_MORE_INSTANCES"
-        elif item.source not in user.sources:
+        elif instance.source not in user.sources:
             msg['keyword'] = "READ_SOURCE-REQUEST"
-            msg['data'] = {'source': item.source}
+            msg['data'] = {'source': instance.source}
         else:
-            msg['keyword'] = "LEARNING-RESPONSE" 
-            if user.condition is "FLASHMAP":
-                cmap = concept_map.get_partial_map(item)
-                dmap = cmap.to_dict()
-                for i in concept_map.get_siblings(item).append(item)
-                    for edge in dmap['edges']:
-                        if edge['id'] == str(i.id) and user.check_due(i):
-                            edge['learning'] = True
-                        else:
-                            edge['learning'] = False
-                msg['data'] = dmap
-            elif user.condition is "FLASHCARD":
-                msg['data'] = item.to_dict()
-            msg['data']['condition'] = user.condition
+            msg = learning_message(instance)
         return msg
+
+    def learning_message(instance):
+        msg['keyword'] = "LEARNING-RESPONSE" 
+        if user.condition is "FLASHMAP":
+            cmap = concept_map.get_partial_map(item)
+            dmap = cmap.to_dict()
+            for i in concept_map.get_siblings(item).append(item):
+                for edge in dmap['edges']:
+                    if edge['id'] == str(i.id) and user.check_due(i):
+                        edge['learning'] = True
+                    else:
+                        edge['learning'] = False
+            msg['data'] = dmap
+        elif user.condition is "FLASHCARD":
+            msg['data'] = item.to_dict()
+        msg['data']['condition'] = user.condition
+        return msg
+
 
     def add_source(source):
         """Adds a read source to the active user

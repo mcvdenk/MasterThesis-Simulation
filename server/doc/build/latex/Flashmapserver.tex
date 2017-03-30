@@ -40,7 +40,7 @@
 
 
 \title{Flashmap server Documentation}
-\date{Mar 06, 2017}
+\date{Mar 30, 2017}
 \release{1.0}
 \author{M.C. van den Enk}
 \newcommand{\sphinxlogo}{}
@@ -52,32 +52,88 @@
 \maketitle
 \sphinxtableofcontents
 \phantomsection\label{\detokenize{index::doc}}
-Contents:
 
 
-\index{concept\_map (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{ConceptMap (class in concept\_map)}
+
+\chapter{concept\_map module}
+\label{\detokenize{concept_map:concept-map-module}}\label{\detokenize{concept_map:contents}}\label{\detokenize{concept_map:module-concept_map}}\label{\detokenize{concept_map::doc}}\index{concept\_map (module)}\index{ConceptMap (class in concept\_map)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{concept\_map.}\sphinxbfcode{ConceptMap}}{\emph{*args}, \emph{**values}}{}
+Bases: \sphinxcode{mongoengine.document.Document}
+
 A class representing a concept map
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{nodes} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{node:node.Node}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Node}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- a list of nodes (by default all existing node documents)
+\sphinxstyleliteralstrong{nodes} -- a list of nodes (by default all existing node documents)
 
 \item {} 
-\sphinxstyleliteralstrong{edges} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- a list of edges (by default all existing edge documents)
+\sphinxstyleliteralstrong{edges} -- a list of edges (by default all existing edge documents)
 
 \end{itemize}
 
 \end{description}\end{quote}
+\index{find\_prerequisites() (concept\_map.ConceptMap method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.find_prerequisites}}\pysiglinewithargsret{\sphinxbfcode{find\_prerequisites}}{\emph{postreq}, \emph{prereqs}, \emph{sources}}{}
+Return a list of parent edges given a certain edge from a list of edges, filtered by a list of sources
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{postreq} ({\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}) -- The edge which is currently investigated for parent edges
+
+\item {} 
+\sphinxstyleliteralstrong{prereqs} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of already found parent edges (starts usually empty, necessary for recursion)
+
+\item {} 
+\sphinxstyleliteralstrong{sources} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of the currently read sources, edges which have a source not included in this list  will not be included in the resulting list
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+A list of edges which are prerequisites from edge
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/functions.html\#list}{list}({\hyperref[\detokenize{edge:module-edge}]{\sphinxcrossref{edge}}})
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{find\_siblings() (concept\_map.ConceptMap method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.find_siblings}}\pysiglinewithargsret{\sphinxbfcode{find\_siblings}}{\emph{edge}, \emph{sources}, \emph{partial\_edges}}{}
+Return a list of edges which are siblings of the given edge
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{edge} ({\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}) -- The edge investigated for siblings
+
+\item {} 
+\sphinxstyleliteralstrong{sources} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- The sources to filter on when looking for siblings
+
+\item {} 
+\sphinxstyleliteralstrong{partial\_edges} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of edges to filter on when looking for siblings
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+A list of edges which are siblings of edge
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/functions.html\#list}{list}({\hyperref[\detokenize{edge:module-edge}]{\sphinxcrossref{edge}}})
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{get\_partial\_map() (concept\_map.ConceptMap method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.get_partial_map}}\pysiglinewithargsret{\sphinxbfcode{get\_partial\_map}}{\emph{edge}}{}
+\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.get_partial_map}}\pysiglinewithargsret{\sphinxbfcode{get\_partial\_map}}{\emph{edge}, \emph{sources}}{}
 Returns a concept map containing only the parent and sibling edges together with the referred nodes
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
@@ -91,10 +147,23 @@ A concept map containing parent and sibling edges of edge together with the refe
 
 \end{description}\end{quote}
 
-\begin{sphinxadmonition}{note}{Todo}
+\end{fulllineitems}
 
-Implementation
-\end{sphinxadmonition}
+\index{to\_dict() (concept\_map.ConceptMap method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{concept_map:concept_map.ConceptMap.to_dict}}\pysiglinewithargsret{\sphinxbfcode{to\_dict}}{}{}
+Returns a dictionary representation of this object
+
+The representation is compatible for use with vis.js, with `nodes' entries containing an `id' and `label', and `edges' entries containing an `id', `label', `from', `to', and an additional `source' entry
+\begin{quote}\begin{description}
+\item[{Result}] \leavevmode
+The dictionary representation
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/stdtypes.html\#dict}{dict}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -104,42 +173,64 @@ Implementation
 
 
 \chapter{consumer module}
-\label{\detokenize{consumer:consumer-module}}\label{\detokenize{consumer:concept-map-module}}\label{\detokenize{consumer:module-concept_map}}\label{\detokenize{consumer::doc}}\label{\detokenize{consumer:module-consumer}}\index{consumer (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{Consumer (class in consumer)}
+\label{\detokenize{consumer:module-consumer}}\label{\detokenize{consumer:consumer-module}}\label{\detokenize{consumer::doc}}\index{consumer (module)}\index{Consumer (class in consumer)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{consumer:consumer.Consumer}}\pysigline{\sphinxstrong{class }\sphinxcode{consumer.}\sphinxbfcode{Consumer}}
+Bases: \href{https://docs.python.org/2/library/functions.html\#object}{\sphinxcode{object}}
+
 This is the class from which the program is controlled. It can be used together with the {\hyperref[\detokenize{handler:module-handler}]{\sphinxcrossref{\sphinxcode{handler}}}} module in order to communicate with an external client over a websocket
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{concept\_map} ({\hyperref[\detokenize{concept_map:concept_map.ConceptMap}]{\sphinxcrossref{\sphinxstyleliteralemphasis{ConceptMap}}}}) -- The concept map object containing references to nodes and edges
+{\hyperref[\detokenize{concept_map:module-concept_map}]{\sphinxcrossref{\sphinxstyleliteralstrong{concept\_map}}}} -- The concept map object containing references to nodes and edges
 
 \item {} 
-\sphinxstyleliteralstrong{SOURCES} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}\href{https://docs.python.org/2/library/functions.html\#str}{\sphinxstyleliteralemphasis{str}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- All of the sources referenced to in the edges of the concept map
+\sphinxstyleliteralstrong{SOURCES} -- All of the sources referenced to in the edges of the concept map
 
 \item {} 
-\sphinxstyleliteralstrong{user} ({\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{\sphinxstyleliteralemphasis{User}}}}) -- The active user
+{\hyperref[\detokenize{user:module-user}]{\sphinxcrossref{\sphinxstyleliteralstrong{user}}}} -- The active user
 
 \end{itemize}
 
 \end{description}\end{quote}
+\index{add\_source() (consumer.Consumer method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{consumer:consumer.Consumer.add_source}}\pysiglinewithargsret{\sphinxbfcode{add\_source}}{\emph{source}}{}
+Adds a read source to the active user
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{source} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- The source to be added
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{authenticate() (consumer.Consumer method)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{consumer:consumer.Consumer.authenticate}}\pysiglinewithargsret{\sphinxbfcode{authenticate}}{\emph{name}}{}
-A function to either return an existing {\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{\sphinxcode{user.User}}}} or a new {\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{\sphinxcode{user.User}}}} based on the given name
+A function to either set self.user to an existing {\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{\sphinxcode{user.User}}}} or to a new User based on the given name
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
 \sphinxstyleliteralstrong{name} (\href{https://docs.python.org/2/library/functions.html\#str}{\sphinxstyleliteralemphasis{str}}) -- The username
 
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{check\_prerequisites() (consumer.Consumer method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{consumer:consumer.Consumer.check_prerequisites}}\pysiglinewithargsret{\sphinxbfcode{check\_prerequisites}}{}{}
+Checks whether the user still has to fill in forms and returns the appropriate message
+\begin{quote}\begin{description}
 \item[{Returns}] \leavevmode
-The user with this username
+A dict containing the appropriate keyword and data for this user
 
 \item[{Return type}] \leavevmode
-{\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{User}}}
+\href{https://docs.python.org/2/library/stdtypes.html\#dict}{dict}
 
 \end{description}\end{quote}
 
@@ -170,67 +261,154 @@ Contains the keyword and data to send over a websocket to a client
 
 \end{fulllineitems}
 
+\index{create\_questionnaire() (consumer.Consumer method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{consumer:consumer.Consumer.create_questionnaire}}\pysiglinewithargsret{\sphinxbfcode{create\_questionnaire}}{}{}
+Creates a questionnaire for this user (using user.create\_questionnaire())
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+A dict object fit for sending to the user
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/stdtypes.html\#dict}{dict}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{create\_test() (consumer.Consumer method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{consumer:consumer.Consumer.create_test}}\pysiglinewithargsret{\sphinxbfcode{create\_test}}{}{}
+Creates a test for this user (using user.create\_test())
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+A dict object fit for sending to the user
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/stdtypes.html\#dict}{dict}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{provide\_learning() (consumer.Consumer method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{consumer:consumer.Consumer.provide_learning}}\pysiglinewithargsret{\sphinxbfcode{provide\_learning}}{}{}
+Provides a dict containing relevant information for learning
+
+Provides a dict containing the keyword ``NO\_MORE\_INSTANCES'', ``READ\_SOURCE-REQUEST'', or ``LEARNING-RESPONSE'' and relevant data (the source string for ``READ\_SOURCE-REQUEST'' or either the output of \sphinxcode{ConceptMap.to\_dict()} with an added `learning' entry or the output of \sphinxcode{Flashcard.to\_dict()} for ``LEARNING-RESPONSE'' with an added condition entry)
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+A dict containing `keyword' and the relevant `data' described above
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/stdtypes.html\#dict}{dict}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{validate() (consumer.Consumer method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{consumer:consumer.Consumer.validate}}\pysiglinewithargsret{\sphinxbfcode{validate}}{\emph{responses}}{}
+Adds responses to certain instances
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{responses} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}\href{https://docs.python.org/2/library/stdtypes.html\#dict}{\sphinxstyleliteralemphasis{dict}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of responses containing an instance id and a boolean correctness value
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
 
 
 \chapter{edge module}
-\label{\detokenize{edge:module-edge}}\label{\detokenize{edge::doc}}\label{\detokenize{edge:edge-module}}\index{edge (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{Edge (class in edge)}
+\label{\detokenize{edge:module-edge}}\label{\detokenize{edge:edge-module}}\label{\detokenize{edge::doc}}\index{edge (module)}\index{Edge (class in edge)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{edge:edge.Edge}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{edge.}\sphinxbfcode{Edge}}{\emph{*args}, \emph{**values}}{}
+Bases: \sphinxcode{mongoengine.document.Document}
+
 A class representing an edge from a concept map
-:param from\_node: The parent node of the edge
-:type from\_node: Node
-:param to\_node: The child node of the edge
-:type to\_node: Node
-:param label: A label describing the relation between from\_node and to\_node
-:type label: StringField
-:param source: The source where this edge is described (e.g. paragraph 13.2 from Laagland)
-:type source: StringField
+\begin{quote}\begin{description}
+\item[{Variables}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{from\_node} -- The parent node of the edge
+
+\item {} 
+\sphinxstyleliteralstrong{to\_node} -- The child node of the edge
+
+\item {} 
+\sphinxstyleliteralstrong{label} -- A label describing the relation between from\_node and to\_node
+
+\item {} 
+\sphinxstyleliteralstrong{source} -- The source where this edge is described (e.g. paragraph 13.2 from Laagland)
+
+\end{itemize}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 
 \chapter{flashcard module}
-\label{\detokenize{flashcard:flashcard-module}}\label{\detokenize{flashcard:module-flashcard}}\label{\detokenize{flashcard::doc}}\index{flashcard (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{Flashcard (class in flashcard)}
+\label{\detokenize{flashcard:module-flashcard}}\label{\detokenize{flashcard:flashcard-module}}\label{\detokenize{flashcard::doc}}\index{flashcard (module)}\index{Flashcard (class in flashcard)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{flashcard:flashcard.Flashcard}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashcard.}\sphinxbfcode{Flashcard}}{\emph{*args}, \emph{**values}}{}
+Bases: \sphinxcode{mongoengine.document.Document}
+
 A class representing a flashcard
-:param question: The question on the front side of the flashcard
+:cvar question: The question on the front side of the flashcard
 :type question: StringField
-:param answer: The answer on the back side of the flashcard
+:cvar answer: The answer on the back side of the flashcard
 :type answer: StringField
-:param sources: The sources where this flashcard are described (e.g. paragraph 13.2 of Laagland)
+:cvar sources: The sources where this flashcard are described (e.g. paragraph 13.2 of Laagland)
 :type sources: ListField(StringField)
-:param response\_model: A list consisting of parts of valid responses to the question (for the test matrix)
+:cvar response\_model: A list consisting of parts of valid responses to the question (for the test matrix)
 :type response\_model: ListField(StringField)
+\index{to\_dict() (flashcard.Flashcard method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{flashcard:flashcard.Flashcard.to_dict}}\pysiglinewithargsret{\sphinxbfcode{to\_dict}}{}{}
+Returns a dictionary representation of this object
+
+It contains an `id', `question', `answer', and `sources' entry
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+The dictionary representation of this object
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/stdtypes.html\#dict}{dict}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
 
 
 \chapter{flashcard\_instance module}
-\label{\detokenize{flashcard_instance::doc}}\label{\detokenize{flashcard_instance:flashcard-instance-module}}\label{\detokenize{flashcard_instance:module-flashcard_instance}}\index{flashcard\_instance (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{FlashcardInstance (class in flashcard\_instance)}
+\label{\detokenize{flashcard_instance:module-flashcard_instance}}\label{\detokenize{flashcard_instance:flashcard-instance-module}}\label{\detokenize{flashcard_instance::doc}}\index{flashcard\_instance (module)}\index{FlashcardInstance (class in flashcard\_instance)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{flashcard_instance:flashcard_instance.FlashcardInstance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashcard\_instance.}\sphinxbfcode{FlashcardInstance}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: {\hyperref[\detokenize{instance:instance.Instance}]{\sphinxcrossref{\sphinxcode{instance.Instance}}}}
+
 A class for storing responses from the flashmap system
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode
-\sphinxstyleliteralstrong{reference} ({\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}) -- The edge to which this instance refers
+\item[{Variables}] \leavevmode
+\sphinxstyleliteralstrong{reference} -- The flashcard to which this instance refers
 
 \end{description}\end{quote}
 
@@ -239,17 +417,16 @@ A class for storing responses from the flashmap system
 
 
 \chapter{flashmap\_instance module}
-\label{\detokenize{flashmap_instance:flashmap-instance-module}}\label{\detokenize{flashmap_instance:module-flashmap_instance}}\label{\detokenize{flashmap_instance::doc}}\index{flashmap\_instance (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{FlashmapInstance (class in flashmap\_instance)}
+\label{\detokenize{flashmap_instance:module-flashmap_instance}}\label{\detokenize{flashmap_instance:flashmap-instance-module}}\label{\detokenize{flashmap_instance::doc}}\index{flashmap\_instance (module)}\index{FlashmapInstance (class in flashmap\_instance)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{flashmap_instance:flashmap_instance.FlashmapInstance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{flashmap\_instance.}\sphinxbfcode{FlashmapInstance}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: {\hyperref[\detokenize{instance:instance.Instance}]{\sphinxcrossref{\sphinxcode{instance.Instance}}}}
+
 A class for storing responses from the flashmap system
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode
-\sphinxstyleliteralstrong{reference} ({\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}) -- The edge from the concept map to which this instance refers to
+\item[{Variables}] \leavevmode
+\sphinxstyleliteralstrong{reference} -- The edge from the concept map to which this instance refers to
 
 \end{description}\end{quote}
 
@@ -258,21 +435,18 @@ A class for storing responses from the flashmap system
 
 
 \chapter{handler module}
-\label{\detokenize{handler:handler-module}}\label{\detokenize{handler:module-handler}}\label{\detokenize{handler::doc}}\index{handler (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{handler() (in module handler)}
+\label{\detokenize{handler:handler-module}}\label{\detokenize{handler:module-handler}}\label{\detokenize{handler::doc}}\index{handler (module)}\index{handler() (in module handler)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{handler:handler.handler}}\pysiglinewithargsret{\sphinxcode{handler.}\sphinxbfcode{handler}}{\emph{websocket}, \emph{path}}{}
 Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{websocket} (\sphinxstyleliteralemphasis{Websocket}) -- the websocket being used for receiving and sending messages to a client
+\sphinxstyleliteralstrong{websocket} -- the websocket being used for receiving and sending messages to a client
 
 \item {} 
-\sphinxstyleliteralstrong{path} (\sphinxstyleliteralemphasis{String}) -- the IP address used to host the websocket
+\sphinxstyleliteralstrong{path} -- the IP address used to host the websocket
 
 \end{itemize}
 
@@ -283,34 +457,53 @@ Initiate an asyncio thread which receives messages from a client, parse the json
 
 
 \chapter{instance module}
-\label{\detokenize{instance:module-instance}}\label{\detokenize{instance::doc}}\label{\detokenize{instance:instance-module}}\index{instance (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{Instance (class in instance)}
+\label{\detokenize{instance:instance-module}}\label{\detokenize{instance::doc}}\label{\detokenize{instance:module-instance}}\index{instance (module)}\index{Instance (class in instance)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{instance:instance.Instance}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{instance.}\sphinxbfcode{Instance}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
+
 A class describing a general flash instance, which can either be a FlashmapInstance or a FlashcardInstance
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{responses} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}\sphinxstyleliteralemphasis{EmbeddedDocumentField}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{response:response.Response}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Response}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of responses provided to this instance (an empty list by default)
+\sphinxstyleliteralstrong{responses} -- A list of responses provided to this instance (an empty list by default)
 
 \item {} 
-\sphinxstyleliteralstrong{reference} (\sphinxstyleliteralemphasis{GenericReferenceField}) -- A reference to either an edge in a concept map or a flashcard (defined within the subclass)
+\sphinxstyleliteralstrong{reference} -- A reference to either an edge in a concept map or a flashcard (defined within the subclass)
 
 \item {} 
-\sphinxstyleliteralstrong{due\_date} (\sphinxstyleliteralemphasis{DateTimeField}) -- The date this instance is due for repetition
+\sphinxstyleliteralstrong{due\_date} -- The date this instance is due for repetition
 
 \end{itemize}
 
 \end{description}\end{quote}
+\index{finalise\_response() (instance.Instance method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{instance:instance.Instance.finalise_response}}\pysiglinewithargsret{\sphinxbfcode{finalise\_response}}{\emph{correct}}{}
+Sets the correctness value for the final response and sets the end date to now
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{correct} (\sphinxstyleliteralemphasis{boolean}) -- Whether the response was correct
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{schedule() (instance.Instance method)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{instance:instance.Instance.schedule}}\pysiglinewithargsret{\sphinxbfcode{schedule}}{}{}
 Reschedules this instance for review based on the previous responses
-.. todo:: Implementation
+
+\end{fulllineitems}
+
+\index{start\_response() (instance.Instance method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{instance:instance.Instance.start_response}}\pysiglinewithargsret{\sphinxbfcode{start\_response}}{}{}
+Adds a new response to this instance
 
 \end{fulllineitems}
 
@@ -320,27 +513,26 @@ Reschedules this instance for review based on the previous responses
 
 
 \chapter{logentry module}
-\label{\detokenize{logentry:logentry-module}}\label{\detokenize{logentry::doc}}\label{\detokenize{logentry:module-logentry}}\index{logentry (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{LogEntry (class in logentry)}
+\label{\detokenize{logentry:module-logentry}}\label{\detokenize{logentry:logentry-module}}\label{\detokenize{logentry::doc}}\index{logentry (module)}\index{LogEntry (class in logentry)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{logentry:logentry.LogEntry}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{logentry.}\sphinxbfcode{LogEntry}}{\emph{*args}, \emph{**values}}{}
+Bases: \sphinxcode{mongoengine.document.Document}
+
 An object representing a incoming or outgoing network message
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{user} ({\hyperref[\detokenize{user:user.User}]{\sphinxcrossref{\sphinxstyleliteralemphasis{User}}}}) -- The user which was involved with this network message
+{\hyperref[\detokenize{user:module-user}]{\sphinxcrossref{\sphinxstyleliteralstrong{user}}}} -- The user which was involved with this network message
 
 \item {} 
-\sphinxstyleliteralstrong{keyword} (\sphinxstyleliteralemphasis{StringField}) -- The network keyword
+\href{https://docs.python.org/2/library/keyword.html\#module-keyword}{\sphinxstyleliteralstrong{keyword}} -- The network keyword
 
 \item {} 
-\sphinxstyleliteralstrong{data} (\sphinxstyleliteralemphasis{DictField}) -- The dictionary containing the necessary data
+\sphinxstyleliteralstrong{data} -- The dictionary containing the necessary data
 
 \item {} 
-\sphinxstyleliteralstrong{timestamp} (\sphinxstyleliteralemphasis{DateField}) -- The time that this message was received or transmitted
+\sphinxstyleliteralstrong{timestamp} -- The time that this message was received or transmitted
 
 \end{itemize}
 
@@ -351,7 +543,7 @@ An object representing a incoming or outgoing network message
 
 
 \chapter{node module}
-\label{\detokenize{node:module-node}}\label{\detokenize{node::doc}}\label{\detokenize{node:node-module}}\index{node (module)}\index{Node (class in node)}
+\label{\detokenize{node:node-module}}\label{\detokenize{node::doc}}\label{\detokenize{node:module-node}}\index{node (module)}\index{Node (class in node)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{node:node.Node}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{node.}\sphinxbfcode{Node}}{\emph{*args}, \emph{**values}}{}
@@ -369,24 +561,26 @@ A class for representing nodes in the concept map
 
 
 \chapter{questionnaire module}
-\label{\detokenize{questionnaire:questionnaire-module}}\label{\detokenize{questionnaire::doc}}\label{\detokenize{questionnaire:module-questionnaire}}\index{questionnaire (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{Questionnaire (class in questionnaire)}
+\label{\detokenize{questionnaire:questionnaire-module}}\label{\detokenize{questionnaire::doc}}\label{\detokenize{questionnaire:module-questionnaire}}\index{questionnaire (module)}\index{Questionnaire (class in questionnaire)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire.}\sphinxbfcode{Questionnaire}}{\emph{pu\_items}, \emph{peou\_items}, \emph{**data}}{}
+Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
+
 A class representing a stored questionnaire for a user
 \begin{quote}\begin{description}
-\item[{Variables}] \leavevmode
+\item[{Variables}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{perceived\_usefulness\_items} -- Responses to the perceived usefulness items from TAM
+
+\item {} 
 \sphinxstyleliteralstrong{perceived\_ease\_of\_use\_items} -- Responses to the perceived ease of use item from TAM
 
-\item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{good} (\sphinxstyleliteralemphasis{StringField}) -- A description of what was good about the software according to the user
+\sphinxstyleliteralstrong{good} -- A description of what was good about the software according to the user
 
 \item {} 
-\sphinxstyleliteralstrong{can\_be\_improved} (\sphinxstyleliteralemphasis{StringField}) -- A description of what could be improved according to the user
+\sphinxstyleliteralstrong{can\_be\_improved} -- A description of what could be improved according to the user
 
 \end{itemize}
 
@@ -413,39 +607,29 @@ Appends an answer to an item within the questionnaire
 
 \end{fulllineitems}
 
-\index{perceived\_usefulness\_items (questionnaire.Questionnaire attribute)}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{questionnaire:questionnaire.Questionnaire.perceived_usefulness_items}}\pysigline{\sphinxbfcode{perceived\_usefulness\_items}}
-Responses to the perceived usefulness items from TAM
-:type: list(QuestionnaireResponses)
-
-\end{fulllineitems}
-
 
 \end{fulllineitems}
 
 
 
 \chapter{questionnaire\_item module}
-\label{\detokenize{questionnaire_item:questionnaire-item-module}}\label{\detokenize{questionnaire_item:module-questionnaire_item}}\label{\detokenize{questionnaire_item::doc}}\index{questionnaire\_item (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{QuestionnaireItem (class in questionnaire\_item)}
+\label{\detokenize{questionnaire_item:questionnaire-item-module}}\label{\detokenize{questionnaire_item:module-questionnaire_item}}\label{\detokenize{questionnaire_item::doc}}\index{questionnaire\_item (module)}\index{QuestionnaireItem (class in questionnaire\_item)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire\_item.}\sphinxbfcode{QuestionnaireItem}}{\emph{*args}, \emph{**values}}{}
+Bases: \sphinxcode{mongoengine.document.Document}
+
 A class representing a single item on the questionnaire
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
 \sphinxstyleliteralstrong{usefullness} -- Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)
 
 \item {} 
-\sphinxstyleliteralstrong{positive\_phrasing} (\sphinxstyleliteralemphasis{StringField}) -- The version of this item which is positively phrased
+\sphinxstyleliteralstrong{positive\_phrasing} -- The version of this item which is positively phrased
 
 \item {} 
-\sphinxstyleliteralstrong{negative\_phrasing} (\sphinxstyleliteralemphasis{StringField}) -- The version of this item which is negatively phrased
+\sphinxstyleliteralstrong{negative\_phrasing} -- The version of this item which is negatively phrased
 
 \end{itemize}
 
@@ -456,24 +640,23 @@ A class representing a single item on the questionnaire
 
 
 \chapter{questionnaire\_response module}
-\label{\detokenize{questionnaire_response:questionnaire-response-module}}\label{\detokenize{questionnaire_response::doc}}\label{\detokenize{questionnaire_response:module-questionnaire_response}}\index{questionnaire\_response (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{QuestionnaireResponse (class in questionnaire\_response)}
+\label{\detokenize{questionnaire_response:questionnaire-response-module}}\label{\detokenize{questionnaire_response:module-questionnaire_response}}\label{\detokenize{questionnaire_response::doc}}\index{questionnaire\_response (module)}\index{QuestionnaireResponse (class in questionnaire\_response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{questionnaire_response:questionnaire_response.QuestionnaireResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{questionnaire\_response.}\sphinxbfcode{QuestionnaireResponse}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
+
 A class for storing singular responses to questionnaire items
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{questionnaire\_item} ({\hyperref[\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{QuestionnaireItem}}}}) -- The questionnaire item to which this answer refers
+{\hyperref[\detokenize{questionnaire_item:module-questionnaire_item}]{\sphinxcrossref{\sphinxstyleliteralstrong{questionnaire\_item}}}} -- The questionnaire item to which this answer refers
 
 \item {} 
-\sphinxstyleliteralstrong{answer} (\sphinxstyleliteralemphasis{IntField}) -- The value of the likert-scale rating the user gave to this item (ranges from -2 to 2)
+\sphinxstyleliteralstrong{answer} -- The value of the likert-scale rating the user gave to this item (ranges from -2 to 2)
 
 \item {} 
-\sphinxstyleliteralstrong{phrasing} (\sphinxstyleliteralemphasis{BooleanField}) -- Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire\_item
+\sphinxstyleliteralstrong{phrasing} -- Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire\_item
 
 \end{itemize}
 
@@ -484,24 +667,23 @@ A class for storing singular responses to questionnaire items
 
 
 \chapter{response module}
-\label{\detokenize{response:response-module}}\label{\detokenize{response::doc}}\label{\detokenize{response:module-response}}\index{response (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{Response (class in response)}
+\label{\detokenize{response:response-module}}\label{\detokenize{response:module-response}}\label{\detokenize{response::doc}}\index{response (module)}\index{Response (class in response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{response:response.Response}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{response.}\sphinxbfcode{Response}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
+
 A class representing a singular response to an \sphinxcode{Instance}.
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{start} (\sphinxstyleliteralemphasis{DateTimeField}) -- The moment the parent \sphinxcode{Instance} was sent to the client
+\sphinxstyleliteralstrong{start} -- The moment the parent \sphinxcode{Instance} was sent to the client
 
 \item {} 
-\sphinxstyleliteralstrong{end} (\sphinxstyleliteralemphasis{DateTimeField}) -- The moment the answer from the client was received
+\sphinxstyleliteralstrong{end} -- The moment the answer from the client was received
 
 \item {} 
-\sphinxstyleliteralstrong{correct} (\sphinxstyleliteralemphasis{BooleanField}) -- Whether the answer to the \sphinxcode{Instance} was correct (True) or incorrect (False)
+\sphinxstyleliteralstrong{correct} -- Whether the answer to the \sphinxcode{Instance} was correct (True) or incorrect (False)
 
 \end{itemize}
 
@@ -512,52 +694,58 @@ A class representing a singular response to an \sphinxcode{Instance}.
 
 
 \chapter{session module}
-\label{\detokenize{session:module-session}}\label{\detokenize{session::doc}}\label{\detokenize{session:session-module}}\index{session (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{Session (class in session)}
+\label{\detokenize{session:session-module}}\label{\detokenize{session:module-session}}\label{\detokenize{session::doc}}\index{session (module)}\index{Session (class in session)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{session:session.Session}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{session.}\sphinxbfcode{Session}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
+
 A class representing a session the user was logged in
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{start} (\sphinxstyleliteralemphasis{DateTimeField}) -- The time that the user logged in
+\sphinxstyleliteralstrong{start} -- The time that the user logged in
 
 \item {} 
-\sphinxstyleliteralstrong{end} (\sphinxstyleliteralemphasis{DateTimeField}) -- The time that the user logged out
+\sphinxstyleliteralstrong{end} -- The time that the user logged out
 
 \item {} 
-\sphinxstyleliteralstrong{source\_prompted} (\sphinxstyleliteralemphasis{BooleanField}) -- Whether the user was asked to have read a certain source from SOURCES
+\sphinxstyleliteralstrong{source\_prompted} -- Whether the user was asked to have read a certain source from SOURCES
 
 \item {} 
-\sphinxstyleliteralstrong{browser} (\sphinxstyleliteralemphasis{StringField}) -- The type of browser used to log in
+\sphinxstyleliteralstrong{browser} -- The type of browser used to log in
 
 \end{itemize}
 
 \end{description}\end{quote}
+\index{end\_session() (session.Session method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{session:session.Session.end_session}}\pysiglinewithargsret{\sphinxbfcode{end\_session}}{}{}
+Closes this session
+
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
 
 
 \chapter{test module}
-\label{\detokenize{test:module-test}}\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}\index{test (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{Test (class in test)}
+\label{\detokenize{test:module-test}}\label{\detokenize{test:test-module}}\label{\detokenize{test::doc}}\index{test (module)}\index{Test (class in test)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test:test.Test}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test.}\sphinxbfcode{Test}}{\emph{flashcards}, \emph{items}, \emph{prev\_flashcards={[}{]}}, \emph{prev\_items={[}{]}}, \emph{**data}}{}
+Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
+
 A class representing a pre- or posttest the user filled in
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{test\_flashcard\_responses} ({\hyperref[\detokenize{test_flashcard_response:test_flashcard_response.TestFlashcardResponse}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestFlashcardResponse}}}}) -- A list of responses to the flashcard questions on the test
+\sphinxstyleliteralstrong{test\_flashcard\_responses} -- A list of responses to the flashcard questions on the test
 
 \item {} 
-\sphinxstyleliteralstrong{test\_item\_responses} ({\hyperref[\detokenize{test_item_response:test_item_response.TestItemResponse}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestItemResponse}}}}) -- A list of responses to the item questions on the test
+\sphinxstyleliteralstrong{test\_item\_responses} -- A list of responses to the item questions on the test
 
 \end{itemize}
 
@@ -593,21 +781,20 @@ A sample of five items from items not included in prev\_items
 
 
 \chapter{test\_flashcard\_response module}
-\label{\detokenize{test_flashcard_response:test-flashcard-response-module}}\label{\detokenize{test_flashcard_response:module-test_flashcard_response}}\label{\detokenize{test_flashcard_response::doc}}\index{test\_flashcard\_response (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{TestFlashcardResponse (class in test\_flashcard\_response)}
+\label{\detokenize{test_flashcard_response:test-flashcard-response-module}}\label{\detokenize{test_flashcard_response:module-test_flashcard_response}}\label{\detokenize{test_flashcard_response::doc}}\index{test\_flashcard\_response (module)}\index{TestFlashcardResponse (class in test\_flashcard\_response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test_flashcard_response:test_flashcard_response.TestFlashcardResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_flashcard\_response.}\sphinxbfcode{TestFlashcardResponse}}{\emph{*args}, \emph{**kwargs}}{}
+Bases: \sphinxcode{mongoengine.document.EmbeddedDocument}
+
 An answer for a flashcard item within a pre- or posttest
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{answer} (\sphinxstyleliteralemphasis{StringField}) -- The answer provided by the user
+\sphinxstyleliteralstrong{answer} -- The answer provided by the user
 
 \item {} 
-\sphinxstyleliteralstrong{flashcard} (\sphinxstyleliteralemphasis{StringField}) -- The flashcard to which this response refers to
+{\hyperref[\detokenize{flashcard:module-flashcard}]{\sphinxcrossref{\sphinxstyleliteralstrong{flashcard}}}} -- The flashcard to which this response refers to
 
 \end{itemize}
 
@@ -618,24 +805,23 @@ An answer for a flashcard item within a pre- or posttest
 
 
 \chapter{test\_item module}
-\label{\detokenize{test_item::doc}}\label{\detokenize{test_item:module-test_item}}\label{\detokenize{test_item:test-item-module}}\index{test\_item (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{TestItem (class in test\_item)}
+\label{\detokenize{test_item:test-item-module}}\label{\detokenize{test_item::doc}}\label{\detokenize{test_item:module-test_item}}\index{test\_item (module)}\index{TestItem (class in test\_item)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test_item:test_item.TestItem}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_item.}\sphinxbfcode{TestItem}}{\emph{*args}, \emph{**values}}{}
+Bases: \sphinxcode{mongoengine.document.Document}
+
 A class representing an item from a pre- or posttest
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{question} (\sphinxstyleliteralemphasis{STringField}) -- The question for this item
+\sphinxstyleliteralstrong{question} -- The question for this item
 
 \item {} 
-\sphinxstyleliteralstrong{sources} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}\sphinxstyleliteralemphasis{StringField}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of sources relevant to this question
+\sphinxstyleliteralstrong{sources} -- A list of sources relevant to this question
 
 \item {} 
-\sphinxstyleliteralstrong{response\_model} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}\sphinxstyleliteralemphasis{StringField}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of the parts of a valid answer used for the test matrix
+\sphinxstyleliteralstrong{response\_model} -- A list of the parts of a valid answer used for the test matrix
 
 \end{itemize}
 
@@ -646,21 +832,20 @@ A class representing an item from a pre- or posttest
 
 
 \chapter{test\_item\_response module}
-\label{\detokenize{test_item_response:test-item-response-module}}\label{\detokenize{test_item_response::doc}}\label{\detokenize{test_item_response:module-test_item_response}}\index{test\_item\_response (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{TestItemResponse (class in test\_item\_response)}
+\label{\detokenize{test_item_response:module-test_item_response}}\label{\detokenize{test_item_response:test-item-response-module}}\label{\detokenize{test_item_response::doc}}\index{test\_item\_response (module)}\index{TestItemResponse (class in test\_item\_response)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{test_item_response:test_item_response.TestItemResponse}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{test\_item\_response.}\sphinxbfcode{TestItemResponse}}{\emph{*args}, \emph{**values}}{}
+Bases: \sphinxcode{mongoengine.document.Document}
+
 A class representing singular answers to test items
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{answer} (\sphinxstyleliteralemphasis{StringField}) -- The answer to item provided by the user
+\sphinxstyleliteralstrong{answer} -- The answer to item provided by the user
 
 \item {} 
-\sphinxstyleliteralstrong{item} ({\hyperref[\detokenize{test_item:test_item.TestItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{TestItem}}}}) -- The specific item this response refers to
+\sphinxstyleliteralstrong{item} -- The specific item this response refers to
 
 \end{itemize}
 
@@ -671,55 +856,85 @@ A class representing singular answers to test items
 
 
 \chapter{user module}
-\label{\detokenize{user:module-user}}\label{\detokenize{user::doc}}\label{\detokenize{user:user-module}}\index{user (module)}\begin{quote}\begin{description}
-\item[{show-inheritance}] \leavevmode
-\end{description}\end{quote}
-\index{User (class in user)}
+\label{\detokenize{user:module-user}}\label{\detokenize{user:user-module}}\label{\detokenize{user::doc}}\index{user (module)}\index{User (class in user)}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{user:user.User}}\pysiglinewithargsret{\sphinxstrong{class }\sphinxcode{user.}\sphinxbfcode{User}}{\emph{*args}, \emph{**values}}{}
+Bases: \sphinxcode{mongoengine.document.Document}
+
 A class representing a user
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode\begin{itemize}
+\item[{Variables}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{flashmap\_condition} (\sphinxstyleliteralemphasis{BooleanField}) -- Whether the user uses the flashmap system (True) or the flashcard system (False)
+\sphinxstyleliteralstrong{name} -- The username
 
 \item {} 
-\sphinxstyleliteralstrong{birthdate} (\sphinxstyleliteralemphasis{DateTimeField}) -- The birthdate of the user
+\href{https://docs.python.org/2/library/functions.html\#type}{\sphinxstyleliteralstrong{type}} -- StringField
 
 \item {} 
-\sphinxstyleliteralstrong{read\_sources} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}\sphinxstyleliteralemphasis{StringField}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of read sources by the user
+\sphinxstyleliteralstrong{condition} -- The condition of the user (``FLASHMAP'' or ``FLASHCARD'')
 
 \item {} 
-\sphinxstyleliteralstrong{gender} (\sphinxstyleliteralemphasis{StringField}) -- The gender of the user (can be either `male', `female', or `other')
+\href{https://docs.python.org/2/library/functions.html\#type}{\sphinxstyleliteralstrong{type}} -- StringField
 
 \item {} 
-\sphinxstyleliteralstrong{code} (\sphinxstyleliteralemphasis{StringField}) -- The code from the user's informed consent form
+\sphinxstyleliteralstrong{birthdate} -- The birthdate of the user
 
 \item {} 
-\sphinxstyleliteralstrong{tests} (\sphinxstyleliteralemphasis{ListField}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{test:test.Test}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Test}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- The pre- and posttest
+\sphinxstyleliteralstrong{read\_sources} -- A list of read sources by the user
 
 \item {} 
-\sphinxstyleliteralstrong{questionnaire} ({\hyperref[\detokenize{questionnaire:questionnaire.Questionnaire}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Questionnaire}}}}) -- The questionnaire
+\sphinxstyleliteralstrong{gender} -- The gender of the user (can be either `male', `female', or `other')
+
+\item {} 
+\href{https://docs.python.org/2/library/code.html\#module-code}{\sphinxstyleliteralstrong{code}} -- The code from the user's informed consent form
+
+\item {} 
+\sphinxstyleliteralstrong{tests} -- The pre- and posttest
+
+\item {} 
+{\hyperref[\detokenize{questionnaire:module-questionnaire}]{\sphinxcrossref{\sphinxstyleliteralstrong{questionnaire}}}} -- The questionnaire
 
 \item {} 
 \sphinxstyleliteralstrong{instances} -- A list of instances storing the flashmap/flashcard data for the user
 
 \item {} 
-\sphinxstyleliteralstrong{sessions} ({\hyperref[\detokenize{session:session.Session}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Session}}}}) -- A list of past sessions for this user
+\sphinxstyleliteralstrong{sessions} -- A list of past sessions for this user
+
+\item {} 
+\href{https://docs.python.org/2/library/email.html\#module-email}{\sphinxstyleliteralstrong{email}} -- The email address for this user
 
 \end{itemize}
 
 \end{description}\end{quote}
+\index{add\_new\_instance() (user.User method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{user:user.User.add_new_instance}}\pysiglinewithargsret{\sphinxbfcode{add\_new\_instance}}{\emph{references}}{}
+Adds a new \sphinxcode{Instance} to this user
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{reference} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{flashcard:flashcard.Flashcard}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Flashcard}}}}\sphinxstyleliteralemphasis{ or }{\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Edge}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A set of flashcards or edges for which to add a new instance
+
+\item[{Returns}] \leavevmode
+The reference for which a new instance was added
+
+\item[{Return type}] \leavevmode
+{\hyperref[\detokenize{flashcard:flashcard.Flashcard}]{\sphinxcrossref{Flashcard}}} or {\hyperref[\detokenize{edge:edge.Edge}]{\sphinxcrossref{Edge}}}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{append\_questionnaire() (user.User method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.append_questionnaire}}\pysiglinewithargsret{\sphinxbfcode{append\_questionnaire}}{\emph{responses}, \emph{good}, \emph{can\_be\_improved}, \emph{email}}{}
+\phantomsection\label{\detokenize{user:user.User.append_questionnaire}}\pysiglinewithargsret{\sphinxbfcode{append\_questionnaire}}{\emph{responses}, \emph{good}, \emph{can\_be\_improved}}{}
 A method for appending a questionnairy to the user given responses
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{responses} (\href{https://docs.python.org/2/library/stdtypes.html\#dict}{\sphinxstyleliteralemphasis{dict}}) -- A list of dict objects containing a \sphinxcode{QuestionnaireItem} (key = `item') and an answer (key = `answer')
+\sphinxstyleliteralstrong{responses} (\href{https://docs.python.org/2/library/stdtypes.html\#dict}{\sphinxstyleliteralemphasis{dict}}) -- A list of dict objects containing a \sphinxcode{QuestionnaireItem} (key = `item'), the phrasing (key = `phrasing') and an answer (key = `answer')
 
 \item {} 
 \sphinxstyleliteralstrong{good} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- A description of what was good about the software according to the user
@@ -727,14 +942,9 @@ A method for appending a questionnairy to the user given responses
 \item {} 
 \sphinxstyleliteralstrong{can\_be\_improved} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- A description of what can be improved about the software according to the user
 
-\item {} 
-\sphinxstyleliteralstrong{email} (\href{https://docs.python.org/2/library/string.html\#module-string}{\sphinxstyleliteralemphasis{string}}) -- The email address of the user
-
 \end{itemize}
 
 \end{description}\end{quote}
-
-..todo:: implementation
 
 \end{fulllineitems}
 
@@ -755,22 +965,30 @@ A method for appending a test to the user given flashcard and item responses
 
 \end{description}\end{quote}
 
-..todo:: fix
-
 \end{fulllineitems}
 
 \index{create\_questionnaire() (user.User method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{user:user.User.create_questionnaire}}\pysiglinewithargsret{\sphinxbfcode{create\_questionnaire}}{\emph{items}}{}
+\phantomsection\label{\detokenize{user:user.User.create_questionnaire}}\pysiglinewithargsret{\sphinxbfcode{create\_questionnaire}}{\emph{pu\_items}, \emph{peou\_items}}{}
 A method for creating a new questionnaire
 \begin{quote}\begin{description}
-\item[{Parameters}] \leavevmode
-\sphinxstyleliteralstrong{items} (\href{https://docs.python.org/2/library/functions.html\#list}{\sphinxstyleliteralemphasis{list}}\sphinxstyleliteralemphasis{(}{\hyperref[\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}]{\sphinxcrossref{\sphinxstyleliteralemphasis{QuestionnaireItem}}}}\sphinxstyleliteralemphasis{)}\sphinxstyleliteralemphasis{}) -- A list of questionnaire items
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{pu\_items} -- A list of questionnaire items
+
+\item {} 
+\sphinxstyleliteralstrong{pu\_items} -- A list of questionnaire items
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+A randomised list of questionnaire items
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/functions.html\#list}{list}({\hyperref[\detokenize{questionnaire_item:questionnaire_item.QuestionnaireItem}]{\sphinxcrossref{QuestionnaireItem}}})
 
 \end{description}\end{quote}
-
-..todo:: implementation
 
 \end{fulllineitems}
 
@@ -789,7 +1007,37 @@ A method for creating a new test with unique questions
 
 \end{itemize}
 
+\item[{Returns}] \leavevmode
+A dict containing a list of FlashcardResponses and TestItemResponses
+
+\item[{Return type}] \leavevmode
+\href{https://docs.python.org/2/library/stdtypes.html\#dict}{dict}(\href{https://docs.python.org/2/library/string.html\#module-string}{string}, {\hyperref[\detokenize{response:response.Response}]{\sphinxcrossref{Response}}})
+
 \end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_due\_instance() (user.User method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{user:user.User.get_due_instance}}\pysiglinewithargsret{\sphinxbfcode{get\_due\_instance}}{}{}
+Returns the instance with the oldest due date
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Either the instance with the lowest due date or a None object
+
+\item[{Return type}] \leavevmode
+{\hyperref[\detokenize{instance:instance.Instance}]{\sphinxcrossref{Instance}}}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{provide\_learned\_items() (user.User method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{user:user.User.provide_learned_items}}\pysiglinewithargsret{\sphinxbfcode{provide\_learned\_items}}{}{}
+To be implemented at the specific subclass
 
 \end{fulllineitems}
 
@@ -815,6 +1063,38 @@ A method for setting the descriptives of the user
 
 \end{fulllineitems}
 
+\index{start\_response() (user.User method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{user:user.User.start_response}}\pysiglinewithargsret{\sphinxbfcode{start\_response}}{\emph{instance}}{}
+Starts a new response within this instance
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{instance} ({\hyperref[\detokenize{instance:instance.Instance}]{\sphinxcrossref{\sphinxstyleliteralemphasis{Instance}}}}) -- The instance to which the response refers
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{validate() (user.User method)}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{user:user.User.validate}}\pysiglinewithargsret{\sphinxbfcode{validate}}{\emph{instance\_id}, \emph{correct}}{}
+Finalises a \sphinxcode{Response} within an existing \sphinxcode{Instance}
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{instance\_id} -- The id of the instance which the response refers to
+
+\item {} 
+\sphinxstyleliteralstrong{correct} (\sphinxstyleliteralemphasis{boolean}) -- Whether the response provided by the user was correct or not
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
@@ -825,11 +1105,7 @@ A method for setting the descriptives of the user
 \item {} 
 \DUrole{xref,std,std-ref}{genindex}
 * \DUrole{xref,std,std-ref}{modindex}
-\begin{itemize}
-\item {} 
-\DUrole{xref,std,std-ref}{search}
-
-\end{itemize}
+* \DUrole{xref,std,std-ref}{search}
 
 \end{itemize}
 

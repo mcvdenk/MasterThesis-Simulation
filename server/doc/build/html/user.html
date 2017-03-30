@@ -55,6 +55,10 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The username</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/functions.html#type" title="(in Python v2.7)"><strong>type</strong></a> &#8211; StringField</li>
+<li><strong>condition</strong> &#8211; The condition of the user (&#8220;FLASHMAP&#8221; or &#8220;FLASHCARD&#8221;)</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/functions.html#type" title="(in Python v2.7)"><strong>type</strong></a> &#8211; StringField</li>
 <li><strong>birthdate</strong> &#8211; The birthdate of the user</li>
 <li><strong>read_sources</strong> &#8211; A list of read sources by the user</li>
 <li><strong>gender</strong> &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
@@ -71,8 +75,20 @@
 </table>
 <dl class="method">
 <dt id="user.User.add_new_instance">
-<code class="descname">add_new_instance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.add_new_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.add_new_instance" title="Permalink to this definition">¶</a></dt>
-<dd><p>To be implemented in a specific subclass</p>
+<code class="descname">add_new_instance</code><span class="sig-paren">(</span><em>references</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.add_new_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.add_new_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new <code class="xref py py-class docutils literal"><span class="pre">Instance</span></code> to this user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em> or </em><a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; A set of flashcards or edges for which to add a new instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The reference for which a new instance was added</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard">Flashcard</a> or <a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge">Edge</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">

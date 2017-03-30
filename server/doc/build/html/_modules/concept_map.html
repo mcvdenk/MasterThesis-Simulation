@@ -118,6 +118,30 @@
                     <span class="ow">and</span> <span class="n">e</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">edge</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
                     <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">):</span>
                 <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="ConceptMap.to_dict"><a class="viewcode-back" href="../concept_map.html#concept_map.ConceptMap.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary representation of this object</span>
+
+<span class="sd">        The representation is compatible for use with vis.js, with &#39;nodes&#39; entries containing an &#39;id&#39; and &#39;label&#39;, and &#39;edges&#39; entries containing an &#39;id&#39;, &#39;label&#39;, &#39;from&#39;, &#39;to&#39;, and an additional &#39;source&#39; entry</span>
+
+<span class="sd">        :result: The dictionary representation</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nodes&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;edges&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="s1">&#39;nodes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">n</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                <span class="p">})</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="s1">&#39;edges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                <span class="s1">&#39;from&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">from_id</span><span class="p">),</span>
+                <span class="s1">&#39;to&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">to_id</span><span class="p">),</span>
+                <span class="s1">&#39;sources&#39;</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">sources</span><span class="p">,</span>
+                <span class="p">})</span>
         <span class="k">return</span> <span class="n">result</span></div></div>
 </pre></div>
 

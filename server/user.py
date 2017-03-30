@@ -183,3 +183,13 @@ class User(Document):
     def provide_learned_items():
         """To be implemented at the specific subclass"""
         pass
+
+    def retrieve_recent_instance():
+        most_recent = datetime.fromtimestamp(0)
+        instance = None
+        for i in instances:
+            date = instance.responses[-1].end
+            if date > most_recent:
+                most_recent = date
+                instance = i
+        return instance

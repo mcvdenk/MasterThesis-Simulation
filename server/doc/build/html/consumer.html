@@ -65,6 +65,20 @@
 </tbody>
 </table>
 <dl class="method">
+<dt id="consumer.Consumer.add_source">
+<code class="descname">add_source</code><span class="sig-paren">(</span><em>source</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.add_source"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.add_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a read source to the active user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>source</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The source to be added</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="consumer.Consumer.authenticate">
 <code class="descname">authenticate</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.authenticate" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function to either set self.user to an existing <a class="reference internal" href="user.html#user.User" title="user.User"><code class="xref py py-class docutils literal"><span class="pre">user.User</span></code></a> or to a new User based on the given name</p>
@@ -145,6 +159,37 @@
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict object fit for sending to the user</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="consumer.Consumer.provide_learning">
+<code class="descname">provide_learning</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.provide_learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.provide_learning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a dict containing relevant information for learning</p>
+<p>Provides a dict containing the keyword &#8220;NO_MORE_INSTANCES&#8221;, &#8220;READ_SOURCE-REQUEST&#8221;, or &#8220;LEARNING-RESPONSE&#8221; and relevant data (the source string for &#8220;READ_SOURCE-REQUEST&#8221; or either the output of <code class="xref py py-func docutils literal"><span class="pre">ConceptMap.to_dict()</span></code> with an added &#8216;learning&#8217; entry or the output of <code class="xref py py-func docutils literal"><span class="pre">Flashcard.to_dict()</span></code> for &#8220;LEARNING-RESPONSE&#8221; with an added condition entry)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict containing &#8216;keyword&#8217; and the relevant &#8216;data&#8217; described above</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="consumer.Consumer.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>responses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds responses to certain instances</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a><em>)</em><em></em>) &#8211; A list of responses containing an instance id and a boolean correctness value</td>
 </tr>
 </tbody>
 </table>
