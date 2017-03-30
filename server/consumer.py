@@ -50,7 +50,7 @@ class Consumer():
         :return: Contains the keyword and data to send over a websocket to a client
         :rtype: dict(str, str or dict)
 
-        .. todo: Implement LEARNED_ITEMS-REQUEST, READ_SOURCE-RESPONSE, VALIDATE, UNDO
+        .. todo: Implement LEARNED_ITEMS-REQUEST, UNDO
         """
         msg = {'keyword': "FAILURE", 'data': {}}
         if (keyword == "AUTHENTICATE-REQUEST"): 
@@ -76,12 +76,12 @@ class Consumer():
         elif (keyword == "LEARN-REQUEST"): 
             msg = provide_learning()
         elif (keyword == "READ_SOURCE-RESPONSE"):
-            pass
+            add_source(str(data['source']))
+            msg = provide_learning()
         elif (keyword == "VALIDATE"):
-            pass
+            validate(data['responses'])
+            msg = provide_learning()
         elif (keyword == "UNDO"): 
-            pass
-        elif (keyword == "READ_READ_SOURCE-RESPONSE"): 
             pass
         user.save(cascade = True)
         return msg
@@ -172,3 +172,20 @@ class Consumer():
                 msg['data'] = item.to_dict()
             msg['data']['condition'] = user.condition
         return msg
+
+    def add_source(source):
+        """Adds a read source to the active user
+
+        :param source: The source to be added
+        :type source: string
+        """
+        users.sources.append(source)
+
+    def validate(responses):
+        """Adds responses to certain instances
+
+        :param responses: A list of responses containing an instance id and a boolean correctness value
+        :type responses: list(dict)
+        """
+        for response in responses:
+            user.validate(response['id'], response['correct'])
