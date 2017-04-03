@@ -29,9 +29,9 @@ class Questionnaire(EmbeddedDocument):
         random.shuffle(pu2)
         random.shuffle(peou1)
         random.shuffle(peou2)
-        super(self, perceived_usefulness_items = pu1 + pu2, perceived_ease_of_use_items = peou1 + peou2, **data)
+        super(self, self.perceived_usefulness_items = pu1 + pu2, self.perceived_ease_of_use_items = peou1 + peou2, **data)
 
-    def append_answer(item, phrasing, answer):
+    def append_answer(self, item, phrasing, answer):
         """Appends an answer to an item within the questionnaire
 
         :param item: The item to which the answer refers
@@ -41,13 +41,16 @@ class Questionnaire(EmbeddedDocument):
         :param answer: The answer to be appended
         :type answer: string
         """
+        assert isinstance(item, QuestionnaireItem)
+        assert isinstance(phrasing, bool)
+        assert isinstance(answer, str)
         if (item.usefulness):
-            for r in perceived_usefulness_items:
+            for r in self.perceived_usefulness_items:
                 if r.item is item and i.phrasing is phrasing:
                     r.answer = answer
                     break
         else:
-            for r in perceived_ease_of_use_items:
+            for r in self.perceived_ease_of_use_items:
                 if r.item is item and i.phrasing is phrasing:
                     r.answer = answer
                     break

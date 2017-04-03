@@ -30,6 +30,13 @@ class Test(EmbeddedDocument):
         :result: A sample of five items from items not included in prev_items
         :rtype: list(FlashcardResponse) or list(TestItemResponse)
         """
+        assert isinstance(items, list)
+        assert all((isinstance(item, Flashcard) or isinstance(item, TestItem))
+                for item in items)
+        assert isinstance(prev_items, list)
+        assert all((isinstance(item, FlashcardResponse) or isinstance(item, TestItemResponse))
+                for item in prev_items)
+
         for prev_item in prev_items:
             for item in items:
                 if (prev_item is item):
@@ -37,9 +44,28 @@ class Test(EmbeddedDocument):
                 break
         return random.sample(items, k = 5)
 
-    def append_flashcard(flashcard, answer):
-        flashcard_responses.append(FlashcardResponse(flashcard = flashcard, answer = answer))
+    def append_flashcard(self, flashcard, answer):
+        """Adds a flashcard response to this test
 
+        :param flashcard: The flashcard this item refers to
+        :type flashcard: Flashcard
+        :param answer: The answer to the flashcard provided by the user
+        :type answer: string
+        """
+        assert isinstance(flashcard, Flashcard)
+        assert isinstance(answer, str)
 
-    def append_item(item, answer):
-        item_responses.append(ItemResponse(item = item, answer = answer))
+        self.test_flashcard_responses.append(FlashcardResponse(flashcard = flashcard, answer = answer))
+
+    def append_item(self, item, answer):
+        """Adds an item response to this test
+
+        :param item: The test item this item refers to
+        :type flashcard: TestItem
+        :param answer: The answer to the flashcard provided by the user
+        :type answer: string
+        """
+        assert isinstance(item, TestItem)
+        assert isinstance(answer, str)
+
+        self.test_item_responses.append(ItemResponse(item = item, answer = answer))

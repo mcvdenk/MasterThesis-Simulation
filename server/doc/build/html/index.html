@@ -46,13 +46,13 @@
   <div class="section" id="class-diagram">
 <h1>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h1>
 <p class="plantuml">
-<img src="_images/plantuml-fcf841cc13d4bda935dafb228cda97ac42647c7d.png" alt="&#64;startuml
+<img src="_images/plantuml-5471f1bdb799ebdd9b018fc0b8e9ef0e19e99b07.png" alt="&#64;startuml
 hide empty members
 hide circle
 skinparam linetype ortho
 
 class Consumer {
-    SOURCES: list(str)
+    SOURCES: list[str]
     add_source(str source)
     check_prerequisites: dict
     consumer(str keyword, dict data): dict
@@ -62,14 +62,14 @@ class Consumer {
     provide_learned_items(): dict
     provide_learning(): dict
     authenticate(str name): User
-    validate(list(dict) responses) 
+    validate(list[dict] responses) 
 }
 
 class ConceptMap {
     get_partial_map(edge): ConceptMap
-    find_prerequisites(postreq, prereqs, sources): list(Edge)
-    find_siblings(postreq, sources, partial_edges): list(Edge)
-    find_nodes(): list(Node)
+    find_prerequisites(postreq, prereqs, sources): list[Edge]
+    find_siblings(postreq, sources, partial_edges): list[Edge]
+    find_nodes(): list[Node]
     to_dict(): dict
 }
 
@@ -93,7 +93,7 @@ class Flashcard {
     source : str
     question : str
     answer : str
-    response_model : list(str)
+    response_model : list[str]
     to_dict() : dict
 }
 
@@ -103,19 +103,19 @@ class User {
     name : str
     birthdate : int
     flashmap_condition : bool
-    read_sources : list(str)
+    read_sources : list[str]
     gender : str
     code : str
     add_new_instance(list(Flashcard, Edge) references) : Flashcard, Edge
-    set_descriptives(str gender, DateTime birthdate, str code)
+    set_descriptives(str gender, DateTime birthdate, str code) : void
     create_test(list(Flashcard) flashcards, list(TestItem) items): dict(str, Response)
-    append_test(list(dict) flashcard_responses, list(dict) item_responses)
+    append_test(list[dict] flashcard_responses, list(dict) item_responses) : void
     create_questionnaire(list(QuestionnaireItem) pu_items, list(QuestionnaireItem) peou_items): list(QuestionnaireItem)
-    append_questionnaire(list(dict) responses, str good, str could_be_improved, str email)
+    append_questionnaire(list[dict] responses, str good, str could_be_improved, str email) : void
     get_due_instance(): Instance
     get_instance_by_id(ObjectId instance_id): Instance
-    start_response(Instance instance)
-    validate(ObjectId instance_id, bool correct)
+    start_response(Instance instance) : void
+    validate(ObjectId instance_id, bool correct) : void
 }
 
 Consumer &quot;1&quot; o-- &quot;1&quot; User : user
@@ -139,7 +139,7 @@ User &quot;1&quot; *-- &quot;0..2&quot; Test : test_flashcard_responses, test_it
 class TestItem {
     question : str
     source : str
-    response_model : list(str)
+    response_model : list[str]
 }
 
 
@@ -166,7 +166,7 @@ class QuestionnaireItem {
 class Questionnaire {
     good : str
     can_be_improved : str
-    append_answer(Questionnaireitem item, bool phrasing, str answer): void
+    append_answer(Questionnaireitem item, \nbool phrasing, str answer): void
 }
     
 User &quot;1&quot; *-- &quot;0..1&quot; Questionnaire : questionnaire
@@ -176,7 +176,7 @@ class QuestionnaireResponse {
     phrasing : bool
 }
 
-Questionnaire &quot;1&quot; *-- &quot;0..*&quot; QuestionnaireResponse : perceived_usefulness_items, perceived_ease_of_use_items
+Questionnaire &quot;1&quot; *-- &quot;0..*&quot; QuestionnaireResponse : perceived_usefulness_items, \nperceived_ease_of_use_items
 QuestionnaireItem &quot;1&quot; o-- &quot;0..*&quot; QuestionnaireResponse : item
 
 abstract class Instance {
@@ -185,7 +185,7 @@ abstract class Instance {
     finalise_response(bool correct)
     get_exponent(): int
     schedule() : void
-    start_response()
+    start_response() : void
 }
 
 User &quot;1&quot; *-- &quot;0..*&quot; Instance : instances

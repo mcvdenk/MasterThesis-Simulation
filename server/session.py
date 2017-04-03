@@ -19,6 +19,6 @@ class Session(EmbeddedDocument):
     source_prompted = BooleanField(default = False)
     browser = StringField()
 
-    def end_session():
+    def end_session(self):
         """Closes this session"""
-        end = datetime.now()
+        self.end = datetime.now()
