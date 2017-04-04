@@ -75,7 +75,7 @@ class Consumer():
                     data['responses'],
                     data['good'],
                     data['can_be_improved'])
-            msg['keyword'] = check_prerequisites()
+            msg['keyword'] = "DEBRIEFING"
         elif (keyword == "LEARNED_ITEMS-REQUEST"):
             msg = provide_learned_items()
         elif (keyword == "LEARN-REQUEST"): 
