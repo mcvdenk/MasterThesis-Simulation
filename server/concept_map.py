@@ -28,10 +28,10 @@ class ConceptMap(Document):
         assert isinstance(sources, list)
         assert all(isinstance(source, str) for source in sources)
         result = ConceptMap(nodes = [], edges = [])
-        result.self.edges = find_prerequisites(edge, [], sources)
-        siblings = find_siblings(edge, sources, partial_edges)
-        result.self.edges.extend(siblings)
-        result.self.nodes = find_self.nodes(result.edges)
+        result.edges = self.find_prerequisites(edge, [], sources)
+        siblings = self.find_siblings(edge, sources, result.edges)
+        result.edges.extend(siblings)
+        result.nodes = self.find_nodes(result.edges)
         return result
 
     def find_nodes(self, edges):
@@ -39,13 +39,13 @@ class ConceptMap(Document):
 
         :param self.edges: The list of self.edges for which to find the self.nodes
         :type self.edges: list(Edge)
-        :return: The list of self.nodes referred to in the self.edges
+        :return: The list of nodes referred to in the edges
         :rtype: list(Node)
         """
         assert isinstance(edges, list)
-        assert all(isinstance(edge, Edge) for edge in self.edges)
+        assert all(isinstance(edge, Edge) for edge in edges)
         result = []
-        for edge in self.edges:
+        for edge in edges:
             if edge.from_node not in result:
                 result.append(edge.from_node)
             if edge.to_node not in result:
@@ -71,21 +71,23 @@ class ConceptMap(Document):
         assert all(isinstance(source, str) for source in sources)
         prereqs.append(postreq)
         for edge in self.edges:
-            if (edge.to_node == postreq.from_node and edge not in prereqs and edge.source in sources):
-                for prereq in find_prerequisites(edge, prereqs, sources):
-                    if (prereq not in prereqs): prereqs += prereq
+            if (edge.to_node is postreq.from_node and
+                    edge not in prereqs and
+                    False not in [source in self.sources for source in sources]):
+                for prereq in self.find_prerequisites(edge, prereqs, sources):
+                    if (prereq not in prereqs): prereqs.append(prereq)
         return prereqs
     
     def find_siblings(self, edge, sources, partial_edges):
-        """Return a list of self.edges which are siblings of the given edge
+        """Return a list of self.edges which are siblings of the given edge and have the same label
 
         :param edge: The edge investigated for siblings
         :type edge: Edge
         :param sources: The sources to filter on when looking for siblings
         :type sources: list(string)
-        :param partial_self.edges: A list of self.edges to filter on when looking for siblings
-        :type partial_self.edges: list(Edge)
-        :return: A list of self.edges which are siblings of edge
+        :param partial_edges: A list of self.edges for exclusion when looking for siblings
+        :type partial_edges: list(Edge)
+        :return: A list of edges which are siblings of edge and have the same label
         :rtype: list(edge)
         """
         assert isinstance(edge, Edge)
@@ -94,12 +96,10 @@ class ConceptMap(Document):
         assert isinstance(partial_edges, list)
         assert all(isinstance(edge, Edge) for edge in partial_edges)
         result = []
-        for e in partial_edges:
-            edge.remove(e)
-        for e in self.edges:
-            if (e.from_node == edge.from_node
-                    and e["label"] == edge["label"]
-                    and e.source in sources):
+        for e in set(self.edges).difference(partial_edges):
+            if (e.from_node == edge.from_node and
+                    e["label"] == edge["label"] and
+                    False not in [source in sources for source in e.sources]):
                 result.append(e)
         return result
 
@@ -113,11 +113,11 @@ class ConceptMap(Document):
         """
         result = {'nodes': [], 'edges': []}
         for n in self.nodes:
-            result['nodes'].append({
+            result['nodes'].append(
                 n.to_dict()
-                })
+                )
         for e in self.edges:
-            result['edges'].append({
+            result['edges'].append(
                 e.to_dict()
-                })
+                )
         return result

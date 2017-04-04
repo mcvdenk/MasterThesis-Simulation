@@ -10,7 +10,7 @@
   * ~~Edge~~
   * ~~Node~~
   * ~~Flashcard~~
-  * ConceptMap
+  * ~~ConceptMap~~
   * ~~FlashcardInstance~~
   * ~~FlashmapInstance~~
   * Test
