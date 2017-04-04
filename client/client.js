@@ -92,12 +92,15 @@ ws.onmessage = function (event) {
         case "LEARNED_FLASHCARDS-RESPONSE":
             show_flashcard_progress(msg.data);
             break;
-        case "LEARN-RESPONSE(fm)":
-            show_map(flashmap(msg.data, msg.time_up, msg.successful_days));
-            break;
-        case "LEARN-RESPONSE(fc)":
-            show_card(msg.data, msg.time_up, msg.successful_days);
-            break;
+        case "LEARN-RESPONSE":
+            if (msg.condition == "FLASHMAP") {
+                show_map(flashmap(msg.data, msg.time_up, msg.successful_days));
+                break;
+            }
+            else if (msg.condition == "FLASHCARD") {
+                show_card(msg.data, msg.time_up, msg.successful_days);
+                break;
+            }
         case "NO_MORE_INSTANCES":
             done_learning(msg.data, msg.successful_days);
             break;

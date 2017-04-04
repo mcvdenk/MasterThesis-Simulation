@@ -27,14 +27,14 @@ class ConceptMap(Document):
         assert isinstance(edge, Edge)
         assert isinstance(sources, list)
         assert all(isinstance(source, str) for source in sources)
-        result = ConceptMap(self.nodes = [], self.edges = [])
+        result = ConceptMap(nodes = [], edges = [])
         result.self.edges = find_prerequisites(edge, [], sources)
-        siblings = find_siblings(edge, sources, partial_self.edges)
+        siblings = find_siblings(edge, sources, partial_edges)
         result.self.edges.extend(siblings)
-        result.self.nodes = find_self.nodes(result.self.edges)
+        result.self.nodes = find_self.nodes(result.edges)
         return result
 
-    def find_self.nodes(self, edges):
+    def find_nodes(self, edges):
         """Returns the from and to self.nodes given a list of self.edges
 
         :param self.edges: The list of self.edges for which to find the self.nodes
@@ -42,7 +42,7 @@ class ConceptMap(Document):
         :return: The list of self.nodes referred to in the self.edges
         :rtype: list(Node)
         """
-        assert isinstance(self.edges, list)
+        assert isinstance(edges, list)
         assert all(isinstance(edge, Edge) for edge in self.edges)
         result = []
         for edge in self.edges:
@@ -76,7 +76,7 @@ class ConceptMap(Document):
                     if (prereq not in prereqs): prereqs += prereq
         return prereqs
     
-    def find_siblings(self, edge, sources, partial_self.edges):
+    def find_siblings(self, edge, sources, partial_edges):
         """Return a list of self.edges which are siblings of the given edge
 
         :param edge: The edge investigated for siblings
@@ -91,10 +91,10 @@ class ConceptMap(Document):
         assert isinstance(edge, Edge)
         assert isinstance(sources, list)
         assert all(isinstance(source, str) for source in sources)
-        assert isinstance(partial_self.edges, list)
-        assert all(isinstance(edge, Edge) for edge in partial_self.edges)
+        assert isinstance(partial_edges, list)
+        assert all(isinstance(edge, Edge) for edge in partial_edges)
         result = []
-        for e in partial_self.edges:
+        for e in partial_edges:
             edge.remove(e)
         for e in self.edges:
             if (e.from_node == edge.from_node
@@ -111,14 +111,14 @@ class ConceptMap(Document):
         :result: The dictionary representation
         :rtype: dict
         """
-        result = {'self.nodes': [], 'self.edges': []}
+        result = {'nodes': [], 'edges': []}
         for n in self.nodes:
-            result['self.nodes'].append({
+            result['nodes'].append({
                 'id': str(n.id),
                 'label': n.label,
                 })
         for e in self.edges:
-            result['self.edges'].append({
+            result['edges'].append({
                 'id': str(e.id),
                 'label': e.label,
                 'from': str(e.from_id),

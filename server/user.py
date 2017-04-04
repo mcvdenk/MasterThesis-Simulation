@@ -29,6 +29,10 @@ class User(Document):
     :type sessions: Session
     :cvar email: The email address for this user
     :type email: EmailField
+    :cvar source_requests: The days that the user was prompted a source request
+    :type source_requests: list(DateTime)
+    :cvar succesfull_days: The days that the user succesfully completed a session
+    :type succesfull_days: list(DateTime)
     """
     connect('flashmap')
     name = StringField(required=True, unique=True)
@@ -42,6 +46,8 @@ class User(Document):
     questionnaire = EmbeddedDocumentField(Questionnaire)
     instances = ListField(EmbeddedDocumentField(Instance))
     email = EmailField()
+    source_requests = ListField(DateTimeField(), default = [])
+    succesfull_days = ListField(DateTimeField(), default = [])
 
     def set_descriptives(self, birthdate, gender, code):
         """A method for setting the descriptives of the user
@@ -220,3 +226,21 @@ class User(Document):
                 most_recent = date
                 instance = i
         return instance
+    
+    def time_spend_today():
+        """A method for calculating the amount of seconds the user has spend on practicing flashcards 
+
+        :return: The amount of seconds between every start and end of all responses of all instances of today
+        :rtype: int
+        """
+        times = []
+        learning_time = 0
+        for instance in self.instances:
+            for response in instance.responses:
+                if (datetime.date.fromtimestamp(response.start) == datetime.date.today()):
+                    times.append(response.start)
+                    times.append(response.end)
+        times.sort()
+        for i in range(1, len(times)):
+            learning_time += min(times[i] - times[i-1], 30)
+        return learning_time

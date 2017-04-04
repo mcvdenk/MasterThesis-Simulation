@@ -5,7 +5,7 @@
 * ~~Implement VALIDATE~~
 * ~~Implement UNDO~~
 * Implement test2 and questionnaire prompt in consumer
-* Fix prompt source to only once a day
+* ~~Fix prompt source to only once a day~~
 * Build unit tests:
   * ~~FlashcardInstance~~
   * FlashmapInstance

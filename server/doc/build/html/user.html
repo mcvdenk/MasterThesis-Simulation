@@ -68,6 +68,8 @@
 <li><strong>instances</strong> &#8211; A list of instances storing the flashmap/flashcard data for the user</li>
 <li><strong>sessions</strong> &#8211; A list of past sessions for this user</li>
 <li><a class="reference external" href="https://docs.python.org/2/library/email.html#module-email" title="(in Python v2.7)"><strong>email</strong></a> &#8211; The email address for this user</li>
+<li><strong>source_requests</strong> &#8211; The days that the user was prompted a source request</li>
+<li><strong>succesfull_days</strong> &#8211; The days that the user succesfully completed a session</li>
 </ul>
 </td>
 </tr>
@@ -238,6 +240,22 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>instance</strong> (<a class="reference internal" href="instance.html#instance.Instance" title="instance.Instance"><em>Instance</em></a>) &#8211; The instance to which the response refers</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.time_spend_today">
+<code class="descname">time_spend_today</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.time_spend_today"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.time_spend_today" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for calculating the amount of seconds the user has spend on practicing flashcards</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The amount of seconds between every start and end of all responses of all instances of today</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)">int</a></td>
 </tr>
 </tbody>
 </table>

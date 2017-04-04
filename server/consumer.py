@@ -39,6 +39,7 @@ class Consumer():
         for edge in self.concept_map.edges:
             if (edge.source not in SOURCES): SOURCES.append(edge.source)
         self.SOURCES.sort()
+        self.required_time = 60*15
 
     def consumer(self, keyword, data):
         """Pass data to the function corresponding to the provided keyword for the provided user
@@ -55,7 +56,7 @@ class Consumer():
         assert isinstance(keyword, str)
         assert isinstance(data, dict)
         incoming_msg = LogEntry(keyword = keyword, data = data, user = self.user)
-        LogEntry.save()
+        incoming_msg.save()
         msg = {'keyword': "FAILURE", 'data': {}}
         if (keyword == "AUTHENTICATE-REQUEST"): 
             self.user = authenticate(data["name"])
@@ -91,6 +92,8 @@ class Consumer():
                 msg = learning_message(recent_instance)
         self.user.save(cascade = True)
         outgoing_msg = LogEntry(keyword = msg['keyword'], data = msg['data'], user = self.user)
+        outgoing_msg.save()
+        msg["succesfull_days"] = user.distinct_succesfull_days()
         return msg
 
     def authenticate(self, name):
@@ -160,10 +163,17 @@ class Consumer():
         if instance == None:
             msg['keyword'] = "NO_MORE_INSTANCES"
         elif instance.source not in self.user.sources:
-            msg['keyword'] = "READ_SOURCE-REQUEST"
-            msg['data'] = {'source': instance.source}
+            if datetime.today() in self.user.source_requests:
+                msg['keyword'] = "NO_MORE_INSTANCES"
+            else:
+                msg['keyword'] = "READ_SOURCE-REQUEST"
+                msg['data'] = {'source': instance.source}
         else:
             msg = learning_message(instance)
+        if msg['keyword'] is "NO_MORE_INSTANCES" or msg['time_up']:
+            s_days = set(self.user.succesfull_days)
+            s_days.append(datetime.today())
+            self.user.succesfull_days = list(s_days)
         return msg
 
     def learning_message(self, instance):
@@ -188,7 +198,8 @@ class Consumer():
             msg['data'] = dmap
         elif self.user.condition is "FLASHCARD":
             msg['data'] = item.to_dict()
-        msg['data']['condition'] = self.user.condition
+        msg['condition'] = self.user.condition
+        msg['time_up'] = self.user.time_spend_today() > self.required_time
         return msg
 
 

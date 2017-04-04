@@ -29,7 +29,9 @@ class Questionnaire(EmbeddedDocument):
         random.shuffle(pu2)
         random.shuffle(peou1)
         random.shuffle(peou2)
-        super(self, self.perceived_usefulness_items = pu1 + pu2, self.perceived_ease_of_use_items = peou1 + peou2, **data)
+        pu = pu1 + pu2
+        peou = peou1 + peou2
+        super(self, perceived_usefulness_items = pu, perceived_ease_of_use_items = peou, **data)
 
     def append_answer(self, item, phrasing, answer):
         """Appends an answer to an item within the questionnaire

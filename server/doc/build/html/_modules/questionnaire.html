@@ -74,9 +74,11 @@
         <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pu2</span><span class="p">)</span>
         <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">peou1</span><span class="p">)</span>
         <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">peou2</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perceived_usefulness_items</span> <span class="o">=</span> <span class="n">pu1</span> <span class="o">+</span> <span class="n">pu2</span><span class="p">,</span> <span class="n">perceived_ease_of_use_items</span> <span class="o">=</span> <span class="n">peou1</span> <span class="o">+</span> <span class="n">peou2</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">pu</span> <span class="o">=</span> <span class="n">pu1</span> <span class="o">+</span> <span class="n">pu2</span>
+        <span class="n">peou</span> <span class="o">=</span> <span class="n">peou1</span> <span class="o">+</span> <span class="n">peou2</span>
+        <span class="nb">super</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perceived_usefulness_items</span> <span class="o">=</span> <span class="n">pu</span><span class="p">,</span> <span class="n">perceived_ease_of_use_items</span> <span class="o">=</span> <span class="n">peou</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Questionnaire.append_answer"><a class="viewcode-back" href="../questionnaire.html#questionnaire.Questionnaire.append_answer">[docs]</a>    <span class="k">def</span> <span class="nf">append_answer</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">phrasing</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+<div class="viewcode-block" id="Questionnaire.append_answer"><a class="viewcode-back" href="../questionnaire.html#questionnaire.Questionnaire.append_answer">[docs]</a>    <span class="k">def</span> <span class="nf">append_answer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">phrasing</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Appends an answer to an item within the questionnaire</span>
 
 <span class="sd">        :param item: The item to which the answer refers</span>
@@ -90,12 +92,12 @@
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">phrasing</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">usefulness</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">perceived_usefulness_items</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">perceived_usefulness_items</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>
                     <span class="n">r</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span>
                     <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">perceived_ease_of_use_items</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">perceived_ease_of_use_items</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>
                     <span class="n">r</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span>
                     <span class="k">break</span></div></div>

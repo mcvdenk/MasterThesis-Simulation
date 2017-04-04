@@ -67,7 +67,7 @@
 <dl class="method">
 <dt id="consumer.Consumer.add_source">
 <code class="descname">add_source</code><span class="sig-paren">(</span><em>source</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.add_source"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.add_source" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a read source to the active user</p>
+<dd><p>Adds a read source to the active self.user</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -86,7 +86,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The username</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The self.username</td>
 </tr>
 </tbody>
 </table>
@@ -95,12 +95,12 @@
 <dl class="method">
 <dt id="consumer.Consumer.check_prerequisites">
 <code class="descname">check_prerequisites</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.check_prerequisites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.check_prerequisites" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the user still has to fill in forms and returns the appropriate message</p>
+<dd><p>Checks whether the self.user still has to fill in forms and returns the appropriate message</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict containing the appropriate keyword and data for this user</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict containing the appropriate keyword and data for this self.user</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
 </tr>
@@ -135,12 +135,12 @@
 <dl class="method">
 <dt id="consumer.Consumer.create_questionnaire">
 <code class="descname">create_questionnaire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.create_questionnaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a questionnaire for this user (using user.create_questionnaire())</p>
+<dd><p>Creates a questionnaire for this self.user (using user.create_questionnaire())</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict object fit for sending to the user</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict object fit for sending to the self.user</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
 </tr>
@@ -151,12 +151,12 @@
 <dl class="method">
 <dt id="consumer.Consumer.create_test">
 <code class="descname">create_test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer.create_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer.create_test" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a test for this user (using user.create_test())</p>
+<dd><p>Creates a test for this self.user (using user.create_test())</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict object fit for sending to the user</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict object fit for sending to the self.user</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
 </tr>
@@ -190,7 +190,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A partial concept map containing all instances for this user or a message containing progress information</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A partial concept map containing all instances for this self.user or a message containing progress information</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
 </tr>
