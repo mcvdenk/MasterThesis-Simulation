@@ -54,15 +54,31 @@
 <span class="sd">    :cvar to_node: The child node of the edge</span>
 <span class="sd">    :type to_node: Node</span>
 <span class="sd">    :cvar label: A label describing the relation between from_node and to_node</span>
-<span class="sd">    :type label: StringField</span>
-<span class="sd">    :cvar source: The source where this edge is described (e.g. paragraph 13.2 from Laagland)</span>
-<span class="sd">    :type source: StringField</span>
+<span class="sd">    :type label: string</span>
+<span class="sd">    :cvar sources: The source where this edge is described (e.g. paragraph 13.2 from Laagland)</span>
+<span class="sd">    :type sources: list(string)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
     <span class="n">from_node</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span> <span class="n">db_field</span> <span class="o">=</span> <span class="s2">&quot;from&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">to_node</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span> <span class="n">db_field</span> <span class="o">=</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">label</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-    <span class="n">source</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span></div>
+    <span class="n">sources</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+
+<div class="viewcode-block" id="Edge.to_dict"><a class="viewcode-back" href="../edge.html#edge.Edge.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary representation of this object</span>
+
+<span class="sd">        It contains an &#39;id&#39;, &#39;label&#39;, &#39;from&#39;, &#39;to&#39;, and &#39;sources&#39; entry</span>
+
+<span class="sd">        :return: The dictionary representation of this object, compatible with visjs</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                <span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                <span class="s1">&#39;from&#39;</span> <span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">from_node</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                <span class="s1">&#39;to&#39;</span> <span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_node</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                <span class="s1">&#39;sources&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">,</span>
+                <span class="p">}</span></div></div>
 </pre></div>
 
           </div>

@@ -8,3 +8,17 @@ class Node(Document):
     """
     connect('flashmap')
     label = StringField(default = "")
+
+
+    def to_dict(self):
+        """Returns a dictionary representation of this object
+
+        It contains an 'id' and 'label' entry
+
+        :return: The dictionary representation of this object, compatible with visjs
+        :rtype: dict
+        """
+        return {
+                'id' : str(self.id),
+                'label' : self.label,
+                }

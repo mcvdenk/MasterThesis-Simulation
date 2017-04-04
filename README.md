@@ -7,11 +7,12 @@
 * ~~Implement test2 and questionnaire prompt in consumer~~
 * ~~Fix prompt source to only once a day~~
 * Build unit tests:
-  * ~~FlashcardInstance~~
-  * FlashmapInstance
-  * Flashcard
-  * Edge
+  * ~~Edge~~
+  * ~~Node~~
+  * ~~Flashcard~~
   * ConceptMap
+  * ~~FlashcardInstance~~
+  * ~~FlashmapInstance~~
   * Test
   * Questionnaire
   * Session

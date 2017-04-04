@@ -16,7 +16,7 @@ class Flashcard(Document):
     connect('flashmap')
     question = StringField(required=True)
     answer = StringField(required=True)
-    sources = ListField(Edge, default = [])
+    sources = ListField(ReferenceField(Edge), default = [])
     response_model = ListField(StringField, default = [])
 
     def to_dict(self):
@@ -31,5 +31,5 @@ class Flashcard(Document):
                 'id': str(self.id),
                 'question': self.question,
                 'answer': self.answer,
-                'sources': self.sources,
+                'sources': [source.to_dict() for source in self.sources],
                 }

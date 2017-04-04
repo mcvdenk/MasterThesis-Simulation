@@ -59,12 +59,29 @@
 <li><strong>from_node</strong> &#8211; The parent node of the edge</li>
 <li><strong>to_node</strong> &#8211; The child node of the edge</li>
 <li><strong>label</strong> &#8211; A label describing the relation between from_node and to_node</li>
-<li><strong>source</strong> &#8211; The source where this edge is described (e.g. paragraph 13.2 from Laagland)</li>
+<li><strong>sources</strong> &#8211; The source where this edge is described (e.g. paragraph 13.2 from Laagland)</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="edge.Edge.to_dict">
+<code class="descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/edge.html#Edge.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#edge.Edge.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary representation of this object</p>
+<p>It contains an &#8216;id&#8217;, &#8216;label&#8217;, &#8216;from&#8217;, &#8216;to&#8217;, and &#8216;sources&#8217; entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The dictionary representation of this object, compatible with visjs</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>

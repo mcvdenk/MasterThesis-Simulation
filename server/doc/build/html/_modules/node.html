@@ -52,7 +52,21 @@
 <span class="sd">    :type label: StringField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Node.to_dict"><a class="viewcode-back" href="../node.html#node.Node.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary representation of this object</span>
+
+<span class="sd">        It contains an &#39;id&#39; and &#39;label&#39; entry</span>
+
+<span class="sd">        :return: The dictionary representation of this object, compatible with visjs</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                <span class="s1">&#39;label&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                <span class="p">}</span></div></div>
 </pre></div>
 
           </div>
