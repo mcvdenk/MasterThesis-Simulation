@@ -10,5 +10,5 @@ class TestFlashcardResponse(EmbeddedDocument):
     :type flashcard: StringField
     """
     connect('flashmap')
-    answer = StringField(default = "")
+    answer = StringField()
     flashcard = ReferenceField(Flashcard)

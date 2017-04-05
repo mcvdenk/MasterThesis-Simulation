@@ -17,7 +17,7 @@ class Flashcard(Document):
     question = StringField(required=True)
     answer = StringField(required=True)
     sources = ListField(ReferenceField(Edge), default = [])
-    response_model = ListField(StringField, default = [])
+    response_model = ListField(StringField(), default = [])
 
     def to_dict(self):
         """Returns a dictionary representation of this object

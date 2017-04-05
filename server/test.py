@@ -16,11 +16,11 @@ class Test(EmbeddedDocument):
     test_item_responses = ListField(EmbeddedDocumentField('TestItemResponse'), default = [])
 
     def __init__(self, flashcards, items, prev_flashcards = [], prev_items = [], **data):
-        data['flashcard_responses'] = [test_flashcard_response(flashcard=fc) for fc in generate_test(flashcards, prev_flashcards)]
-        data['test_responses'] = [test-item_response(item=item) for item in generate_test(items, prev_items)]
         super(Test, self).__init__(**data)
+        self.test_flashcard_responses = [TestFlashcardResponse(flashcard=fc) for fc in self.generate_test(flashcards, prev_flashcards)]
+        self.test_item_responses = [TestItemResponse(item=item) for item in self.generate_test(items, prev_items)]
 
-    def generate_test(items, prev_items):
+    def generate_test(self, items, prev_items):
         """A method for taking five random items in a random order from the provided list of items without the items in the previous items
 
         :param items: The complete list of items
@@ -31,18 +31,14 @@ class Test(EmbeddedDocument):
         :rtype: list(FlashcardResponse) or list(TestItemResponse)
         """
         assert isinstance(items, list)
-        assert all((isinstance(item, Flashcard) or isinstance(item, TestItem))
-                for item in items)
+        assert all((isinstance(item, Flashcard) or
+                isinstance(item, TestItem)) for item in items)
         assert isinstance(prev_items, list)
-        assert all((isinstance(item, FlashcardResponse) or isinstance(item, TestItemResponse))
-                for item in prev_items)
+        assert all((isinstance(item, Flashcard) or
+                isinstance(item, TestItem)) for item in items)
 
-        for prev_item in prev_items:
-            for item in items:
-                if (prev_item is item):
-                    items.remove(item)
-                break
-        return random.sample(items, k = 5)
+        items = set(items).difference(set(prev_items))
+        return list(random.sample(items, k = 5))
 
     def append_flashcard(self, flashcard, answer):
         """Adds a flashcard response to this test
@@ -55,7 +51,9 @@ class Test(EmbeddedDocument):
         assert isinstance(flashcard, Flashcard)
         assert isinstance(answer, str)
 
-        self.test_flashcard_responses.append(FlashcardResponse(flashcard = flashcard, answer = answer))
+        for response in self.test_flashcard_responses:
+            if flashcard is response.flashcard:
+                response.answer = answer
 
     def append_item(self, item, answer):
         """Adds an item response to this test
@@ -68,4 +66,6 @@ class Test(EmbeddedDocument):
         assert isinstance(item, TestItem)
         assert isinstance(answer, str)
 
-        self.test_item_responses.append(ItemResponse(item = item, answer = answer))
+        for response in self.test_item_responses:
+            if item is response.item:
+                response.answer = answer

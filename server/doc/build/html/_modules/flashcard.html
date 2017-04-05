@@ -62,7 +62,7 @@
     <span class="n">question</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">sources</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Edge</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
-    <span class="n">response_model</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="n">response_model</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
 
 <div class="viewcode-block" id="Flashcard.to_dict"><a class="viewcode-back" href="../flashcard.html#flashcard.Flashcard.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a dictionary representation of this object</span>
@@ -76,7 +76,7 @@
                 <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
                 <span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">question</span><span class="p">,</span>
                 <span class="s1">&#39;answer&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">answer</span><span class="p">,</span>
-                <span class="s1">&#39;sources&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">to_dict</span> <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">],</span>
+                <span class="s1">&#39;sources&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">],</span>
                 <span class="p">}</span></div></div>
 </pre></div>
 

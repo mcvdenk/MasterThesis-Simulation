@@ -13,7 +13,7 @@
   * ~~ConceptMap~~
   * ~~FlashcardInstance~~
   * ~~FlashmapInstance~~
-  * Test
+  * ~~Test~~
   * Questionnaire
   * Session
   * User

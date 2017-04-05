@@ -162,18 +162,31 @@ class Consumer():
             instance = self.user.add_instance()
         if instance == None:
             msg['keyword'] = "NO_MORE_INSTANCES"
-        elif instance.source not in self.user.sources:
-            if datetime.today() in self.user.source_requests:
-                msg['keyword'] = "NO_MORE_INSTANCES"
-            else:
-                msg['keyword'] = "READ_SOURCE-REQUEST"
-                msg['data'] = {'source': instance.source}
+        elif len(self.user.sources) == 0:
+            msg = self.read_source_request(self.SOURCES[0])
         else:
-            msg = learning_message(instance)
+            source_index = self.SOURCES.index(instance.source) + 2
+            if source_index < len(self.SOURCES) and\
+                    self.SOURCES[source_index] not in self.user.sources:
+                msg = self.read_source_request(self.SOURCES[source_index])
+            else:
+                msg = self.learning_message(instance)
         if msg['keyword'] is "NO_MORE_INSTANCES" or msg['time_up']:
             s_days = set(self.user.succesfull_days)
-            s_days.append(datetime.today())
+            s_day = datetime.today()
+            if s_day not in s_days:
+                s_days.append(s_day)
             self.user.succesfull_days = list(s_days)
+        return msg
+
+    def read_source_request(self, source):
+        msg = {'keyword': "", 'data': {}}
+        if datetime.today() not in self.user.source_requests:
+            msg['keyword'] = "READ_SOURCE-REQUEST"
+            msg['data'] = {'source': source}
+            self.user.source_requests.append(datetime.today())
+        else:
+            msg['keyword'] = "NO_MORE_INSTANCES"
         return msg
 
     def learning_message(self, instance):
@@ -211,6 +224,11 @@ class Consumer():
         """
         assert isinstance(source, str)
         self.users.sources.append(source)
+        s_day = datetime.today()
+        s_days = set(self.user.source_requests)
+        if s_day not in s_days:
+            s_days.append(s_day)
+        self.user.source_requests = list(s_days)
 
     def validate(self, responses):
         """Adds responses to certain instances

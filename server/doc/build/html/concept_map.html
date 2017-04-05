@@ -73,7 +73,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>self.edges</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; The list of self.edges for which to find the self.nodes</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The list of self.nodes referred to in the self.edges</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The list of nodes referred to in the edges</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="node.html#node.Node" title="node.Node">Node</a>)</td>
 </tr>
@@ -109,7 +109,7 @@
 <dl class="method">
 <dt id="concept_map.ConceptMap.find_siblings">
 <code class="descname">find_siblings</code><span class="sig-paren">(</span><em>edge</em>, <em>sources</em>, <em>partial_edges</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/concept_map.html#ConceptMap.find_siblings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.find_siblings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of self.edges which are siblings of the given edge</p>
+<dd><p>Return a list of self.edges which are siblings of the given edge and have the same label</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -117,11 +117,11 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>edge</strong> (<a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge"><em>Edge</em></a>) &#8211; The edge investigated for siblings</li>
 <li><strong>sources</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>)</em><em></em>) &#8211; The sources to filter on when looking for siblings</li>
-<li><strong>partial_self.edges</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; A list of self.edges to filter on when looking for siblings</li>
+<li><strong>partial_edges</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="edge.html#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; A list of self.edges for exclusion when looking for siblings</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of self.edges which are siblings of edge</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of edges which are siblings of edge and have the same label</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="edge.html#module-edge" title="edge">edge</a>)</p>

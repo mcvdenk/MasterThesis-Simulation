@@ -13,4 +13,4 @@ class TestItem(Document):
     connect('flashmap')
     question = StringField(required = True)
     sources = ListField(StringField, default = [])
-    response_model = ListField(StringField, default = [])
+    response_model = ListField(StringField(), default = [])
