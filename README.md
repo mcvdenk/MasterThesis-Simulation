@@ -15,7 +15,7 @@
   * ~~FlashmapInstance~~
   * ~~Test~~
   * ~~Questionnaire~~
-  * Session
+  * ~~Session~~
   * User
   * Consumer
 * Adapt client.js
