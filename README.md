@@ -14,7 +14,7 @@
   * ~~FlashcardInstance~~
   * ~~FlashmapInstance~~
   * ~~Test~~
-  * Questionnaire
+  * ~~Questionnaire~~
   * Session
   * User
   * Consumer

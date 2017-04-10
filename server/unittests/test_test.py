@@ -83,5 +83,90 @@ class TestTest(unittest.TestCase):
         self.assertEqual(self.test_1.test_item_responses[0].answer, "answer")
 
 
+class TestQuestionnaire(unittest.TestCase):
+
+    def setUp(self):
+        self.maxDiff = None
+        self.pu_items = set()
+        self.pu_responses = []
+        self.peou_items = set()
+        self.peou_responses = []
+        for i in range(10):
+            pu_item = QuestionnaireItem(
+                    usefullness = True,
+                    positive_phrasing = "pu_positive_" + str(i),
+                    negative_phrasing = "pu_negative_" + str(i)
+                    )
+            self.pu_items.add(pu_item)
+            pu_response_posi = QuestionnaireResponse(
+                    questionnaire_item = pu_item,
+                    phrasing = True)
+            self.pu_responses.append(pu_response_posi)
+            pu_response_nega = QuestionnaireResponse(
+                    questionnaire_item = pu_item,
+                    phrasing = False)
+            self.pu_responses.append(pu_response_nega)
+
+            peou_item = QuestionnaireItem(
+                    usefullness = False,
+                    positive_phrasing = "peou_positive_" + str(i),
+                    negative_phrasing = "peou_negative_" + str(i)
+                    )
+            self.peou_items.add(peou_item)
+            peou_response_posi = QuestionnaireResponse(
+                    questionnaire_item = peou_item,
+                    phrasing = True)
+            self.peou_responses.append(peou_response_posi)
+            peou_response_nega = QuestionnaireResponse(
+                    questionnaire_item = peou_item,
+                    phrasing = False)
+            self.peou_responses.append(peou_response_nega)
+
+        self.questionnaire = \
+                Questionnaire(pu_items = list(self.pu_items),
+                        peou_items = list(self.peou_items))
+
+    def tearDown(self):
+        del self.questionnaire
+        del self.peou_responses
+        del self.peou_items
+        del self.pu_responses
+        del self.pu_items
+
+    def test_completeness(self):
+        pu_result = [{'item': r.questionnaire_item.positive_phrasing, 'phrasing': r.phrasing} for r in self.pu_responses]
+        pu_test = [{'item': r.questionnaire_item.positive_phrasing, 'phrasing': r.phrasing} for r in self.questionnaire.perceived_usefulness_items]
+        self.assertCountEqual(pu_result, pu_test)
+                
+        peou_result = [{'item': r.questionnaire_item.positive_phrasing, 'phrasing': r.phrasing} for r in self.peou_responses]
+        peou_test = [{'item': r.questionnaire_item.positive_phrasing, 'phrasing': r.phrasing} for r in self.questionnaire.perceived_ease_of_use_items]
+        self.assertCountEqual(peou_result, peou_test)
+
+    def test_disjoint_pairs(self):
+        pu = [{'item': r.questionnaire_item.positive_phrasing, 'phrasing': r.phrasing}
+                for r in self.questionnaire.perceived_usefulness_items]
+        self.assertCountEqual(pu[:int(len(pu)/2)],
+                [{'item': resp['item'], 'phrasing': not resp['phrasing']} for resp in pu[int(len(pu)/2):]])
+
+        peou = [{'item': r.questionnaire_item.positive_phrasing, 'phrasing': r.phrasing}
+                for r in self.questionnaire.perceived_ease_of_use_items]
+        self.assertCountEqual(peou[:int(len(peou)/2)],
+                [{'item': resp['item'], 'phrasing': not resp['phrasing']} for resp in peou[int(len(peou)/2):]])
+
+    def append_answer(self):
+        self.questionnaire.append_answer(self.pu_items[7], True, "Positive pu item 7")
+        pu_response = None
+        for resp in self.questionnaire.perceived_usefulness_items:
+            if resp.questionnaire_item is self.peou_items[7] and resp.phrasing is True:
+                pu_response = resp
+        self.questionnaire.append_answer(self.peou_items[5], False, "Negative peou item 5")
+        for resp in self.questionnaire.perceived_ease_of_use_items:
+            if resp.questionnaire_item is self.peou_items[5] and resp.phrasing is False:
+                peou_response = resp
+
+        self.assertEqual(pu_response, "Positive pu item 7")
+        self.assertEqual(peou_response, "Negative peou item 5")
+
+
 if __name__ == '__main__':
     unittest.main()
