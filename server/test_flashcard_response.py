@@ -9,6 +9,6 @@ class TestFlashcardResponse(EmbeddedDocument):
     :cvar flashcard: The flashcard to which this response refers to
     :type flashcard: StringField
     """
-    connect('flashmap')
+    
     answer = StringField()
     flashcard = ReferenceField(Flashcard)

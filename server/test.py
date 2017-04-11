@@ -11,7 +11,7 @@ class Test(EmbeddedDocument):
     :cvar test_item_responses: A list of responses to the item questions on the test
     :type test_item_responses: TestItemResponse
     """
-    connect('flashmap')
+    
     test_flashcard_responses = ListField(EmbeddedDocumentField('TestFlashcardResponse'), default = [])
     test_item_responses = ListField(EmbeddedDocumentField('TestItemResponse'), default = [])
 

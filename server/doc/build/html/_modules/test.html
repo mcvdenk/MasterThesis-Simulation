@@ -56,7 +56,7 @@
 <span class="sd">    :cvar test_item_responses: A list of responses to the item questions on the test</span>
 <span class="sd">    :type test_item_responses: TestItemResponse</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
+    
     <span class="n">test_flashcard_responses</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="s1">&#39;TestFlashcardResponse&#39;</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="n">test_item_responses</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="s1">&#39;TestItemResponse&#39;</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
 

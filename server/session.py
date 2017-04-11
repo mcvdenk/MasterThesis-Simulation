@@ -13,7 +13,7 @@ class Session(EmbeddedDocument):
     :cvar browser: The type of browser used to log in
     :type browser: StringField
     """
-    connect('flashmap')
+    
     start = DateTimeField(default = datetime.now)
     end = DateTimeField()
     source_prompted = BooleanField(default = False)

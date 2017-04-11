@@ -48,17 +48,32 @@
 <div class="viewcode-block" id="QuestionnaireItem"><a class="viewcode-back" href="../questionnaire_item.html#questionnaire_item.QuestionnaireItem">[docs]</a><span class="k">class</span> <span class="nc">QuestionnaireItem</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a single item on the questionnaire</span>
 
-<span class="sd">    :cvar usefullness: Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)</span>
+<span class="sd">    :cvar usefulness: Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)</span>
 <span class="sd">    :type usefulness: BooleanField</span>
 <span class="sd">    :cvar positive_phrasing: The version of this item which is positively phrased</span>
 <span class="sd">    :type positive_phrasing: StringField</span>
 <span class="sd">    :cvar negative_phrasing: The version of this item which is negatively phrased</span>
 <span class="sd">    :type negative_phrasing: StringField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
-    <span class="n">usefullness</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">usefulness</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">positive_phrasing</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">negative_phrasing</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+    <span class="n">negative_phrasing</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QuestionnaireItem.to_dict"><a class="viewcode-back" href="../questionnaire_item.html#questionnaire_item.QuestionnaireItem.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phrasing</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method for generating a dictionary representation of this object</span>
+
+<span class="sd">        :param phrasing: Whether the positive or negative question is required</span>
+<span class="sd">        :type phrasing: boolean</span>
+<span class="sd">        :return: The representation containing an id field, a phrasing field and a question field</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+                <span class="s1">&#39;phrasing&#39;</span><span class="p">:</span> <span class="n">phrasing</span><span class="p">,</span>
+                <span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">negative_phrasing</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">positive_phrasing</span><span class="p">][</span><span class="n">phrasing</span><span class="p">]</span>
+                <span class="p">}</span></div></div>
+
 </pre></div>
 
           </div>

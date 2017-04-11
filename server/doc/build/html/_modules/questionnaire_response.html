@@ -56,7 +56,7 @@
 <span class="sd">    :cvar phrasing: Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire_item</span>
 <span class="sd">    :type phrasing: BooleanField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
+    
     <span class="n">questionnaire_item</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">QuestionnaireItem</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">(</span><span class="n">min_value</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">phrasing</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">()</span></div>

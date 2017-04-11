@@ -11,7 +11,7 @@ class QuestionnaireResponse(EmbeddedDocument):
     :cvar phrasing: Whether this answer refers to the positively (True) or the negatively (False) phrased version of the questionnaire_item
     :type phrasing: BooleanField
     """
-    connect('flashmap')
+    
     questionnaire_item = ReferenceField(QuestionnaireItem, required=True)
     answer = IntField(min_value=-2, max_value=2)
     phrasing = BooleanField()

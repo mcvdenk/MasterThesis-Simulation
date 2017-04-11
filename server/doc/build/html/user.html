@@ -58,7 +58,6 @@
 <li><strong>name</strong> &#8211; The username</li>
 <li><a class="reference external" href="https://docs.python.org/2/library/functions.html#type" title="(in Python v2.7)"><strong>type</strong></a> &#8211; StringField</li>
 <li><strong>condition</strong> &#8211; The condition of the user (&#8220;FLASHMAP&#8221; or &#8220;FLASHCARD&#8221;)</li>
-<li><a class="reference external" href="https://docs.python.org/2/library/functions.html#type" title="(in Python v2.7)"><strong>type</strong></a> &#8211; StringField</li>
 <li><strong>birthdate</strong> &#8211; The birthdate of the user</li>
 <li><strong>read_sources</strong> &#8211; A list of read sources by the user</li>
 <li><strong>gender</strong> &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
@@ -95,7 +94,7 @@
 
 <dl class="method">
 <dt id="user.User.append_questionnaire">
-<code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
+<code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for appending a questionnairy to the user given responses</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -121,7 +120,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>flashcard_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">Flashcard</span></code> (key = &#8216;card&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+<li><strong>flashcard_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">Flashcard</span></code> (key = &#8216;flashcard&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
 <li><strong>item_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">TestItem</span></code> (key = &#8216;item&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
 </ul>
 </td>
@@ -171,7 +170,7 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dict containing a list of FlashcardResponses and TestItemResponses</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a>(<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)">string</a>, <a class="reference internal" href="response.html#response.Response" title="response.Response">Response</a>)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a>(<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)">string</a>, <a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard">Flashcard</a> or <a class="reference internal" href="test_item.html#test_item.TestItem" title="test_item.TestItem">TestItem</a>)</p>
 </td>
 </tr>
 </tbody>

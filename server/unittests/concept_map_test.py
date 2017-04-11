@@ -17,8 +17,10 @@ class TestNode(unittest.TestCase):
     def setUp(self):
         self.node_id = objectid.ObjectId()
         self.node = Node(id = self.node_id, label = "Node")
+        self.node.save()
 
     def tearDown(self):
+        self.node.delete()
         del self.node
         del self.node_id
 
@@ -40,7 +42,15 @@ class TestEdge(unittest.TestCase):
         self.edge_id = objectid.ObjectId()
         self.edge = Edge(id = self.edge_id, label = "Edge", from_node = self.node_a, to_node = self.node_b)
 
+        self.node_a.save()
+        self.node_b.save()
+        self.edge.save()
+
     def tearDown(self):
+        self.edge.delete()
+        self.node_b.delete()
+        self.node_a.delete()
+
         del self.edge
         del self.node_b
         del self.node_b_id
@@ -88,7 +98,33 @@ class TestConceptMap(unittest.TestCase):
                 self.edge_e_f,
                 ])
 
+        self.node_a.save()
+        self.node_b.save()
+        self.node_c.save()
+        self.node_d.save()
+        self.node_e.save()
+        self.node_f.save()
+        self.edge_a_f.save()
+        self.edge_b_c.save()
+        self.edge_c_d.save()
+        self.edge_c_e.save()
+        self.edge_e_f.save()
+        self.concept_map.save()
+
     def tearDown(self):
+        self.concept_map.delete()
+        self.edge_a_f.delete()
+        self.edge_b_c.delete()
+        self.edge_c_d.delete()
+        self.edge_c_e.delete()
+        self.edge_e_f.delete()
+        self.node_a.delete()
+        self.node_b.delete()
+        self.node_c.delete()
+        self.node_d.delete()
+        self.node_e.delete()
+        self.node_f.delete()
+        
         del self.concept_map
         del self.edge_a_f
         del self.edge_b_c
@@ -100,6 +136,7 @@ class TestConceptMap(unittest.TestCase):
         del self.node_c
         del self.node_d
         del self.node_e
+        del self.node_f
 
     def test_to_dict(self):
         test_result = {
@@ -177,8 +214,18 @@ class TestFlashcard(unittest.TestCase):
         self.edge = Edge(label = "Edge", from_node = self.node_a, to_node = self.node_b)
         self.fcard_id = objectid.ObjectId()
         self.flashcard = Flashcard(id = self.fcard_id, question = "Question", answer = "Answer", sources = [self.edge])
+        
+        self.node_a.save()
+        self.node_b.save()
+        self.edge.save()
+        self.flashcard.save()
 
     def tearDown(self):
+        self.flashcard.delete()
+        self.edge.delete()
+        self.node_b.delete()
+        self.node_a.delete()
+
         del self.flashcard
         del self.fcard_id
         del self.edge

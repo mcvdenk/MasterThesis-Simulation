@@ -20,15 +20,13 @@
   \item Consumer (class in consumer), \hyperpage{4}
   \item consumer (module), \hyperpage{4}
   \item consumer() (consumer.Consumer method), \hyperpage{4}
-  \item create\_questionnaire() (consumer.Consumer method), \hyperpage{5}
-  \item create\_questionnaire() (user.User method), \hyperpage{12}
-  \item create\_test() (consumer.Consumer method), \hyperpage{5}
+  \item create\_questionnaire() (user.User method), \hyperpage{13}
   \item create\_test() (user.User method), \hyperpage{13}
 
   \indexspace
   \bigletter E
-  \item Edge (class in edge), \hyperpage{6}
-  \item edge (module), \hyperpage{6}
+  \item Edge (class in edge), \hyperpage{5}
+  \item edge (module), \hyperpage{5}
   \item end\_session() (session.Session method), \hyperpage{10}
 
   \indexspace
@@ -41,8 +39,8 @@
   \item flashcard (module), \hyperpage{6}
   \item flashcard\_instance (module), \hyperpage{6}
   \item FlashcardInstance (class in flashcard\_instance), \hyperpage{6}
-  \item flashmap\_instance (module), \hyperpage{7}
-  \item FlashmapInstance (class in flashmap\_instance), \hyperpage{7}
+  \item flashmap\_instance (module), \hyperpage{6}
+  \item FlashmapInstance (class in flashmap\_instance), \hyperpage{6}
 
   \indexspace
   \bigletter G
@@ -65,8 +63,8 @@
   \indexspace
   \bigletter L
   \item learning\_message() (consumer.Consumer method), \hyperpage{5}
-  \item LogEntry (class in logentry), \hyperpage{8}
-  \item logentry (module), \hyperpage{8}
+  \item LogEntry (class in logentry), \hyperpage{7}
+  \item logentry (module), \hyperpage{7}
 
   \indexspace
   \bigletter N
@@ -116,15 +114,17 @@
   \item to\_dict() (edge.Edge method), \hyperpage{6}
   \item to\_dict() (flashcard.Flashcard method), \hyperpage{6}
   \item to\_dict() (node.Node method), \hyperpage{8}
+  \item to\_dict() (questionnaire\_item.QuestionnaireItem method), \hyperpage{9}
+  \item to\_dict() (test\_item.TestItem method), \hyperpage{11}
 
   \indexspace
   \bigletter U
-  \item User (class in user), \hyperpage{11}
-  \item user (module), \hyperpage{11}
+  \item User (class in user), \hyperpage{12}
+  \item user (module), \hyperpage{12}
 
   \indexspace
   \bigletter V
   \item validate() (consumer.Consumer method), \hyperpage{5}
-  \item validate() (user.User method), \hyperpage{13}
+  \item validate() (user.User method), \hyperpage{14}
 
 \end{theindex}

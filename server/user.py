@@ -10,7 +10,7 @@ class User(Document):
     :cvar name: The username
     :cvar type: StringField
     :cvar condition: The condition of the user ("FLASHMAP" or "FLASHCARD")
-    :cvar type: StringField
+    :type condition: StringField
     :cvar birthdate: The birthdate of the user
     :type birthdate: DateTimeField
     :cvar read_sources: A list of read sources by the user
@@ -34,7 +34,7 @@ class User(Document):
     :cvar succesfull_days: The days that the user succesfully completed a session
     :type succesfull_days: list(DateTime)
     """
-    connect('flashmap')
+    
     name = StringField(required=True, unique=True)
     condition = StringField(required=True, choices = ['FLASHMAP', 'FLASHCARD'])
     birthdate = DateTimeField()
@@ -59,8 +59,8 @@ class User(Document):
         :param code: The code from the informed consent form
         :type code: string
         """
-        assert isinstance(birthdate, DateTime)
-        assert isinstance(gender, string)
+        assert isinstance(birthdate, datetime)
+        assert isinstance(gender, str)
         assert gender is 'male' or gender is 'female' or gender is 'other'
         assert isinstance(code, str)
         self.birthdate = birthdate
@@ -75,7 +75,7 @@ class User(Document):
         :param items: A list of items from the database
         :type items: list(TestItem)
         :return: A dict containing a list of FlashcardResponses and TestItemResponses
-        :rtype: dict(string, Response)
+        :rtype: dict(string, Flashcard or TestItem)
         """
         assert isinstance(flashcards, list)
         assert all(isinstance(card, Flashcard) for card in flashcards)
@@ -84,30 +84,33 @@ class User(Document):
         prev_flashcards = []
         prev_items = []
         for test in self.tests:
-            for card in test.flashcard_responses:
+            for card in test.test_flashcard_responses:
                 prev_flashcards.append(card.flashcard)
-            for item in test.item_responses:
+            for item in test.test_item_responses:
                 prev_items.append(item.item)
-        test = Testflashcards(flashcards, items = items, prev_flashcards = prev_flashcards, prev_items = prev_items)
+        test = Test(flashcards = flashcards, items = items,
+                prev_flashcards = prev_flashcards, prev_items = prev_items)
         self.tests.append(test)
-        return {'flashcards' : [fcard.flashcard for fcard in test.flashcards],
-                'items' : [item.item for item in test.items]}
+        return {'flashcards' : [fcard.flashcard.to_dict() for fcard in test.test_flashcard_responses],
+                'items' : [item.item.to_dict() for item in test.test_item_responses]}
 
     def append_test(self, flashcard_responses, item_responses):
         """A method for appending a test to the user given flashcard and item responses
         
-        :param flashcard_responses: A list of dict objects containing a :class:`Flashcard` (key = 'card') and an answer (key = 'answer')
+        :param flashcard_responses: A list of dict objects containing a :class:`Flashcard` (key = 'flashcard') and an answer (key = 'answer')
         :type flashcard_responses: dict
         :param item_responses: A list of dict objects containing a :class:`TestItem` (key = 'item') and an answer (key = 'answer')
         :type item_responses: dict
         """
-        assert isinstance(flashcard_responses, dict)
-        assert isinstance(item_responses, dict)
+        assert isinstance(flashcard_responses, list)
+        assert all(isinstance(resp, dict) for resp in flashcard_responses)
+        assert isinstance(item_responses, list)
+        assert all(isinstance(resp, dict) for resp in item_responses)
         test = self.tests[-1]
         for card in flashcard_responses:
-            test.append_flashcard(card["flashcard"], card["answer"])
+            test.append_flashcard(card['flashcard'], card['answer'])
         for item in item_responses:
-            test.append_item(item["item"], item["answer"])
+            test.append_item(item['item'], item['answer'])
 
     def create_questionnaire(self, pu_items, peou_items):
         """A method for creating a new questionnaire
@@ -124,10 +127,13 @@ class User(Document):
         assert isinstance(peou_items, list)
         assert all(isinstance(item, QuestionnaireItem) for item in peou_items)
         self.questionnaire = Questionnaire(pu_items, peou_items)
-        return [item.questionnaire_item for item in questionnaire.perceived_usefulness_items]\
-                + [item.questionnaire_item for item in questionnaire.perceived_ease_of_use_items]
+        return [
+                item.questionnaire_item.to_dict(item.phrasing) for 
+                item in self.questionnaire.perceived_usefulness_items] + [
+                item.questionnaire_item.to_dict(item.phrasing) for
+                item in self.questionnaire.perceived_ease_of_use_items]
 
-    def append_questionnaire(self, responses, good, can_be_improved):
+    def append_questionnaire(self, responses, good, can_be_improved, email):
         """A method for appending a questionnairy to the user given responses
         
         :param responses: A list of dict objects containing a :class:`QuestionnaireItem` (key = 'item'), the phrasing (key = 'phrasing') and an answer (key = 'answer')
@@ -144,8 +150,9 @@ class User(Document):
         for response in responses:
             self.questionnaire.append_answer(response['item'],
                     response['phrasing'], response['answer'])
-            self.questionnaire.good = good
-            self.questionnaire.can_be_improved = can_be_improved
+        self.questionnaire.good = good
+        self.questionnaire.can_be_improved = can_be_improved
+        self.email = email
 
     def get_due_instance(self):
         """Returns the instance with the oldest due date

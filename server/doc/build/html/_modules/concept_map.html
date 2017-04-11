@@ -55,9 +55,8 @@
 <span class="sd">    :cvar edges: a list of edges (by default all existing edge documents)</span>
 <span class="sd">    :type edges: ListField(Edge)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
-    <span class="n">nodes</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Node</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="n">Node</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span>
-    <span class="n">edges</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Edge</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="n">Edge</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Node</span><span class="p">))</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Edge</span><span class="p">))</span>
 
 <div class="viewcode-block" id="ConceptMap.get_partial_map"><a class="viewcode-back" href="../concept_map.html#concept_map.ConceptMap.get_partial_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_partial_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">sources</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a concept map containing only the parent and sibling self.edges together with the referred self.nodes</span>

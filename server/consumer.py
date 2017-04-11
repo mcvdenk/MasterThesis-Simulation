@@ -31,7 +31,7 @@ class Consumer():
     """
 
     def __init__(self):
-        connect('flashmap')
+        
         self.concept_map = ConceptMap.objects().first()
         #Preloading all sources from the different flashcards/-edges (the chapters from Laagland)
         self.SOURCES = []
@@ -122,31 +122,16 @@ class Consumer():
         elif (self.user.succesfull_days > 5):
             if (len(self.user.tests) < 2):
                 msg['keyword'] = "TEST-REQUEST"
-                msg['data'] = create_test()
+                msg['data'] = self.user.create_test(
+                        Flashcard.objects(), TestItem.objects())
             if (self.user.questionnaire is None):
                 msg['keyword'] = "QUESTIONNAIRE-REQUEST"
-                msg['data'] = create_questionnaire()
+                msg['data'] = self.user.create_questionnaire(
+                        QuestionnaireItem.objects(usefull = True),
+                        QuestionnaireItem.objects(usefull = False)
+                        )
         else: msg['keyword'] = "AUTHENTICATE-RESPONSE"
         return msg
-
-    def create_test(self):
-        """Creates a test for this self.user (using user.create_test())
-
-        :return: A dict object fit for sending to the self.user
-        :rtype: dict
-        """
-        return self.user.create_test(Flashcard.objects(), TestItem.objects())
-
-    def create_questionnaire(self):
-        """Creates a questionnaire for this self.user (using user.create_questionnaire())
-
-        :return: A dict object fit for sending to the self.user
-        :rtype: dict
-        """
-        return self.user.create_questionnaire(
-                QuestionnaireItem.objects(usefull = True),
-                QuestionnaireItem.objects(usefull = False)
-                )
 
     def provide_learning(self):
         """Provides a dict containing relevant information for learning

@@ -13,7 +13,7 @@ class Flashcard(Document):
     :cvar response_model: A list consisting of parts of valid responses to the question (for the test matrix)
     :type response_model: ListField(StringField)
     """
-    connect('flashmap')
+    
     question = StringField(required=True)
     answer = StringField(required=True)
     sources = ListField(ReferenceField(Edge), default = [])

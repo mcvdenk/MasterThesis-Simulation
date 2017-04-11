@@ -14,7 +14,7 @@ class Questionnaire(EmbeddedDocument):
     :cvar can_be_improved: A description of what could be improved according to the user
     :type can_be_improved: StringField
     """
-    connect('flashmap')
+    
     perceived_usefulness_items  = ListField(EmbeddedDocumentField(QuestionnaireResponse))
     perceived_ease_of_use_items = ListField(EmbeddedDocumentField(QuestionnaireResponse))
     good = StringField()
@@ -48,11 +48,11 @@ class Questionnaire(EmbeddedDocument):
         assert isinstance(answer, str)
         if (item.usefulness):
             for r in self.perceived_usefulness_items:
-                if r.item is item and i.phrasing is phrasing:
+                if r.questionnaire_item is item and i.phrasing is phrasing:
                     r.answer = answer
                     break
         else:
             for r in self.perceived_ease_of_use_items:
-                if r.item is item and i.phrasing is phrasing:
+                if r.questionnaire_item is item and i.phrasing is phrasing:
                     r.answer = answer
                     break

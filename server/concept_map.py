@@ -10,9 +10,8 @@ class ConceptMap(Document):
     :cvar edges: a list of edges (by default all existing edge documents)
     :type edges: ListField(Edge)
     """
-    connect('flashmap')
-    nodes = ListField(ReferenceField(Node), default=Node.objects())
-    edges = ListField(ReferenceField(Edge), default=Edge.objects())
+    nodes = ListField(ReferenceField(Node))
+    edges = ListField(ReferenceField(Edge))
 
     def get_partial_map(self, edge, sources):
         """Returns a concept map containing only the parent and sibling self.edges together with the referred self.nodes

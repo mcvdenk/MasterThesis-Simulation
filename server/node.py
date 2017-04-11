@@ -6,7 +6,7 @@ class Node(Document):
     :cvar label: The label appearing within the node
     :type label: StringField
     """
-    connect('flashmap')
+    
     label = StringField(default = "")
 
 

@@ -10,7 +10,14 @@ class TestItem(Document):
     :cvar response_model: A list of the parts of a valid answer used for the test matrix
     :type response_model: ListField(StringField)
     """
-    connect('flashmap')
     question = StringField(required = True)
-    sources = ListField(StringField, default = [])
+    sources = ListField(StringField(), default = [])
     response_model = ListField(StringField(), default = [])
+
+    def to_dict(self):
+        """A method for generating a dictionary representation of this object
+
+        :return: The representation containing an id field and a question field
+        :rtype: dict
+        """
+        return {'id': str(self.id), 'question': self.question}

@@ -14,7 +14,7 @@ class LogEntry(Document):
     :cvar timestamp: The time that this message was received or transmitted
     :type timestamp: DateField
     """
-    connect('flashmap')
+    
     user = ReferenceField(User, required=True)
     keyword = StringField(required=True)
     data = DictField(default = {})

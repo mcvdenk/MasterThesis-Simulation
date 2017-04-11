@@ -14,7 +14,7 @@ class Instance(EmbeddedDocument):
     :type due_date: DateTimeField
     """
     meta = {'allow_inheritance': True}
-    connect('flashmap')
+    
     responses = ListField(EmbeddedDocumentField(Response), default = [])
     reference = GenericReferenceField(required = True)
     due_date = DateTimeField(default = datetime.now)

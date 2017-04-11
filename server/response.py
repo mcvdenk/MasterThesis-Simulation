@@ -11,7 +11,7 @@ class Response(EmbeddedDocument):
     :cvar correct: Whether the answer to the :class:`Instance` was correct (True) or incorrect (False)
     :type correct: BooleanField
     """
-    connect('flashmap')
+    
     start = DateTimeField(default = datetime.now)
     end = DateTimeField()
     correct = BooleanField()

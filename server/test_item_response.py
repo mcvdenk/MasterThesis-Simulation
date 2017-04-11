@@ -9,6 +9,6 @@ class TestItemResponse(Document):
     :cvar item: The specific item this response refers to
     :type item: TestItem
     """
-    connect('flashmap')
+    
     answer = StringField(default="")
     item = ReferenceField(TestItem)

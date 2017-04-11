@@ -13,7 +13,7 @@ class Edge(Document):
     :cvar sources: The source where this edge is described (e.g. paragraph 13.2 from Laagland)
     :type sources: list(string)
     """
-    connect('flashmap')
+    
     from_node = ReferenceField(Node, db_field = "from", required=True)
     to_node = ReferenceField(Node, db_field = "to", required=True)
     label = StringField(default = "")

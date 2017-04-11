@@ -1,3 +1,4 @@
+from mongoengine import *
 import asyncio
 import websockets
 import json
@@ -5,6 +6,8 @@ from consumer import *
 
 PATH = '128.199.49.170'
 PORT = 5678
+
+connect('flashmap')
 
 async def handler(websocket, path):
     """Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client

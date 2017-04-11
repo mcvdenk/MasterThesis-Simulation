@@ -1,3 +1,4 @@
+from mongoengine import *
 from bson import objectid
 import unittest
 from datetime import datetime
@@ -15,6 +16,8 @@ from flashmap_instance import *
 from flashcard_instance import *
 from response import *
 
+connect("test")
+
 class TestFlashmapInstance(unittest.TestCase):
 
     def setUp(self):
@@ -23,7 +26,15 @@ class TestFlashmapInstance(unittest.TestCase):
         self.edge = Edge(label = "Edge", from_node = self.node_a, to_node = self.node_b)
         self.instance = FlashmapInstance(reference = self.edge)
 
+        self.node_a.save()
+        self.node_b.save()
+        self.edge.save()
+
     def tearDown(self):
+        self.edge.delete()
+        self.node_b.delete()
+        self.node_a.delete()
+
         del self.instance
         del self.edge
         del self.node_b
@@ -84,7 +95,17 @@ class TestFlashcardInstance(unittest.TestCase):
         self.flashcard = Flashcard(question = "Question", answer = "Answer", sources = [self.edge])
         self.instance = FlashcardInstance(reference = self.flashcard)
 
+        self.node_a.save()
+        self.node_b.save()
+        self.edge.save()
+        self.flashcard.save()
+
     def tearDown(self):
+        self.flashcard.delete()
+        self.edge.delete()
+        self.node_b.delete()
+        self.node_a.delete()
+        
         del self.instance
         del self.flashcard
         del self.edge

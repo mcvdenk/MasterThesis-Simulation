@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  10 APR 2017 14:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  11 APR 2017 15:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1098,7 +1098,7 @@ Chapter 2.
 
 
 ] (./Flashmapserver.ind
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 []\T1/ptm/m/n/10 QuestionnaireResponse (class in ques-tion-
  []
 
@@ -1106,8 +1106,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 []\T1/ptm/m/n/10 TestFlashcardResponse (class in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
+[]\T1/ptm/m/n/10 to_dict() (ques-tion-naire_item.QuestionnaireItem
  []
 
 [19
@@ -1125,12 +1130,12 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1376.
  ) 
 Here is how much of TeX's memory you used:
  13753 strings out of 493304
- 191534 string characters out of 6139871
- 283190 words of memory out of 5000000
+ 191548 string characters out of 6139871
+ 283204 words of memory out of 5000000
  16792 multiletter control sequences out of 15000+600000
  45077 words of font info for 67 fonts, out of 8000000 for 9000
  958 hyphenation exceptions out of 8191
- 37i,12n,45p,730b,647s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,12n,45p,730b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/courier/ucrbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
@@ -1141,7 +1146,7 @@ texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on Flashmapserver.pdf (23 pages, 248303 bytes).
+Output written on Flashmapserver.pdf (23 pages, 249282 bytes).
 PDF statistics:
  557 PDF objects out of 1000 (max. 8388607)
  510 compressed objects within 6 object streams

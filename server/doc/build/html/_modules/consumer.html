@@ -76,7 +76,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
+        
         <span class="bp">self</span><span class="o">.</span><span class="n">concept_map</span> <span class="o">=</span> <span class="n">ConceptMap</span><span class="o">.</span><span class="n">objects</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
         <span class="c1">#Preloading all sources from the different flashcards/-edges (the chapters from Laagland)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span> <span class="o">=</span> <span class="p">[]</span>
@@ -167,31 +167,16 @@
         <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">succesfull_days</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">tests</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">):</span>
                 <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TEST-REQUEST&quot;</span>
-                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_test</span><span class="p">()</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_test</span><span class="p">(</span>
+                        <span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">(),</span> <span class="n">TestItem</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span>
             <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">questionnaire</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
                 <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;QUESTIONNAIRE-REQUEST&quot;</span>
-                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">create_questionnaire</span><span class="p">()</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_questionnaire</span><span class="p">(</span>
+                        <span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">usefull</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                        <span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">usefull</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+                        <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;AUTHENTICATE-RESPONSE&quot;</span>
         <span class="k">return</span> <span class="n">msg</span></div>
-
-<div class="viewcode-block" id="Consumer.create_test"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.create_test">[docs]</a>    <span class="k">def</span> <span class="nf">create_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Creates a test for this self.user (using user.create_test())</span>
-
-<span class="sd">        :return: A dict object fit for sending to the self.user</span>
-<span class="sd">        :rtype: dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_test</span><span class="p">(</span><span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">(),</span> <span class="n">TestItem</span><span class="o">.</span><span class="n">objects</span><span class="p">())</span></div>
-
-<div class="viewcode-block" id="Consumer.create_questionnaire"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.create_questionnaire">[docs]</a>    <span class="k">def</span> <span class="nf">create_questionnaire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Creates a questionnaire for this self.user (using user.create_questionnaire())</span>
-
-<span class="sd">        :return: A dict object fit for sending to the self.user</span>
-<span class="sd">        :rtype: dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_questionnaire</span><span class="p">(</span>
-                <span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">usefull</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
-                <span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">usefull</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-                <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Consumer.provide_learning"><a class="viewcode-back" href="../consumer.html#consumer.Consumer.provide_learning">[docs]</a>    <span class="k">def</span> <span class="nf">provide_learning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Provides a dict containing relevant information for learning</span>

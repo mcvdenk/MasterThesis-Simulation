@@ -11,22 +11,20 @@
 \indexentry{authenticate() (consumer.Consumer method)|hyperpage}{4}
 \indexentry{check\_prerequisites() (consumer.Consumer method)|hyperpage}{4}
 \indexentry{consumer() (consumer.Consumer method)|hyperpage}{4}
-\indexentry{create\_questionnaire() (consumer.Consumer method)|hyperpage}{5}
-\indexentry{create\_test() (consumer.Consumer method)|hyperpage}{5}
 \indexentry{learning\_message() (consumer.Consumer method)|hyperpage}{5}
 \indexentry{provide\_learned\_items() (consumer.Consumer method)|hyperpage}{5}
 \indexentry{provide\_learning() (consumer.Consumer method)|hyperpage}{5}
 \indexentry{validate() (consumer.Consumer method)|hyperpage}{5}
-\indexentry{edge (module)|hyperpage}{6}
-\indexentry{Edge (class in edge)|hyperpage}{6}
+\indexentry{edge (module)|hyperpage}{5}
+\indexentry{Edge (class in edge)|hyperpage}{5}
 \indexentry{to\_dict() (edge.Edge method)|hyperpage}{6}
 \indexentry{flashcard (module)|hyperpage}{6}
 \indexentry{Flashcard (class in flashcard)|hyperpage}{6}
 \indexentry{to\_dict() (flashcard.Flashcard method)|hyperpage}{6}
 \indexentry{flashcard\_instance (module)|hyperpage}{6}
 \indexentry{FlashcardInstance (class in flashcard\_instance)|hyperpage}{6}
-\indexentry{flashmap\_instance (module)|hyperpage}{7}
-\indexentry{FlashmapInstance (class in flashmap\_instance)|hyperpage}{7}
+\indexentry{flashmap\_instance (module)|hyperpage}{6}
+\indexentry{FlashmapInstance (class in flashmap\_instance)|hyperpage}{6}
 \indexentry{handler (module)|hyperpage}{7}
 \indexentry{handler() (in module handler)|hyperpage}{7}
 \indexentry{instance (module)|hyperpage}{7}
@@ -36,8 +34,8 @@
 \indexentry{get\_exponent() (instance.Instance method)|hyperpage}{7}
 \indexentry{schedule() (instance.Instance method)|hyperpage}{7}
 \indexentry{start\_response() (instance.Instance method)|hyperpage}{7}
-\indexentry{logentry (module)|hyperpage}{8}
-\indexentry{LogEntry (class in logentry)|hyperpage}{8}
+\indexentry{logentry (module)|hyperpage}{7}
+\indexentry{LogEntry (class in logentry)|hyperpage}{7}
 \indexentry{node (module)|hyperpage}{8}
 \indexentry{Node (class in node)|hyperpage}{8}
 \indexentry{to\_dict() (node.Node method)|hyperpage}{8}
@@ -46,6 +44,7 @@
 \indexentry{append\_answer() (questionnaire.Questionnaire method)|hyperpage}{8}
 \indexentry{questionnaire\_item (module)|hyperpage}{9}
 \indexentry{QuestionnaireItem (class in questionnaire\_item)|hyperpage}{9}
+\indexentry{to\_dict() (questionnaire\_item.QuestionnaireItem method)|hyperpage}{9}
 \indexentry{questionnaire\_response (module)|hyperpage}{9}
 \indexentry{QuestionnaireResponse (class in questionnaire\_response)|hyperpage}{9}
 \indexentry{response (module)|hyperpage}{9}
@@ -62,18 +61,19 @@
 \indexentry{TestFlashcardResponse (class in test\_flashcard\_response)|hyperpage}{11}
 \indexentry{test\_item (module)|hyperpage}{11}
 \indexentry{TestItem (class in test\_item)|hyperpage}{11}
+\indexentry{to\_dict() (test\_item.TestItem method)|hyperpage}{11}
 \indexentry{test\_item\_response (module)|hyperpage}{11}
 \indexentry{TestItemResponse (class in test\_item\_response)|hyperpage}{11}
-\indexentry{user (module)|hyperpage}{11}
-\indexentry{User (class in user)|hyperpage}{11}
+\indexentry{user (module)|hyperpage}{12}
+\indexentry{User (class in user)|hyperpage}{12}
 \indexentry{add\_new\_instance() (user.User method)|hyperpage}{12}
 \indexentry{append\_questionnaire() (user.User method)|hyperpage}{12}
 \indexentry{append\_test() (user.User method)|hyperpage}{12}
-\indexentry{create\_questionnaire() (user.User method)|hyperpage}{12}
+\indexentry{create\_questionnaire() (user.User method)|hyperpage}{13}
 \indexentry{create\_test() (user.User method)|hyperpage}{13}
 \indexentry{get\_due\_instance() (user.User method)|hyperpage}{13}
 \indexentry{get\_instance\_by\_id() (user.User method)|hyperpage}{13}
 \indexentry{set\_descriptives() (user.User method)|hyperpage}{13}
 \indexentry{start\_response() (user.User method)|hyperpage}{13}
 \indexentry{time\_spend\_today() (user.User method)|hyperpage}{13}
-\indexentry{validate() (user.User method)|hyperpage}{13}
+\indexentry{validate() (user.User method)|hyperpage}{14}

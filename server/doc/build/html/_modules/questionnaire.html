@@ -59,7 +59,7 @@
 <span class="sd">    :cvar can_be_improved: A description of what could be improved according to the user</span>
 <span class="sd">    :type can_be_improved: StringField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
+    
     <span class="n">perceived_usefulness_items</span>  <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">QuestionnaireResponse</span><span class="p">))</span>
     <span class="n">perceived_ease_of_use_items</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">QuestionnaireResponse</span><span class="p">))</span>
     <span class="n">good</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
@@ -93,12 +93,12 @@
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">usefulness</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">perceived_usefulness_items</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">questionnaire_item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>
                     <span class="n">r</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span>
                     <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">perceived_ease_of_use_items</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">questionnaire_item</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">phrasing</span> <span class="ow">is</span> <span class="n">phrasing</span><span class="p">:</span>
                     <span class="n">r</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span>
                     <span class="k">break</span></div></div>
 </pre></div>

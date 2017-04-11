@@ -59,7 +59,7 @@
 <span class="sd">    :cvar timestamp: The time that this message was received or transmitted</span>
 <span class="sd">    :type timestamp: DateField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
+    
     <span class="n">user</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">keyword</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="p">{})</span>

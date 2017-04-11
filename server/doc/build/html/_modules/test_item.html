@@ -55,10 +55,17 @@
 <span class="sd">    :cvar response_model: A list of the parts of a valid answer used for the test matrix</span>
 <span class="sd">    :type response_model: ListField(StringField)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
     <span class="n">question</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">sources</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
-    <span class="n">response_model</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span></div>
+    <span class="n">sources</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="n">response_model</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+
+<div class="viewcode-block" id="TestItem.to_dict"><a class="viewcode-back" href="../test_item.html#test_item.TestItem.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method for generating a dictionary representation of this object</span>
+
+<span class="sd">        :return: The representation containing an id field and a question field</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">question</span><span class="p">}</span></div></div>
 </pre></div>
 
           </div>

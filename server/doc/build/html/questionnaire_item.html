@@ -56,7 +56,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>usefullness</strong> &#8211; Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)</li>
+<li><strong>usefulness</strong> &#8211; Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)</li>
 <li><strong>positive_phrasing</strong> &#8211; The version of this item which is positively phrased</li>
 <li><strong>negative_phrasing</strong> &#8211; The version of this item which is negatively phrased</li>
 </ul>
@@ -64,6 +64,24 @@
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="questionnaire_item.QuestionnaireItem.to_dict">
+<code class="descname">to_dict</code><span class="sig-paren">(</span><em>phrasing</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/questionnaire_item.html#QuestionnaireItem.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#questionnaire_item.QuestionnaireItem.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for generating a dictionary representation of this object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>phrasing</strong> (<em>boolean</em>) &#8211; Whether the positive or negative question is required</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The representation containing an id field, a phrasing field and a question field</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>

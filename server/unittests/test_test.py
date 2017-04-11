@@ -1,3 +1,4 @@
+from mongoengine import *
 from bson import objectid
 import unittest
 from datetime import datetime
@@ -16,30 +17,57 @@ from questionnaire import *
 from questionnaire_item import *
 from questionnaire_response import *
 
+connect("test")
+
+class TestTestItem(unittest.TestCase):
+    
+    def setUp(self):
+        self.test_item = TestItem(question = "question")
+        self.test_item.save()
+    
+    def tearDown(self):
+        self.test_item.delete()
+        del self.test_item
+
+    def test_to_dict(self):
+        result = {'question': self.test_item.question, 'id': str(self.test_item.id)}
+        self.assertEqual(result, self.test_item.to_dict())
+
 class TestTest(unittest.TestCase):
     
     def setUp(self):
         self.flashcards = set()
+        self.items = set()
+        
         for i in range(10):
-            self.flashcards.add(Flashcard(
+            flashcard = (Flashcard(
                 question = "fc_Question_"+str(i),
                 answer = "fc_Answer_"+str(i),
                 sources = [],
                 response_model = ["fc_Response_"+str(i)]
                 ))
-        self.items = set()
-        for i in range(10):
-            self.items.add(TestItem(
+            flashcard.save()
+            self.flashcards.add(flashcard)
+            
+            item = TestItem(
                 question = "itm_Question_"+str(i),
                 sources = [],
                 response_model = ["itm_Response_"+str(i)]
-                ))
+                )
+            item.save()
+            self.items.add(item)
+        
         self.test_1 = Test(list(self.flashcards), list(self.items))
         self.test_2 = Test(list(self.flashcards), list(self.items),
             prev_flashcards = [response.flashcard for response in self.test_1.test_flashcard_responses],
             prev_items = [response.item for response in self.test_1.test_item_responses])
 
     def tearDown(self):
+        for flashcard in self.flashcards:
+            flashcard.delete()
+        for item in self.items:
+            item.delete()
+
         del self.test_2
         del self.test_1
         del self.flashcards
@@ -66,11 +94,12 @@ class TestTest(unittest.TestCase):
                 {flashcard.question for flashcard in res_flashcards})
 
     def test_post_items_equalset_1(self):
-        for response in self.test_1.test_item_responses:
-            self.items.remove(response.item)
+        res_items = self.items.difference(
+                {response.item for response in
+                    self.test_1.test_item_responses})
         self.assertEqual({response.item.question for response in
                 self.test_2.test_item_responses},
-                {item.question for item in self.items})
+                {item.question for item in res_items})
 
     def test_append_flashcard(self):
         flashcard = self.test_1.test_flashcard_responses[0].flashcard
@@ -93,10 +122,11 @@ class TestQuestionnaire(unittest.TestCase):
         self.peou_responses = []
         for i in range(10):
             pu_item = QuestionnaireItem(
-                    usefullness = True,
+                    usefulness = True,
                     positive_phrasing = "pu_positive_" + str(i),
                     negative_phrasing = "pu_negative_" + str(i)
                     )
+            pu_item.save()
             self.pu_items.add(pu_item)
             pu_response_posi = QuestionnaireResponse(
                     questionnaire_item = pu_item,
@@ -108,10 +138,11 @@ class TestQuestionnaire(unittest.TestCase):
             self.pu_responses.append(pu_response_nega)
 
             peou_item = QuestionnaireItem(
-                    usefullness = False,
+                    usefulness = False,
                     positive_phrasing = "peou_positive_" + str(i),
                     negative_phrasing = "peou_negative_" + str(i)
                     )
+            peou_item.save()
             self.peou_items.add(peou_item)
             peou_response_posi = QuestionnaireResponse(
                     questionnaire_item = peou_item,
@@ -127,6 +158,8 @@ class TestQuestionnaire(unittest.TestCase):
                         peou_items = list(self.peou_items))
 
     def tearDown(self):
+        for item in self.pu_items.union(self.peou_items):
+            item.delete()
         del self.questionnaire
         del self.peou_responses
         del self.peou_items

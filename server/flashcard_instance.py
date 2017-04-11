@@ -7,5 +7,5 @@ class FlashcardInstance(Instance):
     :cvar reference: The flashcard to which this instance refers
     :type reference: Flashcard
     """
-    connect('flashmap')
+    
     reference = ReferenceField(Flashcard, required = True)
