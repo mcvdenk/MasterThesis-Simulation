@@ -212,6 +212,22 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="user.User.retrieve_recent_instance">
+<code class="descname">retrieve_recent_instance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.retrieve_recent_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.retrieve_recent_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the instance most recently answered by the user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The instance with the latest response.end being the most recent of all instances</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="instance.html#module-instance" title="instance">instance</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="user.User.set_descriptives">
 <code class="descname">set_descriptives</code><span class="sig-paren">(</span><em>birthdate</em>, <em>gender</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.set_descriptives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.set_descriptives" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for setting the descriptives of the user</p>
@@ -225,20 +241,6 @@
 <li><strong>code</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The code from the informed consent form</li>
 </ul>
 </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="user.User.start_response">
-<code class="descname">start_response</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.start_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.start_response" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starts a new response within this instance</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>instance</strong> (<a class="reference internal" href="instance.html#instance.Instance" title="instance.Instance"><em>Instance</em></a>) &#8211; The instance to which the response refers</td>
 </tr>
 </tbody>
 </table>

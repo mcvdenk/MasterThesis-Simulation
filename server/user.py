@@ -1,8 +1,11 @@
+from bson import objectid
 from mongoengine import *
 from instance import *
 from test import *
 from session import *
 from questionnaire import *
+from flashcard_instance import *
+from flashmap_instance import *
 
 class User(Document):
     """A class representing a user
@@ -166,7 +169,10 @@ class User(Document):
             if (instance.due_date < lowest_due_date):
                 result = instance
                 lowest_due_date = instance.due_date
-        return result.reference
+        if result is None:
+            return None
+        else:
+            return result.reference
     
     def add_new_instance(self, references):
         """Adds a new :class:`Instance` to this user
@@ -178,25 +184,20 @@ class User(Document):
         """
         assert isinstance(references, list)
         assert all((isinstance(reference, Flashcard) or isinstance(reference, Edge)) for reference in references)
-        for card in references:
+        for ref in references:
             if ref not in [instance.reference for instance in self.instances]:
-                if condition is "FLASHMAP":
-                    self.instances.append(FlashmapInstance(reference=ref))
-                elif condition is "FLASHCARD":
-                    self.instances.append(FlashcardInstance(reference=ref))
+                instance = None
+                if self.condition is "FLASHMAP":
+                    instance = FlashmapInstance(reference=ref)
+                    self.instances.append(instance)
+                elif self.condition is "FLASHCARD":
+                    instance = FlashcardInstance(reference=ref)
+                    self.instances.append(instance)
+                instance.start_response()
                 return ref
         return None
 
-    def start_response(instance):
-        """Starts a new response within this instance
-
-        :param instance: The instance to which the response refers
-        :type instance: Instance
-        """
-        assert isinstance(instance, Instance)
-        instance.start_response()
-
-    def validate(instance_id, correct):
+    def validate(self, instance_id, correct):
         """Finalises a :class:`Response` within an existing :class:`Instance`
         
         :param instance_id: The id of the instance which the response refers to
@@ -204,9 +205,9 @@ class User(Document):
         :param correct: Whether the response provided by the user was correct or not
         :type correct: boolean
         """
-        assert isinstance(instance_id, ObjectId)
+        assert isinstance(instance_id, objectid.ObjectId)
         assert isinstance(correct, bool)
-        instance = get_instance_by_id(instance_id)
+        instance = self.get_instance_by_id(instance_id)
         instance.finalise_response(correct)
 
     def get_instance_by_id(self, instance_id):
@@ -217,14 +218,19 @@ class User(Document):
         :return: The instance or None if no instance with instance_id exists
         :rtype: Instance
         """
-        assert isinstance(instance_id, ObjectId)
+        assert isinstance(instance_id, objectid.ObjectId)
         instance = None
         for i in self.instances:
-            if i.id == instance_id:
+            if i.reference.id == instance_id:
                 instance = i
         return instance
 
     def retrieve_recent_instance(self):
+        """Retrieves the instance most recently answered by the user
+
+        :return: The instance with the latest response.end being the most recent of all instances
+        :rtype: instance
+        """
         most_recent = datetime.fromtimestamp(0)
         instance = None
         for i in self.instances:
@@ -234,7 +240,7 @@ class User(Document):
                 instance = i
         return instance
     
-    def time_spend_today():
+    def time_spend_today(self):
         """A method for calculating the amount of seconds the user has spend on practicing flashcards 
 
         :return: The amount of seconds between every start and end of all responses of all instances of today
@@ -244,9 +250,11 @@ class User(Document):
         learning_time = 0
         for instance in self.instances:
             for response in instance.responses:
-                if (datetime.date.fromtimestamp(response.start) == datetime.date.today()):
-                    times.append(response.start)
-                    times.append(response.end)
+                if (response.start.day == datetime.today().day and
+                        response.start.month == datetime.today().month and
+                        response.start.year == datetime.today().year):
+                    times.append(response.start.timestamp())
+                    times.append(response.end.timestamp())
         times.sort()
         for i in range(1, len(times)):
             learning_time += min(times[i] - times[i-1], 30)

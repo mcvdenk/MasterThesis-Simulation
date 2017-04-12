@@ -73,7 +73,7 @@
 \indexentry{create\_test() (user.User method)|hyperpage}{13}
 \indexentry{get\_due\_instance() (user.User method)|hyperpage}{13}
 \indexentry{get\_instance\_by\_id() (user.User method)|hyperpage}{13}
+\indexentry{retrieve\_recent\_instance() (user.User method)|hyperpage}{13}
 \indexentry{set\_descriptives() (user.User method)|hyperpage}{13}
-\indexentry{start\_response() (user.User method)|hyperpage}{13}
 \indexentry{time\_spend\_today() (user.User method)|hyperpage}{13}
 \indexentry{validate() (user.User method)|hyperpage}{14}

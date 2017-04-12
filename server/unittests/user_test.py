@@ -84,7 +84,16 @@ class TestUser(unittest.TestCase):
         self.fc_user = User(name = "flashcard user", condition = "FLASHCARD")
         self.fm_user = User(name = "flashmap user", condition = "FLASHMAP")
 
+        self.fc_user.save(validate=False)
+        self.fm_user.save(validate=False)
+
     def tearDown(self):
+
+        self.concept_map.delete()
+
+        self.fc_user.delete()
+        self.fm_user.delete()
+
         for document in self.peou_items + self.pu_items + self.test_items + self.flashcards + self.edges + self.nodes:
             document.delete()
 
@@ -156,26 +165,97 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.fc_user.questionnaire.can_be_improved, "can_be_improved")
         self.assertEqual(self.fc_user.email, "test@test.com")
 
-    def test_get_due_instance(self):
-        pass
+    def test_get_due_instance_0(self):
+        self.assertEqual(self.fc_user.get_due_instance(), None)
+        self.assertEqual(self.fm_user.get_due_instance(), None)
 
     def test_add_new_instance(self):
-        pass
+        self.assertIsInstance(self.fc_user.add_new_instance(self.flashcards), Flashcard)
+        self.assertIsInstance(self.fm_user.add_new_instance(self.edges), Edge)
 
-    def test_start_response(self):
-        pass
+    def test_get_due_instance_1(self):
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        self.assertEqual(self.fc_user.get_due_instance(), flashcard)
+        self.assertEqual(self.fm_user.get_due_instance(), edge)
 
-    def test_validate(self):
-        pass
+    def test_get_due_instance_2(self):
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        self.fc_user.add_new_instance(self.flashcards)
+        self.fm_user.add_new_instance(self.edges)
+        self.assertEqual(self.fc_user.get_due_instance(), flashcard)
+        self.assertEqual(self.fm_user.get_due_instance(), edge)
 
     def test_get_instance_by_id(self):
-        pass
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        flashcard_instance = self.fc_user.get_instance_by_id(flashcard.id)
+        flashmap_instance = self.fm_user.get_instance_by_id(edge.id)
 
+    def test_validate(self):
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        self.fc_user.validate(flashcard.id, True)
+        self.fm_user.validate(edge.id, True)
+
+    def test_get_due_instance_3(self):
+        flashcard_1 = self.fc_user.add_new_instance(self.flashcards)
+        edge_1 = self.fm_user.add_new_instance(self.edges)
+        self.fc_user.validate(flashcard_1.id, True)
+        self.fm_user.validate(edge_1.id, False)
+        flashcard_2 = self.fc_user.add_new_instance(self.flashcards)
+        edge_2 = self.fm_user.add_new_instance(self.edges)
+        self.assertEqual(self.fc_user.get_due_instance(), flashcard_2)
+        self.assertEqual(self.fm_user.get_due_instance(), edge_2)
+
+    def test_get_due_instance_4(self):
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        self.fc_user.validate(flashcard.id, True)
+        self.fm_user.validate(edge.id, True)
+        self.assertEqual(self.fc_user.get_due_instance(), None)
+        self.assertEqual(self.fm_user.get_due_instance(), None)
+
+    @unittest.skip("Takes long because of time.sleep")
+    def test_get_due_instance_5(self):
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        self.fc_user.validate(flashcard.id, True)
+        self.fm_user.validate(edge.id, True)
+        time.sleep(6)
+        self.assertEqual(self.fc_user.get_due_instance(), None)
+        self.assertEqual(self.fm_user.get_due_instance(), None)
+
+    @unittest.skip("Takes long because of time.sleep")
+    def test_get_due_instance_6(self):
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        self.fc_user.validate(flashcard.id, False)
+        self.fm_user.validate(edge.id, False)
+        time.sleep(6)
+        self.assertEqual(self.fc_user.get_due_instance(), flashcard)
+        self.assertEqual(self.fm_user.get_due_instance(), edge)
+    
     def retrieve_recent_instance(self):
-        pass
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        self.fc_user.validate(flashcard.id, True)
+        self.fm_user.validate(edge.id, True)
+        flashcard_instance = self.fc_user.get_instance_by_id(flashcard.id)
+        flashmap_instance = self.fm_user.get_instance_by_id(edge.id)
+        self.assertEqual(self.fc_user.retrieve_recent_instance(), flashcard_instance)
+        self.assertEqual(self.fm_user.retrieve_recent_instance(), flashmap_instance)
 
+    @unittest.skip("Takes long because of time.sleep")
     def test_time_spend_today(self):
-        pass
+        flashcard = self.fc_user.add_new_instance(self.flashcards)
+        edge = self.fm_user.add_new_instance(self.edges)
+        time.sleep(5)
+        self.fc_user.validate(flashcard.id, True)
+        self.fm_user.validate(edge.id, True)
+        self.assertAlmostEqual(self.fc_user.time_spend_today(), 5, delta=1)
+        self.assertAlmostEqual(self.fm_user.time_spend_today(), 5, delta=1)
 
 
 if __name__ == '__main__':

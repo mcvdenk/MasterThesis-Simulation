@@ -79,7 +79,8 @@
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">response</span><span class="o">.</span><span class="n">correct</span> <span class="o">=</span> <span class="n">correct</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span></div>
+        <span class="n">response</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Instance.check_due"><a class="viewcode-back" href="../instance.html#instance.Instance.check_due">[docs]</a>    <span class="k">def</span> <span class="nf">check_due</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checks whether this instance is due for repetition</span>

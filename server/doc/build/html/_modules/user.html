@@ -43,11 +43,14 @@
           <div class="body" role="main">
             
   <h1>Source code for user</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
+<span></span><span class="kn">from</span> <span class="nn">bson</span> <span class="k">import</span> <span class="n">objectid</span>
+<span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">instance</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">test</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">session</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">questionnaire</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">flashcard_instance</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">flashmap_instance</span> <span class="k">import</span> <span class="o">*</span>
 
 <div class="viewcode-block" id="User"><a class="viewcode-back" href="../user.html#user.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class representing a user</span>
@@ -211,7 +214,10 @@
             <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">due_date</span> <span class="o">&lt;</span> <span class="n">lowest_due_date</span><span class="p">):</span>
                 <span class="n">result</span> <span class="o">=</span> <span class="n">instance</span>
                 <span class="n">lowest_due_date</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">due_date</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">reference</span></div>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">reference</span></div>
     
 <div class="viewcode-block" id="User.add_new_instance"><a class="viewcode-back" href="../user.html#user.User.add_new_instance">[docs]</a>    <span class="k">def</span> <span class="nf">add_new_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds a new :class:`Instance` to this user</span>
@@ -223,25 +229,20 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">references</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">all</span><span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">Flashcard</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">Edge</span><span class="p">))</span> <span class="k">for</span> <span class="n">reference</span> <span class="ow">in</span> <span class="n">references</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">references</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">references</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">ref</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">]:</span>
-                <span class="k">if</span> <span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FlashmapInstance</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="n">ref</span><span class="p">))</span>
-                <span class="k">elif</span> <span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FlashcardInstance</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="n">ref</span><span class="p">))</span>
+                <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
+                    <span class="n">instance</span> <span class="o">=</span> <span class="n">FlashmapInstance</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
+                    <span class="n">instance</span> <span class="o">=</span> <span class="n">FlashcardInstance</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+                <span class="n">instance</span><span class="o">.</span><span class="n">start_response</span><span class="p">()</span>
                 <span class="k">return</span> <span class="n">ref</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="User.start_response"><a class="viewcode-back" href="../user.html#user.User.start_response">[docs]</a>    <span class="k">def</span> <span class="nf">start_response</span><span class="p">(</span><span class="n">instance</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Starts a new response within this instance</span>
-
-<span class="sd">        :param instance: The instance to which the response refers</span>
-<span class="sd">        :type instance: Instance</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">Instance</span><span class="p">)</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">start_response</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="User.validate"><a class="viewcode-back" href="../user.html#user.User.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">correct</span><span class="p">):</span>
+<div class="viewcode-block" id="User.validate"><a class="viewcode-back" href="../user.html#user.User.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">,</span> <span class="n">correct</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Finalises a :class:`Response` within an existing :class:`Instance`</span>
 <span class="sd">        </span>
 <span class="sd">        :param instance_id: The id of the instance which the response refers to</span>
@@ -249,9 +250,9 @@
 <span class="sd">        :param correct: Whether the response provided by the user was correct or not</span>
 <span class="sd">        :type correct: boolean</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">ObjectId</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">objectid</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
-        <span class="n">instance</span> <span class="o">=</span> <span class="n">get_instance_by_id</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_instance_by_id</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">finalise_response</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="User.get_instance_by_id"><a class="viewcode-back" href="../user.html#user.User.get_instance_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_instance_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">):</span>
@@ -262,14 +263,19 @@
 <span class="sd">        :return: The instance or None if no instance with instance_id exists</span>
 <span class="sd">        :rtype: Instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">ObjectId</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">objectid</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">)</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">instance_id</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">reference</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">instance_id</span><span class="p">:</span>
                 <span class="n">instance</span> <span class="o">=</span> <span class="n">i</span>
         <span class="k">return</span> <span class="n">instance</span></div>
 
-    <span class="k">def</span> <span class="nf">retrieve_recent_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="User.retrieve_recent_instance"><a class="viewcode-back" href="../user.html#user.User.retrieve_recent_instance">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_recent_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieves the instance most recently answered by the user</span>
+
+<span class="sd">        :return: The instance with the latest response.end being the most recent of all instances</span>
+<span class="sd">        :rtype: instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">most_recent</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
@@ -277,9 +283,9 @@
             <span class="k">if</span> <span class="n">date</span> <span class="o">&gt;</span> <span class="n">most_recent</span><span class="p">:</span>
                 <span class="n">most_recent</span> <span class="o">=</span> <span class="n">date</span>
                 <span class="n">instance</span> <span class="o">=</span> <span class="n">i</span>
-        <span class="k">return</span> <span class="n">instance</span>
+        <span class="k">return</span> <span class="n">instance</span></div>
     
-<div class="viewcode-block" id="User.time_spend_today"><a class="viewcode-back" href="../user.html#user.User.time_spend_today">[docs]</a>    <span class="k">def</span> <span class="nf">time_spend_today</span><span class="p">():</span>
+<div class="viewcode-block" id="User.time_spend_today"><a class="viewcode-back" href="../user.html#user.User.time_spend_today">[docs]</a>    <span class="k">def</span> <span class="nf">time_spend_today</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A method for calculating the amount of seconds the user has spend on practicing flashcards </span>
 
 <span class="sd">        :return: The amount of seconds between every start and end of all responses of all instances of today</span>
@@ -289,9 +295,11 @@
         <span class="n">learning_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">responses</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="o">==</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
-                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
-                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">end</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">day</span> <span class="ow">and</span>
+                        <span class="n">response</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">month</span> <span class="ow">and</span>
+                        <span class="n">response</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">year</span><span class="p">):</span>
+                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span>
+                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span>
         <span class="n">times</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)):</span>
             <span class="n">learning_time</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">30</span><span class="p">)</span>

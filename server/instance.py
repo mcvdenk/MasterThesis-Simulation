@@ -35,6 +35,7 @@ class Instance(EmbeddedDocument):
         response = self.responses[-1]
         response.correct = correct
         response.end = datetime.now()
+        self.schedule()
 
     def check_due(self):
         """Checks whether this instance is due for repetition

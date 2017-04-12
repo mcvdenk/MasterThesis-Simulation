@@ -89,6 +89,7 @@
   \bigletter R
   \item Response (class in response), \hyperpage{9}
   \item response (module), \hyperpage{9}
+  \item retrieve\_recent\_instance() (user.User method), \hyperpage{13}
 
   \indexspace
   \bigletter S
@@ -97,7 +98,6 @@
   \item session (module), \hyperpage{10}
   \item set\_descriptives() (user.User method), \hyperpage{13}
   \item start\_response() (instance.Instance method), \hyperpage{7}
-  \item start\_response() (user.User method), \hyperpage{13}
 
   \indexspace
   \bigletter T

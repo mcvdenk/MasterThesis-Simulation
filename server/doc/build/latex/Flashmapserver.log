@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  11 APR 2017 15:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  12 APR 2017 12:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1118,19 +1118,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--118
 [19
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1376.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1376.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1379.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1379.
  (./Flashmapserver.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1376.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1376.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1379.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1379.
 
 Package rerunfilecheck Info: File `Flashmapserver.out' has not changed.
 (rerunfilecheck)             Checksum: 0D3803966804EB513732C0F328E6D913;3368.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1376.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1379.
  ) 
 Here is how much of TeX's memory you used:
  13753 strings out of 493304
- 191548 string characters out of 6139871
+ 191558 string characters out of 6139871
  283204 words of memory out of 5000000
  16792 multiletter control sequences out of 15000+600000
  45077 words of font info for 67 fonts, out of 8000000 for 9000

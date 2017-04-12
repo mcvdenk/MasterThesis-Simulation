@@ -16,7 +16,7 @@
   * ~~Test~~
   * ~~Questionnaire~~
   * ~~Session~~
-  * User
+  * ~~User~~
   * Consumer
 * Adapt client.js
 * Black-box testing
