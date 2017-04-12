@@ -34,8 +34,8 @@ class User(Document):
     :type email: EmailField
     :cvar source_requests: The days that the user was prompted a source request
     :type source_requests: list(DateTime)
-    :cvar succesfull_days: The days that the user succesfully completed a session
-    :type succesfull_days: list(DateTime)
+    :cvar successful_days: The days that the user successfuly completed a session
+    :type successful_days: list(DateTime)
     """
     
     name = StringField(required=True, unique=True)
@@ -50,7 +50,7 @@ class User(Document):
     instances = ListField(EmbeddedDocumentField(Instance))
     email = EmailField()
     source_requests = ListField(DateTimeField(), default = [])
-    succesfull_days = ListField(DateTimeField(), default = [])
+    successful_days = ListField(DateTimeField(), default = [])
 
     def set_descriptives(self, birthdate, gender, code):
         """A method for setting the descriptives of the user

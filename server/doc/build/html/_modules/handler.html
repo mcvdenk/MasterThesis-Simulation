@@ -52,8 +52,6 @@
 <span class="n">PATH</span> <span class="o">=</span> <span class="s1">&#39;128.199.49.170&#39;</span>
 <span class="n">PORT</span> <span class="o">=</span> <span class="mi">5678</span>
 
-<span class="n">connect</span><span class="p">(</span><span class="s1">&#39;flashmap&#39;</span><span class="p">)</span>
-
 <div class="viewcode-block" id="handler"><a class="viewcode-back" href="../handler.html#handler.handler">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">websocket</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client</span>
 

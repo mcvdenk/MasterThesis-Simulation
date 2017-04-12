@@ -10,7 +10,7 @@
 \indexentry{add\_source() (consumer.Consumer method)|hyperpage}{4}
 \indexentry{authenticate() (consumer.Consumer method)|hyperpage}{4}
 \indexentry{check\_prerequisites() (consumer.Consumer method)|hyperpage}{4}
-\indexentry{consumer() (consumer.Consumer method)|hyperpage}{4}
+\indexentry{consumer() (consumer.Consumer method)|hyperpage}{5}
 \indexentry{learning\_message() (consumer.Consumer method)|hyperpage}{5}
 \indexentry{provide\_learned\_items() (consumer.Consumer method)|hyperpage}{5}
 \indexentry{provide\_learning() (consumer.Consumer method)|hyperpage}{5}

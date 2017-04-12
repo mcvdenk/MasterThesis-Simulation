@@ -22,6 +22,8 @@ class Consumer():
     """
     This is the class from which the program is controlled. It can be used together with the :mod:`handler` module in order to communicate with an external client over a websocket 
 
+    :cvar database: The mongodb to connect to
+    :type database: string
     :cvar concept_map: The concept map object containing references to nodes and edges
     :type concept_map: ConceptMap
     :cvar SOURCES: All of the sources referenced to in the edges of the concept map
@@ -30,14 +32,18 @@ class Consumer():
     :type user: User
     """
 
-    def __init__(self):
+    def __init__(self, database):
+        assert(isinstance(database, str))
+        connect(database)
         
         self.concept_map = ConceptMap.objects().first()
         #Preloading all sources from the different flashcards/-edges (the chapters from Laagland)
         self.SOURCES = []
         self.user = None
         for edge in self.concept_map.edges:
-            if (edge.source not in SOURCES): SOURCES.append(edge.source)
+            for source in edge.sources:
+                if source not in self.SOURCES:
+                    self.SOURCES.append(source)
         self.SOURCES.sort()
         self.required_time = 60*15
 
@@ -93,7 +99,7 @@ class Consumer():
         self.user.save(cascade = True)
         outgoing_msg = LogEntry(keyword = msg['keyword'], data = msg['data'], user = self.user)
         outgoing_msg.save()
-        msg["succesfull_days"] = user.distinct_succesfull_days()
+        msg["successful_days"] = user.distinct_successful_days()
         return msg
 
     def authenticate(self, name):
@@ -102,11 +108,12 @@ class Consumer():
         :param name: The self.username
         :type name: str
         """
-        assert  isinstance(name, str)
-        self.user = User.objects(name=name)
-        if (not User):
+        assert isinstance(name, str)
+        user = User.objects(name=name)
+        if (len(user) == 0):
             condition = ["FLASHMAP", "FLASHCARD"][User.objects.count()%2]
             self.user = User(name = name, condition = condition)
+        else: self.user = user.first()
     
     def check_prerequisites(self):
         """Checks whether the self.user still has to fill in forms and returns the appropriate message
@@ -116,21 +123,25 @@ class Consumer():
         """
         msg = {'keyword': "", 'data' : {}}
         if (self.user.code is None): msg['keyword'] = "DESCRIPTIVES-REQUEST"
-        elif (len(self.user.tests) < 1):
+        elif len(self.user.tests) < 1:
             msg['keyword'] = "TEST-REQUEST"
-            msg['data'] = create_test()
-        elif (self.user.succesfull_days > 5):
-            if (len(self.user.tests) < 2):
+            msg['data'] = self.user.create_test(
+                    list(Flashcard.objects), list(TestItem.objects))
+        elif len(self.user.successful_days) > 5:
+            if len(self.user.tests) < 2:
                 msg['keyword'] = "TEST-REQUEST"
                 msg['data'] = self.user.create_test(
-                        Flashcard.objects(), TestItem.objects())
-            if (self.user.questionnaire is None):
+                        list(Flashcard.objects), list(TestItem.objects))
+            elif self.user.questionnaire is None:
                 msg['keyword'] = "QUESTIONNAIRE-REQUEST"
                 msg['data'] = self.user.create_questionnaire(
-                        QuestionnaireItem.objects(usefull = True),
-                        QuestionnaireItem.objects(usefull = False)
+                        list(QuestionnaireItem.objects(usefulness = True)),
+                        list(QuestionnaireItem.objects(usefulness = False))
                         )
-        else: msg['keyword'] = "AUTHENTICATE-RESPONSE"
+            else:
+                msg['keyword'] = "AUTHENTICATE-RESPONSE"
+        else:
+            msg['keyword'] = "AUTHENTICATE-RESPONSE"
         return msg
 
     def provide_learning(self):
@@ -157,11 +168,11 @@ class Consumer():
             else:
                 msg = self.learning_message(instance)
         if msg['keyword'] is "NO_MORE_INSTANCES" or msg['time_up']:
-            s_days = set(self.user.succesfull_days)
+            s_days = set(self.user.successful_days)
             s_day = datetime.today()
             if s_day not in s_days:
                 s_days.append(s_day)
-            self.user.succesfull_days = list(s_days)
+            self.user.successful_days = list(s_days)
         return msg
 
     def read_source_request(self, source):

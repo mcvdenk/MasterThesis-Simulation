@@ -48,7 +48,7 @@
 <span id="consumer-module"></span><h1>consumer module<a class="headerlink" href="#module-consumer" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="consumer.Consumer">
-<em class="property">class </em><code class="descclassname">consumer.</code><code class="descname">Consumer</code><a class="reference internal" href="_modules/consumer.html#Consumer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">consumer.</code><code class="descname">Consumer</code><span class="sig-paren">(</span><em>database</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/consumer.html#Consumer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#consumer.Consumer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>This is the class from which the program is controlled. It can be used together with the <a class="reference internal" href="handler.html#module-handler" title="handler"><code class="xref py py-mod docutils literal"><span class="pre">handler</span></code></a> module in order to communicate with an external client over a websocket</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -56,6 +56,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>database</strong> &#8211; The mongodb to connect to</li>
 <li><a class="reference internal" href="concept_map.html#module-concept_map" title="concept_map"><strong>concept_map</strong></a> &#8211; The concept map object containing references to nodes and edges</li>
 <li><strong>SOURCES</strong> &#8211; All of the sources referenced to in the edges of the concept map</li>
 <li><a class="reference internal" href="user.html#module-user" title="user"><strong>user</strong></a> &#8211; The active user</li>

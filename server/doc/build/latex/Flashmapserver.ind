@@ -19,7 +19,7 @@
   \item ConceptMap (class in concept\_map), \hyperpage{3}
   \item Consumer (class in consumer), \hyperpage{4}
   \item consumer (module), \hyperpage{4}
-  \item consumer() (consumer.Consumer method), \hyperpage{4}
+  \item consumer() (consumer.Consumer method), \hyperpage{5}
   \item create\_questionnaire() (user.User method), \hyperpage{13}
   \item create\_test() (user.User method), \hyperpage{13}
 
