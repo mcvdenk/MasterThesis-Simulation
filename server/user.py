@@ -250,12 +250,26 @@ class User(Document):
         learning_time = 0
         for instance in self.instances:
             for response in instance.responses:
-                if (response.start.day == datetime.today().day and
-                        response.start.month == datetime.today().month and
-                        response.start.year == datetime.today().year):
+                if response.start.date() == datetime.today().date():
                     times.append(response.start.timestamp())
                     times.append(response.end.timestamp())
         times.sort()
         for i in range(1, len(times)):
             learning_time += min(times[i] - times[i-1], 30)
         return learning_time
+    
+    def add_source(self, source):
+        """Adds a read source to self
+
+        :param source: The source to be added
+        :type source: string
+        """
+        assert isinstance(source, str)
+        if source not in self.read_sources:
+            self.read_sources.append(source)
+        s_day = datetime.today().date()
+        s_days = set(self.source_requests)
+        if s_day not in s_days:
+            s_days.add(s_day)
+        self.source_requests = list(s_days)
+

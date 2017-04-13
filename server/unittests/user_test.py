@@ -257,6 +257,20 @@ class TestUser(unittest.TestCase):
         self.assertAlmostEqual(self.fc_user.time_spend_today(), 5, delta=1)
         self.assertAlmostEqual(self.fm_user.time_spend_today(), 5, delta=1)
 
+    def test_add_source(self):
+        self.assertCountEqual(self.fc_user.read_sources, [])
+        self.assertCountEqual(self.fc_user.source_requests, [])
+        sources = []
+        i = 0
+        for source in ["1", "2", "2"]:
+            i+=1
+            self.fc_user.add_source(source)
+            if source not in sources:
+                sources.append(source)
+            with self.subTest(i = i):
+                self.assertCountEqual(self.fc_user.read_sources, sources)
+                self.assertCountEqual(self.fc_user.source_requests, [datetime.today().date()])
+
 
 if __name__ == '__main__':
     unittest.main()

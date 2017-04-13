@@ -183,17 +183,18 @@ class TestConsumer(unittest.TestCase):
         with self.subTest(i="Finished briefed user"):
             self.assertEqual(self.fc_consumer.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
 
-        
+    def test_read_source_request(self):
+        self.fc_consumer.authenticate("test")
+        self.assertEqual(self.fc_consumer.read_source_request("1"),
+                {'keyword': "READ_SOURCE-REQUEST", 'data': {'source': "1"}})
+        self.fc_consumer.user.add_source("1")
+        self.assertEqual(self.fc_consumer.read_source_request("2"),
+                {'keyword': "NO_MORE_INSTANCES", 'data': {}})
+
     def test_provide_learning(self):
         pass
 
-    def test_read_source_request(self):
-        pass
-
     def test_learning_message(self):
-        pass
-
-    def test_add_source(self):
         pass
 
     def test_validate(self):

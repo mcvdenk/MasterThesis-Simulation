@@ -155,7 +155,10 @@ class Consumer():
         msg = {'keyword': "", 'data': {}}
         instance = self.user.get_due_instance()
         if instance == None:
-            instance = self.user.add_instance()
+            if self.user.condition is "FLASHMAP":
+                instance = self.user.add_new_instance(list(Edge.objects))
+            if self.user.condition is "FLASHCARD":
+                instance = self.user.add_new_instance(list(Flashcard.objects))
         if instance == None:
             msg['keyword'] = "NO_MORE_INSTANCES"
         elif len(self.user.sources) == 0:
@@ -177,10 +180,9 @@ class Consumer():
 
     def read_source_request(self, source):
         msg = {'keyword': "", 'data': {}}
-        if datetime.today() not in self.user.source_requests:
+        if datetime.today().date() not in self.user.source_requests:
             msg['keyword'] = "READ_SOURCE-REQUEST"
             msg['data'] = {'source': source}
-            self.user.source_requests.append(datetime.today())
         else:
             msg['keyword'] = "NO_MORE_INSTANCES"
         return msg
@@ -211,20 +213,6 @@ class Consumer():
         msg['time_up'] = self.user.time_spend_today() > self.required_time
         return msg
 
-
-    def add_source(self, source):
-        """Adds a read source to the active self.user
-
-        :param source: The source to be added
-        :type source: string
-        """
-        assert isinstance(source, str)
-        self.users.sources.append(source)
-        s_day = datetime.today()
-        s_days = set(self.user.source_requests)
-        if s_day not in s_days:
-            s_days.append(s_day)
-        self.user.source_requests = list(s_days)
 
     def validate(self, responses):
         """Adds responses to certain instances
