@@ -3,23 +3,24 @@
 
   \bigletter A
   \item add\_new\_instance() (user.User method), \hyperpage{12}
-  \item add\_source() (consumer.Consumer method), \hyperpage{4}
+  \item add\_source() (user.User method), \hyperpage{12}
   \item append\_answer() (questionnaire.Questionnaire method), \hyperpage{8}
   \item append\_flashcard() (test.Test method), \hyperpage{10}
   \item append\_item() (test.Test method), \hyperpage{10}
   \item append\_questionnaire() (user.User method), \hyperpage{12}
   \item append\_test() (user.User method), \hyperpage{12}
-  \item authenticate() (consumer.Consumer method), \hyperpage{4}
+  \item authenticate() (controller.Controller method), \hyperpage{4}
 
   \indexspace
   \bigletter C
   \item check\_due() (instance.Instance method), \hyperpage{7}
-  \item check\_prerequisites() (consumer.Consumer method), \hyperpage{4}
+  \item check\_due() (user.User method), \hyperpage{13}
+  \item check\_prerequisites() (controller.Controller method), \hyperpage{4}
   \item concept\_map (module), \hyperpage{3}
   \item ConceptMap (class in concept\_map), \hyperpage{3}
-  \item Consumer (class in consumer), \hyperpage{4}
-  \item consumer (module), \hyperpage{4}
-  \item consumer() (consumer.Consumer method), \hyperpage{5}
+  \item Controller (class in controller), \hyperpage{4}
+  \item controller (module), \hyperpage{4}
+  \item controller() (controller.Controller method), \hyperpage{4}
   \item create\_questionnaire() (user.User method), \hyperpage{13}
   \item create\_test() (user.User method), \hyperpage{13}
 
@@ -62,7 +63,7 @@
 
   \indexspace
   \bigletter L
-  \item learning\_message() (consumer.Consumer method), \hyperpage{5}
+  \item learning\_message() (controller.Controller method), \hyperpage{5}
   \item LogEntry (class in logentry), \hyperpage{7}
   \item logentry (module), \hyperpage{7}
 
@@ -73,8 +74,8 @@
 
   \indexspace
   \bigletter P
-  \item provide\_learned\_items() (consumer.Consumer method), \hyperpage{5}
-  \item provide\_learning() (consumer.Consumer method), \hyperpage{5}
+  \item provide\_learned\_items() (controller.Controller method), \hyperpage{5}
+  \item provide\_learning() (controller.Controller method), \hyperpage{5}
 
   \indexspace
   \bigletter Q
@@ -109,9 +110,9 @@
   \item TestFlashcardResponse (class in test\_flashcard\_response), \hyperpage{11}
   \item TestItem (class in test\_item), \hyperpage{11}
   \item TestItemResponse (class in test\_item\_response), \hyperpage{11}
-  \item time\_spend\_today() (user.User method), \hyperpage{13}
+  \item time\_spend\_today() (user.User method), \hyperpage{14}
   \item to\_dict() (concept\_map.ConceptMap method), \hyperpage{4}
-  \item to\_dict() (edge.Edge method), \hyperpage{6}
+  \item to\_dict() (edge.Edge method), \hyperpage{5}
   \item to\_dict() (flashcard.Flashcard method), \hyperpage{6}
   \item to\_dict() (node.Node method), \hyperpage{8}
   \item to\_dict() (questionnaire\_item.QuestionnaireItem method), \hyperpage{9}
@@ -124,7 +125,7 @@
 
   \indexspace
   \bigletter V
-  \item validate() (consumer.Consumer method), \hyperpage{5}
+  \item validate() (controller.Controller method), \hyperpage{5}
   \item validate() (user.User method), \hyperpage{14}
 
 \end{theindex}

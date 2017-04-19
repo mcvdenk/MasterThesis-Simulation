@@ -18,7 +18,7 @@ from logentry import *
 @author: Micha van den Enk
 """
 
-class Consumer():
+class Controller():
     """
     This is the class from which the program is controlled. It can be used together with the :mod:`handler` module in order to communicate with an external client over a websocket 
 
@@ -47,7 +47,7 @@ class Consumer():
         self.SOURCES.sort()
         self.required_time = 60*15
 
-    def consumer(self, keyword, data):
+    def controller(self, keyword, data):
         """Pass data to the function corresponding to the provided keyword for the provided user
 
         :param keyword: the keyword for which function to use
@@ -187,7 +187,7 @@ class Consumer():
             msg['keyword'] = "NO_MORE_INSTANCES"
         return msg
 
-    def learning_message(self, instance):
+    def learning_message(self, item):
         """Generates a learning message for the provided instance
 
         :param instance: The instance which has to be rehearsed
@@ -195,19 +195,21 @@ class Consumer():
         :return: The message with keyword "LEARNING RESPONSE" and data containing the partial concept map or flashcard dict representation
         :rtype: dict
         """
-        assert isinstance(instance, Instance)
-        msg['keyword'] = "LEARNING-RESPONSE" 
-        if self.user.condition is "FLASHMAP":
-            cmap = self.concept_map.get_partial_map(item)
+        assert isinstance(item, Flashcard) or isinstance(item, Edge)
+        
+        msg = {'keyword': "LEARNING-RESPONSE", 'data': {}}
+        if self.user.condition == "FLASHMAP":
+            cmap = self.concept_map.get_partial_map(item, self.user.read_sources)
+            siblings = self.concept_map.find_siblings(item, self.user.read_sources, cmap.edges)
             dmap = cmap.to_dict()
-            for i in self.concept_map.get_siblings(item).append(item):
+            for i in siblings + [item]:
                 for edge in dmap['edges']:
                     if edge['id'] == str(i.id) and self.user.check_due(i):
                         edge['learning'] = True
                     else:
                         edge['learning'] = False
             msg['data'] = dmap
-        elif self.user.condition is "FLASHCARD":
+        elif self.user.condition == "FLASHCARD":
             msg['data'] = item.to_dict()
         msg['condition'] = self.user.condition
         msg['time_up'] = self.user.time_spend_today() > self.required_time
@@ -223,7 +225,7 @@ class Consumer():
         assert isinstance(responses, list)
         assert all(isinstance(response, dict) for response in responses)
         for response in responses:
-            self.user.validate(ObjectId(response['id']), response['correct'])
+            self.user.validate(objectid.ObjectId(response['id']), response['correct'])
 
     def provide_learned_items(self):
         """Provides an overview of all learning

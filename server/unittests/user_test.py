@@ -178,6 +178,8 @@ class TestUser(unittest.TestCase):
         edge = self.fm_user.add_new_instance(self.edges)
         self.assertEqual(self.fc_user.get_due_instance(), flashcard)
         self.assertEqual(self.fm_user.get_due_instance(), edge)
+        self.assertTrue(self.fc_user.check_due(flashcard))
+        self.assertTrue(self.fm_user.check_due(edge))
 
     def test_get_due_instance_2(self):
         flashcard = self.fc_user.add_new_instance(self.flashcards)
@@ -186,6 +188,8 @@ class TestUser(unittest.TestCase):
         self.fm_user.add_new_instance(self.edges)
         self.assertEqual(self.fc_user.get_due_instance(), flashcard)
         self.assertEqual(self.fm_user.get_due_instance(), edge)
+        self.assertTrue(self.fc_user.check_due(flashcard))
+        self.assertTrue(self.fm_user.check_due(edge))
 
     def test_get_instance_by_id(self):
         flashcard = self.fc_user.add_new_instance(self.flashcards)
@@ -204,10 +208,14 @@ class TestUser(unittest.TestCase):
         edge_1 = self.fm_user.add_new_instance(self.edges)
         self.fc_user.validate(flashcard_1.id, True)
         self.fm_user.validate(edge_1.id, False)
+        self.assertFalse(self.fc_user.check_due(flashcard_1))
+        self.assertFalse(self.fm_user.check_due(edge_1))
         flashcard_2 = self.fc_user.add_new_instance(self.flashcards)
         edge_2 = self.fm_user.add_new_instance(self.edges)
         self.assertEqual(self.fc_user.get_due_instance(), flashcard_2)
         self.assertEqual(self.fm_user.get_due_instance(), edge_2)
+        self.assertTrue(self.fc_user.check_due(flashcard_2))
+        self.assertTrue(self.fm_user.check_due(edge_2))
 
     def test_get_due_instance_4(self):
         flashcard = self.fc_user.add_new_instance(self.flashcards)
@@ -216,6 +224,8 @@ class TestUser(unittest.TestCase):
         self.fm_user.validate(edge.id, True)
         self.assertEqual(self.fc_user.get_due_instance(), None)
         self.assertEqual(self.fm_user.get_due_instance(), None)
+        self.assertFalse(self.fc_user.check_due(flashcard))
+        self.assertFalse(self.fm_user.check_due(edge))
 
     @unittest.skip("Takes long because of time.sleep")
     def test_get_due_instance_5(self):
@@ -226,6 +236,8 @@ class TestUser(unittest.TestCase):
         time.sleep(6)
         self.assertEqual(self.fc_user.get_due_instance(), None)
         self.assertEqual(self.fm_user.get_due_instance(), None)
+        self.assertFalse(self.fc_user.check_due(flashcard))
+        self.assertFalse(self.fm_user.check_due(edge))
 
     @unittest.skip("Takes long because of time.sleep")
     def test_get_due_instance_6(self):
@@ -236,6 +248,8 @@ class TestUser(unittest.TestCase):
         time.sleep(6)
         self.assertEqual(self.fc_user.get_due_instance(), flashcard)
         self.assertEqual(self.fm_user.get_due_instance(), edge)
+        self.assertTrue(self.fc_user.check_due(flashcard))
+        self.assertTrue(self.fm_user.check_due(edge))
     
     def retrieve_recent_instance(self):
         flashcard = self.fc_user.add_new_instance(self.flashcards)

@@ -2,28 +2,28 @@ from mongoengine import *
 import asyncio
 import websockets
 import json
-from consumer import *
+from controller import *
 
 PATH = '128.199.49.170'
 PORT = 5678
 
 async def handler(websocket, path):
-    """Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client
+    """Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to controller() and send the result back to the client
 
     :cvar websocket: the websocket being used for receiving and sending messages to a client
     :type websocket: Websocket
     :cvar path: the IP address used to host the websocket
     :type path: String
     """
-    consumer = Consumer()
+    controller = Controller()
     try:
         enc_recvmsg = await websocket.recv()
         dec_recvmsg = json.loads(enc_recvmsg)
-        dec_sendmsg = consumer.consumer(dec_recvmsg["keyword"],dec_recvmsg["data"])
+        dec_sendmsg = controller.controller(dec_recvmsg["keyword"],dec_recvmsg["data"])
         enc_sendmsg = json.dumps(dec_sendmsg)
         await websocket.send(enc_sendmsg)
     except websockets.exceptions.ConnectionClosed:
-        consumer.connection_closed()
+        controller.connection_closed()
     
 
 
@@ -45,7 +45,7 @@ async def handler(websocket, path):
 #        }
 #        user = db.users.find_one({"name" : loginmsg["data"]["name"]})
 #        if (user["gender"] == "unknown"):
-#            await websocket.send(json.dumps(consumer.request_descriptives(loginmsg["data"])))
+#            await websocket.send(json.dumps(controller.request_descriptives(loginmsg["data"])))
 #            add_descriptives(json.loads(await websocket.recv())["data"], loginmsg["data"]["name"])
 #        if (len(user["tests"]) < 1):
 #            await websocket.send(json.dumps(test(loginmsg["data"])))

@@ -47,28 +47,28 @@
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">websockets</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">consumer</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">controller</span> <span class="k">import</span> <span class="o">*</span>
 
 <span class="n">PATH</span> <span class="o">=</span> <span class="s1">&#39;128.199.49.170&#39;</span>
 <span class="n">PORT</span> <span class="o">=</span> <span class="mi">5678</span>
 
 <div class="viewcode-block" id="handler"><a class="viewcode-back" href="../handler.html#handler.handler">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">websocket</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to consumer() and send the result back to the client</span>
+    <span class="sd">&quot;&quot;&quot;Initiate an asyncio thread which receives messages from a client, parse the json file to an object, pass them to controller() and send the result back to the client</span>
 
 <span class="sd">    :cvar websocket: the websocket being used for receiving and sending messages to a client</span>
 <span class="sd">    :type websocket: Websocket</span>
 <span class="sd">    :cvar path: the IP address used to host the websocket</span>
 <span class="sd">    :type path: String</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">consumer</span> <span class="o">=</span> <span class="n">Consumer</span><span class="p">()</span>
+    <span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">enc_recvmsg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
         <span class="n">dec_recvmsg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">enc_recvmsg</span><span class="p">)</span>
-        <span class="n">dec_sendmsg</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="n">consumer</span><span class="p">(</span><span class="n">dec_recvmsg</span><span class="p">[</span><span class="s2">&quot;keyword&quot;</span><span class="p">],</span><span class="n">dec_recvmsg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+        <span class="n">dec_sendmsg</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">controller</span><span class="p">(</span><span class="n">dec_recvmsg</span><span class="p">[</span><span class="s2">&quot;keyword&quot;</span><span class="p">],</span><span class="n">dec_recvmsg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
         <span class="n">enc_sendmsg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dec_sendmsg</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">enc_sendmsg</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">websockets</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionClosed</span><span class="p">:</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="n">connection_closed</span><span class="p">()</span></div>
+        <span class="n">controller</span><span class="o">.</span><span class="n">connection_closed</span><span class="p">()</span></div>
     
 
 
@@ -90,7 +90,7 @@
 <span class="c1">#        }</span>
 <span class="c1">#        user = db.users.find_one({&quot;name&quot; : loginmsg[&quot;data&quot;][&quot;name&quot;]})</span>
 <span class="c1">#        if (user[&quot;gender&quot;] == &quot;unknown&quot;):</span>
-<span class="c1">#            await websocket.send(json.dumps(consumer.request_descriptives(loginmsg[&quot;data&quot;])))</span>
+<span class="c1">#            await websocket.send(json.dumps(controller.request_descriptives(loginmsg[&quot;data&quot;])))</span>
 <span class="c1">#            add_descriptives(json.loads(await websocket.recv())[&quot;data&quot;], loginmsg[&quot;data&quot;][&quot;name&quot;])</span>
 <span class="c1">#        if (len(user[&quot;tests&quot;]) &lt; 1):</span>
 <span class="c1">#            await websocket.send(json.dumps(test(loginmsg[&quot;data&quot;])))</span>

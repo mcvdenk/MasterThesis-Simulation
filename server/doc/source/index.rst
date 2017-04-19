@@ -9,7 +9,7 @@ Contents:
     :maxdepth: 4
 
     concept_map
-    consumer
+    controller
     edge
     flashcard
     flashcard_instance

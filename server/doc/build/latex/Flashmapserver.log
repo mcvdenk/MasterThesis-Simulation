@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  12 APR 2017 17:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.26)  19 APR 2017 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1098,7 +1098,7 @@ Chapter 2.
 
 
 ] (./Flashmapserver.ind
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
 []\T1/ptm/m/n/10 QuestionnaireResponse (class in ques-tion-
  []
 
@@ -1106,33 +1106,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 []\T1/ptm/m/n/10 TestFlashcardResponse (class in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
 []\T1/ptm/m/n/10 to_dict() (ques-tion-naire_item.QuestionnaireItem
  []
 
 [19
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1382.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1382.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1395.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1395.
  (./Flashmapserver.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1382.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1382.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1395.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1395.
 
 Package rerunfilecheck Info: File `Flashmapserver.out' has not changed.
-(rerunfilecheck)             Checksum: 0D3803966804EB513732C0F328E6D913;3368.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1382.
+(rerunfilecheck)             Checksum: E8228198D063CD08B95E5D9A86608886;3378.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1395.
  ) 
 Here is how much of TeX's memory you used:
- 13753 strings out of 493304
- 191558 string characters out of 6139871
- 283204 words of memory out of 5000000
- 16792 multiletter control sequences out of 15000+600000
+ 13755 strings out of 493304
+ 191643 string characters out of 6139871
+ 283264 words of memory out of 5000000
+ 16793 multiletter control sequences out of 15000+600000
  45077 words of font info for 67 fonts, out of 8000000 for 9000
  958 hyphenation exceptions out of 8191
  37i,12n,45p,730b,643s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1146,10 +1146,10 @@ texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on Flashmapserver.pdf (23 pages, 249348 bytes).
+Output written on Flashmapserver.pdf (23 pages, 249901 bytes).
 PDF statistics:
- 557 PDF objects out of 1000 (max. 8388607)
- 510 compressed objects within 6 object streams
- 106 named destinations out of 1000 (max. 500000)
+ 560 PDF objects out of 1000 (max. 8388607)
+ 513 compressed objects within 6 object streams
+ 107 named destinations out of 1000 (max. 500000)
  210 words of extra memory for PDF output out of 10000 (max. 10000000)
 

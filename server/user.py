@@ -250,7 +250,7 @@ class User(Document):
         learning_time = 0
         for instance in self.instances:
             for response in instance.responses:
-                if response.start.date() == datetime.today().date():
+                if response.start.date() == datetime.today().date() and isinstance(response.end, datetime):
                     times.append(response.start.timestamp())
                     times.append(response.end.timestamp())
         times.sort()
@@ -273,3 +273,16 @@ class User(Document):
             s_days.add(s_day)
         self.source_requests = list(s_days)
 
+    def check_due(self, item):
+        """Checks whether the provided item is due for review
+
+        :param item: The item to which the checked instance refers to
+        :type item: Edge or Falshcard
+        """
+        assert isinstance(item, Edge) or isinstance(item, Flashcard)
+
+        due = False
+        for instance in self.instances:
+            if instance.reference is item and instance.check_due():
+                due = True
+        return due

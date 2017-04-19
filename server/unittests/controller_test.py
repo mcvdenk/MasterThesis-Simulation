@@ -16,11 +16,11 @@ from flashcard import *
 from test_item import *
 from questionnaire_item import *
 from user import *
-from consumer import *
+from controller import *
 
 connect("test")
 
-class TestConsumer(unittest.TestCase):
+class TestController(unittest.TestCase):
 
     def setUp(self):
 
@@ -82,23 +82,23 @@ class TestConsumer(unittest.TestCase):
         for item in self.peou_items:
             item.save() 
 
-        self.fc_consumer = Consumer("test")
-        self.fm_consumer = Consumer("test")
+        self.fc_controller = Controller("test")
+        self.fm_controller = Controller("test")
 
     def tearDown(self):
 
         self.concept_map.delete()
 
-        if self.fc_consumer.user is not None and self.fc_consumer.user.id is not None:
-            self.fc_consumer.user.delete()
-        if self.fm_consumer.user is not None and self.fm_consumer.user.id is not None:
-            self.fm_consumer.user.delete()
+        if self.fc_controller.user is not None and self.fc_controller.user.id is not None:
+            self.fc_controller.user.delete()
+        if self.fm_controller.user is not None and self.fm_controller.user.id is not None:
+            self.fm_controller.user.delete()
 
         for document in self.peou_items + self.pu_items + self.test_items + self.flashcards + self.edges + self.nodes:
             document.delete()
 
-        del self.fc_consumer
-        del self.fm_consumer
+        del self.fc_controller
+        del self.fm_controller
         del self.sources
         del self.peou_items
         del self.pu_items
@@ -111,23 +111,23 @@ class TestConsumer(unittest.TestCase):
     def test_authenticate_existing(self):
         user = User(name="existing", condition="FLASHCARD")
         user.save(validate=False)
-        self.fc_consumer.authenticate(user.name)
-        self.assertEqual(self.fc_consumer.user, user)
+        self.fc_controller.authenticate(user.name)
+        self.assertEqual(self.fc_controller.user, user)
 
     def test_authenticate_new(self):
         name = "test"
-        self.fm_consumer.authenticate(name)
-        self.assertEqual(self.fm_consumer.user.name, name)
-        self.assertEqual(self.fm_consumer.user.condition, "FLASHMAP")
+        self.fm_controller.authenticate(name)
+        self.assertEqual(self.fm_controller.user.name, name)
+        self.assertEqual(self.fm_controller.user.condition, "FLASHMAP")
 
     def test_alternating_conditions(self):
         condition = "FLASHMAP"
         for i in range(10):
-            consumer = Consumer("test")
-            consumer.authenticate("user"+str(i))
+            controller = Controller("test")
+            controller.authenticate("user"+str(i))
             with self.subTest(i=str(i)+"_"+condition):
-                self.assertEqual(consumer.user.condition, condition)
-            consumer.user.save(validate=False)
+                self.assertEqual(controller.user.condition, condition)
+            controller.user.save(validate=False)
             if condition is "FLASHMAP":
                 condition = "FLASHCARD"
             else:
@@ -136,11 +136,11 @@ class TestConsumer(unittest.TestCase):
             user.delete()
 
     def test_check_prerequisites(self):
-        self.fc_consumer.authenticate("user")
+        self.fc_controller.authenticate("user")
         with self.subTest(i="New user"):
-            self.assertEqual(self.fc_consumer.check_prerequisites()['keyword'], "DESCRIPTIVES-REQUEST")
-        self.fc_consumer.user.set_descriptives(datetime(1990,12,25), 'male', '300')
-        test_request_1 = self.fc_consumer.check_prerequisites()
+            self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "DESCRIPTIVES-REQUEST")
+        self.fc_controller.user.set_descriptives(datetime(1990,12,25), 'male', '300')
+        test_request_1 = self.fc_controller.check_prerequisites()
         with self.subTest(i="Described user"):
             self.assertEqual(test_request_1['keyword'], "TEST-REQUEST")
 
@@ -152,12 +152,12 @@ class TestConsumer(unittest.TestCase):
             'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
             'answer': i['question']
             } for i in test_request_1['data']['items']]
-        self.fc_consumer.user.append_test(flashcard_responses_1, item_responses_1)
+        self.fc_controller.user.append_test(flashcard_responses_1, item_responses_1)
         with self.subTest(i="Tested user"):
-            self.assertEqual(self.fc_consumer.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
+            self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
         
-        self.fc_consumer.user.successful_days = [datetime(2016,1,i) for i in range(1,8)] 
-        test_request_2 = self.fc_consumer.check_prerequisites()
+        self.fc_controller.user.successful_days = [datetime(2016,1,i) for i in range(1,8)] 
+        test_request_2 = self.fc_controller.check_prerequisites()
         with self.subTest(i="Finished user"):
             self.assertEqual(test_request_2['keyword'], "TEST-REQUEST")
         
@@ -169,8 +169,8 @@ class TestConsumer(unittest.TestCase):
             'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
             'answer': i['question']
             } for i in test_request_2['data']['items']]
-        self.fc_consumer.user.append_test(flashcard_responses_2, item_responses_2)
-        questionnaire_request = self.fc_consumer.check_prerequisites()
+        self.fc_controller.user.append_test(flashcard_responses_2, item_responses_2)
+        questionnaire_request = self.fc_controller.check_prerequisites()
         with self.subTest(i="Finished tested user"):
             self.assertEqual(questionnaire_request['keyword'], "QUESTIONNAIRE-REQUEST")
 
@@ -179,31 +179,57 @@ class TestConsumer(unittest.TestCase):
             'phrasing': q['phrasing'],
             'answer': q['question']
             } for q in questionnaire_request['data']]
-        self.fc_consumer.user.append_questionnaire(questionnaire_response, "good", "can_be_improved", "test@test.com")
+        self.fc_controller.user.append_questionnaire(questionnaire_response, "good", "can_be_improved", "test@test.com")
         with self.subTest(i="Finished briefed user"):
-            self.assertEqual(self.fc_consumer.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
+            self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
 
     def test_read_source_request(self):
-        self.fc_consumer.authenticate("test")
-        self.assertEqual(self.fc_consumer.read_source_request("1"),
+        self.fc_controller.authenticate("test")
+        self.assertEqual(self.fc_controller.read_source_request("1"),
                 {'keyword': "READ_SOURCE-REQUEST", 'data': {'source': "1"}})
-        self.fc_consumer.user.add_source("1")
-        self.assertEqual(self.fc_consumer.read_source_request("2"),
+        self.fc_controller.user.add_source("1")
+        self.assertEqual(self.fc_controller.read_source_request("2"),
                 {'keyword': "NO_MORE_INSTANCES", 'data': {}})
 
-    def test_provide_learning(self):
-        pass
+    def test_fm_learning_message(self):
+        self.fm_controller.authenticate("test")
+        self.fm_controller.condition = "FLASHMAP"
+        self.fm_controller.user.add_source("1")
+        self.fm_controller.user.add_new_instance(self.edges)
+        self.assertEqual(self.fm_controller.learning_message(self.edges[0])['keyword'],
+                "LEARNING-RESPONSE")
+        test_data = self.concept_map.get_partial_map(self.edges[0], ["1"]).to_dict()
+        test_data['edges'][0]['learning'] = True
+        self.assertEqual(self.fm_controller.learning_message(self.edges[0])['data'],
+                test_data)
 
-    def test_learning_message(self):
-        pass
+    def test_fc_learning_message(self):
+        self.fm_controller.authenticate("flashmap user")
+        self.fc_controller.authenticate("flashcard user")
+        self.fc_controller.user.condition = "FLASHCARD"
+        self.fc_controller.user.add_source("1")
+        self.fc_controller.user.add_new_instance(self.flashcards)
+        self.assertEqual(self.fc_controller.learning_message(self.flashcards[0])['keyword'],
+                "LEARNING-RESPONSE")
+        self.assertEqual(self.fc_controller.learning_message(self.flashcards[0])['data'],
+                self.flashcards[0].to_dict())
 
     def test_validate(self):
+        self.fm_controller.authenticate("test")
+        self.fm_controller.condition = "FLASHMAP"
+        self.fm_controller.user.add_source("1")
+        self.fm_controller.user.add_new_instance(self.edges)
+        learning_message = self.fm_controller.learning_message(self.edges[0])
+        validate_message = [{'id': instance['id'], 'correct': True} for instance in learning_message['data']['edges'] if instance['learning']]
+        self.fm_controller.validate(validate_message)
+
+    def test_provide_learning(self):
         pass
 
     def test_provide_learned_items(self):
         pass
 
-    def consumer(self):
+    def controller(self):
         pass
 
 if __name__ == '__main__':

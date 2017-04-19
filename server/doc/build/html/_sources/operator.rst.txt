@@ -1,6 +1,6 @@
-consumer module
+operator module
 ===============
 
-.. automodule:: consumer
+.. automodule:: operator
     :members:
     :show-inheritance:
