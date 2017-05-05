@@ -322,13 +322,13 @@
         <span class="sd">&quot;&quot;&quot;Checks whether the provided item is due for review</span>
 
 <span class="sd">        :param item: The item to which the checked instance refers to</span>
-<span class="sd">        :type item: Edge or Falshcard</span>
+<span class="sd">        :type item: Edge or Flashcard</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Flashcard</span><span class="p">)</span>
 
         <span class="n">due</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="ow">is</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">instance</span><span class="o">.</span><span class="n">check_due</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="o">==</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">instance</span><span class="o">.</span><span class="n">check_due</span><span class="p">():</span>
                 <span class="n">due</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="n">due</span></div></div>
 </pre></div>

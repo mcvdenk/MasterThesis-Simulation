@@ -87,7 +87,7 @@ class Controller():
         elif (keyword == "LEARN-REQUEST"): 
             msg = provide_learning()
         elif (keyword == "READ_SOURCE-RESPONSE"):
-            add_source(str(data['source']))
+            self.user.add_source(str(data['source']))
             msg = provide_learning()
         elif (keyword == "VALIDATE"):
             validate(data['responses'])
@@ -157,34 +157,35 @@ class Controller():
         if instance == None:
             if self.user.condition is "FLASHMAP":
                 instance = self.user.add_new_instance(list(Edge.objects))
-            if self.user.condition is "FLASHCARD":
+            elif self.user.condition is "FLASHCARD":
                 instance = self.user.add_new_instance(list(Flashcard.objects))
         if instance == None:
             msg['keyword'] = "NO_MORE_INSTANCES"
-        elif len(self.user.sources) == 0:
-            msg = self.read_source_request(self.SOURCES[0])
+        elif len(self.user.read_sources) == 0:
+            msg['keyword'] = "READ_SOURCE-REQUEST"
+            msg['data'] = {'source' : self.SOURCES[0]}
         else:
-            source_index = self.SOURCES.index(instance.source) + 2
+            source = self.SOURCES[0]
+            if self.user.condition is "FLASHMAP":
+                source = max(instance.sources)
+            elif self.user.condition is "FLASHCARD":
+                source = max([max(edge.sources) for edge in instance.sources])
+            source_index = self.SOURCES.index(source) + 2
             if source_index < len(self.SOURCES) and\
-                    self.SOURCES[source_index] not in self.user.sources:
-                msg = self.read_source_request(self.SOURCES[source_index])
+                    self.SOURCES[source_index] not in self.user.read_sources and\
+                    datetime.today().date() not in self.user.source_requests:
+                msg['keyword'] = "READ_SOURCE-REQUEST"
+                msg['data'] = {'source' : self.SOURCES[source_index]}
+            elif source not in self.user.read_sources:
+                msg['keyword'] = "NO_MORE_INSTANCES"
             else:
                 msg = self.learning_message(instance)
-        if msg['keyword'] is "NO_MORE_INSTANCES" or msg['time_up']:
+        if msg['keyword'] is "NO_MORE_INSTANCES" or ('time_up' in msg and msg['time_up']):
             s_days = set(self.user.successful_days)
             s_day = datetime.today()
             if s_day not in s_days:
-                s_days.append(s_day)
+                s_days.add(s_day)
             self.user.successful_days = list(s_days)
-        return msg
-
-    def read_source_request(self, source):
-        msg = {'keyword': "", 'data': {}}
-        if datetime.today().date() not in self.user.source_requests:
-            msg['keyword'] = "READ_SOURCE-REQUEST"
-            msg['data'] = {'source': source}
-        else:
-            msg['keyword'] = "NO_MORE_INSTANCES"
         return msg
 
     def learning_message(self, item):
@@ -241,12 +242,12 @@ class Controller():
             msg['data'] = result_map.to_dict()
         elif self.user.condition is "FLASHCARD":
             msg["data"] = {"due" : 0, "new": 0, "learning": 0, "learned": 0, "not_seen": 0}
-            for flashcard in flashcards:
+            for flashcard in list(Flashcard.objects()):
                 seen = False
                 for instance in self.user.instances:
-                    if (instance.reference is flashcard):
+                    if (instance.reference == flashcard):
                         seen = True
-                        if (instance.check_due): msg["data"]["due"] += 1
+                        if (instance.check_due()): msg["data"]["due"] += 1
                         if (instance.get_exponent() < 2): msg["data"]["new"] += 1
                         elif (instance.get_exponent() < 6): msg["data"]["learning"] += 1
                         else: msg["data"]["learned"] += 1

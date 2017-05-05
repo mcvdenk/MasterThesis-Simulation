@@ -183,14 +183,14 @@ class TestController(unittest.TestCase):
         with self.subTest(i="Finished briefed user"):
             self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
 
-    def test_read_source_request(self):
-        self.fc_controller.authenticate("test")
-        self.assertEqual(self.fc_controller.read_source_request("1"),
-                {'keyword': "READ_SOURCE-REQUEST", 'data': {'source': "1"}})
-        self.fc_controller.user.add_source("1")
-        self.assertEqual(self.fc_controller.read_source_request("2"),
-                {'keyword': "NO_MORE_INSTANCES", 'data': {}})
-
+#    def test_read_source_request(self):
+#        self.fc_controller.authenticate("test")
+#        self.assertEqual(self.fc_controller.read_source_request("1"),
+#                {'keyword': "READ_SOURCE-REQUEST", 'data': {'source': "1"}})
+#        self.fc_controller.user.add_source("1")
+#        self.assertEqual(self.fc_controller.read_source_request("2"),
+#                {'keyword': "NO_MORE_INSTANCES", 'data': {}})
+    
     def test_fm_learning_message(self):
         self.fm_controller.authenticate("test")
         self.fm_controller.condition = "FLASHMAP"
@@ -216,21 +216,132 @@ class TestController(unittest.TestCase):
 
     def test_validate(self):
         self.fm_controller.authenticate("test")
-        self.fm_controller.condition = "FLASHMAP"
-        self.fm_controller.user.add_source("1")
+        self.fm_controller.user.condition = "FLASHMAP"
+        self.fm_controller.user.add_source("0")
         self.fm_controller.user.add_new_instance(self.edges)
         learning_message = self.fm_controller.learning_message(self.edges[0])
-        validate_message = [{'id': instance['id'], 'correct': True} for instance in learning_message['data']['edges'] if instance['learning']]
+        validate_message = [{'id': instance['id'], 'correct': True}
+                for instance in learning_message['data']['edges'] if instance['learning']]
         self.fm_controller.validate(validate_message)
 
-    def test_provide_learning(self):
-        pass
+    def test_fc_provide_learning(self):
+        self.fc_controller.authenticate("test")
+        self.fc_controller.user.condition = "FLASHCARD"
+        self.assertEqual(self.fc_controller.provide_learning(),
+                {'keyword': "READ_SOURCE-REQUEST", 'data': {'source': "0"}})
+        
+        self.fc_controller.user.add_source("0")
+        learning_message = self.fc_controller.learning_message(self.flashcards[0])
+        self.assertEqual(self.fc_controller.provide_learning(),
+                learning_message)
+        
+        validate_message = [{'id': learning_message['data']['id'], 'correct': True}]
+        self.fc_controller.validate(validate_message)
+        learning_message = self.fc_controller.learning_message(self.flashcards[1])
+        self.assertEqual(self.fc_controller.provide_learning(),
+                learning_message)
 
-    def test_provide_learned_items(self):
-        pass
+        validate_message = [{'id': learning_message['data']['id'], 'correct': True}]
+        self.fc_controller.validate(validate_message)
+        self.assertEqual(self.fc_controller.provide_learning(),
+                {'keyword': "NO_MORE_INSTANCES", 'data': {}})
 
-    def controller(self):
-        pass
+    def test_fm_provide_learning(self):
+        self.fm_controller.authenticate("test")
+        self.fm_controller.user.condition = "FLASHMAP"
+        self.assertEqual(self.fm_controller.provide_learning(),
+                {'keyword': "READ_SOURCE-REQUEST", 'data': {'source': "0"}})
+        
+        self.fm_controller.user.add_source("0")
+        learning_message = self.fm_controller.learning_message(self.edges[0])
+        for edge in learning_message['data']['edges']:
+            edge['learning'] = True
+        self.assertEqual(self.fm_controller.provide_learning(),
+                learning_message)
+        
+        validate_message = [{'id': instance['id'], 'correct': True}
+                for instance in learning_message['data']['edges'] if instance['learning']]
+        self.fm_controller.validate(validate_message)
+        learning_message = self.fm_controller.learning_message(self.edges[1])
+        for edge in learning_message['data']['edges']:
+            edge['learning'] = True
+        self.assertEqual(self.fm_controller.provide_learning(),
+                learning_message)
+
+        validate_message = [{'id': instance['id'], 'correct': True}
+                for instance in learning_message['data']['edges'] if instance['learning']]
+        self.fm_controller.validate(validate_message)
+        self.assertEqual(self.fm_controller.provide_learning(),
+                {'keyword': "NO_MORE_INSTANCES", 'data': {}})
+
+    def test_fc_provide_learned_items(self):
+        self.fc_controller.authenticate("test")
+        self.fc_controller.user.condition = "FLASHCARD"
+        for source in self.fc_controller.SOURCES:
+            self.fc_controller.user.add_source(source)
+        result = {'keyword': "LEARNED_ITEMS-RESPONSE",
+                'data': {
+                    'condition': "FLASHCARD",
+                    'due': 0,
+                    'new': 0,
+                    'learning': 0,
+                    'learned': 0,
+                    'not_seen': len(self.flashcards)}}
+        self.assertEqual(self.fc_controller.provide_learned_items(),
+                result)
+
+        learning_message = self.fc_controller.provide_learning()
+        result['data']['not_seen'] -= 1
+        result['data']['new'] += 1
+        result['data']['due'] += 1
+        self.assertEqual(self.fc_controller.provide_learned_items(),
+                result)
+
+        validate_message = [{'id': learning_message['data']['id'], 'correct': True}]
+        self.fc_controller.validate(validate_message)
+        result['data']['due'] -= 1
+        result['data']['new'] -= 1
+        result['data']['learning'] += 1
+        self.assertEqual(self.fc_controller.provide_learned_items(),
+                result)
+
+        for i in range(3):
+            self.fc_controller.user.instances[0].start_response()
+            self.fc_controller.user.instances[0].finalise_response(True)
+        self.assertEqual(self.fc_controller.provide_learned_items(),
+                result)
+
+        self.fc_controller.user.instances[0].start_response()
+        self.fc_controller.user.instances[0].finalise_response(True)
+        result['data']['learning'] -= 1
+        result['data']['learned'] += 1
+        self.assertEqual(self.fc_controller.provide_learned_items(),
+                result)
+
+    def test_fm_provide_learned_items(self):
+        self.fm_controller.authenticate("test")
+        self.fm_controller.user.condition = "FLASHMAP"
+        result = {'keyword': "LEARNED_ITEMS-RESPONSE",
+                'data': {'condition': "FLASHMAP"}}
+        result_map = ConceptMap([], [])
+        result['data'].update(result_map.to_dict())
+        self.assertEqual(self.fm_controller.provide_learned_items(), result)
+        
+        self.fm_controller.user.add_source("0")
+        learning_message = self.fm_controller.learning_message(self.edges[0])
+        for edge in learning_message['data']['edges']:
+            edge['learning'] = True
+        self.fm_controller.provide_learning()
+        validate_message = [{'id': instance['id'], 'correct': True}
+                for instance in learning_message['data']['edges'] if instance['learning']]
+        self.fm_controller.validate(validate_message)
+        self.fm_controller.provide_learning()
+        result_map = ConceptMap(
+            [self.nodes[0], self.nodes[1], self.nodes[2]],
+            [self.edges[0], self.edges[1]])
+        result['data'].update(result_map.to_dict())
+        self.assertEqual(self.fm_controller.provide_learned_items(), result)
+
 
 if __name__ == '__main__':
     unittest.main()

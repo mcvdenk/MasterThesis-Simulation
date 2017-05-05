@@ -277,12 +277,12 @@ class User(Document):
         """Checks whether the provided item is due for review
 
         :param item: The item to which the checked instance refers to
-        :type item: Edge or Falshcard
+        :type item: Edge or Flashcard
         """
         assert isinstance(item, Edge) or isinstance(item, Flashcard)
 
         due = False
         for instance in self.instances:
-            if instance.reference is item and instance.check_due():
+            if instance.reference == item and instance.check_due():
                 due = True
         return due
