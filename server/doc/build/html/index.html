@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Class diagram &#8212; Flashmap server 1.0 documentation</title>
+    <title>Documentation of the Flashmap Experiment Software &#8212; Flashmap server 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -43,10 +43,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="class-diagram">
-<h1>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="documentation-of-the-flashmap-experiment-software">
+<h1>Documentation of the Flashmap Experiment Software<a class="headerlink" href="#documentation-of-the-flashmap-experiment-software" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="class-diagram">
+<h2>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h2>
 <p class="plantuml">
-<img src="_images/plantuml-fc0343b3edcb8adab23764a78a5a9a2d24745cba.png" alt="&#64;startuml
+<img src="_images/plantuml-223bd15b8ad5e32485e17591ab9535833c7ae7c9.png" alt="&#64;startuml
 hide empty members
 hide circle
 skinparam linetype ortho
@@ -73,7 +75,7 @@ class ConceptMap {
     to_dict(): dict
 }
 
-Consumer &quot;0..*&quot; o-- &quot;1&quot; ConceptMap : concept_map
+Controller &quot;0..*&quot; o-- &quot;1&quot; ConceptMap : concept_map
 
 class Node {
     label : str
@@ -84,7 +86,7 @@ ConceptMap &quot;1&quot; o-- &quot;0..*&quot; Node : nodes
 
 class Edge {
     label : str
-    source : str
+    sources : list(str)
     to_dict(): str
 }
 
@@ -92,14 +94,13 @@ ConceptMap &quot;1&quot; o-- &quot;0..*&quot; Edge : edges
 Node &quot;2&quot; o-- &quot;0..*&quot; Edge : from, to
 
 class Flashcard {
-    source : str
     question : str
     answer : str
     response_model : list(str)
     to_dict() : dict
 }
 
-Edge &quot;0..*&quot; o-- &quot;0..*&quot; Flashcard : edge
+Edge &quot;0..*&quot; o-- &quot;0..*&quot; Flashcard : sources 
 
 class User {
     name : str
@@ -129,7 +130,7 @@ class User {
     time_spend_today(): int
 }
 
-Consumer &quot;1&quot; o-- &quot;1&quot; User : user
+Controller &quot;1&quot; o-- &quot;1&quot; User : user
 
 class LogEntry {
     time : datetime
@@ -137,7 +138,7 @@ class LogEntry {
     data : dict
 }
 
-Logentry &quot;0..*&quot; o-- &quot;1&quot; User : user
+LogEntry &quot;0..*&quot; o-- &quot;1&quot; User : user
 
 class Test {
     generate_test(flashcards,\nitems, prev_items) : void
@@ -237,7 +238,7 @@ User &quot;1&quot; *-- &quot;0..*&quot; Session : sessions
 </p>
 </div>
 <div class="section" id="contents">
-<h1>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="concept_map.html">concept_map module</a></li>
@@ -248,7 +249,7 @@ User &quot;1&quot; *-- &quot;0..*&quot; Session : sessions
 <li class="toctree-l1"><a class="reference internal" href="flashmap_instance.html">flashmap_instance module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="handler.html">handler module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instance.html">instance module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logentry.html">logentry module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="log_entry.html">log_entry module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="node.html">node module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="questionnaire.html">questionnaire module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="questionnaire_item.html">questionnaire_item module</a></li>
@@ -264,12 +265,13 @@ User &quot;1&quot; *-- &quot;0..*&quot; Session : sessions
 </div>
 </div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a>
-* <a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a>
-* <a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
+</div>
 </div>
 
 
@@ -280,9 +282,12 @@ User &quot;1&quot; *-- &quot;0..*&quot; Session : sessions
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Class diagram</a></li>
+<li><a class="reference internal" href="#">Documentation of the Flashmap Experiment Software</a><ul>
+<li><a class="reference internal" href="#class-diagram">Class diagram</a></li>
 <li><a class="reference internal" href="#contents">Contents:</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>

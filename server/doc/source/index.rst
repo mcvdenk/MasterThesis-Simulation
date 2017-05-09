@@ -1,10 +1,13 @@
+Documentation of the Flashmap Experiment Software
+=================================================
+
 Class diagram
-=============
+-------------
 
 .. uml:: classdiagram.uml
 
 Contents:
-=========
+---------
 .. toctree::
     :maxdepth: 4
 
@@ -16,7 +19,7 @@ Contents:
     flashmap_instance
     handler
     instance
-    logentry
+    log_entry
     node
     questionnaire
     questionnaire_item
@@ -30,7 +33,8 @@ Contents:
     user
 
 Indices and tables
-==================
+------------------
+
 * :ref:`genindex`
-  * :ref:`modindex`
-  * :ref:`search`
+* :ref:`modindex`
+* :ref:`search`

@@ -25,7 +25,7 @@ class ConceptMap {
     to_dict(): dict
 }
 
-Consumer "0..*" o-- "1" ConceptMap : concept_map
+Controller "0..*" o-- "1" ConceptMap : concept_map
 
 class Node {
     label : str
@@ -36,7 +36,7 @@ ConceptMap "1" o-- "0..*" Node : nodes
 
 class Edge {
     label : str
-    source : str
+    sources : list(str)
     to_dict(): str
 }
 
@@ -44,14 +44,13 @@ ConceptMap "1" o-- "0..*" Edge : edges
 Node "2" o-- "0..*" Edge : from, to
 
 class Flashcard {
-    source : str
     question : str
     answer : str
     response_model : list(str)
     to_dict() : dict
 }
 
-Edge "0..*" o-- "0..*" Flashcard : edge
+Edge "0..*" o-- "0..*" Flashcard : sources 
 
 class User {
     name : str
@@ -81,7 +80,7 @@ class User {
     time_spend_today(): int
 }
 
-Consumer "1" o-- "1" User : user
+Controller "1" o-- "1" User : user
 
 class LogEntry {
     time : datetime
@@ -89,7 +88,7 @@ class LogEntry {
     data : dict
 }
 
-Logentry "0..*" o-- "1" User : user
+LogEntry "0..*" o-- "1" User : user
 
 class Test {
     generate_test(flashcards,\nitems, prev_items) : void

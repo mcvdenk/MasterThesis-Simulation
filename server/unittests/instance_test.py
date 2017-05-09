@@ -158,4 +158,7 @@ class TestFlashcardInstance(unittest.TestCase):
         self.assertAlmostEqual(self.instance.due_date.timestamp(), time.time() + 625, delta = 1)
 
 if __name__ == '__main__':
-    unittest.main()
+    f = open("test_output.txt", "w")
+    runner = unittest.TextTestRunner(f)
+    unittest.main(testRunner = runner, warnings = "ignore")
+    f.close()

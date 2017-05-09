@@ -132,7 +132,8 @@ class User(Document):
         assert all(isinstance(item, QuestionnaireItem) for item in pu_items)
         assert isinstance(peou_items, list)
         assert all(isinstance(item, QuestionnaireItem) for item in peou_items)
-        self.questionnaire = Questionnaire(pu_items, peou_items)
+        self.questionnaire = Questionnaire()
+        self.questionnaire.generate_questionnaire(pu_items, peou_items)
         return [
                 item.questionnaire_item.to_dict(item.phrasing) for 
                 item in self.questionnaire.perceived_usefulness_items] + [

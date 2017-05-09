@@ -7,7 +7,7 @@
   \item append\_answer() (questionnaire.Questionnaire method), \hyperpage{8}
   \item append\_flashcard() (test.Test method), \hyperpage{10}
   \item append\_item() (test.Test method), \hyperpage{10}
-  \item append\_questionnaire() (user.User method), \hyperpage{12}
+  \item append\_questionnaire() (user.User method), \hyperpage{13}
   \item append\_test() (user.User method), \hyperpage{13}
   \item authenticate() (controller.Controller method), \hyperpage{4}
 
@@ -45,10 +45,11 @@
 
   \indexspace
   \bigletter G
+  \item generate\_questionnaire() (questionnaire.Questionnaire method), \hyperpage{8}
   \item generate\_test() (test.Test method), \hyperpage{10}
   \item get\_due\_instance() (user.User method), \hyperpage{13}
   \item get\_exponent() (instance.Instance method), \hyperpage{7}
-  \item get\_instance\_by\_id() (user.User method), \hyperpage{13}
+  \item get\_instance\_by\_id() (user.User method), \hyperpage{14}
   \item get\_partial\_map() (concept\_map.ConceptMap method), \hyperpage{4}
 
   \indexspace
@@ -64,8 +65,8 @@
   \indexspace
   \bigletter L
   \item learning\_message() (controller.Controller method), \hyperpage{5}
-  \item LogEntry (class in logentry), \hyperpage{7}
-  \item logentry (module), \hyperpage{7}
+  \item log\_entry (module), \hyperpage{7}
+  \item LogEntry (class in log\_entry), \hyperpage{7}
 
   \indexspace
   \bigletter N
@@ -107,10 +108,10 @@
   \item test (module), \hyperpage{10}
   \item test\_flashcard\_response (module), \hyperpage{11}
   \item test\_item (module), \hyperpage{11}
-  \item test\_item\_response (module), \hyperpage{11}
+  \item test\_item\_response (module), \hyperpage{12}
   \item TestFlashcardResponse (class in test\_flashcard\_response), \hyperpage{11}
   \item TestItem (class in test\_item), \hyperpage{11}
-  \item TestItemResponse (class in test\_item\_response), \hyperpage{11}
+  \item TestItemResponse (class in test\_item\_response), \hyperpage{12}
   \item time\_spend\_today() (user.User method), \hyperpage{14}
   \item to\_dict() (concept\_map.ConceptMap method), \hyperpage{4}
   \item to\_dict() (edge.Edge method), \hyperpage{5}

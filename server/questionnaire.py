@@ -20,8 +20,15 @@ class Questionnaire(EmbeddedDocument):
     good = StringField()
     can_be_improved = StringField()
 
-    def __init__(self, pu_items, peou_items, **data):
-        super(Questionnaire, self).__init__(**data)
+    def generate_questionnaire(self, pu_items, peou_items):
+        """
+        A method to set the questionnaire items based on two sets of items
+
+        :param pu_items: The perceived usefulness items of TAM
+        :type pu_items: list(QuestionnaireItem)
+        :param pu_items: The perceived ease of use items of TAM
+        :type pu_items: list(QuestionnaireItem)
+        """
         pu1 = [QuestionnaireResponse(questionnaire_item = item, phrasing = random.choice([True, False])) for item in pu_items]
         pu2 = [QuestionnaireResponse(questionnaire_item = resp.questionnaire_item, phrasing = not resp.phrasing) for resp in pu1]
         peou1 = [QuestionnaireResponse(questionnaire_item = item, phrasing = random.choice([True, False])) for item in peou_items]

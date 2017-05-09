@@ -290,4 +290,7 @@ class TestHandler(unittest.TestCase):
                     response['item'] for response in item_responses_2]))
 
 if __name__ == '__main__':
-    unittest.main()
+    f = open("test_output.txt", "w")
+    runner = unittest.TextTestRunner(f)
+    unittest.main(testRunner = runner, warnings = "ignore")
+    f.close()

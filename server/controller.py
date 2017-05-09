@@ -12,7 +12,7 @@ from concept_map import *
 from flashcard import *
 from questionnaire import *
 from test_item import *
-from logentry import *
+from log_entry import *
 
 """
 @author: Micha van den Enk

@@ -32,4 +32,7 @@ class TestSession(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    f = open("test_output.txt", "w")
+    runner = unittest.TextTestRunner(f)
+    unittest.main(testRunner = runner, warnings = "ignore")
+    f.close()

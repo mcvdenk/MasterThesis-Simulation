@@ -155,9 +155,9 @@ class TestQuestionnaire(unittest.TestCase):
                     phrasing = False)
             self.peou_responses.append(peou_response_nega)
 
-        self.questionnaire = \
-                Questionnaire(pu_items = list(self.pu_items),
-                        peou_items = list(self.peou_items))
+        self.questionnaire = Questionnaire()
+        self.questionnaire.generate_questionnaire(
+                list(self.pu_items),list(self.peou_items))
 
     def tearDown(self):
         for item in self.pu_items.union(self.peou_items):
@@ -204,4 +204,7 @@ class TestQuestionnaire(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    f = open("test_output.txt", "w")
+    runner = unittest.TextTestRunner(f)
+    unittest.main(testRunner = runner, warnings = "ignore")
+    f.close()

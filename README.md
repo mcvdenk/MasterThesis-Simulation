@@ -18,7 +18,7 @@
   * ~~Session~~
   * ~~User~~
   * ~~Controller~~
-* Import old database
+* ~~Import old database~~
 * Built user simulation
 * Adapt client.js
 * Black-box testing

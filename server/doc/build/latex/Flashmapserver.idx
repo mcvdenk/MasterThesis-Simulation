@@ -33,14 +33,15 @@
 \indexentry{get\_exponent() (instance.Instance method)|hyperpage}{7}
 \indexentry{schedule() (instance.Instance method)|hyperpage}{7}
 \indexentry{start\_response() (instance.Instance method)|hyperpage}{7}
-\indexentry{logentry (module)|hyperpage}{7}
-\indexentry{LogEntry (class in logentry)|hyperpage}{7}
+\indexentry{log\_entry (module)|hyperpage}{7}
+\indexentry{LogEntry (class in log\_entry)|hyperpage}{7}
 \indexentry{node (module)|hyperpage}{8}
 \indexentry{Node (class in node)|hyperpage}{8}
 \indexentry{to\_dict() (node.Node method)|hyperpage}{8}
 \indexentry{questionnaire (module)|hyperpage}{8}
 \indexentry{Questionnaire (class in questionnaire)|hyperpage}{8}
 \indexentry{append\_answer() (questionnaire.Questionnaire method)|hyperpage}{8}
+\indexentry{generate\_questionnaire() (questionnaire.Questionnaire method)|hyperpage}{8}
 \indexentry{questionnaire\_item (module)|hyperpage}{9}
 \indexentry{QuestionnaireItem (class in questionnaire\_item)|hyperpage}{9}
 \indexentry{to\_dict() (questionnaire\_item.QuestionnaireItem method)|hyperpage}{9}
@@ -62,19 +63,19 @@
 \indexentry{test\_item (module)|hyperpage}{11}
 \indexentry{TestItem (class in test\_item)|hyperpage}{11}
 \indexentry{to\_dict() (test\_item.TestItem method)|hyperpage}{11}
-\indexentry{test\_item\_response (module)|hyperpage}{11}
-\indexentry{TestItemResponse (class in test\_item\_response)|hyperpage}{11}
+\indexentry{test\_item\_response (module)|hyperpage}{12}
+\indexentry{TestItemResponse (class in test\_item\_response)|hyperpage}{12}
 \indexentry{user (module)|hyperpage}{12}
 \indexentry{User (class in user)|hyperpage}{12}
 \indexentry{add\_new\_instance() (user.User method)|hyperpage}{12}
 \indexentry{add\_source() (user.User method)|hyperpage}{12}
-\indexentry{append\_questionnaire() (user.User method)|hyperpage}{12}
+\indexentry{append\_questionnaire() (user.User method)|hyperpage}{13}
 \indexentry{append\_test() (user.User method)|hyperpage}{13}
 \indexentry{check\_due() (user.User method)|hyperpage}{13}
 \indexentry{create\_questionnaire() (user.User method)|hyperpage}{13}
 \indexentry{create\_test() (user.User method)|hyperpage}{13}
 \indexentry{get\_due\_instance() (user.User method)|hyperpage}{13}
-\indexentry{get\_instance\_by\_id() (user.User method)|hyperpage}{13}
+\indexentry{get\_instance\_by\_id() (user.User method)|hyperpage}{14}
 \indexentry{retrieve\_recent\_instance() (user.User method)|hyperpage}{14}
 \indexentry{set\_descriptives() (user.User method)|hyperpage}{14}
 \indexentry{time\_spend\_today() (user.User method)|hyperpage}{14}

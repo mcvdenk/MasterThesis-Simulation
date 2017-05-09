@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Overview: module code &#8212; Flashmap server 1.0 documentation</title>
+    <title>log_entry &#8212; Flashmap server 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -42,35 +42,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="_operator.html">_operator</a></li>
-<li><a href="concept_map.html">concept_map</a></li>
-<li><a href="consumer.html">consumer</a></li>
-<li><a href="controller.html">controller</a></li>
-<li><a href="edge.html">edge</a></li>
-<li><a href="flashcard.html">flashcard</a></li>
-<li><a href="flashcard_instance.html">flashcard_instance</a></li>
-<li><a href="flashmap_instance.html">flashmap_instance</a></li>
-<li><a href="handler.html">handler</a></li>
-<li><a href="instance.html">instance</a></li>
-<li><a href="log_entry.html">log_entry</a></li>
-<li><a href="logentry.html">logentry</a></li>
-<li><a href="mongoengine/base/fields.html">mongoengine.base.fields</a></li>
-<li><a href="mongoengine/fields.html">mongoengine.fields</a></li>
-<li><a href="mongoengine/queryset/queryset.html">mongoengine.queryset.queryset</a></li>
-<li><a href="node.html">node</a></li>
-<li><a href="operator.html">operator</a></li>
-<li><a href="questionnaire.html">questionnaire</a></li>
-<li><a href="questionnaire_item.html">questionnaire_item</a></li>
-<li><a href="questionnaire_response.html">questionnaire_response</a></li>
-<li><a href="response.html">response</a></li>
-<li><a href="session.html">session</a></li>
-<li><a href="test.html">test</a></li>
-<li><a href="test_flashcard_response.html">test_flashcard_response</a></li>
-<li><a href="test_item.html">test_item</a></li>
-<li><a href="test_item_response.html">test_item_response</a></li>
-<li><a href="user.html">user</a></li>
-</ul>
+  <h1>Source code for log_entry</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">user</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
+
+<div class="viewcode-block" id="LogEntry"><a class="viewcode-back" href="../log_entry.html#log_entry.LogEntry">[docs]</a><span class="k">class</span> <span class="nc">LogEntry</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An object representing a incoming or outgoing network message</span>
+
+<span class="sd">    :cvar user: The user which was involved with this network message</span>
+<span class="sd">    :type user: User</span>
+<span class="sd">    :cvar keyword: The network keyword</span>
+<span class="sd">    :type keyword: StringField</span>
+<span class="sd">    :cvar data: The dictionary containing the necessary data</span>
+<span class="sd">    :type data: DictField</span>
+<span class="sd">    :cvar time: The time that this message was received or transmitted</span>
+<span class="sd">    :type time: DateField</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">user</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">keyword</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="p">{})</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">)</span></div>
+</pre></div>
 
           </div>
         </div>
@@ -80,6 +74,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
