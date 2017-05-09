@@ -100,6 +100,26 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="test.Test.generate_test">
+<code class="descname">generate_test</code><span class="sig-paren">(</span><em>flashcards</em>, <em>items</em>, <em>prev_flashcards=[]</em>, <em>prev_items=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#Test.generate_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.Test.generate_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for creating test items for this test based on a set of given flashcards and items, using randomise()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flashcards</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em>)</em><em></em>) &#8211; The flashcards to be used for the test</li>
+<li><strong>items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><em>Item</em><em>)</em><em></em>) &#8211; The items to be used for the test</li>
+<li><strong>prev_flashcards</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="flashcard.html#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em>)</em><em></em>) &#8211; The list of flashcards to be excluded from this test</li>
+<li><strong>prev_items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="test_item.html#test_item.TestItem" title="test_item.TestItem"><em>TestItem</em></a><em>)</em><em></em>) &#8211; The list of items to be excluded from this test</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="test.Test.randomise">
 <code class="descname">randomise</code><span class="sig-paren">(</span><em>items</em>, <em>prev_items</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#Test.randomise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.Test.randomise" title="Permalink to this definition">¶</a></dt>
 <dd><p>A method for taking five random items in a random order from the provided list of items without the items in the previous items</p>

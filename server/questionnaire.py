@@ -39,7 +39,7 @@ class Questionnaire(EmbeddedDocument):
         :param item: The item to which the answer refers
         :type item: QuestionnaireItem
         :param phrasing: Whether the item is positively (True) phrased or negatively (False)
-        :type phrasing: boolean
+        :type phrasing: bool
         :param answer: The answer to be appended
         :type answer: string
         """

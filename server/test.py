@@ -16,6 +16,17 @@ class Test(EmbeddedDocument):
     test_item_responses = ListField(EmbeddedDocumentField('TestItemResponse'), default = [])
 
     def generate_test(self, flashcards, items, prev_flashcards = [], prev_items = []):
+        """A method for creating test items for this test based on a set of given flashcards and items, using randomise()
+
+        :param flashcards: The flashcards to be used for the test
+        :type flashcards: list(Flashcard)
+        :param items: The items to be used for the test
+        :type items: list(Item)
+        :param prev_flashcards: The list of flashcards to be excluded from this test
+        :type prev_flashcards: list(Flashcard)
+        :param prev_items: The list of items to be excluded from this test
+        :type prev_items: list(TestItem)
+        """
         self.test_flashcard_responses = [TestFlashcardResponse(flashcard=fc) for fc in self.randomise(flashcards, prev_flashcards)]
         self.test_item_responses = [TestItemResponse(item=item) for item in self.randomise(items, prev_items)]
 

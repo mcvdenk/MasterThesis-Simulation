@@ -29,7 +29,7 @@ class Instance(EmbeddedDocument):
         """Sets the correctness value for the final response and sets the end date to now
 
         :param correct: Whether the response was correct
-        :type correct: boolean
+        :type correct: bool
         """
         assert isinstance(correct, bool)
         response = self.responses[-1]
@@ -41,7 +41,7 @@ class Instance(EmbeddedDocument):
         """Checks whether this instance is due for repetition
 
         :return: Whether the due datetime is earlier than the current datetime
-        :rtype: boolean
+        :rtype: bool
         """
         return self.due_date < datetime.now()
 

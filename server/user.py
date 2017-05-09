@@ -292,6 +292,8 @@ class User(Document):
 
         :param item: The item to which the checked instance refers to
         :type item: Edge or Flashcard
+        :return: Whether the provided item is due for review
+        :rtype: bool
         """
         assert isinstance(item, Edge) or isinstance(item, Flashcard)
 

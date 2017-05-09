@@ -19,7 +19,7 @@ class QuestionnaireItem(Document):
         """A method for generating a dictionary representation of this object
 
         :param phrasing: Whether the positive or negative question is required
-        :type phrasing: boolean
+        :type phrasing: bool
         :return: The representation containing an id field, a phrasing field and a question field
         :rtype: dict
         """

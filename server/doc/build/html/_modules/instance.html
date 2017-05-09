@@ -74,7 +74,7 @@
         <span class="sd">&quot;&quot;&quot;Sets the correctness value for the final response and sets the end date to now</span>
 
 <span class="sd">        :param correct: Whether the response was correct</span>
-<span class="sd">        :type correct: boolean</span>
+<span class="sd">        :type correct: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -86,7 +86,7 @@
         <span class="sd">&quot;&quot;&quot;Checks whether this instance is due for repetition</span>
 
 <span class="sd">        :return: Whether the due datetime is earlier than the current datetime</span>
-<span class="sd">        :rtype: boolean</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">due_date</span> <span class="o">&lt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span></div>
 

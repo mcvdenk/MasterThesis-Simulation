@@ -3,25 +3,25 @@ hide empty members
 hide circle
 skinparam linetype ortho
 
-class Consumer {
-    SOURCES: list[str]
-    add_source(str source)
-    check_prerequisites: dict
-    consumer(str keyword, dict data): dict
+class Controller {
+    database: str
+    SOURCES: list(str)
+    check_prerequisites(): dict
+    controller(keyword, data): dict
     create_questionnaire(): dict
     create_test: dict
-    learning_message(Instance instance): dict
+    learning_message(item): dict
     provide_learned_items(): dict
     provide_learning(): dict
-    authenticate(str name): User
-    validate(list[dict] responses) 
+    authenticate(name): User
+    validate(responses) 
 }
 
 class ConceptMap {
-    get_partial_map(edge): ConceptMap
-    find_prerequisites(postreq, prereqs, sources): list[Edge]
-    find_siblings(postreq, sources, partial_edges): list[Edge]
-    find_nodes(): list[Node]
+    get_partial_map(edge, sources): ConceptMap
+    find_prerequisites(postreq, prereqs, sources): list(Edge)
+    find_siblings(edge, sources, partial_edges): list(Edge)
+    find_nodes(edges): list(Node)
     to_dict(): dict
 }
 
@@ -29,6 +29,7 @@ Consumer "0..*" o-- "1" ConceptMap : concept_map
 
 class Node {
     label : str
+    to_dict(): dict
 }
 
 ConceptMap "1" o-- "0..*" Node : nodes
@@ -36,6 +37,7 @@ ConceptMap "1" o-- "0..*" Node : nodes
 class Edge {
     label : str
     source : str
+    to_dict(): str
 }
 
 ConceptMap "1" o-- "0..*" Edge : edges
@@ -45,7 +47,7 @@ class Flashcard {
     source : str
     question : str
     answer : str
-    response_model : list[str]
+    response_model : list(str)
     to_dict() : dict
 }
 
@@ -53,27 +55,36 @@ Edge "0..*" o-- "0..*" Flashcard : edge
 
 class User {
     name : str
+    condition : str
     birthdate : int
-    flashmap_condition : bool
-    read_sources : list[str]
+    read_sources : list(str)
     gender : str
     code : str
-    add_new_instance(list(Flashcard, Edge) references) : Flashcard, Edge
-    set_descriptives(str gender, DateTime birthdate, str code) : void
-    create_test(list(Flashcard) flashcards, list(TestItem) items): dict(str, Response)
-    append_test(list[dict] flashcard_responses, list(dict) item_responses) : void
-    create_questionnaire(list(QuestionnaireItem) pu_items, list(QuestionnaireItem) peou_items): list(QuestionnaireItem)
-    append_questionnaire(list[dict] responses, str good, str could_be_improved, str email) : void
+    email : str
+    source_requests : list(str)
+    successful_days : list(datetime)
+    briefed : bool
+    add_new_instance(references) : Flashcard, Edge
+    add_source(source) : void
+    check_due(item) : bool
+    set_descriptives(gender, birthdate, code) : void
+    create_test(flashcards, items): dict(str, Response)
+    append_test(flashcard_responses, item_responses) : void
+    create_questionnaire(pu_items, peou_items): list(QuestionnaireItem)
+    append_questionnaire(responses, good, could_be_improved, email) : void
     get_due_instance(): Instance
-    get_instance_by_id(ObjectId instance_id): Instance
-    start_response(Instance instance) : void
-    validate(ObjectId instance_id, bool correct) : void
+    get_instance_by_id(instance_id): Instance
+    start_response(instance) : void
+    validate(instance_id, correct) : void
+    retrieve_recent_instance(): Instance
+    undo(): Flashcard, Edge
+    time_spend_today(): int
 }
 
 Consumer "1" o-- "1" User : user
 
-class Logentry {
-    timestamp : int
+class LogEntry {
+    time : datetime
     keyword : str
     data : dict
 }
@@ -81,7 +92,8 @@ class Logentry {
 Logentry "0..*" o-- "1" User : user
 
 class Test {
-    generate_test(items, prev_items) : list(items)
+    generate_test(flashcards,\nitems, prev_items) : void
+    randomise(items, prev_items) : list(items)
     append_flashcard(flashcard, answer) : void
     append_item(item, answer) : void
 }
@@ -90,8 +102,9 @@ User "1" *-- "0..2" Test : test_flashcard_responses, test_item_responses
 
 class TestItem {
     question : str
-    source : str
-    response_model : list[str]
+    sources : list(str)
+    response_model : list(str)
+    to_dict() : dict
 }
 
 
@@ -113,12 +126,13 @@ class QuestionnaireItem {
     usefulness : bool
     positive_phrasing : str
     negative_phrasing : str
+    to_dict(): dict
 }
 
 class Questionnaire {
     good : str
     can_be_improved : str
-    append_answer(Questionnaireitem item, \nbool phrasing, str answer): void
+    append_answer(item, phrasing, answer): void
 }
     
 User "1" *-- "0..1" Questionnaire : questionnaire
@@ -129,12 +143,12 @@ class QuestionnaireResponse {
 }
 
 Questionnaire "1" *-- "0..*" QuestionnaireResponse : perceived_usefulness_items, \nperceived_ease_of_use_items
-QuestionnaireItem "1" o-- "0..*" QuestionnaireResponse : item
+QuestionnaireItem "1" o-- "0..*" QuestionnaireResponse : questionnaire_item
 
 abstract class Instance {
-    due_date : int
+    due_date : datetime
     check_due(): bool
-    finalise_response(bool correct)
+    finalise_response(correct)
     get_exponent(): int
     schedule() : void
     start_response() : void

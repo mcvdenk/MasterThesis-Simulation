@@ -45,6 +45,7 @@
 
   \indexspace
   \bigletter G
+  \item generate\_test() (test.Test method), \hyperpage{10}
   \item get\_due\_instance() (user.User method), \hyperpage{13}
   \item get\_exponent() (instance.Instance method), \hyperpage{7}
   \item get\_instance\_by\_id() (user.User method), \hyperpage{13}
@@ -87,17 +88,17 @@
 
   \indexspace
   \bigletter R
-  \item randomise() (test.Test method), \hyperpage{10}
+  \item randomise() (test.Test method), \hyperpage{11}
   \item Response (class in response), \hyperpage{9}
   \item response (module), \hyperpage{9}
-  \item retrieve\_recent\_instance() (user.User method), \hyperpage{13}
+  \item retrieve\_recent\_instance() (user.User method), \hyperpage{14}
 
   \indexspace
   \bigletter S
   \item schedule() (instance.Instance method), \hyperpage{7}
   \item Session (class in session), \hyperpage{10}
   \item session (module), \hyperpage{10}
-  \item set\_descriptives() (user.User method), \hyperpage{13}
+  \item set\_descriptives() (user.User method), \hyperpage{14}
   \item start\_response() (instance.Instance method), \hyperpage{7}
 
   \indexspace

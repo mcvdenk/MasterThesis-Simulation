@@ -11,8 +11,8 @@ class LogEntry(Document):
     :type keyword: StringField
     :cvar data: The dictionary containing the necessary data
     :type data: DictField
-    :cvar timestamp: The time that this message was received or transmitted
-    :type timestamp: DateField
+    :cvar time: The time that this message was received or transmitted
+    :type time: DateField
     """
     
     user = ReferenceField(User)

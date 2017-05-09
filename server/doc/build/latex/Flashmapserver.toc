@@ -21,4 +21,4 @@
 \contentsline {section}{\numberline {1.19}test\_item\_response module}{11}{section.1.19}
 \contentsline {section}{\numberline {1.20}user module}{12}{section.1.20}
 \contentsline {chapter}{\numberline {2}Indices and tables}{15}{chapter.2}
-\contentsline {chapter}{Python Module Index}{17}{section*.64}
+\contentsline {chapter}{Python Module Index}{17}{section*.65}
