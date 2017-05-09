@@ -65,17 +65,17 @@ class Controller():
         incoming_msg.save()
         msg = {'keyword': "FAILURE", 'data': {}}
         if (keyword == "AUTHENTICATE-REQUEST"): 
-            self.user = authenticate(data["name"])
-            msg = check_prerequisites()
+            self.authenticate(data['name'])
+            msg = self.check_prerequisites()
         elif (keyword == "DESCRIPTIVES-RESPONSE"):
             self.user.set_descriptives(
-                    datself, a['birthdate'],
+                    data['birthdate'],
                     data['gender'],
                     data['code'])
-            msg = check_prerequisites()
+            msg = self.check_prerequisites()
         elif (keyword == "TEST-RESPONSE"):
             self.user.append_test(data['flashcard_responses'], data['item_responses'])
-            msg = check_prerequisites()
+            msg = self.check_prerequisites()
         elif (keyword == "QUESTIONNAIRE-RESPONSE"):
             self.user.append_questionnaire(
                     data['responses'],
@@ -83,23 +83,23 @@ class Controller():
                     data['can_be_improved'])
             msg['keyword'] = "DEBRIEFING"
         elif (keyword == "LEARNED_ITEMS-REQUEST"):
-            msg = provide_learned_items()
+            msg = self.provide_learned_items()
         elif (keyword == "LEARN-REQUEST"): 
-            msg = provide_learning()
+            msg = self.provide_learning()
         elif (keyword == "READ_SOURCE-RESPONSE"):
             self.user.add_source(str(data['source']))
-            msg = provide_learning()
+            msg = self.provide_learning()
         elif (keyword == "VALIDATE"):
-            validate(data['responses'])
-            msg = provide_learning()
+            self.validate(data['responses'])
+            msg = self.provide_learning()
         elif (keyword == "UNDO"): 
-            recent_instance = self.user.retrieve_recent_instance()
+            recent_instance = self.user.undo()
             if recent_instance is not None:
-                msg = learning_message(recent_instance)
-        self.user.save(cascade = True)
+                msg = self.learning_message(recent_instance)
+        self.user.save(cascade = True, validate = False)
         outgoing_msg = LogEntry(keyword = msg['keyword'], data = msg['data'], user = self.user)
         outgoing_msg.save()
-        msg["successful_days"] = user.distinct_successful_days()
+        msg["successful_days"] = len(self.user.successful_days)
         return msg
 
     def authenticate(self, name):
@@ -109,11 +109,11 @@ class Controller():
         :type name: str
         """
         assert isinstance(name, str)
-        user = User.objects(name=name)
-        if (len(user) == 0):
+        users = User.objects(name=name)
+        if (len(users) == 0):
             condition = ["FLASHMAP", "FLASHCARD"][User.objects.count()%2]
             self.user = User(name = name, condition = condition)
-        else: self.user = user.first()
+        else: self.user = users.first()
     
     def check_prerequisites(self):
         """Checks whether the self.user still has to fill in forms and returns the appropriate message
@@ -122,7 +122,7 @@ class Controller():
         :rtype: dict
         """
         msg = {'keyword': "", 'data' : {}}
-        if (self.user.code is None): msg['keyword'] = "DESCRIPTIVES-REQUEST"
+        if (not self.user.code): msg['keyword'] = "DESCRIPTIVES-REQUEST"
         elif len(self.user.tests) < 1:
             msg['keyword'] = "TEST-REQUEST"
             msg['data'] = self.user.create_test(
@@ -132,12 +132,16 @@ class Controller():
                 msg['keyword'] = "TEST-REQUEST"
                 msg['data'] = self.user.create_test(
                         list(Flashcard.objects), list(TestItem.objects))
-            elif self.user.questionnaire is None:
+            elif not self.user.questionnaire:
                 msg['keyword'] = "QUESTIONNAIRE-REQUEST"
-                msg['data'] = self.user.create_questionnaire(
+                questionnaire = self.user.create_questionnaire(
                         list(QuestionnaireItem.objects(usefulness = True)),
                         list(QuestionnaireItem.objects(usefulness = False))
                         )
+                msg['data'] = {'questionnaire': questionnaire}
+            elif not self.user.briefed:
+                msg['keyword'] = "BRIEFING"
+                self.user.briefed = True
             else:
                 msg['keyword'] = "AUTHENTICATE-RESPONSE"
         else:
@@ -155,9 +159,9 @@ class Controller():
         msg = {'keyword': "", 'data': {}}
         instance = self.user.get_due_instance()
         if instance == None:
-            if self.user.condition is "FLASHMAP":
+            if self.user.condition == "FLASHMAP":
                 instance = self.user.add_new_instance(list(Edge.objects))
-            elif self.user.condition is "FLASHCARD":
+            elif self.user.condition == "FLASHCARD":
                 instance = self.user.add_new_instance(list(Flashcard.objects))
         if instance == None:
             msg['keyword'] = "NO_MORE_INSTANCES"
@@ -166,9 +170,9 @@ class Controller():
             msg['data'] = {'source' : self.SOURCES[0]}
         else:
             source = self.SOURCES[0]
-            if self.user.condition is "FLASHMAP":
+            if self.user.condition == "FLASHMAP":
                 source = max(instance.sources)
-            elif self.user.condition is "FLASHCARD":
+            elif self.user.condition == "FLASHCARD":
                 source = max([max(edge.sources) for edge in instance.sources])
             source_index = self.SOURCES.index(source) + 2
             if source_index < len(self.SOURCES) and\
@@ -180,7 +184,7 @@ class Controller():
                 msg['keyword'] = "NO_MORE_INSTANCES"
             else:
                 msg = self.learning_message(instance)
-        if msg['keyword'] is "NO_MORE_INSTANCES" or ('time_up' in msg and msg['time_up']):
+        if msg['keyword'] == "NO_MORE_INSTANCES" or ('time_up' in msg and msg['time_up']):
             s_days = set(self.user.successful_days)
             s_day = datetime.today()
             if s_day not in s_days:
@@ -235,12 +239,12 @@ class Controller():
         :rtype: dict
         """
         msg = {'keyword': "LEARNED_ITEMS-RESPONSE", 'data' : {}}
-        if self.user.condition is "FLASHMAP":
+        if self.user.condition == "FLASHMAP":
             edges = [instance.reference for instance in self.user.instances]
             nodes = self.concept_map.find_nodes(edges)
             result_map = ConceptMap(nodes, edges)
             msg['data'] = result_map.to_dict()
-        elif self.user.condition is "FLASHCARD":
+        elif self.user.condition == "FLASHCARD":
             msg["data"] = {"due" : 0, "new": 0, "learning": 0, "learned": 0, "not_seen": 0}
             for flashcard in list(Flashcard.objects()):
                 seen = False

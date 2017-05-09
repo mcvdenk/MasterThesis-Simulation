@@ -178,18 +178,12 @@ class TestController(unittest.TestCase):
             'item': QuestionnaireItem.objects(id=objectid.ObjectId(q['id'])).first(),
             'phrasing': q['phrasing'],
             'answer': q['question']
-            } for q in questionnaire_request['data']]
+            } for q in questionnaire_request['data']['questionnaire']]
         self.fc_controller.user.append_questionnaire(questionnaire_response, "good", "can_be_improved", "test@test.com")
+        with self.subTest(i="Finished questionnaired user"):
+            self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "BRIEFING")
         with self.subTest(i="Finished briefed user"):
             self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
-
-#    def test_read_source_request(self):
-#        self.fc_controller.authenticate("test")
-#        self.assertEqual(self.fc_controller.read_source_request("1"),
-#                {'keyword': "READ_SOURCE-REQUEST", 'data': {'source': "1"}})
-#        self.fc_controller.user.add_source("1")
-#        self.assertEqual(self.fc_controller.read_source_request("2"),
-#                {'keyword': "NO_MORE_INSTANCES", 'data': {}})
     
     def test_fm_learning_message(self):
         self.fm_controller.authenticate("test")

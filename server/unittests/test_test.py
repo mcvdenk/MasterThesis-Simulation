@@ -57,8 +57,10 @@ class TestTest(unittest.TestCase):
             item.save()
             self.items.add(item)
         
-        self.test_1 = Test(list(self.flashcards), list(self.items))
-        self.test_2 = Test(list(self.flashcards), list(self.items),
+        self.test_1 = Test()
+        self.test_1.generate_test(list(self.flashcards), list(self.items))
+        self.test_2 = Test()
+        self.test_2.generate_test(list(self.flashcards), list(self.items),
             prev_flashcards = [response.flashcard for response in self.test_1.test_flashcard_responses],
             prev_items = [response.item for response in self.test_1.test_item_responses])
 

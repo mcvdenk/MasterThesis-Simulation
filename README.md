@@ -6,7 +6,7 @@
 * ~~Implement UNDO~~
 * ~~Implement test2 and questionnaire prompt in consumer~~
 * ~~Fix prompt source to only once a day~~
-* Build unit tests:
+* ~~Build unit tests:~~
   * ~~Edge~~
   * ~~Node~~
   * ~~Flashcard~~
@@ -17,8 +17,9 @@
   * ~~Questionnaire~~
   * ~~Session~~
   * ~~User~~
-  * Consumer
+  * ~~Controller~~
+* Import old database
+* Built user simulation
 * Adapt client.js
 * Black-box testing
   * Design test
-* Import old database

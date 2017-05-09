@@ -8,7 +8,7 @@
   \item append\_flashcard() (test.Test method), \hyperpage{10}
   \item append\_item() (test.Test method), \hyperpage{10}
   \item append\_questionnaire() (user.User method), \hyperpage{12}
-  \item append\_test() (user.User method), \hyperpage{12}
+  \item append\_test() (user.User method), \hyperpage{13}
   \item authenticate() (controller.Controller method), \hyperpage{4}
 
   \indexspace
@@ -45,7 +45,6 @@
 
   \indexspace
   \bigletter G
-  \item generate\_test() (test.Test method), \hyperpage{10}
   \item get\_due\_instance() (user.User method), \hyperpage{13}
   \item get\_exponent() (instance.Instance method), \hyperpage{7}
   \item get\_instance\_by\_id() (user.User method), \hyperpage{13}
@@ -88,6 +87,7 @@
 
   \indexspace
   \bigletter R
+  \item randomise() (test.Test method), \hyperpage{10}
   \item Response (class in response), \hyperpage{9}
   \item response (module), \hyperpage{9}
   \item retrieve\_recent\_instance() (user.User method), \hyperpage{13}
@@ -120,6 +120,7 @@
 
   \indexspace
   \bigletter U
+  \item undo() (user.User method), \hyperpage{14}
   \item User (class in user), \hyperpage{12}
   \item user (module), \hyperpage{12}
 

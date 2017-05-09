@@ -15,7 +15,7 @@ async def handler(websocket, path):
     :cvar path: the IP address used to host the websocket
     :type path: String
     """
-    controller = Controller()
+    controller = Controller("flashmap")
     try:
         enc_recvmsg = await websocket.recv()
         dec_recvmsg = json.loads(enc_recvmsg)

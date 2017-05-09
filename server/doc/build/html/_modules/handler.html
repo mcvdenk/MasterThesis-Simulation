@@ -60,7 +60,7 @@
 <span class="sd">    :cvar path: the IP address used to host the websocket</span>
 <span class="sd">    :type path: String</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">()</span>
+    <span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">(</span><span class="s2">&quot;flashmap&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">enc_recvmsg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
         <span class="n">dec_recvmsg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">enc_recvmsg</span><span class="p">)</span>

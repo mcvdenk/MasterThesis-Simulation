@@ -15,7 +15,7 @@ class LogEntry(Document):
     :type timestamp: DateField
     """
     
-    user = ReferenceField(User, required=True)
+    user = ReferenceField(User)
     keyword = StringField(required=True)
     data = DictField(default = {})
-    time = IntField(default = datetime.now)
+    time = DateTimeField(default = datetime.now)

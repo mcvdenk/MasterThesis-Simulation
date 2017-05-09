@@ -81,6 +81,8 @@
 <span class="sd">    :type source_requests: list(DateTime)</span>
 <span class="sd">    :cvar successful_days: The days that the user successfuly completed a session</span>
 <span class="sd">    :type successful_days: list(DateTime)</span>
+<span class="sd">    :cvar briefed: Whether the user already got the briefing after the experiment</span>
+<span class="sd">    :type briefed: boolean</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -96,6 +98,7 @@
     <span class="n">email</span> <span class="o">=</span> <span class="n">EmailField</span><span class="p">()</span>
     <span class="n">source_requests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">DateTimeField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="n">successful_days</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">DateTimeField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="n">briefed</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 
 <div class="viewcode-block" id="User.set_descriptives"><a class="viewcode-back" href="../user.html#user.User.set_descriptives">[docs]</a>    <span class="k">def</span> <span class="nf">set_descriptives</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">birthdate</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A method for setting the descriptives of the user</span>
@@ -136,11 +139,11 @@
                 <span class="n">prev_flashcards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card</span><span class="o">.</span><span class="n">flashcard</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_item_responses</span><span class="p">:</span>
                 <span class="n">prev_items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">item</span><span class="p">)</span>
-        <span class="n">test</span> <span class="o">=</span> <span class="n">Test</span><span class="p">(</span><span class="n">flashcards</span> <span class="o">=</span> <span class="n">flashcards</span><span class="p">,</span> <span class="n">items</span> <span class="o">=</span> <span class="n">items</span><span class="p">,</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">generate_test</span><span class="p">(</span><span class="n">flashcards</span> <span class="o">=</span> <span class="n">flashcards</span><span class="p">,</span> <span class="n">items</span> <span class="o">=</span> <span class="n">items</span><span class="p">,</span>
                 <span class="n">prev_flashcards</span> <span class="o">=</span> <span class="n">prev_flashcards</span><span class="p">,</span> <span class="n">prev_items</span> <span class="o">=</span> <span class="n">prev_items</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;flashcards&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">fcard</span><span class="o">.</span><span class="n">flashcard</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">fcard</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_flashcard_responses</span><span class="p">],</span>
-                <span class="s1">&#39;items&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_item_responses</span><span class="p">]}</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;flashcards&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">fcard</span><span class="o">.</span><span class="n">flashcard</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">fcard</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_flashcard_responses</span><span class="p">],</span> <span class="s1">&#39;items&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_item_responses</span><span class="p">]}</span></div>
 
 <div class="viewcode-block" id="User.append_test"><a class="viewcode-back" href="../user.html#user.User.append_test">[docs]</a>    <span class="k">def</span> <span class="nf">append_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flashcard_responses</span><span class="p">,</span> <span class="n">item_responses</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A method for appending a test to the user given flashcard and item responses</span>
@@ -232,10 +235,10 @@
         <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">references</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">ref</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">]:</span>
                 <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
                     <span class="n">instance</span> <span class="o">=</span> <span class="n">FlashmapInstance</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="ow">is</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
                     <span class="n">instance</span> <span class="o">=</span> <span class="n">FlashcardInstance</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
                 <span class="n">instance</span><span class="o">.</span><span class="n">start_response</span><span class="p">()</span>
@@ -270,6 +273,17 @@
                 <span class="n">instance</span> <span class="o">=</span> <span class="n">i</span>
         <span class="k">return</span> <span class="n">instance</span></div>
 
+<div class="viewcode-block" id="User.undo"><a class="viewcode-back" href="../user.html#user.User.undo">[docs]</a>    <span class="k">def</span> <span class="nf">undo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Removes the response last submitted by the user, reschedules the respective instance, and returns the referred flashcard or edge</span>
+
+<span class="sd">        :return: The flashcard or edge referred to by the instance with the latest response</span>
+<span class="sd">        :rtype: Flashcard or Edge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">recent_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_recent_instance</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">recent_instance</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">recent_instance</span><span class="o">.</span><span class="n">schedule</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">recent_instance</span><span class="o">.</span><span class="n">reference</span></div>
+
 <div class="viewcode-block" id="User.retrieve_recent_instance"><a class="viewcode-back" href="../user.html#user.User.retrieve_recent_instance">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_recent_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Retrieves the instance most recently answered by the user</span>
 
@@ -277,10 +291,10 @@
 <span class="sd">        :rtype: instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">most_recent</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
-            <span class="n">date</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end</span>
-            <span class="k">if</span> <span class="n">date</span> <span class="o">&gt;</span> <span class="n">most_recent</span><span class="p">:</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end</span>
+            <span class="k">if</span> <span class="n">date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">date</span> <span class="o">&gt;</span> <span class="n">most_recent</span><span class="p">:</span>
                 <span class="n">most_recent</span> <span class="o">=</span> <span class="n">date</span>
                 <span class="n">instance</span> <span class="o">=</span> <span class="n">i</span>
         <span class="k">return</span> <span class="n">instance</span></div>

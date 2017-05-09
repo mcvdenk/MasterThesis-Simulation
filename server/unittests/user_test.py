@@ -227,7 +227,7 @@ class TestUser(unittest.TestCase):
         self.assertFalse(self.fc_user.check_due(flashcard))
         self.assertFalse(self.fm_user.check_due(edge))
 
-    @unittest.skip("Takes long because of time.sleep")
+#    @unittest.skip("Takes long because of time.sleep")
     def test_get_due_instance_5(self):
         flashcard = self.fc_user.add_new_instance(self.flashcards)
         edge = self.fm_user.add_new_instance(self.edges)
@@ -239,7 +239,7 @@ class TestUser(unittest.TestCase):
         self.assertFalse(self.fc_user.check_due(flashcard))
         self.assertFalse(self.fm_user.check_due(edge))
 
-    @unittest.skip("Takes long because of time.sleep")
+#    @unittest.skip("Takes long because of time.sleep")
     def test_get_due_instance_6(self):
         flashcard = self.fc_user.add_new_instance(self.flashcards)
         edge = self.fm_user.add_new_instance(self.edges)
@@ -261,7 +261,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.fc_user.retrieve_recent_instance(), flashcard_instance)
         self.assertEqual(self.fm_user.retrieve_recent_instance(), flashmap_instance)
 
-    @unittest.skip("Takes long because of time.sleep")
+#    @unittest.skip("Takes long because of time.sleep")
     def test_time_spend_today(self):
         flashcard = self.fc_user.add_new_instance(self.flashcards)
         edge = self.fm_user.add_new_instance(self.edges)

@@ -55,7 +55,7 @@
 \indexentry{Test (class in test)|hyperpage}{10}
 \indexentry{append\_flashcard() (test.Test method)|hyperpage}{10}
 \indexentry{append\_item() (test.Test method)|hyperpage}{10}
-\indexentry{generate\_test() (test.Test method)|hyperpage}{10}
+\indexentry{randomise() (test.Test method)|hyperpage}{10}
 \indexentry{test\_flashcard\_response (module)|hyperpage}{11}
 \indexentry{TestFlashcardResponse (class in test\_flashcard\_response)|hyperpage}{11}
 \indexentry{test\_item (module)|hyperpage}{11}
@@ -68,7 +68,7 @@
 \indexentry{add\_new\_instance() (user.User method)|hyperpage}{12}
 \indexentry{add\_source() (user.User method)|hyperpage}{12}
 \indexentry{append\_questionnaire() (user.User method)|hyperpage}{12}
-\indexentry{append\_test() (user.User method)|hyperpage}{12}
+\indexentry{append\_test() (user.User method)|hyperpage}{13}
 \indexentry{check\_due() (user.User method)|hyperpage}{13}
 \indexentry{create\_questionnaire() (user.User method)|hyperpage}{13}
 \indexentry{create\_test() (user.User method)|hyperpage}{13}
@@ -77,4 +77,5 @@
 \indexentry{retrieve\_recent\_instance() (user.User method)|hyperpage}{13}
 \indexentry{set\_descriptives() (user.User method)|hyperpage}{13}
 \indexentry{time\_spend\_today() (user.User method)|hyperpage}{14}
+\indexentry{undo() (user.User method)|hyperpage}{14}
 \indexentry{validate() (user.User method)|hyperpage}{14}

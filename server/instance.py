@@ -1,5 +1,5 @@
 from mongoengine import *
-from datetime import datetime
+from datetime import datetime, timedelta
 from response import *
 import time
 
@@ -60,6 +60,8 @@ class Instance(EmbeddedDocument):
 
     def schedule(self):
         """Reschedules this instance for review based on the previous responses"""
-        if (not len(self.responses)): return
-        self.due_date = datetime.fromtimestamp(
-                time.time() + min(5**self.get_exponent(), 2000000))
+        self.due_date = datetime.now()
+        for r in reversed(self.responses):
+            if r.end is not None:
+                self.due_date = r.end + timedelta(
+                        seconds = min(5**self.get_exponent(), 2000000))

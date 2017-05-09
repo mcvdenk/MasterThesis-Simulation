@@ -15,12 +15,11 @@ class Test(EmbeddedDocument):
     test_flashcard_responses = ListField(EmbeddedDocumentField('TestFlashcardResponse'), default = [])
     test_item_responses = ListField(EmbeddedDocumentField('TestItemResponse'), default = [])
 
-    def __init__(self, flashcards, items, prev_flashcards = [], prev_items = [], **data):
-        super(Test, self).__init__(**data)
-        self.test_flashcard_responses = [TestFlashcardResponse(flashcard=fc) for fc in self.generate_test(flashcards, prev_flashcards)]
-        self.test_item_responses = [TestItemResponse(item=item) for item in self.generate_test(items, prev_items)]
+    def generate_test(self, flashcards, items, prev_flashcards = [], prev_items = []):
+        self.test_flashcard_responses = [TestFlashcardResponse(flashcard=fc) for fc in self.randomise(flashcards, prev_flashcards)]
+        self.test_item_responses = [TestItemResponse(item=item) for item in self.randomise(items, prev_items)]
 
-    def generate_test(self, items, prev_items):
+    def randomise(self, items, prev_items):
         """A method for taking five random items in a random order from the provided list of items without the items in the previous items
 
         :param items: The complete list of items

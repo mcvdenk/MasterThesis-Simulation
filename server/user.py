@@ -36,6 +36,8 @@ class User(Document):
     :type source_requests: list(DateTime)
     :cvar successful_days: The days that the user successfuly completed a session
     :type successful_days: list(DateTime)
+    :cvar briefed: Whether the user already got the briefing after the experiment
+    :type briefed: boolean
     """
     
     name = StringField(required=True, unique=True)
@@ -51,6 +53,7 @@ class User(Document):
     email = EmailField()
     source_requests = ListField(DateTimeField(), default = [])
     successful_days = ListField(DateTimeField(), default = [])
+    briefed = BooleanField(default = False)
 
     def set_descriptives(self, birthdate, gender, code):
         """A method for setting the descriptives of the user
@@ -91,11 +94,11 @@ class User(Document):
                 prev_flashcards.append(card.flashcard)
             for item in test.test_item_responses:
                 prev_items.append(item.item)
-        test = Test(flashcards = flashcards, items = items,
+        test = Test()
+        test.generate_test(flashcards = flashcards, items = items,
                 prev_flashcards = prev_flashcards, prev_items = prev_items)
         self.tests.append(test)
-        return {'flashcards' : [fcard.flashcard.to_dict() for fcard in test.test_flashcard_responses],
-                'items' : [item.item.to_dict() for item in test.test_item_responses]}
+        return {'flashcards' : [fcard.flashcard.to_dict() for fcard in test.test_flashcard_responses], 'items' : [item.item.to_dict() for item in test.test_item_responses]}
 
     def append_test(self, flashcard_responses, item_responses):
         """A method for appending a test to the user given flashcard and item responses
@@ -187,10 +190,10 @@ class User(Document):
         for ref in references:
             if ref not in [instance.reference for instance in self.instances]:
                 instance = None
-                if self.condition is "FLASHMAP":
+                if self.condition == "FLASHMAP":
                     instance = FlashmapInstance(reference=ref)
                     self.instances.append(instance)
-                elif self.condition is "FLASHCARD":
+                elif self.condition == "FLASHCARD":
                     instance = FlashcardInstance(reference=ref)
                     self.instances.append(instance)
                 instance.start_response()
@@ -225,6 +228,17 @@ class User(Document):
                 instance = i
         return instance
 
+    def undo(self):
+        """Removes the response last submitted by the user, reschedules the respective instance, and returns the referred flashcard or edge
+
+        :return: The flashcard or edge referred to by the instance with the latest response
+        :rtype: Flashcard or Edge
+        """
+        recent_instance = self.retrieve_recent_instance()
+        del recent_instance.responses[-1]
+        recent_instance.schedule()
+        return recent_instance.reference
+
     def retrieve_recent_instance(self):
         """Retrieves the instance most recently answered by the user
 
@@ -232,10 +246,10 @@ class User(Document):
         :rtype: instance
         """
         most_recent = datetime.fromtimestamp(0)
-        instance = None
+        instance = self.instances[0]
         for i in self.instances:
-            date = instance.responses[-1].end
-            if date > most_recent:
+            date = i.responses[-1].end
+            if date is not None and date > most_recent:
                 most_recent = date
                 instance = i
         return instance

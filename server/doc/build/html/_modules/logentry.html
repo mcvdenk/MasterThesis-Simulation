@@ -60,10 +60,10 @@
 <span class="sd">    :type timestamp: DateField</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="n">user</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
     <span class="n">keyword</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="p">{})</span>
-    <span class="n">time</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">)</span></div>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
