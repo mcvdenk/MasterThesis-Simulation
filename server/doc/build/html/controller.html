@@ -50,7 +50,7 @@
 <dt id="controller.Controller">
 <em class="property">class </em><code class="descclassname">controller.</code><code class="descname">Controller</code><span class="sig-paren">(</span><em>database</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#Controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.Controller" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
-<p>This is the class from which the program is controlled. It can be used together with the <a class="reference internal" href="handler.html#module-handler" title="handler"><code class="xref py py-mod docutils literal"><span class="pre">handler</span></code></a> module in order to communicate with an external client over a websocket</p>
+<p>This is the class from which the program is controlled. It can be used together with the <code class="xref py py-mod docutils literal"><span class="pre">handler</span></code> module in order to communicate with an external client over a websocket</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -65,6 +65,43 @@
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="controller.Controller.append_questionnaire">
+<code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#Controller.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.Controller.append_questionnaire" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for appending a questionnairy to the user given responses</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a><em>)</em><em></em>) &#8211; A list of dict objects containing the id of a <code class="xref py py-class docutils literal"><span class="pre">QuestionnaireItem</span></code> (key = &#8216;id&#8217;), the phrasing (key = &#8216;phrasing&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+<li><strong>good</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what was good about the software according to the user</li>
+<li><strong>can_be_improved</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what can be improved about the software according to the user</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="controller.Controller.append_test">
+<code class="descname">append_test</code><span class="sig-paren">(</span><em>flashcard_responses</em>, <em>item_responses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#Controller.append_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.Controller.append_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for appending a test to the user given flashcard and item responses</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flashcard_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing the id of an <code class="xref py py-class docutils literal"><span class="pre">Flashcard</span></code> (key = &#8216;id&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+<li><strong>item_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">TestItem</span></code> (key = &#8216;item&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="controller.Controller.authenticate">
 <code class="descname">authenticate</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#Controller.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.Controller.authenticate" title="Permalink to this definition">¶</a></dt>

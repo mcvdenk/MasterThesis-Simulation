@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>concept_map &#8212; Flashmap server 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for concept_map</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">node</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">edge</span> <span class="k">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="ConceptMap"><a class="viewcode-back" href="../../concept_map/#concept_map.ConceptMap">[docs]</a><span class="k">class</span> <span class="nc">ConceptMap</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A class representing a concept map</span>
+
+<span class="sd">    :cvar nodes: a list of nodes (by default all existing node documents)</span>
+<span class="sd">    :type nodes: ListField(Node)</span>
+<span class="sd">    :cvar edges: a list of edges (by default all existing edge documents)</span>
+<span class="sd">    :type edges: ListField(Edge)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Node</span><span class="p">))</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Edge</span><span class="p">))</span>
+
+<div class="viewcode-block" id="ConceptMap.get_partial_map"><a class="viewcode-back" href="../../concept_map/#concept_map.ConceptMap.get_partial_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_partial_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">sources</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a concept map containing only the parent and sibling self.edges together with the referred self.nodes</span>
+
+<span class="sd">        :param edge: The input edge</span>
+<span class="sd">        :type edge: Edge</span>
+<span class="sd">        :param sources: The list of sources to filter on</span>
+<span class="sd">        :type sources: list(string)</span>
+<span class="sd">        :return: A concept map containing parent and sibling self.edges of edge together with the referred self.nodes</span>
+<span class="sd">        :rtype: ConceptMap</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">ConceptMap</span><span class="p">(</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">edges</span> <span class="o">=</span> <span class="p">[])</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_prerequisites</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="p">[],</span> <span class="n">sources</span><span class="p">)</span>
+        <span class="n">siblings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_siblings</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">siblings</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_nodes</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="ConceptMap.find_nodes"><a class="viewcode-back" href="../../concept_map/#concept_map.ConceptMap.find_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">find_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the from and to self.nodes given a list of self.edges</span>
+
+<span class="sd">        :param self.edges: The list of self.edges for which to find the self.nodes</span>
+<span class="sd">        :type self.edges: list(Edge)</span>
+<span class="sd">        :return: The list of nodes referred to in the edges</span>
+<span class="sd">        :rtype: list(Node)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">from_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">from_node</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">edge</span><span class="o">.</span><span class="n">to_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">to_node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="ConceptMap.find_prerequisites"><a class="viewcode-back" href="../../concept_map/#concept_map.ConceptMap.find_prerequisites">[docs]</a>    <span class="k">def</span> <span class="nf">find_prerequisites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">postreq</span><span class="p">,</span> <span class="n">prereqs</span><span class="p">,</span> <span class="n">sources</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a list of parent self.edges given a certain edge from a list of self.edges, filtered by a list of sources</span>
+
+<span class="sd">        :param postreq: The edge which is currently investigated for parent self.edges</span>
+<span class="sd">        :type postreq: Edge</span>
+<span class="sd">        :param prereqs: A list of already found parent self.edges (starts usually empty, necessary for recursion)</span>
+<span class="sd">        :type prereqs: list(Edge)</span>
+<span class="sd">        :param sources: A list of the currently read sources, self.edges which have a source not included in this list  will not be included in the resulting list</span>
+<span class="sd">        :type sources: list(string)</span>
+<span class="sd">        :return: A list of self.edges which are prerequisites from edge</span>
+<span class="sd">        :rtype: list(edge)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">postreq</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prereqs</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">prereq</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span> <span class="k">for</span> <span class="n">prereq</span> <span class="ow">in</span> <span class="n">prereqs</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">)</span>
+        <span class="n">prereqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">postreq</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">to_node</span> <span class="ow">is</span> <span class="n">postreq</span><span class="o">.</span><span class="n">from_node</span> <span class="ow">and</span>
+                    <span class="n">edge</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">prereqs</span> <span class="ow">and</span>
+                    <span class="kc">False</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">source</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span> <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">]):</span>
+                <span class="k">for</span> <span class="n">prereq</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_prerequisites</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">prereqs</span><span class="p">,</span> <span class="n">sources</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">prereq</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">prereqs</span><span class="p">):</span> <span class="n">prereqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prereq</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">prereqs</span></div>
+    
+<div class="viewcode-block" id="ConceptMap.find_siblings"><a class="viewcode-back" href="../../concept_map/#concept_map.ConceptMap.find_siblings">[docs]</a>    <span class="k">def</span> <span class="nf">find_siblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">partial_edges</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a list of self.edges which are siblings of the given edge and have the same label</span>
+
+<span class="sd">        :param edge: The edge investigated for siblings</span>
+<span class="sd">        :type edge: Edge</span>
+<span class="sd">        :param sources: The sources to filter on when looking for siblings</span>
+<span class="sd">        :type sources: list(string)</span>
+<span class="sd">        :param partial_edges: A list of self.edges for exclusion when looking for siblings</span>
+<span class="sd">        :type partial_edges: list(Edge)</span>
+<span class="sd">        :return: A list of edges which are siblings of edge and have the same label</span>
+<span class="sd">        :rtype: list(edge)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">partial_edges</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">partial_edges</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">partial_edges</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">from_node</span> <span class="o">==</span> <span class="n">edge</span><span class="o">.</span><span class="n">from_node</span> <span class="ow">and</span>
+                    <span class="n">e</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">edge</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="ow">and</span>
+                    <span class="kc">False</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span> <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">sources</span><span class="p">]):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="ConceptMap.to_dict"><a class="viewcode-back" href="../../concept_map/#concept_map.ConceptMap.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a dictionary representation of this object</span>
+
+<span class="sd">        The representation is compatible for use with vis.js, with &#39;self.nodes&#39; entries containing an &#39;id&#39; and &#39;label&#39;, and &#39;self.edges&#39; entries containing an &#39;id&#39;, &#39;label&#39;, &#39;from&#39;, &#39;to&#39;, and an additional &#39;source&#39; entry</span>
+
+<span class="sd">        :result: The dictionary representation, compatible with visjs</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nodes&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;edges&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="s1">&#39;nodes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">n</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                <span class="p">)</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="s1">&#39;edges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">e</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../">Documentation overview</a><ul>
+  <li><a href="../">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, M.C. van den Enk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

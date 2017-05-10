@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>user module &#8212; Flashmap server 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="prev" title="test_item_response module" href="../test_item_response/" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-user">
+<span id="user-module"></span><h1>user module<a class="headerlink" href="#module-user" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="user.User">
+<em class="property">class </em><code class="descclassname">user.</code><code class="descname">User</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.Document</span></code></p>
+<p>A class representing a user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The username</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/functions.html#type" title="(in Python v2.7)"><strong>type</strong></a> &#8211; StringField</li>
+<li><strong>condition</strong> &#8211; The condition of the user (&#8220;FLASHMAP&#8221; or &#8220;FLASHCARD&#8221;)</li>
+<li><strong>birthdate</strong> &#8211; The birthdate of the user</li>
+<li><strong>read_sources</strong> &#8211; A list of read sources by the user</li>
+<li><strong>gender</strong> &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/code.html#module-code" title="(in Python v2.7)"><strong>code</strong></a> &#8211; The code from the user&#8217;s informed consent form</li>
+<li><strong>tests</strong> &#8211; The pre- and posttest</li>
+<li><a class="reference internal" href="../questionnaire/#module-questionnaire" title="questionnaire"><strong>questionnaire</strong></a> &#8211; The questionnaire</li>
+<li><strong>instances</strong> &#8211; A list of instances storing the flashmap/flashcard data for the user</li>
+<li><strong>sessions</strong> &#8211; A list of past sessions for this user</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/email.html#module-email" title="(in Python v2.7)"><strong>email</strong></a> &#8211; The email address for this user</li>
+<li><strong>source_requests</strong> &#8211; The days that the user was prompted a source request</li>
+<li><strong>successful_days</strong> &#8211; The days that the user successfuly completed a session</li>
+<li><strong>debriefed</strong> &#8211; Whether the user already got the briefing after the experiment</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="user.User.add_new_instance">
+<code class="descname">add_new_instance</code><span class="sig-paren">(</span><em>references</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.add_new_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.add_new_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new <code class="xref py py-class docutils literal"><span class="pre">Instance</span></code> to this user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="../flashcard/#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em> or </em><a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; A set of flashcards or edges for which to add a new instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The reference for which a new instance was added</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../flashcard/#flashcard.Flashcard" title="flashcard.Flashcard">Flashcard</a> or <a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge">Edge</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.add_source">
+<code class="descname">add_source</code><span class="sig-paren">(</span><em>source</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.add_source"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.add_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a read source to self</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>source</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The source to be added</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.check_due">
+<code class="descname">check_due</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.check_due"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.check_due" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the provided item is due for review</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> (<a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge"><em>Edge</em></a><em> or </em><a class="reference internal" href="../flashcard/#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a>) &#8211; The item to which the checked instance refers to</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Whether the provided item is due for review</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.create_questionnaire">
+<code class="descname">create_questionnaire</code><span class="sig-paren">(</span><em>pu_items</em>, <em>peou_items</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.create_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_questionnaire" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for creating a new questionnaire</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pu_items</strong> &#8211; A list of perceived usefulness items</li>
+<li><strong>peou_items</strong> &#8211; A list of perceived ease of use items</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A randomised list of questionnaire items</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="../questionnaire_item/#questionnaire_item.QuestionnaireItem" title="questionnaire_item.QuestionnaireItem">QuestionnaireItem</a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.create_test">
+<code class="descname">create_test</code><span class="sig-paren">(</span><em>flashcards</em>, <em>items</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.create_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.create_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for creating a new test with unique questions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>flashcards</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="../flashcard/#flashcard.Flashcard" title="flashcard.Flashcard"><em>Flashcard</em></a><em>)</em><em></em>) &#8211; A list of flashcards from the database</li>
+<li><strong>items</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="../test_item/#test_item.TestItem" title="test_item.TestItem"><em>TestItem</em></a><em>)</em><em></em>) &#8211; A list of items from the database</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dict containing a list of FlashcardResponses and TestItemResponses</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a>(<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)">string</a>, <a class="reference internal" href="../flashcard/#flashcard.Flashcard" title="flashcard.Flashcard">Flashcard</a> or <a class="reference internal" href="../test_item/#test_item.TestItem" title="test_item.TestItem">TestItem</a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.get_due_instance">
+<code class="descname">get_due_instance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.get_due_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.get_due_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the instance with the oldest due date</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Either the instance with the lowest due date or a None object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../instance/#instance.Instance" title="instance.Instance">Instance</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.get_instance_by_id">
+<code class="descname">get_instance_by_id</code><span class="sig-paren">(</span><em>instance_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.get_instance_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.get_instance_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves an instance based on a provided instance id</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>instance_id</strong> (<em>ObjectId</em>) &#8211; The id of the instance to be requested</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The instance or None if no instance with instance_id exists</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../instance/#instance.Instance" title="instance.Instance">Instance</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.retrieve_recent_instance">
+<code class="descname">retrieve_recent_instance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.retrieve_recent_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.retrieve_recent_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the instance most recently answered by the user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The instance with the latest response.end being the most recent of all instances</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../instance/#module-instance" title="instance">instance</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.set_descriptives">
+<code class="descname">set_descriptives</code><span class="sig-paren">(</span><em>birthdate</em>, <em>gender</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.set_descriptives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.set_descriptives" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for setting the descriptives of the user</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>birthdate</strong> (<em>DateTime</em>) &#8211; The provided birthdate of the user</li>
+<li><strong>gender</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The gender of the user (can be either &#8216;male&#8217;, &#8216;female&#8217;, or &#8216;other&#8217;)</li>
+<li><strong>code</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The code from the informed consent form</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.time_spend_today">
+<code class="descname">time_spend_today</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.time_spend_today"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.time_spend_today" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method for calculating the amount of seconds the user has spend on practicing flashcards</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The amount of seconds between every start and end of all responses of all instances of today</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.undo">
+<code class="descname">undo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.undo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.undo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the response last submitted by the user, reschedules the respective instance, and returns the referred flashcard or edge</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The flashcard or edge referred to by the instance with the latest response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../flashcard/#flashcard.Flashcard" title="flashcard.Flashcard">Flashcard</a> or <a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge">Edge</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="user.User.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>instance_id</em>, <em>correct</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user/#User.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finalises a <code class="xref py py-class docutils literal"><span class="pre">Response</span></code> within an existing <code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>instance_id</strong> &#8211; The id of the instance which the response refers to</li>
+<li><strong>correct</strong> (<em>boolean</em>) &#8211; Whether the response provided by the user was correct or not</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../">Documentation overview</a><ul>
+      <li>Previous: <a href="../test_item_response/" title="previous chapter">test_item_response module</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/user.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search/" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, M.C. van den Enk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/user.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

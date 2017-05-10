@@ -48,7 +48,7 @@
 <div class="section" id="class-diagram">
 <h2>Class diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h2>
 <p class="plantuml">
-<img src="_images/plantuml-223bd15b8ad5e32485e17591ab9535833c7ae7c9.png" alt="&#64;startuml
+<img src="_images/plantuml-197bc1bd48b78fed373edc074f927e7efafdcdac.png" alt="&#64;startuml
 hide empty members
 hide circle
 skinparam linetype ortho
@@ -58,8 +58,10 @@ class Controller {
     SOURCES: list(str)
     check_prerequisites(): dict
     controller(keyword, data): dict
-    create_questionnaire(): dict
     create_test: dict
+    append_test(flashcard_responses, item_responses) : void
+    create_questionnaire(): dict
+    append_questionnaire(responses, good, could_be_improved, email) : void
     learning_message(item): dict
     provide_learned_items(): dict
     provide_learning(): dict
@@ -118,9 +120,7 @@ class User {
     check_due(item) : bool
     set_descriptives(gender, birthdate, code) : void
     create_test(flashcards, items): dict(str, Response)
-    append_test(flashcard_responses, item_responses) : void
     create_questionnaire(pu_items, peou_items): list(QuestionnaireItem)
-    append_questionnaire(responses, good, could_be_improved, email) : void
     get_due_instance(): Instance
     get_instance_by_id(instance_id): Instance
     start_response(instance) : void
@@ -237,8 +237,8 @@ User &quot;1&quot; *-- &quot;0..*&quot; Session : sessions
 " />
 </p>
 </div>
-<div class="section" id="contents">
-<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modules">
+<h2>Modules:<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="concept_map.html">concept_map module</a></li>
@@ -247,7 +247,6 @@ User &quot;1&quot; *-- &quot;0..*&quot; Session : sessions
 <li class="toctree-l1"><a class="reference internal" href="flashcard.html">flashcard module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flashcard_instance.html">flashcard_instance module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flashmap_instance.html">flashmap_instance module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="handler.html">handler module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instance.html">instance module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="log_entry.html">log_entry module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="node.html">node module</a></li>
@@ -264,14 +263,6 @@ User &quot;1&quot; *-- &quot;0..*&quot; Session : sessions
 </ul>
 </div>
 </div>
-<div class="section" id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
-</div>
 </div>
 
 
@@ -284,8 +275,7 @@ User &quot;1&quot; *-- &quot;0..*&quot; Session : sessions
   <ul>
 <li><a class="reference internal" href="#">Documentation of the Flashmap Experiment Software</a><ul>
 <li><a class="reference internal" href="#class-diagram">Class diagram</a></li>
-<li><a class="reference internal" href="#contents">Contents:</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#modules">Modules:</a></li>
 </ul>
 </li>
 </ul>

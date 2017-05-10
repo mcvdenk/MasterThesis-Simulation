@@ -1,0 +1,67 @@
+Documentation of the Flashmap Experiment Software
+=================================================
+
+Class diagram
+-------------
+
+.. uml:: classdiagram.uml
+
+Contents:
+---------
+.. toctree::
+    :maxdepth: 4
+
+    concept_map
+    controller
+    edge
+    flashcard
+    flashcard_instance
+    flashmap_instance
+    instance
+    log_entry
+    node
+    questionnaire
+    questionnaire_item
+    questionnaire_response
+    response
+    session
+    test
+    test_flashcard_response
+    test_item
+    test_item_response
+    user
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+Todo list
+---------
+
+* ~~Implement LEARNED_ITEMS-REQUEST~~
+* ~~Implement READ_SOURCE-RESPONSE~~
+* ~~Implement VALIDATE~~
+* ~~Implement UNDO~~
+* ~~Implement test2 and questionnaire prompt in consumer~~
+* ~~Fix prompt source to only once a day~~
+* ~~Build unit tests:~~
+    * ~~Edge~~
+    * ~~Node~~
+    * ~~Flashcard~~
+    * ~~ConceptMap~~
+    * ~~FlashcardInstance~~
+    * ~~FlashmapInstance~~
+    * ~~Test~~
+    * ~~Questionnaire~~
+    * ~~Session~~
+    * ~~User~~
+    * ~~Controller~~
+* ~~Import old database~~
+* ~~Adapt client.js~~
+* Black-box testing
+    * ~~Informal tests~~
+    * Design test
+    * Built user simulation

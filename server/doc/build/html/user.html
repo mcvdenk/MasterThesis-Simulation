@@ -69,7 +69,7 @@
 <li><a class="reference external" href="https://docs.python.org/2/library/email.html#module-email" title="(in Python v2.7)"><strong>email</strong></a> &#8211; The email address for this user</li>
 <li><strong>source_requests</strong> &#8211; The days that the user was prompted a source request</li>
 <li><strong>successful_days</strong> &#8211; The days that the user successfuly completed a session</li>
-<li><strong>briefed</strong> &#8211; Whether the user already got the briefing after the experiment</li>
+<li><strong>debriefed</strong> &#8211; Whether the user already got the briefing after the experiment</li>
 </ul>
 </td>
 </tr>
@@ -102,43 +102,6 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>source</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; The source to be added</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="user.User.append_questionnaire">
-<code class="descname">append_questionnaire</code><span class="sig-paren">(</span><em>responses</em>, <em>good</em>, <em>can_be_improved</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_questionnaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_questionnaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>A method for appending a questionnairy to the user given responses</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a><em>)</em><em></em>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">QuestionnaireItem</span></code> (key = &#8216;item&#8217;), the phrasing (key = &#8216;phrasing&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
-<li><strong>good</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what was good about the software according to the user</li>
-<li><strong>can_be_improved</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) &#8211; A description of what can be improved about the software according to the user</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="user.User.append_test">
-<code class="descname">append_test</code><span class="sig-paren">(</span><em>flashcard_responses</em>, <em>item_responses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user.html#User.append_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user.User.append_test" title="Permalink to this definition">¶</a></dt>
-<dd><p>A method for appending a test to the user given flashcard and item responses</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>flashcard_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">Flashcard</span></code> (key = &#8216;flashcard&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
-<li><strong>item_responses</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; A list of dict objects containing a <code class="xref py py-class docutils literal"><span class="pre">TestItem</span></code> (key = &#8216;item&#8217;) and an answer (key = &#8216;answer&#8217;)</li>
-</ul>
-</td>
 </tr>
 </tbody>
 </table>

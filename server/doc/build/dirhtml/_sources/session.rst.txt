@@ -1,6 +1,6 @@
-handler module
+session module
 ==============
 
-.. automodule:: handler
+.. automodule:: session
     :members:
     :show-inheritance:

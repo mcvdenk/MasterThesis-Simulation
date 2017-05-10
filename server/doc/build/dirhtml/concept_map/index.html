@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>concept_map module &#8212; Flashmap server 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="controller module" href="../controller/" />
+    <link rel="prev" title="Documentation of the Flashmap Experiment Software" href="../" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-concept_map">
+<span id="concept-map-module"></span><h1>concept_map module<a class="headerlink" href="#module-concept_map" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="concept_map.ConceptMap">
+<em class="property">class </em><code class="descclassname">concept_map.</code><code class="descname">ConceptMap</code><span class="sig-paren">(</span><em>*args</em>, <em>**values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/concept_map/#ConceptMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mongoengine.document.Document</span></code></p>
+<p>A class representing a concept map</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nodes</strong> &#8211; a list of nodes (by default all existing node documents)</li>
+<li><strong>edges</strong> &#8211; a list of edges (by default all existing edge documents)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="concept_map.ConceptMap.find_nodes">
+<code class="descname">find_nodes</code><span class="sig-paren">(</span><em>edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/concept_map/#ConceptMap.find_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.find_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the from and to self.nodes given a list of self.edges</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>self.edges</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; The list of self.edges for which to find the self.nodes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The list of nodes referred to in the edges</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="../node/#node.Node" title="node.Node">Node</a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="concept_map.ConceptMap.find_prerequisites">
+<code class="descname">find_prerequisites</code><span class="sig-paren">(</span><em>postreq</em>, <em>prereqs</em>, <em>sources</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/concept_map/#ConceptMap.find_prerequisites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.find_prerequisites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of parent self.edges given a certain edge from a list of self.edges, filtered by a list of sources</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>postreq</strong> (<a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge"><em>Edge</em></a>) &#8211; The edge which is currently investigated for parent self.edges</li>
+<li><strong>prereqs</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; A list of already found parent self.edges (starts usually empty, necessary for recursion)</li>
+<li><strong>sources</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>)</em><em></em>) &#8211; A list of the currently read sources, self.edges which have a source not included in this list  will not be included in the resulting list</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of self.edges which are prerequisites from edge</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="../edge/#module-edge" title="edge">edge</a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="concept_map.ConceptMap.find_siblings">
+<code class="descname">find_siblings</code><span class="sig-paren">(</span><em>edge</em>, <em>sources</em>, <em>partial_edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/concept_map/#ConceptMap.find_siblings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.find_siblings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of self.edges which are siblings of the given edge and have the same label</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>edge</strong> (<a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge"><em>Edge</em></a>) &#8211; The edge investigated for siblings</li>
+<li><strong>sources</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>)</em><em></em>) &#8211; The sources to filter on when looking for siblings</li>
+<li><strong>partial_edges</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge"><em>Edge</em></a><em>)</em><em></em>) &#8211; A list of self.edges for exclusion when looking for siblings</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list of edges which are siblings of edge and have the same label</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)">list</a>(<a class="reference internal" href="../edge/#module-edge" title="edge">edge</a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="concept_map.ConceptMap.get_partial_map">
+<code class="descname">get_partial_map</code><span class="sig-paren">(</span><em>edge</em>, <em>sources</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/concept_map/#ConceptMap.get_partial_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.get_partial_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a concept map containing only the parent and sibling self.edges together with the referred self.nodes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>edge</strong> (<a class="reference internal" href="../edge/#edge.Edge" title="edge.Edge"><em>Edge</em></a>) &#8211; The input edge</li>
+<li><strong>sources</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>)</em><em></em>) &#8211; The list of sources to filter on</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A concept map containing parent and sibling self.edges of edge together with the referred self.nodes</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#concept_map.ConceptMap" title="concept_map.ConceptMap">ConceptMap</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="concept_map.ConceptMap.to_dict">
+<code class="descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/concept_map/#ConceptMap.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#concept_map.ConceptMap.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary representation of this object</p>
+<p>The representation is compatible for use with vis.js, with &#8216;self.nodes&#8217; entries containing an &#8216;id&#8217; and &#8216;label&#8217;, and &#8216;self.edges&#8217; entries containing an &#8216;id&#8217;, &#8216;label&#8217;, &#8216;from&#8217;, &#8216;to&#8217;, and an additional &#8216;source&#8217; entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Result:</th><td class="field-body">The dictionary representation, compatible with visjs</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../">Documentation overview</a><ul>
+      <li>Previous: <a href="../" title="previous chapter">Documentation of the Flashmap Experiment Software</a></li>
+      <li>Next: <a href="../controller/" title="next chapter">controller module</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/concept_map.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search/" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, M.C. van den Enk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/concept_map.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -8,8 +8,10 @@ class Controller {
     SOURCES: list(str)
     check_prerequisites(): dict
     controller(keyword, data): dict
-    create_questionnaire(): dict
     create_test: dict
+    append_test(flashcard_responses, item_responses) : void
+    create_questionnaire(): dict
+    append_questionnaire(responses, good, could_be_improved, email) : void
     learning_message(item): dict
     provide_learned_items(): dict
     provide_learning(): dict
@@ -68,9 +70,7 @@ class User {
     check_due(item) : bool
     set_descriptives(gender, birthdate, code) : void
     create_test(flashcards, items): dict(str, Response)
-    append_test(flashcard_responses, item_responses) : void
     create_questionnaire(pu_items, peou_items): list(QuestionnaireItem)
-    append_questionnaire(responses, good, could_be_improved, email) : void
     get_due_instance(): Instance
     get_instance_by_id(instance_id): Instance
     start_response(instance) : void

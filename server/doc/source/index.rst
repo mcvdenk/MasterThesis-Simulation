@@ -6,7 +6,7 @@ Class diagram
 
 .. uml:: classdiagram.uml
 
-Contents:
+Modules:
 ---------
 .. toctree::
     :maxdepth: 4
@@ -17,7 +17,6 @@ Contents:
     flashcard
     flashcard_instance
     flashmap_instance
-    handler
     instance
     log_entry
     node
@@ -31,10 +30,3 @@ Contents:
     test_item
     test_item_response
     user
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

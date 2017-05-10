@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>user &#8212; Flashmap server 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for user</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">bson</span> <span class="k">import</span> <span class="n">objectid</span>
+<span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">instance</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">test</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">session</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">questionnaire</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">flashcard_instance</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">flashmap_instance</span> <span class="k">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="User"><a class="viewcode-back" href="../../user/#user.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A class representing a user</span>
+
+<span class="sd">    :cvar name: The username</span>
+<span class="sd">    :cvar type: StringField</span>
+<span class="sd">    :cvar condition: The condition of the user (&quot;FLASHMAP&quot; or &quot;FLASHCARD&quot;)</span>
+<span class="sd">    :type condition: StringField</span>
+<span class="sd">    :cvar birthdate: The birthdate of the user</span>
+<span class="sd">    :type birthdate: DateTimeField</span>
+<span class="sd">    :cvar read_sources: A list of read sources by the user</span>
+<span class="sd">    :type read_sources: ListField(StringField)</span>
+<span class="sd">    :cvar gender: The gender of the user (can be either &#39;male&#39;, &#39;female&#39;, or &#39;other&#39;)</span>
+<span class="sd">    :type gender: StringField</span>
+<span class="sd">    :cvar code: The code from the user&#39;s informed consent form</span>
+<span class="sd">    :type code: StringField</span>
+<span class="sd">    :cvar tests: The pre- and posttest</span>
+<span class="sd">    :type tests: ListField(Test)</span>
+<span class="sd">    :cvar questionnaire: The questionnaire</span>
+<span class="sd">    :type questionnaire: Questionnaire</span>
+<span class="sd">    :cvar instances: A list of instances storing the flashmap/flashcard data for the user</span>
+<span class="sd">    :type instance: Instance</span>
+<span class="sd">    :cvar sessions: A list of past sessions for this user</span>
+<span class="sd">    :type sessions: Session</span>
+<span class="sd">    :cvar email: The email address for this user</span>
+<span class="sd">    :type email: EmailField</span>
+<span class="sd">    :cvar source_requests: The days that the user was prompted a source request</span>
+<span class="sd">    :type source_requests: list(DateTime)</span>
+<span class="sd">    :cvar successful_days: The days that the user successfuly completed a session</span>
+<span class="sd">    :type successful_days: list(DateTime)</span>
+<span class="sd">    :cvar debriefed: Whether the user already got the briefing after the experiment</span>
+<span class="sd">    :type debriefed: boolean</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">condition</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;FLASHMAP&#39;</span><span class="p">,</span> <span class="s1">&#39;FLASHCARD&#39;</span><span class="p">])</span>
+    <span class="n">birthdate</span> <span class="o">=</span> <span class="n">DateTimeField</span><span class="p">()</span>
+    <span class="n">read_sources</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">StringField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">])</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">tests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Test</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="n">sessions</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Session</span><span class="p">),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>    
+    <span class="n">questionnaire</span> <span class="o">=</span> <span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Questionnaire</span><span class="p">)</span>
+    <span class="n">instances</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">EmbeddedDocumentField</span><span class="p">(</span><span class="n">Instance</span><span class="p">))</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">EmailField</span><span class="p">()</span>
+    <span class="n">source_requests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">DateTimeField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="n">successful_days</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">DateTimeField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
+    <span class="n">debriefed</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<div class="viewcode-block" id="User.set_descriptives"><a class="viewcode-back" href="../../user/#user.User.set_descriptives">[docs]</a>    <span class="k">def</span> <span class="nf">set_descriptives</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">birthdate</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method for setting the descriptives of the user</span>
+
+<span class="sd">        :param birthdate: The provided birthdate of the user</span>
+<span class="sd">        :type birthdate: DateTime</span>
+<span class="sd">        :param gender: The gender of the user (can be either &#39;male&#39;, &#39;female&#39;, or &#39;other&#39;)</span>
+<span class="sd">        :type gender: string</span>
+<span class="sd">        :param code: The code from the informed consent form</span>
+<span class="sd">        :type code: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">birthdate</span><span class="p">,</span> <span class="n">datetime</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;male&#39;</span> <span class="ow">or</span> <span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span> <span class="ow">or</span> <span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;other&#39;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">birthdate</span> <span class="o">=</span> <span class="n">birthdate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span></div>
+
+<div class="viewcode-block" id="User.create_test"><a class="viewcode-back" href="../../user/#user.User.create_test">[docs]</a>    <span class="k">def</span> <span class="nf">create_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flashcards</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method for creating a new test with unique questions</span>
+
+<span class="sd">        :param flashcards: A list of flashcards from the database</span>
+<span class="sd">        :type flashcards: list(Flashcard)</span>
+<span class="sd">        :param items: A list of items from the database</span>
+<span class="sd">        :type items: list(TestItem)</span>
+<span class="sd">        :return: A dict containing a list of FlashcardResponses and TestItemResponses</span>
+<span class="sd">        :rtype: dict(string, Flashcard or TestItem)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">flashcards</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">card</span><span class="p">,</span> <span class="n">Flashcard</span><span class="p">)</span> <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">flashcards</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">TestItem</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">)</span>
+        <span class="n">prev_flashcards</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">prev_items</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tests</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_flashcard_responses</span><span class="p">:</span>
+                <span class="n">prev_flashcards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">card</span><span class="o">.</span><span class="n">flashcard</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_item_responses</span><span class="p">:</span>
+                <span class="n">prev_items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">generate_test</span><span class="p">(</span><span class="n">flashcards</span> <span class="o">=</span> <span class="n">flashcards</span><span class="p">,</span> <span class="n">items</span> <span class="o">=</span> <span class="n">items</span><span class="p">,</span>
+                <span class="n">prev_flashcards</span> <span class="o">=</span> <span class="n">prev_flashcards</span><span class="p">,</span> <span class="n">prev_items</span> <span class="o">=</span> <span class="n">prev_items</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;flashcards&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">fcard</span><span class="o">.</span><span class="n">flashcard</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">fcard</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_flashcard_responses</span><span class="p">],</span> <span class="s1">&#39;items&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_item_responses</span><span class="p">]}</span></div>
+
+<div class="viewcode-block" id="User.create_questionnaire"><a class="viewcode-back" href="../../user/#user.User.create_questionnaire">[docs]</a>    <span class="k">def</span> <span class="nf">create_questionnaire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pu_items</span><span class="p">,</span> <span class="n">peou_items</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method for creating a new questionnaire</span>
+
+<span class="sd">        :param pu_items: A list of perceived usefulness items</span>
+<span class="sd">        :type items: list(QuestionnaireItem)</span>
+<span class="sd">        :param peou_items: A list of perceived ease of use items</span>
+<span class="sd">        :type items: list(QuestionnaireItem)</span>
+<span class="sd">        :return: A randomised list of questionnaire items</span>
+<span class="sd">        :rtype: list(QuestionnaireItem)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pu_items</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">QuestionnaireItem</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pu_items</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">peou_items</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">QuestionnaireItem</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">peou_items</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span> <span class="o">=</span> <span class="n">Questionnaire</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">generate_questionnaire</span><span class="p">(</span><span class="n">pu_items</span><span class="p">,</span> <span class="n">peou_items</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">questionnaire_item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">phrasing</span><span class="p">)</span> <span class="k">for</span> 
+                <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">perceived_usefulness_items</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">questionnaire_item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">phrasing</span><span class="p">)</span> <span class="k">for</span>
+                <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">perceived_ease_of_use_items</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_due_instance"><a class="viewcode-back" href="../../user/#user.User.get_due_instance">[docs]</a>    <span class="k">def</span> <span class="nf">get_due_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the instance with the oldest due date</span>
+
+<span class="sd">        :return: Either the instance with the lowest due date or a None object</span>
+<span class="sd">        :rtype: Instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">lowest_due_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">due_date</span> <span class="o">&lt;</span> <span class="n">lowest_due_date</span><span class="p">):</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">instance</span>
+                <span class="n">lowest_due_date</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">due_date</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">reference</span></div>
+    
+<div class="viewcode-block" id="User.add_new_instance"><a class="viewcode-back" href="../../user/#user.User.add_new_instance">[docs]</a>    <span class="k">def</span> <span class="nf">add_new_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a new :class:`Instance` to this user</span>
+
+<span class="sd">        :param reference: A set of flashcards or edges for which to add a new instance</span>
+<span class="sd">        :type reference: list(Flashcard or Edge)</span>
+<span class="sd">        :return: The reference for which a new instance was added</span>
+<span class="sd">        :rtype: Flashcard or Edge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">references</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">Flashcard</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">Edge</span><span class="p">))</span> <span class="k">for</span> <span class="n">reference</span> <span class="ow">in</span> <span class="n">references</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">references</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ref</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">]:</span>
+                <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
+                    <span class="n">instance</span> <span class="o">=</span> <span class="n">FlashmapInstance</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
+                    <span class="n">instance</span> <span class="o">=</span> <span class="n">FlashcardInstance</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="n">ref</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+                <span class="n">instance</span><span class="o">.</span><span class="n">start_response</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">ref</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="User.validate"><a class="viewcode-back" href="../../user/#user.User.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">,</span> <span class="n">correct</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Finalises a :class:`Response` within an existing :class:`Instance`</span>
+<span class="sd">        </span>
+<span class="sd">        :param instance_id: The id of the instance which the response refers to</span>
+<span class="sd">        :type instance: ObjectID</span>
+<span class="sd">        :param correct: Whether the response provided by the user was correct or not</span>
+<span class="sd">        :type correct: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">objectid</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_instance_by_id</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">finalise_response</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="User.get_instance_by_id"><a class="viewcode-back" href="../../user/#user.User.get_instance_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_instance_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieves an instance based on a provided instance id</span>
+
+<span class="sd">        :param instance_id: The id of the instance to be requested</span>
+<span class="sd">        :type instance_id: ObjectId</span>
+<span class="sd">        :return: The instance or None if no instance with instance_id exists</span>
+<span class="sd">        :rtype: Instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance_id</span><span class="p">,</span> <span class="n">objectid</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">)</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">reference</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">instance_id</span><span class="p">:</span>
+                <span class="n">instance</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="n">instance</span></div>
+
+<div class="viewcode-block" id="User.undo"><a class="viewcode-back" href="../../user/#user.User.undo">[docs]</a>    <span class="k">def</span> <span class="nf">undo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Removes the response last submitted by the user, reschedules the respective instance, and returns the referred flashcard or edge</span>
+
+<span class="sd">        :return: The flashcard or edge referred to by the instance with the latest response</span>
+<span class="sd">        :rtype: Flashcard or Edge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">recent_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_recent_instance</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">recent_instance</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">recent_instance</span><span class="o">.</span><span class="n">schedule</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">recent_instance</span><span class="o">.</span><span class="n">reference</span></div>
+
+<div class="viewcode-block" id="User.retrieve_recent_instance"><a class="viewcode-back" href="../../user/#user.User.retrieve_recent_instance">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_recent_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieves the instance most recently answered by the user</span>
+
+<span class="sd">        :return: The instance with the latest response.end being the most recent of all instances</span>
+<span class="sd">        :rtype: instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">most_recent</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end</span>
+            <span class="k">if</span> <span class="n">date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">date</span> <span class="o">&gt;</span> <span class="n">most_recent</span><span class="p">:</span>
+                <span class="n">most_recent</span> <span class="o">=</span> <span class="n">date</span>
+                <span class="n">instance</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="n">instance</span></div>
+    
+<div class="viewcode-block" id="User.time_spend_today"><a class="viewcode-back" href="../../user/#user.User.time_spend_today">[docs]</a>    <span class="k">def</span> <span class="nf">time_spend_today</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method for calculating the amount of seconds the user has spend on practicing flashcards </span>
+
+<span class="sd">        :return: The amount of seconds between every start and end of all responses of all instances of today</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">learning_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">responses</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">date</span><span class="p">()</span> <span class="o">==</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="n">datetime</span><span class="p">):</span>
+                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span>
+                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">end</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span>
+        <span class="n">times</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)):</span>
+            <span class="n">learning_time</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">learning_time</span></div>
+    
+<div class="viewcode-block" id="User.add_source"><a class="viewcode-back" href="../../user/#user.User.add_source">[docs]</a>    <span class="k">def</span> <span class="nf">add_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a read source to self</span>
+
+<span class="sd">        :param source: The source to be added</span>
+<span class="sd">        :type source: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_sources</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">read_sources</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">s_day</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+        <span class="n">s_days</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_requests</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">s_day</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s_days</span><span class="p">:</span>
+            <span class="n">s_days</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">s_day</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_requests</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s_days</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="User.check_due"><a class="viewcode-back" href="../../user/#user.User.check_due">[docs]</a>    <span class="k">def</span> <span class="nf">check_due</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks whether the provided item is due for review</span>
+
+<span class="sd">        :param item: The item to which the checked instance refers to</span>
+<span class="sd">        :type item: Edge or Flashcard</span>
+<span class="sd">        :return: Whether the provided item is due for review</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Flashcard</span><span class="p">)</span>
+
+        <span class="n">due</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="o">==</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">instance</span><span class="o">.</span><span class="n">check_due</span><span class="p">():</span>
+                <span class="n">due</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">due</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../">Documentation overview</a><ul>
+  <li><a href="../">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, M.C. van den Enk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

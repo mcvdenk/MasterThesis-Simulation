@@ -7,25 +7,25 @@
 \indexentry{to\_dict() (concept\_map.ConceptMap method)|hyperpage}{4}
 \indexentry{controller (module)|hyperpage}{4}
 \indexentry{Controller (class in controller)|hyperpage}{4}
-\indexentry{authenticate() (controller.Controller method)|hyperpage}{4}
-\indexentry{check\_prerequisites() (controller.Controller method)|hyperpage}{4}
-\indexentry{controller() (controller.Controller method)|hyperpage}{4}
+\indexentry{append\_questionnaire() (controller.Controller method)|hyperpage}{4}
+\indexentry{append\_test() (controller.Controller method)|hyperpage}{4}
+\indexentry{authenticate() (controller.Controller method)|hyperpage}{5}
+\indexentry{check\_prerequisites() (controller.Controller method)|hyperpage}{5}
+\indexentry{controller() (controller.Controller method)|hyperpage}{5}
 \indexentry{learning\_message() (controller.Controller method)|hyperpage}{5}
 \indexentry{provide\_learned\_items() (controller.Controller method)|hyperpage}{5}
 \indexentry{provide\_learning() (controller.Controller method)|hyperpage}{5}
 \indexentry{validate() (controller.Controller method)|hyperpage}{5}
-\indexentry{edge (module)|hyperpage}{5}
-\indexentry{Edge (class in edge)|hyperpage}{5}
-\indexentry{to\_dict() (edge.Edge method)|hyperpage}{5}
+\indexentry{edge (module)|hyperpage}{6}
+\indexentry{Edge (class in edge)|hyperpage}{6}
+\indexentry{to\_dict() (edge.Edge method)|hyperpage}{6}
 \indexentry{flashcard (module)|hyperpage}{6}
 \indexentry{Flashcard (class in flashcard)|hyperpage}{6}
 \indexentry{to\_dict() (flashcard.Flashcard method)|hyperpage}{6}
-\indexentry{flashcard\_instance (module)|hyperpage}{6}
-\indexentry{FlashcardInstance (class in flashcard\_instance)|hyperpage}{6}
-\indexentry{flashmap\_instance (module)|hyperpage}{6}
-\indexentry{FlashmapInstance (class in flashmap\_instance)|hyperpage}{6}
-\indexentry{handler (module)|hyperpage}{7}
-\indexentry{handler() (in module handler)|hyperpage}{7}
+\indexentry{flashcard\_instance (module)|hyperpage}{7}
+\indexentry{FlashcardInstance (class in flashcard\_instance)|hyperpage}{7}
+\indexentry{flashmap\_instance (module)|hyperpage}{7}
+\indexentry{FlashmapInstance (class in flashmap\_instance)|hyperpage}{7}
 \indexentry{instance (module)|hyperpage}{7}
 \indexentry{Instance (class in instance)|hyperpage}{7}
 \indexentry{check\_due() (instance.Instance method)|hyperpage}{7}
@@ -33,22 +33,22 @@
 \indexentry{get\_exponent() (instance.Instance method)|hyperpage}{7}
 \indexentry{schedule() (instance.Instance method)|hyperpage}{7}
 \indexentry{start\_response() (instance.Instance method)|hyperpage}{7}
-\indexentry{log\_entry (module)|hyperpage}{7}
-\indexentry{LogEntry (class in log\_entry)|hyperpage}{7}
+\indexentry{log\_entry (module)|hyperpage}{8}
+\indexentry{LogEntry (class in log\_entry)|hyperpage}{8}
 \indexentry{node (module)|hyperpage}{8}
 \indexentry{Node (class in node)|hyperpage}{8}
 \indexentry{to\_dict() (node.Node method)|hyperpage}{8}
 \indexentry{questionnaire (module)|hyperpage}{8}
 \indexentry{Questionnaire (class in questionnaire)|hyperpage}{8}
 \indexentry{append\_answer() (questionnaire.Questionnaire method)|hyperpage}{8}
-\indexentry{generate\_questionnaire() (questionnaire.Questionnaire method)|hyperpage}{8}
+\indexentry{generate\_questionnaire() (questionnaire.Questionnaire method)|hyperpage}{9}
 \indexentry{questionnaire\_item (module)|hyperpage}{9}
 \indexentry{QuestionnaireItem (class in questionnaire\_item)|hyperpage}{9}
 \indexentry{to\_dict() (questionnaire\_item.QuestionnaireItem method)|hyperpage}{9}
 \indexentry{questionnaire\_response (module)|hyperpage}{9}
 \indexentry{QuestionnaireResponse (class in questionnaire\_response)|hyperpage}{9}
-\indexentry{response (module)|hyperpage}{9}
-\indexentry{Response (class in response)|hyperpage}{9}
+\indexentry{response (module)|hyperpage}{10}
+\indexentry{Response (class in response)|hyperpage}{10}
 \indexentry{session (module)|hyperpage}{10}
 \indexentry{Session (class in session)|hyperpage}{10}
 \indexentry{end\_session() (session.Session method)|hyperpage}{10}
@@ -56,27 +56,25 @@
 \indexentry{Test (class in test)|hyperpage}{10}
 \indexentry{append\_flashcard() (test.Test method)|hyperpage}{10}
 \indexentry{append\_item() (test.Test method)|hyperpage}{10}
-\indexentry{generate\_test() (test.Test method)|hyperpage}{10}
+\indexentry{generate\_test() (test.Test method)|hyperpage}{11}
 \indexentry{randomise() (test.Test method)|hyperpage}{11}
 \indexentry{test\_flashcard\_response (module)|hyperpage}{11}
 \indexentry{TestFlashcardResponse (class in test\_flashcard\_response)|hyperpage}{11}
 \indexentry{test\_item (module)|hyperpage}{11}
 \indexentry{TestItem (class in test\_item)|hyperpage}{11}
-\indexentry{to\_dict() (test\_item.TestItem method)|hyperpage}{11}
+\indexentry{to\_dict() (test\_item.TestItem method)|hyperpage}{12}
 \indexentry{test\_item\_response (module)|hyperpage}{12}
 \indexentry{TestItemResponse (class in test\_item\_response)|hyperpage}{12}
 \indexentry{user (module)|hyperpage}{12}
 \indexentry{User (class in user)|hyperpage}{12}
 \indexentry{add\_new\_instance() (user.User method)|hyperpage}{12}
-\indexentry{add\_source() (user.User method)|hyperpage}{12}
-\indexentry{append\_questionnaire() (user.User method)|hyperpage}{13}
-\indexentry{append\_test() (user.User method)|hyperpage}{13}
+\indexentry{add\_source() (user.User method)|hyperpage}{13}
 \indexentry{check\_due() (user.User method)|hyperpage}{13}
 \indexentry{create\_questionnaire() (user.User method)|hyperpage}{13}
 \indexentry{create\_test() (user.User method)|hyperpage}{13}
 \indexentry{get\_due\_instance() (user.User method)|hyperpage}{13}
-\indexentry{get\_instance\_by\_id() (user.User method)|hyperpage}{14}
-\indexentry{retrieve\_recent\_instance() (user.User method)|hyperpage}{14}
+\indexentry{get\_instance\_by\_id() (user.User method)|hyperpage}{13}
+\indexentry{retrieve\_recent\_instance() (user.User method)|hyperpage}{13}
 \indexentry{set\_descriptives() (user.User method)|hyperpage}{14}
 \indexentry{time\_spend\_today() (user.User method)|hyperpage}{14}
 \indexentry{undo() (user.User method)|hyperpage}{14}

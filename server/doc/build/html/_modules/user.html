@@ -81,8 +81,8 @@
 <span class="sd">    :type source_requests: list(DateTime)</span>
 <span class="sd">    :cvar successful_days: The days that the user successfuly completed a session</span>
 <span class="sd">    :type successful_days: list(DateTime)</span>
-<span class="sd">    :cvar briefed: Whether the user already got the briefing after the experiment</span>
-<span class="sd">    :type briefed: boolean</span>
+<span class="sd">    :cvar debriefed: Whether the user already got the briefing after the experiment</span>
+<span class="sd">    :type debriefed: boolean</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -98,7 +98,7 @@
     <span class="n">email</span> <span class="o">=</span> <span class="n">EmailField</span><span class="p">()</span>
     <span class="n">source_requests</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">DateTimeField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
     <span class="n">successful_days</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">DateTimeField</span><span class="p">(),</span> <span class="n">default</span> <span class="o">=</span> <span class="p">[])</span>
-    <span class="n">briefed</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">debriefed</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 
 <div class="viewcode-block" id="User.set_descriptives"><a class="viewcode-back" href="../user.html#user.User.set_descriptives">[docs]</a>    <span class="k">def</span> <span class="nf">set_descriptives</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">birthdate</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A method for setting the descriptives of the user</span>
@@ -112,7 +112,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">birthdate</span><span class="p">,</span> <span class="n">datetime</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">gender</span> <span class="ow">is</span> <span class="s1">&#39;male&#39;</span> <span class="ow">or</span> <span class="n">gender</span> <span class="ow">is</span> <span class="s1">&#39;female&#39;</span> <span class="ow">or</span> <span class="n">gender</span> <span class="ow">is</span> <span class="s1">&#39;other&#39;</span>
+        <span class="k">assert</span> <span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;male&#39;</span> <span class="ow">or</span> <span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span> <span class="ow">or</span> <span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;other&#39;</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">birthdate</span> <span class="o">=</span> <span class="n">birthdate</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
@@ -145,24 +145,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">tests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;flashcards&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">fcard</span><span class="o">.</span><span class="n">flashcard</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">fcard</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_flashcard_responses</span><span class="p">],</span> <span class="s1">&#39;items&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">test_item_responses</span><span class="p">]}</span></div>
 
-<div class="viewcode-block" id="User.append_test"><a class="viewcode-back" href="../user.html#user.User.append_test">[docs]</a>    <span class="k">def</span> <span class="nf">append_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flashcard_responses</span><span class="p">,</span> <span class="n">item_responses</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A method for appending a test to the user given flashcard and item responses</span>
-<span class="sd">        </span>
-<span class="sd">        :param flashcard_responses: A list of dict objects containing a :class:`Flashcard` (key = &#39;flashcard&#39;) and an answer (key = &#39;answer&#39;)</span>
-<span class="sd">        :type flashcard_responses: dict</span>
-<span class="sd">        :param item_responses: A list of dict objects containing a :class:`TestItem` (key = &#39;item&#39;) and an answer (key = &#39;answer&#39;)</span>
-<span class="sd">        :type item_responses: dict</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">flashcard_responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">flashcard_responses</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item_responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">item_responses</span><span class="p">)</span>
-        <span class="n">test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tests</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">flashcard_responses</span><span class="p">:</span>
-            <span class="n">test</span><span class="o">.</span><span class="n">append_flashcard</span><span class="p">(</span><span class="n">card</span><span class="p">[</span><span class="s1">&#39;flashcard&#39;</span><span class="p">],</span> <span class="n">card</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">item_responses</span><span class="p">:</span>
-            <span class="n">test</span><span class="o">.</span><span class="n">append_item</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span></div>
-
 <div class="viewcode-block" id="User.create_questionnaire"><a class="viewcode-back" href="../user.html#user.User.create_questionnaire">[docs]</a>    <span class="k">def</span> <span class="nf">create_questionnaire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pu_items</span><span class="p">,</span> <span class="n">peou_items</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A method for creating a new questionnaire</span>
 
@@ -184,27 +166,6 @@
                 <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">perceived_usefulness_items</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span>
                 <span class="n">item</span><span class="o">.</span><span class="n">questionnaire_item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">phrasing</span><span class="p">)</span> <span class="k">for</span>
                 <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">perceived_ease_of_use_items</span><span class="p">]</span></div>
-
-<div class="viewcode-block" id="User.append_questionnaire"><a class="viewcode-back" href="../user.html#user.User.append_questionnaire">[docs]</a>    <span class="k">def</span> <span class="nf">append_questionnaire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">responses</span><span class="p">,</span> <span class="n">good</span><span class="p">,</span> <span class="n">can_be_improved</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A method for appending a questionnairy to the user given responses</span>
-<span class="sd">        </span>
-<span class="sd">        :param responses: A list of dict objects containing a :class:`QuestionnaireItem` (key = &#39;item&#39;), the phrasing (key = &#39;phrasing&#39;) and an answer (key = &#39;answer&#39;)</span>
-<span class="sd">        :type responses: list(dict)</span>
-<span class="sd">        :param good: A description of what was good about the software according to the user</span>
-<span class="sd">        :type good: string</span>
-<span class="sd">        :param can_be_improved: A description of what can be improved about the software according to the user</span>
-<span class="sd">        :type can_be_improved: string</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">good</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">can_be_improved</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">append_answer</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">],</span>
-                    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;phrasing&#39;</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">good</span> <span class="o">=</span> <span class="n">good</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">can_be_improved</span> <span class="o">=</span> <span class="n">can_be_improved</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span></div>
 
 <div class="viewcode-block" id="User.get_due_instance"><a class="viewcode-back" href="../user.html#user.User.get_due_instance">[docs]</a>    <span class="k">def</span> <span class="nf">get_due_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the instance with the oldest due date</span>

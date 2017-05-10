@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>controller &#8212; Flashmap server 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for controller</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1">#Import of necessary libraries</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">mongoengine</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">dateutil.parser</span>
+
+<span class="kn">from</span> <span class="nn">user</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">concept_map</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">flashcard</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">questionnaire</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">test_item</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">log_entry</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: Micha van den Enk</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Controller"><a class="viewcode-back" href="../../controller/#controller.Controller">[docs]</a><span class="k">class</span> <span class="nc">Controller</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the class from which the program is controlled. It can be used together with the :mod:`handler` module in order to communicate with an external client over a websocket </span>
+
+<span class="sd">    :cvar database: The mongodb to connect to</span>
+<span class="sd">    :type database: string</span>
+<span class="sd">    :cvar concept_map: The concept map object containing references to nodes and edges</span>
+<span class="sd">    :type concept_map: ConceptMap</span>
+<span class="sd">    :cvar SOURCES: All of the sources referenced to in the edges of the concept map</span>
+<span class="sd">    :type SOURCES: list(str)</span>
+<span class="sd">    :cvar user: The active user</span>
+<span class="sd">    :type user: User</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">):</span>
+        <span class="k">assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+        <span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">concept_map</span> <span class="o">=</span> <span class="n">ConceptMap</span><span class="o">.</span><span class="n">objects</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="c1">#Preloading all sources from the different flashcards/-edges (the chapters from Laagland)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">concept_map</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">edge</span><span class="o">.</span><span class="n">sources</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">source</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required_time</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">15</span>
+
+<div class="viewcode-block" id="Controller.controller"><a class="viewcode-back" href="../../controller/#controller.Controller.controller">[docs]</a>    <span class="k">def</span> <span class="nf">controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Pass data to the function corresponding to the provided keyword for the provided user</span>
+
+<span class="sd">        :param keyword: the keyword for which function to use</span>
+<span class="sd">        :type keyword: str</span>
+<span class="sd">        :param data: the data necessary for executing the function</span>
+<span class="sd">        :type data: dict(str, str or dict)</span>
+<span class="sd">        :return: Contains the keyword and data to send over a websocket to a client</span>
+<span class="sd">        :rtype: dict(str, str or dict)</span>
+
+<span class="sd">        .. todo: Implement LEARNED_ITEMS-REQUEST</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keyword</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+        <span class="n">incoming_msg</span> <span class="o">=</span> <span class="n">LogEntry</span><span class="p">(</span><span class="n">keyword</span> <span class="o">=</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">incoming_msg</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;FAILURE&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;AUTHENTICATE-REQUEST&quot;</span><span class="p">):</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_prerequisites</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;DESCRIPTIVES-RESPONSE&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">set_descriptives</span><span class="p">(</span>
+                    <span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;birthdate&#39;</span><span class="p">]),</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">],</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">])</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_prerequisites</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;TEST-RESPONSE&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append_test</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;flashcard_responses&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;item_responses&#39;</span><span class="p">])</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_prerequisites</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;QUESTIONNAIRE-RESPONSE&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append_questionnaire</span><span class="p">(</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;responses&#39;</span><span class="p">],</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;good&#39;</span><span class="p">],</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;can_be_improved&#39;</span><span class="p">],</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">])</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DEBRIEFING-REQUEST&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;DEBRIEFING-RESPONSE&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">debriefed</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;AUTHENTICATE-RESPONSE&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;LEARNED_ITEMS-REQUEST&quot;</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">provide_learned_items</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;LEARN-REQUEST&quot;</span><span class="p">):</span> 
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">provide_learning</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;READ_SOURCE-RESPONSE&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">add_source</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]))</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">provide_learning</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;VALIDATE&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;responses&#39;</span><span class="p">])</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">provide_learning</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">keyword</span> <span class="o">==</span> <span class="s2">&quot;UNDO&quot;</span><span class="p">):</span> 
+            <span class="n">recent_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">undo</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">recent_instance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_message</span><span class="p">(</span><span class="n">recent_instance</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">cascade</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">validate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;condition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;successful_days&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">successful_days</span><span class="p">)</span>
+        <span class="n">outgoing_msg</span> <span class="o">=</span> <span class="n">LogEntry</span><span class="p">(</span><span class="n">keyword</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">],</span> <span class="n">data</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">outgoing_msg</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+<div class="viewcode-block" id="Controller.authenticate"><a class="viewcode-back" href="../../controller/#controller.Controller.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A function to either set self.user to an existing :class:`user.User` or to a new User based on the given name</span>
+
+<span class="sd">        :param name: The self.username</span>
+<span class="sd">        :type name: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">condition</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;FLASHMAP&quot;</span><span class="p">,</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">][</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span> <span class="n">condition</span> <span class="o">=</span> <span class="n">condition</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">first</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="Controller.check_prerequisites"><a class="viewcode-back" href="../../controller/#controller.Controller.check_prerequisites">[docs]</a>    <span class="k">def</span> <span class="nf">check_prerequisites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks whether the self.user still has to fill in forms and returns the appropriate message</span>
+
+<span class="sd">        :return: A dict containing the appropriate keyword and data for this self.user</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span> <span class="p">:</span> <span class="p">{}}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">code</span><span class="p">):</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DESCRIPTIVES-REQUEST&quot;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">tests</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TEST-REQUEST&quot;</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_test</span><span class="p">(</span>
+                    <span class="nb">list</span><span class="p">(</span><span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">TestItem</span><span class="o">.</span><span class="n">objects</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">successful_days</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">tests</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TEST-REQUEST&quot;</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_test</span><span class="p">(</span>
+                        <span class="nb">list</span><span class="p">(</span><span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">TestItem</span><span class="o">.</span><span class="n">objects</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">questionnaire</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;QUESTIONNAIRE-REQUEST&quot;</span>
+                <span class="n">questionnaire</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_questionnaire</span><span class="p">(</span>
+                        <span class="nb">list</span><span class="p">(</span><span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">usefulness</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)),</span>
+                        <span class="nb">list</span><span class="p">(</span><span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">usefulness</span> <span class="o">=</span> <span class="kc">False</span><span class="p">))</span>
+                        <span class="p">)</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;questionnaire&#39;</span><span class="p">:</span> <span class="n">questionnaire</span><span class="p">}</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">debriefed</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DEBRIEFING-REQUEST&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;AUTHENTICATE-RESPONSE&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;AUTHENTICATE-RESPONSE&quot;</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+<div class="viewcode-block" id="Controller.append_test"><a class="viewcode-back" href="../../controller/#controller.Controller.append_test">[docs]</a>    <span class="k">def</span> <span class="nf">append_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flashcard_responses</span><span class="p">,</span> <span class="n">item_responses</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method for appending a test to the user given flashcard and item responses</span>
+<span class="sd">        </span>
+<span class="sd">        :param flashcard_responses: A list of dict objects containing the id of an :class:`Flashcard` (key = &#39;id&#39;) and an answer (key = &#39;answer&#39;)</span>
+<span class="sd">        :type flashcard_responses: dict</span>
+<span class="sd">        :param item_responses: A list of dict objects containing a :class:`TestItem` (key = &#39;item&#39;) and an answer (key = &#39;answer&#39;)</span>
+<span class="sd">        :type item_responses: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">flashcard_responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">flashcard_responses</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item_responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">item_responses</span><span class="p">)</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">tests</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">flashcard_responses</span><span class="p">:</span>
+            <span class="n">test</span><span class="o">.</span><span class="n">append_flashcard</span><span class="p">(</span>
+                    <span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="n">objectid</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">(</span><span class="n">card</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">first</span><span class="p">(),</span>
+                    <span class="n">card</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">item_responses</span><span class="p">:</span>
+            <span class="n">test</span><span class="o">.</span><span class="n">append_item</span><span class="p">(</span>
+                    <span class="n">TestItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="n">objectid</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">first</span><span class="p">(),</span>
+                    <span class="n">item</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Controller.append_questionnaire"><a class="viewcode-back" href="../../controller/#controller.Controller.append_questionnaire">[docs]</a>    <span class="k">def</span> <span class="nf">append_questionnaire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">responses</span><span class="p">,</span> <span class="n">good</span><span class="p">,</span> <span class="n">can_be_improved</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method for appending a questionnairy to the user given responses</span>
+<span class="sd">        </span>
+<span class="sd">        :param responses: A list of dict objects containing the id of a :class:`QuestionnaireItem` (key = &#39;id&#39;), the phrasing (key = &#39;phrasing&#39;) and an answer (key = &#39;answer&#39;)</span>
+<span class="sd">        :type responses: list(dict)</span>
+<span class="sd">        :param good: A description of what was good about the software according to the user</span>
+<span class="sd">        :type good: string</span>
+<span class="sd">        :param can_be_improved: A description of what can be improved about the software according to the user</span>
+<span class="sd">        :type can_be_improved: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">good</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">can_be_improved</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">append_answer</span><span class="p">(</span>
+                    <span class="n">QuestionnaireItem</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">(),</span>
+                    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;phrasing&#39;</span><span class="p">],</span>
+                    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">good</span> <span class="o">=</span> <span class="n">good</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">questionnaire</span><span class="o">.</span><span class="n">can_be_improved</span> <span class="o">=</span> <span class="n">can_be_improved</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span></div>
+
+<div class="viewcode-block" id="Controller.provide_learning"><a class="viewcode-back" href="../../controller/#controller.Controller.provide_learning">[docs]</a>    <span class="k">def</span> <span class="nf">provide_learning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Provides a dict containing relevant information for learning</span>
+<span class="sd">        </span>
+<span class="sd">        Provides a dict containing the keyword &quot;NO_MORE_INSTANCES&quot;, &quot;READ_SOURCE-REQUEST&quot;, or &quot;LEARNING-RESPONSE&quot; and relevant data (the source string for &quot;READ_SOURCE-REQUEST&quot; or either the output of :func:`ConceptMap.to_dict()` with an added &#39;learning&#39; entry or the output of :func:`Flashcard.to_dict()` for &quot;LEARNING-RESPONSE&quot; with an added condition entry)</span>
+
+<span class="sd">        :return: A dict containing &#39;keyword&#39; and the relevant &#39;data&#39; described above</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">get_due_instance</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">instance</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
+                <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">add_new_instance</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Edge</span><span class="o">.</span><span class="n">objects</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
+                <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">add_new_instance</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">instance</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;NO_MORE_INSTANCES&quot;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">read_sources</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;READ_SOURCE-REQUEST&quot;</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;source&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">sources</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="nb">max</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">sources</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">sources</span><span class="p">])</span>
+            <span class="n">source_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
+            <span class="k">if</span> <span class="n">source_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="p">)</span> <span class="ow">and</span>\
+                    <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="p">[</span><span class="n">source_index</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">read_sources</span> <span class="ow">and</span>\
+                    <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">source_requests</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;READ_SOURCE-REQUEST&quot;</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;source&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SOURCES</span><span class="p">[</span><span class="n">source_index</span><span class="p">]}</span>
+            <span class="k">elif</span> <span class="n">source</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">read_sources</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;NO_MORE_INSTANCES&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_message</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;keyword&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;NO_MORE_INSTANCES&quot;</span> <span class="ow">or</span> <span class="p">(</span><span class="s1">&#39;time_up&#39;</span> <span class="ow">in</span> <span class="n">msg</span> <span class="ow">and</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;time_up&#39;</span><span class="p">]):</span>
+            <span class="n">s_days</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">successful_days</span><span class="p">)</span>
+            <span class="n">s_day</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">s_day</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s_days</span><span class="p">:</span>
+                <span class="n">s_days</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">s_day</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">successful_days</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">s_days</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+<div class="viewcode-block" id="Controller.learning_message"><a class="viewcode-back" href="../../controller/#controller.Controller.learning_message">[docs]</a>    <span class="k">def</span> <span class="nf">learning_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generates a learning message for the provided instance</span>
+
+<span class="sd">        :param instance: The instance which has to be rehearsed</span>
+<span class="sd">        :type instance: Instance</span>
+<span class="sd">        :return: The message with keyword &quot;LEARNING RESPONSE&quot; and data containing the partial concept map or flashcard dict representation</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Flashcard</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Edge</span><span class="p">)</span>
+        
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;LEARN-RESPONSE&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
+            <span class="n">cmap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">concept_map</span><span class="o">.</span><span class="n">get_partial_map</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">read_sources</span><span class="p">)</span>
+            <span class="n">siblings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">concept_map</span><span class="o">.</span><span class="n">find_siblings</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">read_sources</span><span class="p">,</span> <span class="n">cmap</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+            <span class="n">dmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">siblings</span> <span class="o">+</span> <span class="p">[</span><span class="n">item</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">dmap</span><span class="p">[</span><span class="s1">&#39;edges&#39;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">edge</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">check_due</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+                        <span class="n">edge</span><span class="p">[</span><span class="s1">&#39;learning&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">edge</span><span class="p">[</span><span class="s1">&#39;learning&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dmap</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;time_up&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">time_spend_today</span><span class="p">()</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_time</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+
+<div class="viewcode-block" id="Controller.validate"><a class="viewcode-back" href="../../controller/#controller.Controller.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">responses</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds responses to certain instances</span>
+
+<span class="sd">        :param responses: A list of responses containing an instance id and a boolean correctness value</span>
+<span class="sd">        :type responses: list(dict)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">objectid</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]),</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Controller.provide_learned_items"><a class="viewcode-back" href="../../controller/#controller.Controller.provide_learned_items">[docs]</a>    <span class="k">def</span> <span class="nf">provide_learned_items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Provides an overview of all learning</span>
+
+<span class="sd">        :return: A partial concept map containing all instances for this self.user or a message containing progress information</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s2">&quot;LEARNED_ITEMS-RESPONSE&quot;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span> <span class="p">:</span> <span class="p">{}}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHMAP&quot;</span><span class="p">:</span>
+            <span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">instances</span><span class="p">]</span>
+            <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">concept_map</span><span class="o">.</span><span class="n">find_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+            <span class="n">result_map</span> <span class="o">=</span> <span class="n">ConceptMap</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">)</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result_map</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;FLASHCARD&quot;</span><span class="p">:</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;due&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;new&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;learning&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;learned&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;not_seen&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">flashcard</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">Flashcard</span><span class="o">.</span><span class="n">objects</span><span class="p">()):</span>
+                <span class="n">seen</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">instances</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">reference</span> <span class="o">==</span> <span class="n">flashcard</span><span class="p">):</span>
+                        <span class="n">seen</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">check_due</span><span class="p">()):</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;due&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">get_exponent</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">):</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;new&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="k">elif</span> <span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">get_exponent</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">):</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;learning&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="k">else</span><span class="p">:</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;learned&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">seen</span><span class="p">):</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;not_seen&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">msg</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../">Documentation overview</a><ul>
+  <li><a href="../">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, M.C. van den Enk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
