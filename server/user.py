@@ -36,8 +36,8 @@ class User(Document):
     :type source_requests: list(DateTime)
     :cvar successful_days: The days that the user successfuly completed a session
     :type successful_days: list(DateTime)
-    :cvar briefed: Whether the user already got the briefing after the experiment
-    :type briefed: boolean
+    :cvar debriefed: Whether the user already got the briefing after the experiment
+    :type debriefed: boolean
     """
     
     name = StringField(required=True, unique=True)
@@ -53,7 +53,7 @@ class User(Document):
     email = EmailField()
     source_requests = ListField(DateTimeField(), default = [])
     successful_days = ListField(DateTimeField(), default = [])
-    briefed = BooleanField(default = False)
+    debriefed = BooleanField(default = False)
 
     def set_descriptives(self, birthdate, gender, code):
         """A method for setting the descriptives of the user
@@ -67,7 +67,7 @@ class User(Document):
         """
         assert isinstance(birthdate, datetime)
         assert isinstance(gender, str)
-        assert gender is 'male' or gender is 'female' or gender is 'other'
+        assert gender == 'male' or gender == 'female' or gender == 'other'
         assert isinstance(code, str)
         self.birthdate = birthdate
         self.gender = gender
@@ -100,24 +100,6 @@ class User(Document):
         self.tests.append(test)
         return {'flashcards' : [fcard.flashcard.to_dict() for fcard in test.test_flashcard_responses], 'items' : [item.item.to_dict() for item in test.test_item_responses]}
 
-    def append_test(self, flashcard_responses, item_responses):
-        """A method for appending a test to the user given flashcard and item responses
-        
-        :param flashcard_responses: A list of dict objects containing a :class:`Flashcard` (key = 'flashcard') and an answer (key = 'answer')
-        :type flashcard_responses: dict
-        :param item_responses: A list of dict objects containing a :class:`TestItem` (key = 'item') and an answer (key = 'answer')
-        :type item_responses: dict
-        """
-        assert isinstance(flashcard_responses, list)
-        assert all(isinstance(resp, dict) for resp in flashcard_responses)
-        assert isinstance(item_responses, list)
-        assert all(isinstance(resp, dict) for resp in item_responses)
-        test = self.tests[-1]
-        for card in flashcard_responses:
-            test.append_flashcard(card['flashcard'], card['answer'])
-        for item in item_responses:
-            test.append_item(item['item'], item['answer'])
-
     def create_questionnaire(self, pu_items, peou_items):
         """A method for creating a new questionnaire
 
@@ -139,27 +121,6 @@ class User(Document):
                 item in self.questionnaire.perceived_usefulness_items] + [
                 item.questionnaire_item.to_dict(item.phrasing) for
                 item in self.questionnaire.perceived_ease_of_use_items]
-
-    def append_questionnaire(self, responses, good, can_be_improved, email):
-        """A method for appending a questionnairy to the user given responses
-        
-        :param responses: A list of dict objects containing a :class:`QuestionnaireItem` (key = 'item'), the phrasing (key = 'phrasing') and an answer (key = 'answer')
-        :type responses: list(dict)
-        :param good: A description of what was good about the software according to the user
-        :type good: string
-        :param can_be_improved: A description of what can be improved about the software according to the user
-        :type can_be_improved: string
-        """
-        assert isinstance(responses, list)
-        assert all(isinstance(response, dict) for response in responses)
-        assert isinstance(good, str)
-        assert isinstance(can_be_improved, str)
-        for response in responses:
-            self.questionnaire.append_answer(response['item'],
-                    response['phrasing'], response['answer'])
-        self.questionnaire.good = good
-        self.questionnaire.can_be_improved = can_be_improved
-        self.email = email
 
     def get_due_instance(self):
         """Returns the instance with the oldest due date

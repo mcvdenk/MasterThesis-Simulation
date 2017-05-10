@@ -32,6 +32,8 @@ class Instance(EmbeddedDocument):
         :type correct: bool
         """
         assert isinstance(correct, bool)
+        if len(self.responses) == 0:
+            self.start_response()
         response = self.responses[-1]
         response.correct = correct
         response.end = datetime.now()

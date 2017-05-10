@@ -85,12 +85,14 @@ ws.onmessage = function (event) {
             show_menu();
             help();
             break;
-        case "LEARNED_FLASHMAP-RESPONSE":
-            coloured_map = colourise_progress(msg.data);
-            show_map(coloured_map);
-            break;
-        case "LEARNED_FLASHCARDS-RESPONSE":
-            show_flashcard_progress(msg.data);
+        case "LEARNED_ITEMS-RESPONSE":
+            if (msg.condition == "FLASHMAP") {
+                coloured_map = colourise_progress(msg.data);
+                show_map(coloured_map);
+            }
+            else if (msg.condition == "FLASHCARD") {
+                show_flashcard_progress(msg.data);
+            }
             break;
         case "LEARN-RESPONSE":
             if (msg.condition == "FLASHMAP") {
@@ -116,7 +118,7 @@ ws.onmessage = function (event) {
         case "QUESTIONNAIRE-REQUEST":
             questionnaire(msg.data);
             break;
-        case "DEBRIEFING":
+        case "DEBRIEFING-REQUEST":
             debriefing();
             break;
     }
@@ -160,9 +162,8 @@ function send_descriptives() {
        document.getElementById('invalid').innerHTML = "INVALID DATE"
        return
     }
-    var date = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
-    msg.data.birthdate = date.getTime();
-    if (date.getTime() > new Date().getTime() || msg.data.birthdate == 0) document.getElementById(cont).innerHTML += "INVALID DATE";
+    msg.data.birthdate = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+    if (msg.data.birthdate > new Date()) document.getElementById(cont).innerHTML += "INVALID DATE";
     else ws.send(JSON.stringify(msg));
 }
 
@@ -184,14 +185,16 @@ function test(data) {
 }
 
 function send_test_results() {
-    msg = {keyword: "TEST-RESPONSE", data: {flashcards : [], items : []}}
+    msg = {keyword: "TEST-RESPONSE", data: {flashcard_responses : [], item_responses : []}}
     var flashcards = document.getElementsByName('flashcard');
     for (i = 0; i < flashcards.length; i++) {
-        msg.data.flashcards.push({id : flashcards[i].id.slice(9), answer : flashcards[i].value});
+        msg.data.flashcard_responses.push(
+            {id : flashcards[i].id.slice(9), answer : flashcards[i].value});
     }
     var items = document.getElementsByName('item');
     for (i = 0; i < items.length; i++) {
-        msg.data.items.push({id : items[i].id.slice(4), answer : items[i].value});
+        msg.data.item_responses.push(
+            {id : items[i].id.slice(4), answer : items[i].value});
     }
     ws.send(JSON.stringify(msg));
 }
@@ -203,34 +206,19 @@ function questionnaire(data) {
     container.innerHTML = "";
     container_text = "";
     var form = "";
-    for (i = 0; i < data.perceived_usefulness.length; i++) {
-        if (data.perceived_usefulness[i].formulation == "positive") form = "+";
+    for (i = 0; i < data.questionnaire.length; i++) {
+        if (data.questionnaire[i].phrasing == "positive") form = "+";
         else form = "-";
         item_text = " \
-            <h3>" + data.perceived_usefulness[i].item + "</h3> \
+            <h3>" + data.questionnaire[i].question + "</h3> \
             <table style='text-align:center;'> \
                 <tr> \
                     <td>Zeer mee oneens</td><td>Mee oneens</td><td>Noch mee eens, <br />noch mee oneens</td><td>Mee eens</td><td>Zeer mee eens</td> \
                 </tr><tr>";
         for (j=-2; j <= 2; j++) {
-            item_text += "<td><input type='radio' class='useful' name='useful"+form+data.perceived_usefulness[i].id+"' value='"+j+"' /></td>";
+            item_text += "<td><input type='radio' class='item' name='"+form+data.questionnaire[i].id+"' value='"+j+"' /></td>";
         }
         item_text += "</tr></table>";
-        container_text += item_text;
-    }
-    for (i = 0; i < data.perceived_ease_of_use.length; i++) {
-        if (data.perceived_ease_of_use[i].formulation == "positive") form = "+";
-        else form = "-";
-        item_text = " \
-            <h3>" + data.perceived_ease_of_use[i].item + "</h3> \
-            <table style='text-align:center;'> \
-                <tr> \
-                    <td>Zeer mee oneens</td><td>Mee oneens</td><td>Noch mee eens, <br />noch mee oneens</td><td>Mee eens</td><td>Zeer mee eens</td> \
-                </tr><tr>";
-        for (j=-2; j <= 2; j++) {
-            item_text += "<td><input type='radio' class='ease' name='ease"+form+data.perceived_ease_of_use[i].id+"' value='"+j+"' /></td>";
-        }
-        item_text += "</tr></table>"
         container_text += item_text;
     }
     container_text += " \
@@ -245,24 +233,15 @@ function questionnaire(data) {
 }
 
 function send_questionnaire_results() {
-    msg = {keyword: "QUESTIONNAIRE-RESPONSE", data: {perceived_usefulness : { positive : [], negative : []}, perceived_ease_of_use : { positive : [], negative : []}, goed: "", kan_beter: "", email: ""}}
-    var useful = document.getElementsByClassName('useful');
-    for (i = 0; i < useful.length; i++) {
-        if (useful[i].checked) {
-            if (useful[i].name.charAt(6) == '+') msg.data.perceived_usefulness.positive.push({id: useful[i].name.slice(7), value: useful[i].value});
-            else msg.data.perceived_usefulness.negative.push({id: useful[i].name.slice(7), value: useful[i].value});
-        }    
+    msg = {keyword: "QUESTIONNAIRE-RESPONSE", data: {responses : [], goed: "", kan_beter: "", email: ""}}
+    var q_item = document.getElementsByClassName('item');
+    for (i = 0; i < q_item.length && q_item[i].checked; i++) {
+        var phrasing = 'negative'
+        if (useful[i].name.charAt(0) == '+') var phrasing = 'positive'
+        msg.data.responses.push({id: useful[i].name.slice(1), answer: useful[i].value, phrasing: phrasing});
     }
-    var ease = document.getElementsByClassName('ease');
-    for (i = 0; i < ease.length; i++) {
-        if (ease[i].checked) {
-            console.log(ease[i].name);
-            if (ease[i].name.charAt(4) == '+') msg.data.perceived_ease_of_use.positive.push({id: ease[i].name.slice(5), value: ease[i].value});
-            else msg.data.perceived_ease_of_use.negative.push({id: ease[i].name.slice(5), value: ease[i].value});
-        }    
-    }
-    msg.data.goed = document.getElementById("goed").value;
-    msg.data.kan_beter = document.getElementById("kan_beter").value;
+    msg.data.good = document.getElementById("goed").value;
+    msg.data.can_be_improved = document.getElementById("kan_beter").value;
     msg.data.email = document.getElementById("email").value;
     console.log(JSON.stringify(msg));
     ws.send(JSON.stringify(msg));
@@ -406,20 +385,20 @@ function undo() {
 }
 
 function validate_fc(correct) {
-    var msg = {keyword: "VALIDATE(fc)", data: {}};
-    msg.data.id = fc_id;
-    msg.data.correct = correct;
+    var msg = {keyword: "VALIDATE", data: {responses: [{}]}};
+    msg.data.responses[0].id = fc_id;
+    msg.data.responses[0].correct = correct;
     ws.send(JSON.stringify(msg));
     show_undo = true;
 }
 
 function validate_fm() {
-    var msg = {keyword: "VALIDATE(fm)", data: {}};
+    var msg = {keyword: "VALIDATE", data: {}};
     var responses = [];
     for (i = 0; i < map.edges.length; i++) {
         if (map.edges[i].learning) responses.push({id: map.edges[i].id, correct: map.edges[i].correct});
     }
-    msg.data.edges = responses;
+    msg.data.responses = responses;
     ws.send(JSON.stringify(msg));
     show_undo = true;
 }

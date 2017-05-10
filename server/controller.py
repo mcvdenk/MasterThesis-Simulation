@@ -6,6 +6,7 @@ import time
 import random
 import math
 from mongoengine import *
+import dateutil.parser
 
 from user import *
 from concept_map import *
@@ -69,19 +70,23 @@ class Controller():
             msg = self.check_prerequisites()
         elif (keyword == "DESCRIPTIVES-RESPONSE"):
             self.user.set_descriptives(
-                    data['birthdate'],
+                    dateutil.parser.parse(data['birthdate']),
                     data['gender'],
                     data['code'])
             msg = self.check_prerequisites()
         elif (keyword == "TEST-RESPONSE"):
-            self.user.append_test(data['flashcard_responses'], data['item_responses'])
+            self.append_test(data['flashcard_responses'], data['item_responses'])
             msg = self.check_prerequisites()
         elif (keyword == "QUESTIONNAIRE-RESPONSE"):
-            self.user.append_questionnaire(
+            self.append_questionnaire(
                     data['responses'],
                     data['good'],
-                    data['can_be_improved'])
-            msg['keyword'] = "DEBRIEFING"
+                    data['can_be_improved'],
+                    data['email'])
+            msg['keyword'] = "DEBRIEFING-REQUEST"
+        elif (keyword == "DEBRIEFING-RESPONSE"):
+            self.user.debriefed = True
+            msg['keyword'] = "AUTHENTICATE-RESPONSE"
         elif (keyword == "LEARNED_ITEMS-REQUEST"):
             msg = self.provide_learned_items()
         elif (keyword == "LEARN-REQUEST"): 
@@ -97,9 +102,10 @@ class Controller():
             if recent_instance is not None:
                 msg = self.learning_message(recent_instance)
         self.user.save(cascade = True, validate = False)
+        msg['condition'] = self.user.condition
+        msg["successful_days"] = len(self.user.successful_days)
         outgoing_msg = LogEntry(keyword = msg['keyword'], data = msg['data'], user = self.user)
         outgoing_msg.save()
-        msg["successful_days"] = len(self.user.successful_days)
         return msg
 
     def authenticate(self, name):
@@ -139,14 +145,58 @@ class Controller():
                         list(QuestionnaireItem.objects(usefulness = False))
                         )
                 msg['data'] = {'questionnaire': questionnaire}
-            elif not self.user.briefed:
-                msg['keyword'] = "BRIEFING"
-                self.user.briefed = True
+            elif not self.user.debriefed:
+                msg['keyword'] = "DEBRIEFING-REQUEST"
             else:
                 msg['keyword'] = "AUTHENTICATE-RESPONSE"
         else:
             msg['keyword'] = "AUTHENTICATE-RESPONSE"
         return msg
+
+    def append_test(self, flashcard_responses, item_responses):
+        """A method for appending a test to the user given flashcard and item responses
+        
+        :param flashcard_responses: A list of dict objects containing the id of an :class:`Flashcard` (key = 'id') and an answer (key = 'answer')
+        :type flashcard_responses: dict
+        :param item_responses: A list of dict objects containing a :class:`TestItem` (key = 'item') and an answer (key = 'answer')
+        :type item_responses: dict
+        """
+        assert isinstance(flashcard_responses, list)
+        assert all(isinstance(resp, dict) for resp in flashcard_responses)
+        assert isinstance(item_responses, list)
+        assert all(isinstance(resp, dict) for resp in item_responses)
+        test = self.user.tests[-1]
+        for card in flashcard_responses:
+            test.append_flashcard(
+                    Flashcard.objects(id = objectid.ObjectId(card['id'])).first(),
+                    card['answer'])
+        for item in item_responses:
+            test.append_item(
+                    TestItem.objects(id = objectid.ObjectId(item['id'])).first(),
+                    item['answer'])
+
+    def append_questionnaire(self, responses, good, can_be_improved, email):
+        """A method for appending a questionnairy to the user given responses
+        
+        :param responses: A list of dict objects containing the id of a :class:`QuestionnaireItem` (key = 'id'), the phrasing (key = 'phrasing') and an answer (key = 'answer')
+        :type responses: list(dict)
+        :param good: A description of what was good about the software according to the user
+        :type good: string
+        :param can_be_improved: A description of what can be improved about the software according to the user
+        :type can_be_improved: string
+        """
+        assert isinstance(responses, list)
+        assert all(isinstance(response, dict) for response in responses)
+        assert isinstance(good, str)
+        assert isinstance(can_be_improved, str)
+        for response in responses:
+            self.user.questionnaire.append_answer(
+                    QuestionnaireItem.objects(id=response['id']).first(),
+                    response['phrasing'],
+                    response['answer'])
+        self.user.questionnaire.good = good
+        self.user.questionnaire.can_be_improved = can_be_improved
+        self.user.email = email
 
     def provide_learning(self):
         """Provides a dict containing relevant information for learning
@@ -202,7 +252,7 @@ class Controller():
         """
         assert isinstance(item, Flashcard) or isinstance(item, Edge)
         
-        msg = {'keyword': "LEARNING-RESPONSE", 'data': {}}
+        msg = {'keyword': "LEARN-RESPONSE", 'data': {}}
         if self.user.condition == "FLASHMAP":
             cmap = self.concept_map.get_partial_map(item, self.user.read_sources)
             siblings = self.concept_map.find_siblings(item, self.user.read_sources, cmap.edges)
@@ -216,7 +266,6 @@ class Controller():
             msg['data'] = dmap
         elif self.user.condition == "FLASHCARD":
             msg['data'] = item.to_dict()
-        msg['condition'] = self.user.condition
         msg['time_up'] = self.user.time_spend_today() > self.required_time
         return msg
 
@@ -256,5 +305,4 @@ class Controller():
                         elif (instance.get_exponent() < 6): msg["data"]["learning"] += 1
                         else: msg["data"]["learned"] += 1
                 if (not seen): msg["data"]["not_seen"] += 1
-        msg['data']['condition'] = self.user.condition
         return msg

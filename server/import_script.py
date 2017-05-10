@@ -104,7 +104,7 @@ for user_old in db_old.users.find():
     if 'successfull_days' in user_old:
         user_new.successful_days = [datetime.fromtimestamp(day) for day in user_old['successfull_days']]
     if 'addedtolist' in user_old:
-        user_new.briefed = user_old['addedtolist']
+        user_new.debriefed = user_old['addedtolist']
     if 'flashedges' in user_old:
         for i in user_old['flashedges']:
             instance = None

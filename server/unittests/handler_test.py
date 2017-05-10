@@ -121,14 +121,16 @@ class TestHandler(unittest.TestCase):
         response = {
                 'keyword': "DESCRIPTIVES-REQUEST",
                 'data': {},
+                'condition': "FLASHMAP",
                 'successful_days': 0
                 }
-        self.assertEqual(self.fc_controller.controller(keyword, data),
-                response)
+        with self.subTest(i='Authenticate test'):
+            self.assertEqual(self.fc_controller.controller(keyword, data),
+                    response)
 
         keyword = "DESCRIPTIVES-RESPONSE"
         data = {
-                'birthdate': datetime(1990, 12, 25),
+                'birthdate': datetime(1990, 12, 25).isoformat(),
                 'gender': 'male',
                 'code': "CODE42"
                 }
@@ -136,11 +138,11 @@ class TestHandler(unittest.TestCase):
         self.assertEqual(response['keyword'], "TEST-REQUEST")
 
         flashcard_responses = [{
-            'flashcard': Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
+            'id': f['id'],
             'answer': f['question']
             } for f in response['data']['flashcards']]
         item_responses = [{
-            'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
+            'id': i['id'],
             'answer': i['question']
             } for i in response['data']['items']]
         response = self.fc_controller.controller("TEST-RESPONSE",
@@ -156,15 +158,14 @@ class TestHandler(unittest.TestCase):
         user.birthdate = datetime(1990, 12, 25)
         user.code = "1234ABC"
         test = user.create_test(self.flashcards, self.test_items)
-        flashcard_responses = [{
-            'flashcard': Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
-            'answer': f['question']
-            } for f in test['flashcards']]
-        item_responses = [{
-            'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
-            'answer': i['question']
-            } for i in test['items']]
-        user.append_test(flashcard_responses, item_responses)
+        for f in test['flashcards']:
+            user.tests[0].append_flashcard(
+                    Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
+                    f['question'])
+        for i in test['items']:
+            user.tests[0].append_item(
+                    TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
+                    i['question'])
         user.save(cascade = True, validate = False)
 
         #tests
@@ -180,14 +181,14 @@ class TestHandler(unittest.TestCase):
         data = {'source': "0"}
         learning_response_1 = self.fc_controller.controller(keyword, data)
         with self.subTest(i="Test learning response"):
-            self.assertEqual(learning_response_1['keyword'], "LEARNING-RESPONSE")
+            self.assertEqual(learning_response_1['keyword'], "LEARN-RESPONSE")
 
         keyword = "VALIDATE"
         validate_message = [{'id': learning_response_1['data']['id'], 'correct': True}]
         data = {'responses': validate_message}
         learning_response_2 = self.fc_controller.controller(keyword, data)
         with self.subTest(i="Test validate"):
-            self.assertEqual(learning_response_2['keyword'], "LEARNING-RESPONSE")
+            self.assertEqual(learning_response_2['keyword'], "LEARN-RESPONSE")
             self.assertNotEqual(learning_response_2, learning_response_1)
 
         keyword = "UNDO"
@@ -203,15 +204,14 @@ class TestHandler(unittest.TestCase):
         user.birthdate = datetime(1990, 12, 25)
         user.code = "1234ABC"
         test = user.create_test(self.flashcards, self.test_items)
-        flashcard_responses = [{
-            'flashcard': Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
-            'answer': f['question']
-            } for f in test['flashcards']]
-        item_responses = [{
-            'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
-            'answer': i['question']
-            } for i in test['items']]
-        user.append_test(flashcard_responses, item_responses)
+        for f in test['flashcards']:
+            user.tests[0].append_flashcard(
+                    Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
+                    f['question'])
+        for i in test['items']:
+            user.tests[0].append_item(
+                    TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
+                    i['question'])
         user.save(cascade = True, validate = False)
 
         #tests
@@ -227,7 +227,7 @@ class TestHandler(unittest.TestCase):
         data = src_request['data']
         learning_response_1 = self.fm_controller.controller(keyword, data)
         with self.subTest(i="Test learning response"):
-            self.assertEqual(learning_response_1['keyword'], "LEARNING-RESPONSE")
+            self.assertEqual(learning_response_1['keyword'], "LEARN-RESPONSE")
 
         keyword = "VALIDATE"
         validate_message = [{'id': instance['id'], 'correct': True}
@@ -235,7 +235,7 @@ class TestHandler(unittest.TestCase):
         data = {'responses': validate_message}
         learning_response_2 = self.fm_controller.controller(keyword, data)
         with self.subTest(i="Test validate"):
-            self.assertEqual(learning_response_2['keyword'], "LEARNING-RESPONSE")
+            self.assertEqual(learning_response_2['keyword'], "LEARN-RESPONSE")
             self.assertNotEqual(learning_response_2, learning_response_1)
 
         keyword = "UNDO"
@@ -250,16 +250,23 @@ class TestHandler(unittest.TestCase):
         user.gender = "male"
         user.birthdate = datetime(1990, 12, 25)
         user.code = "1234ABC"
-        test = user.create_test(self.flashcards, self.test_items)
+        pretest = user.create_test(self.flashcards, self.test_items)
+        for f in pretest['flashcards']:
+            user.tests[0].append_flashcard(
+                    Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
+                    f['question'])
+        for i in pretest['items']:
+            user.tests[0].append_item(
+                    TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
+                    i['question'])
         flashcard_responses_1 = [{
-            'flashcard': Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
+            'id': f['id'],
             'answer': f['question']
-            } for f in test['flashcards']]
+            } for f in pretest['flashcards']]
         item_responses_1 = [{
-            'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
+            'id': i['id'],
             'answer': i['question']
-            } for i in test['items']]
-        user.append_test(flashcard_responses_1, item_responses_1)
+            } for i in pretest['items']]
         for i in range(1,8):
             user.successful_days.append(datetime(2000, 1, i))
         user.save(cascade = True, validate = False)
@@ -270,11 +277,11 @@ class TestHandler(unittest.TestCase):
             self.assertEqual(posttest['keyword'], "TEST-REQUEST")
         
         flashcard_responses_2 = [{
-            'flashcard': Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
+            'id': f['id'],
             'answer': f['question']
             } for f in posttest['data']['flashcards']]
         item_responses_2 = [{
-            'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
+            'id': i['id'],
             'answer': i['question']
             } for i in posttest['data']['items']]
         questionnaire = self.fc_controller.controller("TEST-RESPONSE", 
@@ -282,12 +289,12 @@ class TestHandler(unittest.TestCase):
                     'item_responses': item_responses_2})
         with self.subTest(i="Test questionnaire request"):
             self.assertEqual(questionnaire['keyword'], "QUESTIONNAIRE-REQUEST")
-            self.assertTrue(set([response['flashcard'] for 
+            self.assertTrue(set([response['id'] for 
                 response in flashcard_responses_1]).isdisjoint([
-                    response['flashcard'] for response in flashcard_responses_2]))
-            self.assertTrue(set([response['item'] for 
+                    response['id'] for response in flashcard_responses_2]))
+            self.assertTrue(set([response['id'] for 
                 response in item_responses_1]).isdisjoint([
-                    response['item'] for response in item_responses_2]))
+                    response['id'] for response in item_responses_2]))
 
 if __name__ == '__main__':
     f = open("test_output.txt", "w")

@@ -145,14 +145,14 @@ class TestController(unittest.TestCase):
             self.assertEqual(test_request_1['keyword'], "TEST-REQUEST")
 
         flashcard_responses_1 = [{
-            'flashcard': Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
+            'id': f['id'],
             'answer': f['question']
             } for f in test_request_1['data']['flashcards']]
         item_responses_1 = [{
-            'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
+            'id': i['id'],
             'answer': i['question']
             } for i in test_request_1['data']['items']]
-        self.fc_controller.user.append_test(flashcard_responses_1, item_responses_1)
+        self.fc_controller.append_test(flashcard_responses_1, item_responses_1)
         with self.subTest(i="Tested user"):
             self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
         
@@ -162,26 +162,27 @@ class TestController(unittest.TestCase):
             self.assertEqual(test_request_2['keyword'], "TEST-REQUEST")
         
         flashcard_responses_2 = [{
-            'flashcard': Flashcard.objects(id=objectid.ObjectId(f['id'])).first(),
+            'id': f['id'],
             'answer': f['question']
             } for f in test_request_2['data']['flashcards']]
         item_responses_2 = [{
-            'item': TestItem.objects(id=objectid.ObjectId(i['id'])).first(),
+            'id': i['id'],
             'answer': i['question']
             } for i in test_request_2['data']['items']]
-        self.fc_controller.user.append_test(flashcard_responses_2, item_responses_2)
+        self.fc_controller.append_test(flashcard_responses_2, item_responses_2)
         questionnaire_request = self.fc_controller.check_prerequisites()
         with self.subTest(i="Finished tested user"):
             self.assertEqual(questionnaire_request['keyword'], "QUESTIONNAIRE-REQUEST")
 
         questionnaire_response = [{
-            'item': QuestionnaireItem.objects(id=objectid.ObjectId(q['id'])).first(),
+            'id': q['id'],
             'phrasing': q['phrasing'],
             'answer': q['question']
             } for q in questionnaire_request['data']['questionnaire']]
-        self.fc_controller.user.append_questionnaire(questionnaire_response, "good", "can_be_improved", "test@test.com")
+        self.fc_controller.append_questionnaire(questionnaire_response, "good", "can_be_improved", "test@test.com")
         with self.subTest(i="Finished questionnaired user"):
-            self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "BRIEFING")
+            self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "DEBRIEFING-REQUEST")
+            self.fc_controller.user.debriefed = True
         with self.subTest(i="Finished briefed user"):
             self.assertEqual(self.fc_controller.check_prerequisites()['keyword'], "AUTHENTICATE-RESPONSE")
     
@@ -191,7 +192,7 @@ class TestController(unittest.TestCase):
         self.fm_controller.user.add_source("1")
         self.fm_controller.user.add_new_instance(self.edges)
         self.assertEqual(self.fm_controller.learning_message(self.edges[0])['keyword'],
-                "LEARNING-RESPONSE")
+                "LEARN-RESPONSE")
         test_data = self.concept_map.get_partial_map(self.edges[0], ["1"]).to_dict()
         test_data['edges'][0]['learning'] = True
         self.assertEqual(self.fm_controller.learning_message(self.edges[0])['data'],
@@ -204,7 +205,7 @@ class TestController(unittest.TestCase):
         self.fc_controller.user.add_source("1")
         self.fc_controller.user.add_new_instance(self.flashcards)
         self.assertEqual(self.fc_controller.learning_message(self.flashcards[0])['keyword'],
-                "LEARNING-RESPONSE")
+                "LEARN-RESPONSE")
         self.assertEqual(self.fc_controller.learning_message(self.flashcards[0])['data'],
                 self.flashcards[0].to_dict())
 
@@ -275,7 +276,6 @@ class TestController(unittest.TestCase):
             self.fc_controller.user.add_source(source)
         result = {'keyword': "LEARNED_ITEMS-RESPONSE",
                 'data': {
-                    'condition': "FLASHCARD",
                     'due': 0,
                     'new': 0,
                     'learning': 0,
@@ -316,7 +316,7 @@ class TestController(unittest.TestCase):
         self.fm_controller.authenticate("test")
         self.fm_controller.user.condition = "FLASHMAP"
         result = {'keyword': "LEARNED_ITEMS-RESPONSE",
-                'data': {'condition': "FLASHMAP"}}
+                'data': {}}
         result_map = ConceptMap([], [])
         result['data'].update(result_map.to_dict())
         self.assertEqual(self.fm_controller.provide_learned_items(), result)

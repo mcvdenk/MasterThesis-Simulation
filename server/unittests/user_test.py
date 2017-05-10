@@ -133,37 +133,11 @@ class TestUser(unittest.TestCase):
         self.assertCountEqual(pretest['items'] + posttest['items'],
                 [item.to_dict() for item in self.test_items])
         
-
-    def test_append_test(self):
-        pretest = self.fc_user.create_test(flashcards = self.flashcards, items = self.test_items)
-        flashcard_responses = [{
-                'flashcard': Flashcard.objects(id=card['id']).first(),
-                'answer': card['question']
-                } for card in pretest['flashcards']]
-        item_responses = [{
-                'item': TestItem.objects(id=item['id']).first(),
-                'answer': item['question']
-                } for item in pretest['items']]
-        self.fc_user.append_test(flashcard_responses = flashcard_responses, item_responses = item_responses)
-
     def test_create_questionnaire(self):
         self.assertCountEqual(self.fc_user.create_questionnaire(
                 pu_items = self.pu_items, peou_items = self.peou_items),
                 [item.to_dict(False) for item in self.pu_items + self.peou_items] + 
                 [item.to_dict(True) for item in self.pu_items + self.peou_items])
-
-    def test_append_questionnaire(self):
-        questionnaire = self.fc_user.create_questionnaire(
-                pu_items = self.pu_items, peou_items = self.peou_items)
-        questionnaire_responses = [{
-                'item' : QuestionnaireItem.objects(id=item['id']).first(),
-                'phrasing' : item['phrasing'],
-                'answer' : item['question']
-                } for item in questionnaire]
-        self.fc_user.append_questionnaire(questionnaire_responses, "good", "can_be_improved", "test@test.com")
-        self.assertEqual(self.fc_user.questionnaire.good, "good")
-        self.assertEqual(self.fc_user.questionnaire.can_be_improved, "can_be_improved")
-        self.assertEqual(self.fc_user.email, "test@test.com")
 
     def test_get_due_instance_0(self):
         self.assertEqual(self.fc_user.get_due_instance(), None)

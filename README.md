@@ -19,7 +19,8 @@
   * ~~User~~
   * ~~Controller~~
 * ~~Import old database~~
-* Built user simulation
-* Adapt client.js
+* ~~Adapt client.js~~
 * Black-box testing
+  * ~~Informal tests~~
   * Design test
+  * Built user simulation
