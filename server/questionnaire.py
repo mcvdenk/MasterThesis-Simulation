@@ -8,11 +8,11 @@ class Questionnaire(EmbeddedDocument):
     :cvar perceived_usefulness_items: Responses to the perceived usefulness items from TAM
     :type perceived_usefulness_items: list(QuestionnaireResponse)
     :cvar perceived_ease_of_use_items: Responses to the perceived ease of use item from TAM
-    :type perceived_ease_of_use_items: ListField(QuestionnaireResponse)
+    :type perceived_ease_of_use_items: list(QuestionnaireResponse)
     :cvar good: A description of what was good about the software according to the user
-    :type good: StringField
+    :type good: string
     :cvar can_be_improved: A description of what could be improved according to the user
-    :type can_be_improved: StringField
+    :type can_be_improved: string
     """
     
     perceived_usefulness_items  = ListField(EmbeddedDocumentField(QuestionnaireResponse))

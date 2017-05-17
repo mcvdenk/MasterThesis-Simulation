@@ -11,19 +11,19 @@ class User(Document):
     """A class representing a user
 
     :cvar name: The username
-    :cvar type: StringField
+    :cvar type: string
     :cvar condition: The condition of the user ("FLASHMAP" or "FLASHCARD")
-    :type condition: StringField
+    :type condition: string
     :cvar birthdate: The birthdate of the user
-    :type birthdate: DateTimeField
+    :type birthdate: datetime 
     :cvar read_sources: A list of read sources by the user
-    :type read_sources: ListField(StringField)
+    :type read_sources: list(string)
     :cvar gender: The gender of the user (can be either 'male', 'female', or 'other')
-    :type gender: StringField
+    :type gender: string
     :cvar code: The code from the user's informed consent form
-    :type code: StringField
+    :type code: string 
     :cvar tests: The pre- and posttest
-    :type tests: ListField(Test)
+    :type tests: list(Test)
     :cvar questionnaire: The questionnaire
     :type questionnaire: Questionnaire
     :cvar instances: A list of instances storing the flashmap/flashcard data for the user
@@ -33,9 +33,9 @@ class User(Document):
     :cvar email: The email address for this user
     :type email: EmailField
     :cvar source_requests: The days that the user was prompted a source request
-    :type source_requests: list(DateTime)
+    :type source_requests: list(datetime)
     :cvar successful_days: The days that the user successfuly completed a session
-    :type successful_days: list(DateTime)
+    :type successful_days: list(datetime)
     :cvar debriefed: Whether the user already got the briefing after the experiment
     :type debriefed: boolean
     """

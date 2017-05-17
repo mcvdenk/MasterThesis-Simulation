@@ -1,80 +1,60 @@
-from pymongo import MongoClient
-import numpy
-from scipy import stats
+import tests
 
-db = MongoClient().flashmap
+tests.output = open('questionnaire.md', 'w')
 
-fcard_ease = []
-fcard_use = []
-fmap_ease = []
-fmap_use = []
+usefulness_gen_data = tests.prepare_questionnaire_set(
+        [user.questionnaire.perceived_usefulness_items
+        for user in tests.flashcard_users + tests.flashmap_users],
+        'usefulness_gen_data')
 
-descr_str = "sample = {:2d}, min = {: 2.0g}, max = {: 2.0g}, mean = {: 4.2f}, variance = {: 4.2f}, skew = {: 4.2f}, kurtosis = {: 4.2f}"
-ttest_str = "t-statistic = {: 6.3f}, p-value = {: 6.4f}"
-mawhu_str = "u-statistic = {: 6.3f}, p-value = {: 6.4f}"
-normt_str = "z-statistic = {: 6.3f}, p-value = {: 6.4f}"
+usefulness_fc_data = tests.prepare_questionnaire_set(
+        [user.questionnaire.perceived_usefulness_items
+        for user in tests.flashcard_users],
+        'usefulness_fc_data')
 
-f = open("Questionnaire.txt", "w")
+usefulness_fm_data = tests.prepare_questionnaire_set(
+        [user.questionnaire.perceived_usefulness_items
+        for user in tests.flashmap_users],
+        'usefulness_fm_data')
 
-def wl(string = ""):
-    f.write(string + "\n")
+easeofuse_gen_data = tests.prepare_questionnaire_set(
+        [user.questionnaire.perceived_ease_of_use_items
+        for user in tests.flashcard_users + tests.flashmap_users],
+        'easeofuse_gen_data')
 
-def print_descriptives(lst):
-    n, (smin, smax), sm, sv, ss, sk = stats.describe(lst)
-    smin = int(smin)
-    smax = int(smax)
-    return descr_str.format(n, smin, smax, sm, sv, ss, sk)
+easeofuse_fc_data = tests.prepare_questionnaire_set(
+        [user.questionnaire.perceived_ease_of_use_items
+        for user in tests.flashcard_users],
+        'easeofuse_fc_data')
 
-def print_t_test(lst1, lst2):
-    t, p = stats.ttest_ind(lst1, lst2, equal_var=False)
-    return ttest_str.format(t, p)
+easeofuse_fm_data = tests.prepare_questionnaire_set(
+        [user.questionnaire.perceived_ease_of_use_items
+        for user in tests.flashmap_users],
+        'easeofuse_fm_data')
 
-def print_normaltest(lst):
-    k, p = stats.normaltest(lst)
-    return normt_str.format(k, p)
+def wl(text):
+    tests.wl(text)
 
-def print_mann_whitney_u_test(lst1, lst2):
-    u, p = stats.ttest_ind(lst1, lst2)
-    return mawhu_str.format(u, p)
+wl('## Reliability')
+wl('### Usefulness')
+wl('#### Flashcard conditions')
+tests.print_qu_reliability_table(usefulness_fc_data)
+wl('![Questionnaire item scores](usefulness_fc_data_diff.png "Questionnaire item scores")')
+wl('![Questionnaire person scores](usefulness_fc_data_abil.png "Questionnaire person scores")')
+wl('')
+wl('#### Flashmap conditions')
+tests.print_qu_reliability_table(usefulness_fm_data)
+wl('![Questionnaire item scores](usefulness_fm_data_diff.png "Questionnaire item scores")')
+wl('![Questionnaire person scores](usefulness_fm_data_abil.png "Questionnaire person scores")')
+wl('')
+wl('#### Combined conditions')
+tests.print_qu_reliability_table(usefulness_gen_data)
+wl('![Questionnaire item scores](usefulness_gen_data_diff.png "Questionnaire item scores")')
+wl('![Questionnaire person scores](usefulness_gen_data_abil.png "Questionnaire person scores")')
+wl('')
 
-for user in db.users.find({"questionnaire": {"$exists": True}, "name": {"$ne": "test3"}}):
-    ease_sum = 0
-    for neg_ease in user["questionnaire"]["perceived_ease_of_use"]["negative"]:
-        ease_sum -= int(neg_ease["value"])
-    for pos_ease in user["questionnaire"]["perceived_ease_of_use"]["positive"]:
-        ease_sum += int(pos_ease["value"])
-    if (len(user["questionnaire"]["perceived_ease_of_use"]["negative"]) + len(user["questionnaire"]["perceived_ease_of_use"]["positive"])):
-        ease_avg = ease_sum / (len(user["questionnaire"]["perceived_ease_of_use"]["negative"]) + len(user["questionnaire"]["perceived_ease_of_use"]["positive"]))
-    
-    use_sum = 0
-    for neg_use in user["questionnaire"]["perceived_usefulness"]["negative"]:
-        use_sum -= int(neg_use["value"])
-    for pos_use in user["questionnaire"]["perceived_usefulness"]["positive"]:
-        use_sum += int(pos_use["value"])
-    if (len(user["questionnaire"]["perceived_usefulness"]["negative"]) + len(user["questionnaire"]["perceived_usefulness"]["positive"])):
-        use_avg = use_sum / (len(user["questionnaire"]["perceived_usefulness"]["negative"]) + len(user["questionnaire"]["perceived_usefulness"]["positive"]))
-
-    if (user["flashmap_condition"]):
-        fmap_ease.append(ease_avg)
-        fmap_use.append(use_avg)
-    else:
-        fcard_ease.append(ease_avg)
-        fcard_use.append(use_avg)
-
-wl("=== Perceived usefulness ===")
-wl()
-wl("Flashcard condition : " + print_descriptives(fcard_use))
-wl("Normality test      : " + print_normaltest(fcard_use))
-wl("Flashmap condition  : " + print_descriptives(fmap_use))
-wl("Normality test      : " + print_normaltest(fmap_use))
-wl("T-test              : " + print_t_test(fcard_use, fmap_use))
-wl("Mann-Whitney-U test : " + print_mann_whitney_u_test(fcard_use, fmap_use))
-wl()
-wl("=== Perceived ease of use ===")
-wl()
-wl("Flashcard condition : " + print_descriptives(fcard_ease))
-wl("Normality test      : " + print_normaltest(fcard_ease))
-wl("Flashmap condition  : " + print_descriptives(fmap_ease))
-wl("Normality test      : " + print_normaltest(fmap_ease))
-wl("T-test              : " + print_t_test(fcard_ease, fmap_ease))
-wl("Mann-Whitney-U test : " + print_mann_whitney_u_test(fcard_ease, fmap_ease))
+wl('## Comparisons')
+wl('### Perceived usefulness questions')
+tests.print_qu_condition_comparison_table(usefulness_fc_data, usefulness_fm_data)
+wl('### Perceived ease of use questions')
+tests.print_qu_condition_comparison_table(easeofuse_fc_data, easeofuse_fm_data)

@@ -5,10 +5,13 @@ class TestItemResponse(Document):
     """A class representing singular answers to test items
 
     :cvar answer: The answer to item provided by the user
-    :type answer: StringField
-    :cvar item: The specific item this response refers to
-    :type item: TestItem
+    :type answer: string
+    :cvar reference: The specific item this response refers to
+    :type reference: TestItem
+    :cvar scores: The list of correct response elements in the answer
+    :type scores: list(string)
     """
     
     answer = StringField(default="")
-    item = ReferenceField(TestItem)
+    reference = ReferenceField(TestItem)
+    scores = ListField(StringField())

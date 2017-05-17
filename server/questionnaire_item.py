@@ -4,11 +4,11 @@ class QuestionnaireItem(Document):
     """A class representing a single item on the questionnaire
 
     :cvar usefulness: Defines whether the item is part of the perceived usefulness items (True) or of the perceived ease of use items (False)
-    :type usefulness: BooleanField
+    :type usefulness: boolean
     :cvar positive_phrasing: The version of this item which is positively phrased
-    :type positive_phrasing: StringField
+    :type positive_phrasing: string
     :cvar negative_phrasing: The version of this item which is negatively phrased
-    :type negative_phrasing: StringField
+    :type negative_phrasing: string
     """
     
     usefulness = BooleanField(required=True)

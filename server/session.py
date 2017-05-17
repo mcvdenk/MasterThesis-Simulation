@@ -5,13 +5,13 @@ class Session(EmbeddedDocument):
     """A class representing a session the user was logged in
 
     :cvar start: The time that the user logged in
-    :type start: DateTimeField
+    :type start: datetime
     :cvar end: The time that the user logged out
-    :type end: DateTimeField
+    :type end: datetime
     :cvar source_prompted: Whether the user was asked to have read a certain source from SOURCES
-    :type source_prompted: BooleanField
+    :type source_prompted: boolean
     :cvar browser: The type of browser used to log in
-    :type browser: StringField
+    :type browser: string
     """
     
     start = DateTimeField(default = datetime.now)

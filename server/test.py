@@ -7,9 +7,9 @@ class Test(EmbeddedDocument):
     """A class representing a pre- or posttest the user filled in
 
     :cvar test_flashcard_responses: A list of responses to the flashcard questions on the test
-    :type test_flashcard_responses: TestFlashcardResponse
+    :type test_flashcard_responses: list(TestFlashcardResponse)
     :cvar test_item_responses: A list of responses to the item questions on the test
-    :type test_item_responses: TestItemResponse
+    :type test_item_responses: list(TestItemResponse)
     """
     
     test_flashcard_responses = ListField(EmbeddedDocumentField('TestFlashcardResponse'), default = [])
@@ -27,8 +27,8 @@ class Test(EmbeddedDocument):
         :param prev_items: The list of items to be excluded from this test
         :type prev_items: list(TestItem)
         """
-        self.test_flashcard_responses = [TestFlashcardResponse(flashcard=fc) for fc in self.randomise(flashcards, prev_flashcards)]
-        self.test_item_responses = [TestItemResponse(item=item) for item in self.randomise(items, prev_items)]
+        self.test_flashcard_responses = [TestFlashcardResponse(reference=fc) for fc in self.randomise(flashcards, prev_flashcards)]
+        self.test_item_responses = [TestItemResponse(reference=item) for item in self.randomise(items, prev_items)]
 
     def randomise(self, items, prev_items):
         """A method for taking five random items in a random order from the provided list of items without the items in the previous items
@@ -62,7 +62,7 @@ class Test(EmbeddedDocument):
         assert isinstance(answer, str)
 
         for response in self.test_flashcard_responses:
-            if flashcard is response.flashcard:
+            if flashcard is response.reference:
                 response.answer = answer
 
     def append_item(self, item, answer):
@@ -77,5 +77,5 @@ class Test(EmbeddedDocument):
         assert isinstance(answer, str)
 
         for response in self.test_item_responses:
-            if item is response.item:
+            if item is response.reference:
                 response.answer = answer

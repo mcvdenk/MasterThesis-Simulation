@@ -5,13 +5,13 @@ class Flashcard(Document):
     """A class representing a flashcard
 
     :cvar question: The question on the front side of the flashcard
-    :type question: StringField
+    :type question: string
     :cvar answer: The answer on the back side of the flashcard
-    :type answer: StringField
+    :type answer: string
     :cvar sources: The edges where this flashcard is based on
-    :type sources: ListField(Edge)
+    :type sources: list(Edge)
     :cvar response_model: A list consisting of parts of valid responses to the question (for the test matrix)
-    :type response_model: ListField(StringField)
+    :type response_model: list(string)
     """
     
     question = StringField(required=True)

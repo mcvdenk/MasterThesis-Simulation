@@ -6,9 +6,9 @@ class ConceptMap(Document):
     """A class representing a concept map
 
     :cvar nodes: a list of nodes (by default all existing node documents)
-    :type nodes: ListField(Node)
+    :type nodes: list(Node)
     :cvar edges: a list of edges (by default all existing edge documents)
-    :type edges: ListField(Edge)
+    :type edges: list(Edge)
     """
     nodes = ListField(ReferenceField(Node))
     edges = ListField(ReferenceField(Edge))

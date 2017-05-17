@@ -4,7 +4,7 @@ class Node(Document):
     """A class for representing nodes in the concept map
 
     :cvar label: The label appearing within the node
-    :type label: StringField
+    :type label: string
     """
     
     label = StringField(default = "")

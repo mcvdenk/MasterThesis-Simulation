@@ -8,11 +8,11 @@ class LogEntry(Document):
     :cvar user: The user which was involved with this network message
     :type user: User
     :cvar keyword: The network keyword
-    :type keyword: StringField
+    :type keyword: string
     :cvar data: The dictionary containing the necessary data
-    :type data: DictField
+    :type data: dict
     :cvar time: The time that this message was received or transmitted
-    :type time: DateField
+    :type time: datetime
     """
     
     user = ReferenceField(User)
