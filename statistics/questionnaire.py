@@ -2,32 +2,32 @@ import tests
 
 tests.output = open('questionnaire.md', 'w')
 
-usefulness_gen_data = tests.prepare_questionnaire_set(
+usefulness_gen_data = tests.prepare_unary_set(
         [user.questionnaire.perceived_usefulness_items
         for user in tests.flashcard_users + tests.flashmap_users],
         'usefulness_gen_data')
 
-usefulness_fc_data = tests.prepare_questionnaire_set(
+usefulness_fc_data = tests.prepare_unary_set(
         [user.questionnaire.perceived_usefulness_items
         for user in tests.flashcard_users],
         'usefulness_fc_data')
 
-usefulness_fm_data = tests.prepare_questionnaire_set(
+usefulness_fm_data = tests.prepare_unary_set(
         [user.questionnaire.perceived_usefulness_items
         for user in tests.flashmap_users],
         'usefulness_fm_data')
 
-easeofuse_gen_data = tests.prepare_questionnaire_set(
+easeofuse_gen_data = tests.prepare_unary_set(
         [user.questionnaire.perceived_ease_of_use_items
         for user in tests.flashcard_users + tests.flashmap_users],
         'easeofuse_gen_data')
 
-easeofuse_fc_data = tests.prepare_questionnaire_set(
+easeofuse_fc_data = tests.prepare_unary_set(
         [user.questionnaire.perceived_ease_of_use_items
         for user in tests.flashcard_users],
         'easeofuse_fc_data')
 
-easeofuse_fm_data = tests.prepare_questionnaire_set(
+easeofuse_fm_data = tests.prepare_unary_set(
         [user.questionnaire.perceived_ease_of_use_items
         for user in tests.flashmap_users],
         'easeofuse_fm_data')
@@ -35,7 +35,7 @@ easeofuse_fm_data = tests.prepare_questionnaire_set(
 def wl(text):
     tests.wl(text)
 
-wl('## Reliability')
+wl('## Descriptives')
 wl('### Usefulness')
 wl('#### Flashcard conditions')
 tests.print_qu_reliability_table(usefulness_fc_data)

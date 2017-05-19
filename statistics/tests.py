@@ -26,7 +26,7 @@ from user import *
 
 connect("flashmap")
 
-descr_str = "{:2d} | {: 2.0g} | {: 2.0g} | {: 4.2f} | {: 4.2f} | {: 4.2f} | {: 4.2f}"
+descr_str = "{:2d} | {: 2d} | {: 2d} | {: 4.2f} | {: 4.2f} | {: 4.2f} | {: 4.2f}"
 test_str = "{: 6.3f} | {: 6.4f}"
 rel_str = "{: 6.4f}"
 
@@ -34,9 +34,11 @@ flashcard_users = list(User.objects(condition="FLASHCARD", tests__size=2))
 flashmap_users = list(User.objects(condition="FLASHMAP", tests__size=2))
 
 sorted_lg_keys = ['ctt', 'irt', 'adjusted irt']
-sorted_lg_subkeys = ['pretest', 'posttest', 'abs_learn_gain', 'rel_learn_gain']
+sorted_lg_subkeys = ['total', 'pretest', 'posttest', 'abs_learn_gain', 'rel_learn_gain']
 
 sorted_qu_keys = ['ctt', 'irt']
+
+unrel_cs = []
 
 output = sys.stdout
 
@@ -48,7 +50,7 @@ def wl(string = ""):
 
 def print_descriptives(lst):
     n, (smin, smax), sm, sv, ss, sk = stats.describe(lst)
-    return descr_str.format(n, smin, smax, sm, sv, ss, sk)
+    return descr_str.format(n, int(smin), int(smax), sm, sv, ss, sk)
 
 def print_t_test(lst1, lst2):
     t, p = stats.ttest_ind(lst1, lst2, equal_var=False)
@@ -82,43 +84,71 @@ def create_qu_item_matrix(tests):
             0, index = np.arange(len(tests)), columns=columns, dtype = 'int8')
     for test, i in zip(tests, range(len(tests))):
         for response in test:
-            print(response.answer * (2*int(response.phrasing) - 1))
             data.ix[i, str(response.questionnaire_item.id)] +=\
                     response.answer * (2*int(response.phrasing) - 1)
-    print(data)
     data = data.dropna(axis='columns', how='all')
-    data = data.loc[:, data.sum(axis=0) != 0]
-    print(data)
     return data
 
 def create_test_item_matrix(tests):
-    columns = []
+#    columns = []
     items = []
     if isinstance(tests[0][0], TestItemResponse):
         items = TestItem.objects
     elif isinstance(tests[0][0], TestFlashcardResponse):
         items = Flashcard.objects
-    for item in items:
-        for response in item.response_model:
-            columns.append(str(item.id) + ":" + response)
+    columns = [str(item.id) for item in items]
+#    for item in items:
+#        for response in item.response_model:
+#            columns.append(str(item.id) + ":" + response)
     data = pandas.DataFrame(columns=columns, dtype = 'int8')
     for test, i in zip(tests, range(len(tests))):
         for response in test:
-            for column in columns:
-                if column.split(':')[0] == str(response.reference.id):
-                    data.set_value(i, column,
-                            int(column.split(':')[1] in response.scores))
-    data = data.dropna(axis='columns', how='all')
+            data.set_value(i, str(response.reference.id), len(response.scores))
+#            for column in columns:
+#                if column.split(':')[0] == str(response.reference.id):
+#                    data.set_value(i, column,
+#                            int(column.split(':')[1] in response.scores))
+    data.dropna(axis = 'columns', inplace = True, how = 'all')
+    data.drop(unrel_cs, axis = 'columns', inplace = True, errors = 'ignore')
     return data
+
+def unrel_columns(data):
+    alpha = 0
+    max_alpha = 1
+    unrel_columns = []
+    while max_alpha > alpha and alpha < .7 and data.shape[1] > 2:
+        data.to_csv('item_matrix.csv')
+        result = subprocess.call(['Rscript', 'calculate_ctt.R'])
+        alpha = pandas.read_csv('Rel.csv', index_col=0)
+        alpha = alpha.iloc[0,0]
+        alpha_vector = pandas.read_csv('MaxRel.csv', header=0, index_col=0)
+        ind_max = alpha_vector.idxmax(axis=0)[0]
+        unrel_item = data.columns[int(ind_max) - 1]
+        max_alpha = alpha_vector.values.max()
+        
+        new_data = data.drop(unrel_item, axis=1)
+        new_data = new_data.dropna(axis='rows', how='all')
+        
+        if data.shape[0] == new_data.shape[0]:
+            data = new_data
+            unrel_columns.append(unrel_item)
+        else:
+            break
+    return unrel_columns
+    
 
 def calculate_ctt(data):
     result_dict = {
-            'abilities': data.sum(axis=1, skipna=True),
+            'abilities': data.sum(axis=1, skipna=True).fillna(0),
             'reliability': 0}
-    data.T.to_csv('item_matrix.csv')
-    result = subprocess.check_output(['Rscript', 'calculate_ctt.R'])
-    alpha = result.decode().split(' ')[1]
-    alpha = float(alpha[:-2])
+    if data.size == 0:
+        return None
+    alpha = 0
+    max_alpha = 1
+    data.to_csv('item_matrix.csv')
+    result = subprocess.call(['Rscript', 'calculate_ctt.R'])
+    alpha = pandas.read_csv('Rel.csv', index_col=0)
+    alpha = alpha.iloc[0,0]
     result_dict['reliability'] = alpha
     return result_dict
 
@@ -163,9 +193,9 @@ def execute_tests(pretest, posttest, max_score):
                 for i in range(len(pretest['abilities']))]
         result['rel_learn_gain']['reliability'] = \
                 min(pretest['reliability'], posttest['reliability'])
-        return result
+    return result
 
-def plot_histograms(matrix, prefix):
+def plot_uni_histograms(matrix, prefix):
     plot.hist(matrix.sum(axis=0))
     plot.title(prefix+" item scores")
     plot.xlabel('Score')
@@ -179,31 +209,59 @@ def plot_histograms(matrix, prefix):
     plot.savefig(prefix+'_abil.png')
     plot.close()
 
-def prepare_questionnaire_set(tests, prefix, xsi = ''):
+def plot_bin_histograms(matrix1, matrix2, label1, label2, prefix):
+    plot.hist([matrix1.sum(axis=0), matrix2.sum(axis=0)], label = [label1, label2])
+    plot.legend()
+    plot.title(prefix+" item scores")
+    plot.xlabel('Score')
+    plot.ylabel('Frequency')
+    plot.savefig(prefix+'_diff.png')
+    plot.close()
+    plot.hist([matrix1.sum(axis=1), matrix2.sum(axis=1)], label = [label1, label2])
+    plot.legend()
+    plot.xlabel('Score')
+    plot.ylabel('Frequency')
+    plot.title(prefix+" person scores")
+    plot.savefig(prefix+'_abil.png')
+    plot.close()
+
+def prepare_unary_set(tests, prefix, xsi = ''):
     result = {key: {} for key in sorted_qu_keys}
     matrix = create_qu_item_matrix(tests)
-    plot_histograms(matrix, prefix)
     matrix.to_csv(prefix+'.csv')
+    plot_uni_histograms(matrix, prefix)
     result['ctt'] = calculate_ctt(matrix)
     result['irt'] = calculate_irt(matrix)
     return result
 
-def prepare_test_set(testsets, prefix, xsi = ''):
+def prepare_binary_set(testsets, prefix, xsi = ''):
     result = {key: {} for key in sorted_lg_keys}
+    total_matrix = create_test_item_matrix(
+            [testset[0] for testset in testsets]
+            + [testset[1] for testset in testsets])
+    if 'gen' in prefix:
+        global unrel_cs
+        unrel_cs = unrel_columns(total_matrix)
+        total_matrix.drop(unrel_cs, axis=1, inplace=True)
+
     pretest_matrix = create_test_item_matrix([testset[0] for testset in testsets])
-    plot_histograms(pretest_matrix, prefix + '_pretest')
-    pretest_matrix.to_csv(prefix+'_pretest.csv')
     posttest_matrix = create_test_item_matrix([testset[1] for testset in testsets])
-    plot_histograms(posttest_matrix, prefix + '_posttest')
+    
+    total_matrix.to_csv(prefix+'_total.csv')
+    pretest_matrix.to_csv(prefix+'_pretest.csv')
     posttest_matrix.to_csv(prefix+'_posttest.csv')
+    plot_bin_histograms(pretest_matrix, posttest_matrix, 'pretest', 'posttest', prefix)
+    
     result['ctt'] = execute_tests(
             calculate_ctt(pretest_matrix),
             calculate_ctt(posttest_matrix),
             posttest_matrix.shape[1])
+    result['ctt']['total'] = calculate_ctt(total_matrix)
     result['irt'] = execute_tests(
             calculate_irt(pretest_matrix),
             calculate_irt(posttest_matrix),
             posttest_matrix.shape[1])
+    result['irt']['total'] = calculate_irt(total_matrix)
     result['adjusted irt'] = execute_tests(
             calculate_irt(pretest_matrix, xsi=xsi),
             calculate_irt(posttest_matrix, xsi=xsi),

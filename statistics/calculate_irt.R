@@ -1,6 +1,7 @@
 library("TAM")
 
-D1 <- read.csv("item_matrix.csv")
+D1 <- read.csv("item_matrix.csv", row.names = 1)
+
 mod1 <- tam(D1, control = list(maxiter = 10))
 #mod1 <- tam(D1, control = list(maxiter = 100))
 #mod1 <- tam(D1)

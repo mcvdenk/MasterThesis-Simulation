@@ -1,188 +1,238 @@
-## Reliability
+## Descriptives
 ### Knowledge questions
 #### Flashcard conditions
 
 | | sample | min | max | mean | variance | skew | kurtosis | normal-t | normal-p | $\alpha$ |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **ctt:pretest** | 12 |  0 |  3 |  1.00 |  1.45 |  0.65 | -1.12 |  2.318 |  0.3139 | -0.2094 |
-| **ctt:posttest** | 12 |  0 |  6 |  2.25 |  5.66 |  0.58 | -1.24 |  2.577 |  0.2756 | -0.5208 |
-| **ctt:abs_learn_gain** | 12 | -3 |  6 |  1.25 |  7.11 |  0.62 | -0.28 |  1.533 |  0.4647 | -0.5208 |
-| **ctt:rel_learn_gain** | 12 | -0.05 |  0.1 |  0.02 |  0.00 |  0.56 | -0.30 |  1.276 |  0.5283 | -0.5208 |
-| **irt:pretest** | 12 | -1 |  1 |  0.04 |  0.70 |  0.13 | -1.20 |  1.263 |  0.5318 |  0.7170 |
-| **irt:posttest** | 12 | -2 |  3 |  0.13 |  2.18 |  0.12 | -0.70 |  0.073 |  0.9643 |  0.8203 |
-| **irt:abs_learn_gain** | 12 | -1 |  1 |  0.09 |  0.46 |  0.14 | -0.07 |  0.566 |  0.7534 |  0.7170 |
-| **irt:rel_learn_gain** | 12 | -0.02 |  0.02 |  0.00 |  0.00 |  0.20 | -0.04 |  0.683 |  0.7108 |  0.7170 |
-| **adjusted irt:pretest** | 12 |  1 |  2 |  1.82 |  0.13 |  0.04 | -1.36 |  2.239 |  0.3264 |  0.5316 |
-| **adjusted irt:posttest** | 12 |  1 |  3 |  1.84 |  0.17 |  0.06 | -1.06 |  0.638 |  0.7267 |  0.5729 |
-| **adjusted irt:abs_learn_gain** | 12 | -0.1 |  0.3 |  0.02 |  0.01 |  1.04 |  0.18 |  4.412 |  0.1101 |  0.5316 |
-| **adjusted irt:rel_learn_gain** | 12 | -0.002 |  0.005 |  0.00 |  0.00 |  1.04 |  0.17 |  4.389 |  0.1114 |  0.5316 |
+| **ctt:total** | 24 |  0 |  6 |  0.58 |  2.51 |  2.72 |  5.95 |  32.564 |  0.0000 |  0.7517 |
+| **ctt:pretest** | 12 |  0 |  0 |  0.00 |  0.00 |  0.00 | -3.00 |  1.064 |  0.5875 |    nan |
+| **ctt:posttest** | 12 |  0 |  6 |  1.17 |  4.52 |  1.55 |  0.78 |  9.207 |  0.0100 |  0.7317 |
+| **ctt:abs_learn_gain** | 12 |  0 |  6 |  1.17 |  4.52 |  1.55 |  0.78 |  9.207 |  0.0100 |    nan |
+| **ctt:rel_learn_gain** | 12 |  0 |  0 |  0.04 |  0.00 |  1.55 |  0.78 |  9.207 |  0.0100 |    nan |
+| **irt:total** | 24 |  0 |  2 | -0.00 |  0.32 |  2.18 |  6.24 |  28.201 |  0.0000 |  0.1604 |
+| **irt:posttest** | 12 |  0 |  1 |  0.01 |  0.22 |  1.80 |  3.70 |  17.766 |  0.0001 |  0.1335 |
+| **adjusted irt:posttest** | 12 |  2 |  4 |  3.03 |  0.44 |  0.08 | -1.38 |  2.424 |  0.2976 |  0.6751 |
 
-![Pretest item scores](know_fc_data_pretest_diff.png "Pretest item scores")
-![Posttest item scores](know_fc_data_posttest_diff.png "Posttest item scores")
-![Pretest person scores](know_fc_data_pretest_abil.png "Pretest person scores")
-![Posttest person scores](know_fc_data_posttest_abil.png "Posttest person scores")
+![Item scores](know_fc_diff.png "Item scores")
+![Person scores](know_fc_abil.png "Person scores")
 
 #### Flashmap conditions
 
 | | sample | min | max | mean | variance | skew | kurtosis | normal-t | normal-p | $\alpha$ |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **ctt:pretest** | 11 |  0 |  1 |  0.45 |  0.27 |  0.18 | -1.97 |  13.123 |  0.0014 | -0.0839 |
-| **ctt:posttest** | 11 |  0 |  7 |  3.09 |  5.09 |  0.27 | -0.85 |  0.353 |  0.8382 | -0.3186 |
-| **ctt:abs_learn_gain** | 11 |  0 |  7 |  2.64 |  5.45 |  0.66 | -0.75 |  1.441 |  0.4864 | -0.3186 |
-| **ctt:rel_learn_gain** | 11 |  0 |  0.1 |  0.04 |  0.00 |  0.65 | -0.76 |  1.396 |  0.4975 | -0.3186 |
-| **irt:pretest** | 11 | -2 |  2 |  0.04 |  1.24 | -0.01 | -0.95 |  0.261 |  0.8778 |  0.7466 |
-| **irt:posttest** | 11 | -0.4 |  0.5 |  0.01 |  0.06 |  0.03 | -0.56 |  0.020 |  0.9901 |  0.3979 |
-| **irt:abs_learn_gain** | 11 | -1 |  1 | -0.02 |  0.76 |  0.02 | -1.03 |  0.438 |  0.8034 |  0.3979 |
-| **irt:rel_learn_gain** | 11 | -0.02 |  0.02 | -0.00 |  0.00 | -0.03 | -1.02 |  0.432 |  0.8058 |  0.3979 |
-| **adjusted irt:pretest** | 11 | -2 |  2 |  0.04 |  1.24 | -0.01 | -0.95 |  0.261 |  0.8778 |  0.7466 |
-| **adjusted irt:posttest** | 11 | -0.4 |  0.5 |  0.01 |  0.06 |  0.03 | -0.56 |  0.020 |  0.9901 |  0.3979 |
-| **adjusted irt:abs_learn_gain** | 11 | -1 |  1 | -0.02 |  0.76 |  0.02 | -1.03 |  0.438 |  0.8034 |  0.3979 |
-| **adjusted irt:rel_learn_gain** | 11 | -0.02 |  0.02 | -0.00 |  0.00 | -0.03 | -1.02 |  0.432 |  0.8058 |  0.3979 |
+| **ctt:total** | 22 |  0 |  7 |  0.64 |  2.81 |  2.89 |  7.74 |  35.636 |  0.0000 |  0.6910 |
+| **ctt:pretest** | 11 |  0 |  1 |  0.09 |  0.09 |  2.85 |  6.10 |  31.151 |  0.0000 |  0.6751 |
+| **ctt:posttest** | 11 |  0 |  7 |  1.18 |  5.16 |  1.75 |  1.88 |  13.315 |  0.0013 |  0.6893 |
+| **ctt:abs_learn_gain** | 11 | -1 |  7 |  1.09 |  5.49 |  1.65 |  1.65 |  11.958 |  0.0025 |  0.6751 |
+| **ctt:rel_learn_gain** | 11 |  0 |  0 |  0.04 |  0.01 |  1.64 |  1.64 |  11.883 |  0.0026 |  0.6751 |
+| **irt:total** | 22 | -1 |  1 | -0.00 |  0.42 |  1.74 |  3.39 |  18.548 |  0.0001 |  0.2067 |
+| **irt:pretest** | 11 |  0 |  0 |  0.00 |  0.00 |  2.85 |  6.10 |  31.151 |  0.0000 |  0.0000 |
+| **irt:posttest** | 11 |  0 |  0 |  0.01 |  0.11 |  0.22 |  2.50 |  6.692 |  0.0352 |  0.0894 |
+| **irt:abs_learn_gain** | 11 |  0 |  0 |  0.01 |  0.11 |  0.23 |  2.50 |  6.701 |  0.0351 |  0.0000 |
+| **irt:rel_learn_gain** | 11 |  0 |  0 |  0.00 |  0.00 |  0.23 |  2.50 |  6.701 |  0.0351 |  0.0000 |
+| **adjusted irt:pretest** | 11 |  0 |  0 |  0.00 |  0.00 |  2.85 |  6.10 |  31.151 |  0.0000 |  0.0000 |
+| **adjusted irt:posttest** | 11 |  0 |  0 |  0.01 |  0.11 |  0.22 |  2.50 |  6.692 |  0.0352 |  0.0894 |
+| **adjusted irt:abs_learn_gain** | 11 |  0 |  0 |  0.01 |  0.11 |  0.23 |  2.50 |  6.701 |  0.0351 |  0.0000 |
+| **adjusted irt:rel_learn_gain** | 11 |  0 |  0 |  0.00 |  0.00 |  0.23 |  2.50 |  6.701 |  0.0351 |  0.0000 |
 
-![Pretest item scores](know_fm_data_pretest_diff.png "Pretest item scores")
-![Posttest item scores](know_fm_data_posttest_diff.png "Posttest item scores")
-![Pretest person scores](know_fm_data_pretest_abil.png "Pretest person scores")
-![Posttest person scores](know_fm_data_posttest_abil.png "Posttest person scores")
+![Item scores](know_fm_diff.png "Item scores")
+![Person scores](know_fm_abil.png "Person scores")
 
+#### General
 
 | | sample | min | max | mean | variance | skew | kurtosis | normal-t | normal-p | $\alpha$ |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **ctt:pretest** | 23 |  0 |  3 |  0.74 |  0.93 |  1.16 |  0.36 |  6.938 |  0.0311 | -0.2095 |
-| **ctt:posttest** | 23 |  0 |  7 |  2.65 |  5.33 |  0.39 | -1.13 |  3.595 |  0.1657 | -0.4489 |
-| **ctt:abs_learn_gain** | 23 | -3 |  7 |  1.91 |  6.54 |  0.47 | -0.46 |  1.170 |  0.5572 | -0.4489 |
-| **ctt:rel_learn_gain** | 23 | -0.03 |  0.06 |  0.02 |  0.00 |  0.44 | -0.45 |  1.048 |  0.5921 | -0.4489 |
-| **irt:pretest** | 23 | -1 |  1 |  0.04 |  0.44 |  0.05 | -0.97 |  1.415 |  0.4930 |  0.7853 |
-| **irt:posttest** | 23 | -2 |  2 |  0.14 |  1.28 | -0.35 | -0.78 |  1.203 |  0.5481 |  0.8661 |
-| **irt:abs_learn_gain** | 23 | -1 |  0.8 |  0.11 |  0.25 | -1.01 |  0.66 |  6.334 |  0.0421 |  0.7853 |
-| **irt:rel_learn_gain** | 23 | -0.01 |  0.007 |  0.00 |  0.00 | -0.99 |  0.62 |  6.102 |  0.0473 |  0.7853 |
-| **adjusted irt:pretest** | 23 | -1 |  1 |  0.04 |  0.44 |  0.05 | -0.97 |  1.415 |  0.4930 |  0.7853 |
-| **adjusted irt:posttest** | 23 | -2 |  2 |  0.14 |  1.28 | -0.35 | -0.78 |  1.203 |  0.5481 |  0.8661 |
-| **adjusted irt:abs_learn_gain** | 23 | -1 |  0.8 |  0.11 |  0.25 | -1.01 |  0.66 |  6.334 |  0.0421 |  0.7853 |
-| **adjusted irt:rel_learn_gain** | 23 | -0.01 |  0.007 |  0.00 |  0.00 | -0.99 |  0.62 |  6.102 |  0.0473 |  0.7853 |
+| **ctt:total** | 46 |  0 |  7 |  0.61 |  2.60 |  2.81 |  6.95 |  46.580 |  0.0000 |  0.7108 |
+| **ctt:pretest** | 23 |  0 |  1 |  0.04 |  0.04 |  4.48 |  18.05 |  57.947 |  0.0000 |  0.7015 |
+| **ctt:posttest** | 23 |  0 |  7 |  1.17 |  4.60 |  1.66 |  1.40 |  13.680 |  0.0011 |  0.6853 |
+| **ctt:abs_learn_gain** | 23 | -1 |  7 |  1.13 |  4.75 |  1.60 |  1.30 |  12.936 |  0.0016 |  0.6853 |
+| **ctt:rel_learn_gain** | 23 |  0 |  0 |  0.02 |  0.00 |  1.60 |  1.29 |  12.912 |  0.0016 |  0.6853 |
+| **irt:total** | 46 | -1 |  2 | -0.01 |  0.66 |  1.90 |  4.24 |  30.317 |  0.0000 |  0.2568 |
+| **irt:pretest** | 23 |  0 |  0 |  0.00 |  0.00 |  4.48 |  18.05 |  57.947 |  0.0000 |  0.0000 |
+| **irt:posttest** | 23 | -1 |  1 |  0.01 |  0.37 |  1.18 |  2.00 |  10.851 |  0.0044 |  0.2123 |
+| **irt:abs_learn_gain** | 23 | -1 |  1 |  0.01 |  0.37 |  1.18 |  2.00 |  10.871 |  0.0044 |  0.0000 |
+| **irt:rel_learn_gain** | 23 |  0 |  0 |  0.00 |  0.00 |  1.18 |  2.00 |  10.871 |  0.0044 |  0.0000 |
+| **adjusted irt:pretest** | 23 |  0 |  0 |  0.00 |  0.00 |  4.48 |  18.05 |  57.947 |  0.0000 |  0.0000 |
+| **adjusted irt:posttest** | 23 | -1 |  1 |  0.01 |  0.37 |  1.18 |  2.00 |  10.851 |  0.0044 |  0.2123 |
+| **adjusted irt:abs_learn_gain** | 23 | -1 |  1 |  0.01 |  0.37 |  1.18 |  2.00 |  10.871 |  0.0044 |  0.0000 |
+| **adjusted irt:rel_learn_gain** | 23 |  0 |  0 |  0.00 |  0.00 |  1.18 |  2.00 |  10.871 |  0.0044 |  0.0000 |
 
-![Pretest item scores](know_gen_data_pretest_diff.png "Pretest item scores")
-![Posttest item scores](know_gen_data_posttest_diff.png "Posttest item scores")
-![Pretest person scores](know_gen_data_pretest_abil.png "Pretest person scores")
-![Posttest person scores](know_gen_data_posttest_abil.png "Posttest person scores")
+![Item scores](know_gen_diff.png "Item scores")
+![Person scores](know_gen_abil.png "Person scores")
+![Item scores](know_gain_diff.png "Item scores")
+![Person scores](know_gain_abil.png "Person scores")
 
 ### Comprehension questions
 #### Flashcard conditions
 
 | | sample | min | max | mean | variance | skew | kurtosis | normal-t | normal-p | $\alpha$ |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **ctt:pretest** | 12 |  0 |  5 |  1.00 |  2.00 |  2.01 |  3.50 |  19.031 |  0.0001 |  0.7699 |
-| **ctt:posttest** | 12 |  0 |  7 |  2.67 |  6.06 |  0.29 | -1.12 |  1.155 |  0.5612 |  0.5915 |
-| **ctt:abs_learn_gain** | 12 | -1 |  5 |  1.67 |  5.88 |  0.21 | -1.61 |  5.347 |  0.0690 |  0.5915 |
-| **ctt:rel_learn_gain** | 12 | -0.02 |  0.1 |  0.03 |  0.00 |  0.22 | -1.57 |  4.821 |  0.0898 |  0.5915 |
-| **irt:pretest** | 12 | -1 |  1 |  0.00 |  0.46 |  0.34 | -1.01 |  0.896 |  0.6389 |  0.6955 |
-| **irt:posttest** | 12 | -1 |  1 |  0.02 |  0.54 | -0.46 | -0.78 |  0.806 |  0.6684 |  0.7498 |
-| **irt:abs_learn_gain** | 12 | -0.6 |  0.5 |  0.01 |  0.15 | -0.17 | -1.48 |  3.486 |  0.1750 |  0.6955 |
-| **irt:rel_learn_gain** | 12 | -0.01 |  0.009 |  0.00 |  0.00 | -0.17 | -1.46 |  3.363 |  0.1861 |  0.6955 |
-| **adjusted irt:pretest** | 12 |  1 |  2 |  1.75 |  0.07 |  0.23 | -0.77 |  0.254 |  0.8808 |  0.4545 |
-| **adjusted irt:posttest** | 12 |  1 |  2 |  1.73 |  0.18 | -0.21 | -1.01 |  0.650 |  0.7224 |  0.6194 |
-| **adjusted irt:abs_learn_gain** | 12 | -0.4 |  0.4 | -0.02 |  0.07 |  0.21 | -1.35 |  2.324 |  0.3129 |  0.4545 |
-| **adjusted irt:rel_learn_gain** | 12 | -0.008 |  0.007 | -0.00 |  0.00 |  0.22 | -1.35 |  2.358 |  0.3075 |  0.4545 |
+| **ctt:total** | 24 |  0 |  6 |  1.25 |  3.76 |  1.43 |  0.77 |  10.351 |  0.0057 |  0.5383 |
+| **ctt:pretest** | 12 |  0 |  1 |  0.17 |  0.15 |  1.79 |  1.20 |  11.982 |  0.0025 |  0.5119 |
+| **ctt:posttest** | 12 |  0 |  6 |  2.33 |  5.15 |  0.45 | -1.14 |  1.615 |  0.4460 |  0.4228 |
+| **ctt:abs_learn_gain** | 12 |  0 |  6 |  2.17 |  4.33 |  0.46 | -0.98 |  1.155 |  0.5613 |  0.4228 |
+| **ctt:rel_learn_gain** | 12 |  0 |  1 |  0.47 |  0.21 |  0.50 | -1.02 |  1.408 |  0.4947 |  0.4228 |
+| **irt:total** | 24 | -1 |  3 | -0.03 |  1.66 |  0.73 | -0.58 |  2.887 |  0.2361 |  0.5549 |
+| **irt:pretest** | 12 |  0 |  0 | -0.00 |  0.09 |  1.24 |  0.26 |  5.847 |  0.0537 |  0.0851 |
+| **irt:posttest** | 12 | -1 |  2 | -0.02 |  2.22 |  0.25 | -0.99 |  0.661 |  0.7184 |  0.7030 |
+| **irt:abs_learn_gain** | 12 | -1 |  2 | -0.02 |  1.84 | -0.00 | -1.22 |  1.323 |  0.5161 |  0.0851 |
+| **irt:rel_learn_gain** | 12 |  0 |  0 |  0.00 |  0.08 |  0.10 | -1.08 |  0.745 |  0.6890 |  0.0851 |
+| **adjusted irt:pretest** | 12 |  1 |  1 |  1.80 |  0.00 |  0.00 | -3.00 |  1.064 |  0.5875 |  1.0000 |
+| **adjusted irt:posttest** | 12 |  1 |  1 |  1.80 |  0.00 |  0.00 | -3.00 |  1.064 |  0.5875 |  1.0000 |
+| **adjusted irt:abs_learn_gain** | 12 |  0 |  0 |  0.00 |  0.00 |  0.00 | -3.00 |  1.064 |  0.5875 |  1.0000 |
+| **adjusted irt:rel_learn_gain** | 12 |  0 |  0 |  0.00 |  0.00 |  0.00 | -3.00 |  1.064 |  0.5875 |  1.0000 |
 
-![Pretest item scores](comp_fc_data_pretest_diff.png "Pretest item scores")
-![Posttest item scores](comp_fc_data_posttest_diff.png "Posttest item scores")
-![Pretest person scores](comp_fc_data_pretest_abil.png "Pretest person scores")
-![Posttest person scores](comp_fc_data_posttest_abil.png "Posttest person scores")
+![Item scores](comp_fc_diff.png "Item scores")
+![Person scores](comp_fc_abil.png "Person scores")
 
 #### Flashmap conditions
 
 | | sample | min | max | mean | variance | skew | kurtosis | normal-t | normal-p | $\alpha$ |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **ctt:pretest** | 11 |  0 |  5 |  2.00 |  2.80 |  0.40 | -1.09 |  1.167 |  0.5580 |  0.6789 |
-| **ctt:posttest** | 11 |  0 |  8 |  2.73 |  5.42 |  0.94 |  0.46 |  4.392 |  0.1112 |  0.3869 |
-| **ctt:abs_learn_gain** | 11 | -2 |  4 |  0.73 |  3.02 |  0.44 | -0.47 |  0.701 |  0.7044 |  0.3869 |
-| **ctt:rel_learn_gain** | 11 | -0.04 |  0.08 |  0.01 |  0.00 |  0.40 | -0.53 |  0.552 |  0.7589 |  0.3869 |
-| **irt:pretest** | 11 | -0.3 |  0.5 |  0.01 |  0.05 |  0.86 |  0.03 |  3.081 |  0.2143 |  0.3673 |
-| **irt:posttest** | 11 | -1e-78 |  2e-78 |  0.00 |  0.00 |  0.89 |  2.11 |  8.113 |  0.0173 |  0.0000 |
-| **irt:abs_learn_gain** | 11 | -0.5 |  0.3 | -0.01 |  0.05 | -0.86 |  0.03 |  3.081 |  0.2143 |  0.0000 |
-| **irt:rel_learn_gain** | 11 | -0.009 |  0.005 | -0.00 |  0.00 | -0.88 |  0.06 |  3.214 |  0.2005 |  0.0000 |
-| **adjusted irt:pretest** | 11 | -0.3 |  0.5 |  0.01 |  0.05 |  0.86 |  0.03 |  3.081 |  0.2143 |  0.3673 |
-| **adjusted irt:posttest** | 11 | -1e-78 |  2e-78 |  0.00 |  0.00 |  0.89 |  2.11 |  8.113 |  0.0173 |  0.0000 |
-| **adjusted irt:abs_learn_gain** | 11 | -0.5 |  0.3 | -0.01 |  0.05 | -0.86 |  0.03 |  3.081 |  0.2143 |  0.0000 |
-| **adjusted irt:rel_learn_gain** | 11 | -0.009 |  0.005 | -0.00 |  0.00 | -0.88 |  0.06 |  3.214 |  0.2005 |  0.0000 |
+| **ctt:total** | 22 |  0 |  8 |  1.36 |  3.86 |  1.98 |  3.95 |  21.814 |  0.0000 |  0.3966 |
+| **ctt:pretest** | 11 |  0 |  4 |  1.00 |  2.00 |  1.11 | -0.14 |  4.216 |  0.1215 |  0.0682 |
+| **ctt:posttest** | 11 |  0 |  8 |  1.73 |  5.82 |  1.77 |  2.24 |  14.330 |  0.0008 |  0.5195 |
+| **ctt:abs_learn_gain** | 11 | -1 |  4 |  0.73 |  3.22 |  1.08 | -0.33 |  3.780 |  0.1511 |  0.0682 |
+| **ctt:rel_learn_gain** | 11 |  0 |  4 |  0.40 |  1.54 |  2.48 |  4.84 |  25.788 |  0.0000 |  0.0682 |
+| **irt:total** | 22 |  0 |  1 |  0.01 |  0.59 |  0.54 | -0.78 |  1.935 |  0.3800 |  0.4788 |
+| **irt:pretest** | 11 |  0 |  0 |  0.01 |  0.33 |  0.41 | -0.99 |  0.905 |  0.6359 |  0.3288 |
+| **irt:posttest** | 11 | -1 |  1 | -0.01 |  1.41 |  0.23 | -1.17 |  1.081 |  0.5824 |  0.6137 |
+| **irt:abs_learn_gain** | 11 | -1 |  1 | -0.02 |  0.84 |  0.62 | -0.91 |  1.447 |  0.4852 |  0.3288 |
+| **irt:rel_learn_gain** | 11 |  0 |  0 |  0.00 |  0.03 |  0.65 | -0.97 |  1.709 |  0.4255 |  0.3288 |
+| **adjusted irt:pretest** | 11 |  0 |  0 |  0.01 |  0.33 |  0.41 | -0.99 |  0.905 |  0.6359 |  0.3288 |
+| **adjusted irt:posttest** | 11 | -1 |  1 | -0.01 |  1.41 |  0.23 | -1.17 |  1.081 |  0.5824 |  0.6137 |
+| **adjusted irt:abs_learn_gain** | 11 | -1 |  1 | -0.02 |  0.84 |  0.62 | -0.91 |  1.447 |  0.4852 |  0.3288 |
+| **adjusted irt:rel_learn_gain** | 11 |  0 |  0 |  0.00 |  0.03 |  0.65 | -0.97 |  1.709 |  0.4255 |  0.3288 |
 
-![Pretest item scores](comp_fm_data_pretest_diff.png "Pretest item scores")
-![Posttest item scores](comp_fm_data_posttest_diff.png "Posttest item scores")
-![Pretest person scores](comp_fm_data_pretest_abil.png "Pretest person scores")
-![Posttest person scores](comp_fm_data_posttest_abil.png "Posttest person scores")
+![Item scores](comp_fm_diff.png "Item scores")
+![Person scores](comp_fm_abil.png "Person scores")
 
+#### General
 
 | | sample | min | max | mean | variance | skew | kurtosis | normal-t | normal-p | $\alpha$ |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **ctt:pretest** | 23 |  0 |  5 |  1.48 |  2.53 |  1.04 | -0.05 |  5.259 |  0.0721 |  0.8395 |
-| **ctt:posttest** | 23 |  0 |  8 |  2.70 |  5.49 |  0.57 | -0.44 |  1.705 |  0.4264 |  0.6369 |
-| **ctt:abs_learn_gain** | 23 | -2 |  5 |  1.22 |  4.54 |  0.46 | -1.09 |  3.439 |  0.1791 |  0.6369 |
-| **ctt:rel_learn_gain** | 23 | -0.04 |  0.1 |  0.02 |  0.00 |  0.44 | -1.08 |  3.219 |  0.2000 |  0.6369 |
-| **irt:pretest** | 23 | -1 |  2 |  0.03 |  0.72 | -0.11 | -0.99 |  1.572 |  0.4557 |  0.8402 |
-| **irt:posttest** | 23 | -0.9 |  0.7 |  0.02 |  0.17 | -0.41 | -0.45 |  0.902 |  0.6368 |  0.7251 |
-| **irt:abs_learn_gain** | 23 | -0.8 |  0.8 | -0.01 |  0.23 |  0.01 | -1.06 |  2.095 |  0.3508 |  0.7251 |
-| **irt:rel_learn_gain** | 23 | -0.02 |  0.02 | -0.00 |  0.00 | -0.04 | -1.04 |  1.919 |  0.3831 |  0.7251 |
-| **adjusted irt:pretest** | 23 | -1 |  2 |  0.03 |  0.72 | -0.11 | -0.99 |  1.572 |  0.4557 |  0.8402 |
-| **adjusted irt:posttest** | 23 | -0.9 |  0.7 |  0.02 |  0.17 | -0.41 | -0.45 |  0.902 |  0.6368 |  0.7251 |
-| **adjusted irt:abs_learn_gain** | 23 | -0.8 |  0.8 | -0.01 |  0.23 |  0.01 | -1.06 |  2.095 |  0.3508 |  0.7251 |
-| **adjusted irt:rel_learn_gain** | 23 | -0.02 |  0.02 | -0.00 |  0.00 | -0.04 | -1.04 |  1.919 |  0.3831 |  0.7251 |
+| **ctt:total** | 46 |  0 |  8 |  1.30 |  3.73 |  1.70 |  2.36 |  23.060 |  0.0000 |  0.4546 |
+| **ctt:pretest** | 23 |  0 |  4 |  0.57 |  1.17 |  2.04 |  3.30 |  21.414 |  0.0000 |  0.1695 |
+| **ctt:posttest** | 23 |  0 |  8 |  2.04 |  5.32 |  1.08 |  0.26 |  6.092 |  0.0476 |  0.4229 |
+| **ctt:abs_learn_gain** | 23 | -1 |  6 |  1.48 |  4.17 |  0.70 | -0.74 |  2.902 |  0.2343 |  0.1695 |
+| **ctt:rel_learn_gain** | 23 |  0 |  4 |  0.43 |  0.81 |  2.84 |  8.96 |  37.249 |  0.0000 |  0.1695 |
+| **irt:total** | 46 |  0 |  1 |  0.01 |  0.45 |  0.82 | -0.41 |  5.552 |  0.0623 |  0.4416 |
+| **irt:pretest** | 23 |  0 |  1 |  0.00 |  0.38 |  1.25 |  0.58 |  8.145 |  0.0170 |  0.2946 |
+| **irt:posttest** | 23 |  0 |  1 |  0.01 |  0.43 |  0.30 | -1.09 |  2.830 |  0.2429 |  0.5119 |
+| **irt:abs_learn_gain** | 23 | -1 |  0 |  0.01 |  0.43 |  0.01 | -1.20 |  3.545 |  0.1699 |  0.2946 |
+| **irt:rel_learn_gain** | 23 |  0 |  0 | -0.01 |  0.02 | -0.36 | -0.47 |  0.739 |  0.6912 |  0.2946 |
+| **adjusted irt:pretest** | 23 |  0 |  1 |  0.00 |  0.38 |  1.25 |  0.58 |  8.145 |  0.0170 |  0.2946 |
+| **adjusted irt:posttest** | 23 |  0 |  1 |  0.01 |  0.43 |  0.30 | -1.09 |  2.830 |  0.2429 |  0.5119 |
+| **adjusted irt:abs_learn_gain** | 23 | -1 |  0 |  0.01 |  0.43 |  0.01 | -1.20 |  3.545 |  0.1699 |  0.2946 |
+| **adjusted irt:rel_learn_gain** | 23 |  0 |  0 | -0.01 |  0.02 | -0.36 | -0.47 |  0.739 |  0.6912 |  0.2946 |
 
-![Pretest item scores](comp_gen_data_pretest_diff.png "Pretest item scores")
-![Posttest item scores](comp_gen_data_posttest_diff.png "Posttest item scores")
-![Pretest person scores](comp_gen_data_pretest_abil.png "Pretest person scores")
-![Posttest person scores](comp_gen_data_posttest_abil.png "Posttest person scores")
+![Item scores](comp_gen_diff.png "Item scores")
+![Person scores](comp_gen_abil.png "Person scores")
+![Item scores](comp_gain_diff.png "Item scores")
+![Person scores](comp_gain_abil.png "Person scores")
 
 ## Comparisons
 ### Knowledge questions
-### Between pre- and posttest
+#### Between pre- and posttest
 ##### Flashcard condition
 
 | | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
 |---|---:|---:|---:|---:|
-| **ctt** | -1.624 |  0.1187 | -1.624 |  0.1237 |
-| **irt** | -0.189 |  0.8521 | -0.189 |  0.8525 |
-| **adjusted irt** | -0.108 |  0.9153 | -0.108 |  0.9153 |
+| **ctt** | -1.902 |  0.0704 | -1.902 |  0.0837 |
 
 ##### Flashmap condition
 
 | | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
 |---|---:|---:|---:|---:|
-| **ctt** | -3.775 |  0.0012 | -3.775 |  0.0030 |
-| **irt** |  0.071 |  0.9445 |  0.071 |  0.9450 |
-| **adjusted irt** |  0.071 |  0.9445 |  0.071 |  0.9450 |
+| **ctt** | -1.578 |  0.1302 | -1.578 |  0.1445 |
+| **irt** | -0.101 |  0.9206 | -0.101 |  0.9216 |
+| **adjusted irt** | -0.101 |  0.9206 | -0.101 |  0.9216 |
 
 ##### Combined
 
 | | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
 |---|---:|---:|---:|---:|
-| **ctt** | -3.668 |  0.0007 | -3.668 |  0.0010 |
-| **irt** | -0.385 |  0.7022 | -0.385 |  0.7026 |
-| **adjusted irt** | -0.385 |  0.7022 | -0.385 |  0.7026 |
+| **ctt** | -2.515 |  0.0156 | -2.515 |  0.0196 |
+| **irt** | -0.072 |  0.9430 | -0.072 |  0.9433 |
+| **adjusted irt** | -0.072 |  0.9430 | -0.072 |  0.9433 |
 
-### Between conditions
+#### Between conditions
 ##### ctt
 
 | | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
 |---|---:|---:|---:|---:|
-| **pretest** |  1.384 |  0.1810 |  1.427 |  0.1736 |
-| **posttest** | -0.868 |  0.3953 | -0.870 |  0.3942 |
-| **abs_learn_gain** | -1.321 |  0.2008 | -1.329 |  0.1982 |
-| **rel_learn_gain** | -1.139 |  0.2673 | -1.152 |  0.2627 |
+| **total** | -0.110 |  0.9127 | -0.110 |  0.9130 |
+| **pretest** | -1.047 |  0.3071 | -1.000 |  0.3409 |
+| **posttest** | -0.017 |  0.9870 | -0.016 |  0.9870 |
+| **abs_learn_gain** |  0.081 |  0.9360 |  0.081 |  0.9363 |
+| **rel_learn_gain** |  0.004 |  0.9967 |  0.004 |  0.9968 |
 
 ##### irt
 
 | | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
 |---|---:|---:|---:|---:|
-| **pretest** |  0.007 |  0.9948 |  0.007 |  0.9949 |
-| **posttest** |  0.264 |  0.7941 |  0.276 |  0.7874 |
-| **abs_learn_gain** |  0.361 |  0.7216 |  0.357 |  0.7250 |
-| **rel_learn_gain** |  0.439 |  0.6652 |  0.436 |  0.6677 |
+| **total** |  0.001 |  0.9993 |  0.001 |  0.9993 |
+| **posttest** | -0.003 |  0.9976 | -0.003 |  0.9976 |
 
 ##### adjusted irt
 
 | | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
 |---|---:|---:|---:|---:|
-| **pretest** |  5.261 |  0.0000 |  5.069 |  0.0003 |
-| **posttest** |  12.721 |  0.0000 |  12.990 |  0.0000 |
-| **abs_learn_gain** |  0.163 |  0.8721 |  0.156 |  0.8791 |
-| **rel_learn_gain** |  0.225 |  0.8244 |  0.215 |  0.8338 |
+| **posttest** |  13.573 |  0.0000 |  13.940 |  0.0000 |
+
+### Comprehension questions
+#### Between pre- and posttest
+##### Flashcard condition
+
+| | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
+|---|---:|---:|---:|---:|
+| **ctt** | -3.259 |  0.0036 | -3.259 |  0.0071 |
+| **irt** |  0.047 |  0.9627 |  0.047 |  0.9631 |
+| **adjusted irt** |    nan |    nan |    nan |    nan |
+
+##### Flashmap condition
+
+| | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
+|---|---:|---:|---:|---:|
+| **ctt** | -0.863 |  0.3985 | -0.863 |  0.4010 |
+| **irt** |  0.043 |  0.9664 |  0.043 |  0.9665 |
+| **adjusted irt** |  0.043 |  0.9664 |  0.043 |  0.9665 |
+
+##### Combined
+
+| | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
+|---|---:|---:|---:|---:|
+| **ctt** | -2.785 |  0.0079 | -2.785 |  0.0090 |
+| **irt** | -0.042 |  0.9670 | -0.042 |  0.9670 |
+| **adjusted irt** | -0.042 |  0.9670 | -0.042 |  0.9670 |
+
+#### Between conditions
+##### ctt
+
+| | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
+|---|---:|---:|---:|---:|
+| **total** | -0.197 |  0.8445 | -0.197 |  0.8446 |
+| **pretest** | -1.965 |  0.0627 | -1.890 |  0.0845 |
+| **posttest** |  0.621 |  0.5414 |  0.619 |  0.5426 |
+| **abs_learn_gain** |  1.768 |  0.0915 |  1.780 |  0.0895 |
+| **rel_learn_gain** |  0.182 |  0.8576 |  0.175 |  0.8635 |
+
+##### irt
+
+| | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
+|---|---:|---:|---:|---:|
+| **total** | -0.141 |  0.8884 | -0.144 |  0.8862 |
+| **pretest** | -0.027 |  0.9788 | -0.026 |  0.9794 |
+| **posttest** | -0.016 |  0.9877 | -0.016 |  0.9876 |
+| **abs_learn_gain** | -0.008 |  0.9939 | -0.008 |  0.9938 |
+| **rel_learn_gain** |  0.012 |  0.9907 |  0.012 |  0.9906 |
+
+##### adjusted irt
+
+| | **Mann-Whitney-U k** | **Mann-Whitney-U p** | **Welch's t-test k** | **Welch's t-test p** |
+|---|---:|---:|---:|---:|
+| **pretest** |  10.886 |  0.0000 |  10.400 |  0.0000 |
+| **posttest** |  5.291 |  0.0000 |  5.055 |  0.0005 |
+| **abs_learn_gain** |  0.064 |  0.9494 |  0.061 |  0.9523 |
+| **rel_learn_gain** | -0.011 |  0.9911 | -0.011 |  0.9916 |
 
