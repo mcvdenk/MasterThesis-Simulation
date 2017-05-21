@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import numpy
 from scipy import stats
 
-db = MongoClient().flashmap
+db = MongoClient().flashmap_old
 
 #A script to calculate and f.write the proportionate agreement and the Cohen's kappa
 

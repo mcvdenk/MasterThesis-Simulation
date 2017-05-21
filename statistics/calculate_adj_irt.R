@@ -1,9 +1,15 @@
 library("TAM")
 
-D1 <- read.csv("item_matrix.csv")
-anchor <- read.csv("item_difficulties.csv")
-anchor
-mod1 <- tam(D1, xsi.fixed=anchor, control = list(maxiter = 100))
+D1 <- read.csv("item_matrix.csv", row.names = 1)
+items = colnames(D1)
+cls <- c(V1="integer", V2="numeric")
+anchor_df <- read.csv("item_difficulties.csv", colClasses=cls, stringsAsFactors=FALSE, header=FALSE)
+str(anchor_df)
+anchor <- as.matrix(anchor_df)
+str(anchor)
+
+mod1 <- tam(D1, xsi.fixed=anchor_df, control = list(maxiter = 300))
+#mod1 <- tam(D1, xsi.fixed=anchor_df)
 
 ItemDiff <- mod1$item
 write.csv(ItemDiff, file='ItemDiff.csv')
