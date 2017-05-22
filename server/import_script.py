@@ -129,7 +129,9 @@ for user_old in db_old.users.find():
                 if 'responses' in i:
                     for r in i['responses']:
                         response = Response(
-                            start = r['start'], end = r['end'], correct = r['correct'])
+                            start = datetime.fromtimestamp(r['start']),
+                            end = datetime.fromtimestamp(r['end']),
+                            correct = r['correct'])
                         instance.responses.append(r)
                 user_new.instances.append(instance)
         if 'tests' in user_old:

@@ -46,7 +46,7 @@ def create_item_matrix(tests):
     data.drop(unrel_cs, axis = 'columns', inplace = True, errors = 'ignore')
     return data
 
-def execute_tests(pretest, posttest, max_score):
+def append_tests(pretest, posttest, max_score):
     result = {subkey: {} for subkey in sorted_subkeys}
     if pretest and len(pretest['abilities']) > 7:
         result['pretest'] = pretest
@@ -81,12 +81,12 @@ def prepare_set(testsets, prefix):
     pretest_matrix.to_csv(prefix+'_pretest.csv')
     posttest_matrix.to_csv(prefix+'_posttest.csv')
     tests.plot_bin_histograms(pretest_matrix, posttest_matrix, 'pretest', 'posttest', prefix)
-    result['ctt'] = execute_tests(
+    result['ctt'] = append_tests(
             tests.calculate_ctt(pretest_matrix),
             tests.calculate_ctt(posttest_matrix),
             posttest_matrix.shape[1])
     result['ctt']['total'] = tests.calculate_ctt(total_matrix)
-    result['irt'] = execute_tests(
+    result['irt'] = append_tests(
             tests.calculate_irt(pretest_matrix),
             tests.calculate_irt(posttest_matrix),
             posttest_matrix.shape[1])
@@ -94,7 +94,7 @@ def prepare_set(testsets, prefix):
     if 'gen' in prefix:
         global difficulties
         difficulties = result['irt']['pretest']['difficulties']
-    result['adjusted irt'] = execute_tests(
+    result['adjusted irt'] = append_tests(
             tests.calculate_irt(pretest_matrix, xsi=difficulties.copy()),
             tests.calculate_irt(posttest_matrix, xsi=difficulties.copy()),
             posttest_matrix.shape[1])

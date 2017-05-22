@@ -2,6 +2,7 @@ from mongoengine import *
 from bson import objectid
 import tests
 import pandas
+import numpy as np
 
 import os,sys,inspect
 currentdir = os.path.dirname(os.path.abspath(
@@ -14,14 +15,13 @@ from questionnaire_item import QuestionnaireItem
 
 connect('flashmap')
 
-sorted_qu_keys = ['ctt', 'irt']
+sorted_keys = ['ctt', 'irt']
 flashcard_users = list(User.objects(condition="FLASHCARD", tests__size=2).only('questionnaire'))
 flashmap_users = list(User.objects(condition="FLASHMAP", tests__size=2).only('questionnaire'))
 unrel_cs = []
 
 def create_item_matrix(tests):
     columns = []
-    items = []
     items = QuestionnaireItem.objects
     for item in items:
         columns.append(str(item.id))
@@ -31,12 +31,12 @@ def create_item_matrix(tests):
         for response in test:
             data.ix[i, str(response.questionnaire_item.id)] +=\
                     response.answer * (2*int(response.phrasing) - 1)
-    data = data.dropna(axis='columns', how='all')
+    data = data.loc[:, data.sum(axis=0) != 0]
     return data
 
-def prepare_set(tests, prefix, xsi = ''):
+def prepare_set(qus, prefix):
     result = {key: {} for key in sorted_keys}
-    matrix = create_item_matrix(tests)
+    matrix = create_item_matrix(qus)
     matrix.to_csv(prefix+'.csv')
     tests.plot_uni_histograms(matrix, prefix)
     result['ctt'] = tests.calculate_ctt(matrix)
@@ -91,27 +91,43 @@ def wl(text):
 wl('## Descriptives')
 wl('### Usefulness')
 wl('#### Flashcard conditions')
-tests.print_qu_reliability_table(usefulness_fc_data)
+tests.print_reliability_table(usefulness_fc_data)
 wl('![Questionnaire item scores](usefulness_fc_diff.png "Questionnaire item scores")')
 wl('![Questionnaire person scores](usefulness_fc_abil.png "Questionnaire person scores")')
 wl('')
 wl('#### Flashmap conditions')
-tests.print_qu_reliability_table(usefulness_fm_data)
+tests.print_reliability_table(usefulness_fm_data)
 wl('![Questionnaire item scores](usefulness_fm_diff.png "Questionnaire item scores")')
 wl('![Questionnaire person scores](usefulness_fm_abil.png "Questionnaire person scores")')
 wl('')
 wl('#### Combined conditions')
-tests.print_qu_reliability_table(usefulness_gen_data)
+tests.print_reliability_table(usefulness_gen_data)
 wl('![Questionnaire item scores](usefulness_gen_diff.png "Questionnaire item scores")')
 wl('![Questionnaire person scores](usefulness_gen_abil.png "Questionnaire person scores")')
+wl('')
+wl('### Ease of use')
+wl('#### Flashcard conditions')
+tests.print_reliability_table(easeofuse_fc_data)
+wl('![Questionnaire item scores](easeofuse_fc_diff.png "Questionnaire item scores")')
+wl('![Questionnaire person scores](easeofuse_fc_abil.png "Questionnaire person scores")')
+wl('')
+wl('#### Flashmap conditions')
+tests.print_reliability_table(easeofuse_fm_data)
+wl('![Questionnaire item scores](easeofuse_fm_diff.png "Questionnaire item scores")')
+wl('![Questionnaire person scores](easeofuse_fm_abil.png "Questionnaire person scores")')
+wl('')
+wl('#### Combined conditions')
+tests.print_reliability_table(easeofuse_gen_data)
+wl('![Questionnaire item scores](easeofuse_gen_diff.png "Questionnaire item scores")')
+wl('![Questionnaire person scores](easeofuse_gen_abil.png "Questionnaire person scores")')
 wl('')
 
 wl('## Comparisons')
 wl('### Perceived usefulness questions')
-tests.print_qu_condition_comparison_table(usefulness_fc_data, usefulness_fm_data)
+tests.print_condition_comparison_table(usefulness_fc_data, usefulness_fm_data)
 wl('![Usefulness item scores](usefulness_diff.png "Usefulness item scores")')
 wl('![Usefulness person scores](usefulness_abil.png "Usefulness person scores")')
 wl('### Perceived ease of use questions')
-tests.print_qu_condition_comparison_table(easeofuse_fc_data, easeofuse_fm_data)
+tests.print_condition_comparison_table(easeofuse_fc_data, easeofuse_fm_data)
 wl('![Ease of use item scores](easeofuse_diff.png "Ease of use item scores")')
 wl('![Ease of use person scores](easeofuse_abil.png "Ease of use person scores")')

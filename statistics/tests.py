@@ -13,6 +13,7 @@ descr_str = "{:2d} | {: 2d} | {: 2d} | {: 4.2f} | {: 4.2f} | {: 4.2f} | {: 4.2f}
 test_str = "{: 6.3f} | {: 6.4f}"
 rel_str = "{: 6.4f}"
 
+sorted_model_keys = ['ctt', 'irt']
 sorted_test_model_keys = ['ctt', 'irt', 'adjusted irt']
 sorted_test_keys = ['total', 'pretest', 'posttest', 'abs_learn_gain', 'rel_learn_gain']
 output = sys.stdout
@@ -161,27 +162,24 @@ def plot_bin_histograms(matrix1, matrix2, label1, label2, prefix):
     plot.savefig(prefix+'_abil.png')
     plot.close()
 
-def print_test_reliability_table(data):
+def print_reliability_table(data, keys, subkeys = []):
     wl()
     print_table_row("", ["sample", "min", "max", "mean", "variance", "skew", "kurtosis", "normal-t", "normal-p", "$\\alpha$"])
     wl("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
-    for key in sorted_test_model_keys:
-        for subkey in sorted_test_keys:
-            if 'abilities' in data[key][subkey]:
-                print_table_row(key + ":" + subkey,
-                        reliability_tests(data[key][subkey]))
+    for key in keys:
+        if len(subkeys) != 0:
+            for subkey in subkeys:
+                if 'abilities' in data[key][subkey]:
+                    print_table_row(key + ":" + subkey,
+                            reliability_tests(data[key][subkey]))
+                else:
+                    print("Missing set: " + key + ":" + subkey)
+        else:
+            if 'abilities' in data[key]:
+                print_table_row(key,
+                        reliability_tests(data[key]))
             else:
                 print("Missing set: " + key + ":" + subkey)
-    wl()
-
-def print_qu_reliability_table(data):
-    wl()
-    print_table_row("", ["sample", "min", "max", "mean", "variance", "skew", "kurtosis", "normal-t", "normal-p", "$\\alpha$"])
-    wl("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
-    for key in sorted_test_model_keys:
-        if 'abilities' in data[key]:
-            print_table_row(key,
-                    reliability_tests(data[key]))
     wl()
 
 def reliability_tests(data):
@@ -197,11 +195,11 @@ def print_pre_post_comparison_tables(data1, data2, comb_data):
     wl("##### Combined")
     print_pre_post_comparison_table(comb_data)
 
-def print_pre_post_comparison_table(data):
+def print_pre_post_comparison_table(data, keys):
     wl()
     print_table_row("", ["**Mann-Whitney-U k**", "**Mann-Whitney-U p**", "**Welch's t-test k**", "**Welch's t-test p**"])
     wl("|---|---:|---:|---:|---:|")
-    for key in sorted_test_model_keys:
+    for key in keys:
         if 'abilities' in data[key]['pretest'] and\
                 'abilities' in data[key]['posttest']:
             print_table_row(key,
@@ -209,27 +207,17 @@ def print_pre_post_comparison_table(data):
                         data[key]['posttest']['abilities']))
     wl()
 
-def print_test_condition_comparison_tables(data1, data2):
-    for key in data1:
+def print_condition_comparison_tables(data1, data2, keys, subkeys):
+    for key in keys:
         wl("##### " + key)
-        print_test_condition_comparison_table(data1[key], data2[key])
+        print_condition_comparison_table(data1[key], data2[key], subkeys)
 
-def print_test_condition_comparison_table(data1, data2):
+def print_condition_comparison_table(data1, data2, keys):
     wl()
     print_table_row("", ["**Mann-Whitney-U k**", "**Mann-Whitney-U p**", "**Welch's t-test k**", "**Welch's t-test p**"])
     wl("|---|---:|---:|---:|---:|")
-    for subkey in sorted_test_keys:
-        if subkey in data1 and subkey in data2 and 'abilities' in data1[subkey] and 'abilities' in data2[subkey]:
-            print_table_row(subkey,
-                    comparison_tests(data1[subkey]['abilities'], data2[subkey]['abilities']))
-    wl()
-
-def print_qu_condition_comparison_table(data1, data2):
-    wl()
-    print_table_row("", ["**Mann-Whitney-U k**", "**Mann-Whitney-U p**", "**Welch's t-test k**", "**Welch's t-test p**"])
-    wl("|---|---:|---:|---:|---:|")
-    for key in sorted_test_model_keys:
-        if 'abilities' in data1[key] and 'abilities' in data2[key]:
+    for key in keys:
+        if key in data1 and key in data2 and 'abilities' in data1[key] and 'abilities' in data2[key]:
             print_table_row(key,
                     comparison_tests(data1[key]['abilities'], data2[key]['abilities']))
     wl()
