@@ -13,9 +13,6 @@ descr_str = "{:2d} | {: 2d} | {: 2d} | {: 4.2f} | {: 4.2f} | {: 4.2f} | {: 4.2f}
 test_str = "{: 6.3f} | {: 6.4f}"
 rel_str = "{: 6.4f}"
 
-sorted_model_keys = ['ctt', 'irt']
-sorted_test_model_keys = ['ctt', 'irt', 'adjusted irt']
-sorted_test_keys = ['total', 'pretest', 'posttest', 'abs_learn_gain', 'rel_learn_gain']
 output = sys.stdout
 
 def set_output(f):
@@ -117,7 +114,6 @@ def calculate_irt(data, xsi=None):
     cmd = ['Rscript', script]
     result = subprocess.call(cmd)
     if result != 0:
-        exit()
         return None
     
     diff_table = pandas.read_csv('ItemDiff.csv', index_col=1)
@@ -147,14 +143,18 @@ def plot_uni_histograms(matrix, prefix):
     plot.close()
 
 def plot_bin_histograms(matrix1, matrix2, label1, label2, prefix):
-    plot.hist([matrix1.sum(axis=0), matrix2.sum(axis=0)], label = [label1, label2])
+    plot.hist([matrix1.sum(axis=0)/matrix1.shape[0],
+            matrix2.sum(axis=0)/matrix2.shape[0]],
+        label = [label1, label2])
     plot.legend()
     plot.title(prefix+" item scores")
     plot.xlabel('Score')
     plot.ylabel('Frequency')
     plot.savefig(prefix+'_diff.png')
     plot.close()
-    plot.hist([matrix1.sum(axis=1), matrix2.sum(axis=1)], label = [label1, label2])
+    plot.hist([matrix1.sum(axis=1)/matrix1.shape[1],
+            matrix2.sum(axis=1)/matrix2.shape[1]],
+        label = [label1, label2])
     plot.legend()
     plot.xlabel('Score')
     plot.ylabel('Frequency')
@@ -175,11 +175,11 @@ def print_reliability_table(data, keys, subkeys = []):
                 else:
                     print("Missing set: " + key + ":" + subkey)
         else:
-            if 'abilities' in data[key]:
+            if data[key] != None and 'abilities' in data[key]:
                 print_table_row(key,
                         reliability_tests(data[key]))
             else:
-                print("Missing set: " + key + ":" + subkey)
+                print("Missing set: " + key)
     wl()
 
 def reliability_tests(data):
@@ -187,13 +187,13 @@ def reliability_tests(data):
             print_normaltest(data['abilities']),
             rel_str.format(data['reliability'])]
 
-def print_pre_post_comparison_tables(data1, data2, comb_data):
+def print_pre_post_comparison_tables(data1, data2, comb_data, keys):
     wl("##### Flashcard condition")
-    print_pre_post_comparison_table(data1)
+    print_pre_post_comparison_table(data1, keys)
     wl("##### Flashmap condition")
-    print_pre_post_comparison_table(data2)
+    print_pre_post_comparison_table(data2, keys)
     wl("##### Combined")
-    print_pre_post_comparison_table(comb_data)
+    print_pre_post_comparison_table(comb_data, keys)
 
 def print_pre_post_comparison_table(data, keys):
     wl()
@@ -210,7 +210,8 @@ def print_pre_post_comparison_table(data, keys):
 def print_condition_comparison_tables(data1, data2, keys, subkeys):
     for key in keys:
         wl("##### " + key)
-        print_condition_comparison_table(data1[key], data2[key], subkeys)
+        if data[key] != None:
+            print_condition_comparison_table(data1[key], data2[key], subkeys)
 
 def print_condition_comparison_table(data1, data2, keys):
     wl()

@@ -9,8 +9,523 @@
 </head>
 <body>
 <h2 id="descriptives">Descriptives</h2>
-<h3 id="knowledge-questions">Knowledge questions</h3>
+<h3 id="number-of-responses">Number of responses</h3>
 <h4 id="flashcard-conditions">Flashcard conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">12</td>
+<td align="right">298</td>
+<td align="right">915</td>
+<td align="right">408.17</td>
+<td align="right">28248.33</td>
+<td align="right">2.53</td>
+<td align="right">5.26</td>
+<td align="right">26.675</td>
+<td align="right">0.0000</td>
+<td align="right">0.8557</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">12</td>
+<td align="right">6</td>
+<td align="right">19</td>
+<td align="right">8.87</td>
+<td align="right">13.35</td>
+<td align="right">2.53</td>
+<td align="right">5.26</td>
+<td align="right">26.675</td>
+<td align="right">0.0000</td>
+<td align="right">0.8557</td>
+</tr>
+</tbody>
+</table>
+<p><img src="responses_fc_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="responses_fc_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h4 id="flashmap-conditions">Flashmap conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">11</td>
+<td align="right">278</td>
+<td align="right">471</td>
+<td align="right">374.36</td>
+<td align="right">4875.05</td>
+<td align="right">0.13</td>
+<td align="right">-1.28</td>
+<td align="right">1.516</td>
+<td align="right">0.4686</td>
+<td align="right">0.7098</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">11</td>
+<td align="right">5</td>
+<td align="right">9</td>
+<td align="right">7.49</td>
+<td align="right">1.95</td>
+<td align="right">0.13</td>
+<td align="right">-1.28</td>
+<td align="right">1.516</td>
+<td align="right">0.4686</td>
+<td align="right">0.7098</td>
+</tr>
+</tbody>
+</table>
+<p><img src="responses_fm_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="responses_fm_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h4 id="combined-conditions">Combined conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">23</td>
+<td align="right">328</td>
+<td align="right">1230</td>
+<td align="right">474.74</td>
+<td align="right">34192.57</td>
+<td align="right">3.12</td>
+<td align="right">10.33</td>
+<td align="right">41.081</td>
+<td align="right">0.0000</td>
+<td align="right">0.8731</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">23</td>
+<td align="right">6</td>
+<td align="right">24</td>
+<td align="right">9.31</td>
+<td align="right">13.15</td>
+<td align="right">3.12</td>
+<td align="right">10.33</td>
+<td align="right">41.081</td>
+<td align="right">0.0000</td>
+<td align="right">0.8731</td>
+</tr>
+</tbody>
+</table>
+<p><img src="responses_gen_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="responses_gen_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h3 id="percentage-of-responses-marked-as-correct">Percentage of responses marked as correct</h3>
+<h4 id="flashcard-conditions-1">Flashcard conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">12</td>
+<td align="right">35</td>
+<td align="right">43</td>
+<td align="right">40.42</td>
+<td align="right">4.04</td>
+<td align="right">-1.15</td>
+<td align="right">1.74</td>
+<td align="right">8.672</td>
+<td align="right">0.0131</td>
+<td align="right">0.9106</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.88</td>
+<td align="right">0.00</td>
+<td align="right">-1.15</td>
+<td align="right">1.74</td>
+<td align="right">8.672</td>
+<td align="right">0.0131</td>
+<td align="right">0.9106</td>
+</tr>
+</tbody>
+</table>
+<p><img src="score_fc_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="score_fc_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h4 id="flashmap-conditions-1">Flashmap conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">11</td>
+<td align="right">43</td>
+<td align="right">51</td>
+<td align="right">47.11</td>
+<td align="right">6.19</td>
+<td align="right">0.31</td>
+<td align="right">-1.17</td>
+<td align="right">1.231</td>
+<td align="right">0.5404</td>
+<td align="right">0.9511</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">11</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.92</td>
+<td align="right">0.00</td>
+<td align="right">0.31</td>
+<td align="right">-1.17</td>
+<td align="right">1.231</td>
+<td align="right">0.5404</td>
+<td align="right">0.9511</td>
+</tr>
+</tbody>
+</table>
+<p><img src="score_fm_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="score_fm_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h4 id="combined-conditions-1">Combined conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">23</td>
+<td align="right">40</td>
+<td align="right">51</td>
+<td align="right">45.97</td>
+<td align="right">6.47</td>
+<td align="right">0.06</td>
+<td align="right">0.22</td>
+<td align="right">0.711</td>
+<td align="right">0.7008</td>
+<td align="right">0.9459</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">23</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.90</td>
+<td align="right">0.00</td>
+<td align="right">0.06</td>
+<td align="right">0.22</td>
+<td align="right">0.711</td>
+<td align="right">0.7008</td>
+<td align="right">0.9459</td>
+</tr>
+</tbody>
+</table>
+<p><img src="score_gen_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="score_gen_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h3 id="amount-of-time-spent-on-the-application">Amount of time spent on the application</h3>
+<h4 id="flashcard-conditions-2">Flashcard conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">12</td>
+<td align="right">1544</td>
+<td align="right">12345</td>
+<td align="right">8173.94</td>
+<td align="right">10611999.29</td>
+<td align="right">-0.77</td>
+<td align="right">-0.33</td>
+<td align="right">2.156</td>
+<td align="right">0.3402</td>
+<td align="right">0.8776</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">12</td>
+<td align="right">33</td>
+<td align="right">268</td>
+<td align="right">177.69</td>
+<td align="right">5015.12</td>
+<td align="right">-0.77</td>
+<td align="right">-0.33</td>
+<td align="right">2.156</td>
+<td align="right">0.3402</td>
+<td align="right">0.8776</td>
+</tr>
+</tbody>
+</table>
+<p><img src="time_fc_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="time_fc_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h4 id="flashmap-conditions-2">Flashmap conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">11</td>
+<td align="right">1707</td>
+<td align="right">12233</td>
+<td align="right">7221.30</td>
+<td align="right">8917086.17</td>
+<td align="right">0.05</td>
+<td align="right">-0.44</td>
+<td align="right">0.092</td>
+<td align="right">0.9551</td>
+<td align="right">0.8268</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">11</td>
+<td align="right">34</td>
+<td align="right">244</td>
+<td align="right">144.43</td>
+<td align="right">3566.83</td>
+<td align="right">0.05</td>
+<td align="right">-0.44</td>
+<td align="right">0.092</td>
+<td align="right">0.9551</td>
+<td align="right">0.8268</td>
+</tr>
+</tbody>
+</table>
+<p><img src="time_fm_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="time_fm_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h4 id="combined-conditions-2">Combined conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">23</td>
+<td align="right">1426</td>
+<td align="right">16484</td>
+<td align="right">9283.95</td>
+<td align="right">14203173.83</td>
+<td align="right">-0.31</td>
+<td align="right">-0.29</td>
+<td align="right">0.544</td>
+<td align="right">0.7617</td>
+<td align="right">0.8591</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">23</td>
+<td align="right">27</td>
+<td align="right">323</td>
+<td align="right">182.04</td>
+<td align="right">5460.66</td>
+<td align="right">-0.31</td>
+<td align="right">-0.29</td>
+<td align="right">0.544</td>
+<td align="right">0.7617</td>
+<td align="right">0.8591</td>
+</tr>
+</tbody>
+</table>
+<p><img src="time_gen_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="time_gen_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h2 id="comparisons">Comparisons</h2>
+<h3 id="number-of-responses-1">Number of responses</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right"><strong>Mann-Whitney-U k</strong></th>
+<th align="right"><strong>Mann-Whitney-U p</strong></th>
+<th align="right"><strong>Welch's t-test k</strong></th>
+<th align="right"><strong>Welch's t-test p</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">0.619</td>
+<td align="right">0.5426</td>
+<td align="right">0.639</td>
+<td align="right">0.5324</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">1.180</td>
+<td align="right">0.2513</td>
+<td align="right">1.220</td>
+<td align="right">0.2420</td>
+</tr>
+</tbody>
+</table>
+<p><img src="responses_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="responses_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h3 id="percentage-of-responses-marked-as-correct-1">Percentage of responses marked as correct</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right"><strong>Mann-Whitney-U k</strong></th>
+<th align="right"><strong>Mann-Whitney-U p</strong></th>
+<th align="right"><strong>Welch's t-test k</strong></th>
+<th align="right"><strong>Welch's t-test p</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">-16.597</td>
+<td align="right">0.0000</td>
+<td align="right">-15.857</td>
+<td align="right">0.0000</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">-16.421</td>
+<td align="right">0.0000</td>
+<td align="right">-15.689</td>
+<td align="right">0.0000</td>
+</tr>
+</tbody>
+</table>
+<p><img src="score_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="score_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h3 id="amount-of-time-spent-on-the-application-1">Amount of time spent on the application</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right"><strong>Mann-Whitney-U k</strong></th>
+<th align="right"><strong>Mann-Whitney-U p</strong></th>
+<th align="right"><strong>Welch's t-test k</strong></th>
+<th align="right"><strong>Welch's t-test p</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>abs</strong></td>
+<td align="right">7.924</td>
+<td align="right">0.0000</td>
+<td align="right">8.292</td>
+<td align="right">0.0000</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>rel</strong></td>
+<td align="right">7.954</td>
+<td align="right">0.0000</td>
+<td align="right">8.324</td>
+<td align="right">0.0000</td>
+</tr>
+</tbody>
+</table>
+<p><img src="time_diff.png" title="Instance item scores" alt="Instance item scores" /> <img src="time_abil.png" title="Instance person scores" alt="Instance person scores" /></p>
+<h2 id="descriptives-1">Descriptives</h2>
+<h3 id="knowledge-questions">Knowledge questions</h3>
+<h4 id="flashcard-conditions-3">Flashcard conditions</h4>
 <table>
 <thead>
 <tr class="header">
@@ -226,7 +741,7 @@
 </tbody>
 </table>
 <p><img src="know_fc_diff.png" title="Item scores" alt="Item scores" /> <img src="know_fc_abil.png" title="Person scores" alt="Person scores" /></p>
-<h4 id="flashmap-conditions">Flashmap conditions</h4>
+<h4 id="flashmap-conditions-3">Flashmap conditions</h4>
 <table>
 <thead>
 <tr class="header">
@@ -659,7 +1174,7 @@
 </table>
 <p><img src="know_gen_diff.png" title="Item scores" alt="Item scores" /> <img src="know_gen_abil.png" title="Person scores" alt="Person scores" /></p>
 <h3 id="comprehension-questions">Comprehension questions</h3>
-<h4 id="flashcard-conditions-1">Flashcard conditions</h4>
+<h4 id="flashcard-conditions-4">Flashcard conditions</h4>
 <table>
 <thead>
 <tr class="header">
@@ -875,7 +1390,7 @@
 </tbody>
 </table>
 <p><img src="comp_fc_diff.png" title="Item scores" alt="Item scores" /> <img src="comp_fc_abil.png" title="Person scores" alt="Person scores" /></p>
-<h3 id="flashmap-conditions-1">Flashmap conditions</h3>
+<h3 id="flashmap-conditions-4">Flashmap conditions</h3>
 <table>
 <thead>
 <tr class="header">
@@ -1307,7 +1822,7 @@
 </tbody>
 </table>
 <p><img src="comp_gen_diff.png" title="Item scores" alt="Item scores" /> <img src="comp_gen_abil.png" title="Person scores" alt="Person scores" /></p>
-<h2 id="comparisons">Comparisons</h2>
+<h2 id="comparisons-1">Comparisons</h2>
 <h3 id="knowledge-questions-1">Knowledge questions</h3>
 <h4 id="between-pre--and-posttest">Between pre- and posttest</h4>
 <h5 id="flashcard-condition">Flashcard condition</h5>
@@ -1820,5 +2335,475 @@
 </tbody>
 </table>
 <p><img src="comp_gain_diff.png" title="Item scores" alt="Item scores" /> <img src="comp_gain_abil.png" title="Person scores" alt="Person scores" /></p>
+<h3 id="pretest-and-posttest">Pretest and Posttest</h3>
+<ul>
+<li>Flashcard condition</li>
+<li>IRT
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Classical
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>IRT with set item difficulties
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Flashmap condition</li>
+<li>IRT
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Classical
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>IRT with set item difficulties
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>General</li>
+<li>IRT
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Classical
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>IRT with set item difficulties
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+</ul>
+<h3 id="flashcard-and-flashmap">Flashcard and Flashmap</h3>
+<ul>
+<li>Pre-test</li>
+<li>IRT
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Classical
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>IRT with set item difficulties
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Post-test</li>
+<li>IRT
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Classical
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>IRT with set item difficulties
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Absolute learning gain</li>
+<li>IRT
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Classical
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>IRT with set item difficulties
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Relative learning gain</li>
+<li>IRT
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>Classical
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+<li>IRT with set item difficulties
+<ul>
+<li>Recommended test</li>
+<li>Mann-Whitney-U test</li>
+<li>Welch's t-test</li>
+</ul></li>
+</ul>
+<h2 id="descriptives-2">Descriptives</h2>
+<h3 id="usefulness">Usefulness</h3>
+<h4 id="flashcard-conditions-5">Flashcard conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>ctt</strong></td>
+<td align="right">12</td>
+<td align="right">-4</td>
+<td align="right">14</td>
+<td align="right">6.50</td>
+<td align="right">27.36</td>
+<td align="right">-0.57</td>
+<td align="right">-0.52</td>
+<td align="right">1.144</td>
+<td align="right">0.5643</td>
+<td align="right">0.6432</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>irt</strong></td>
+<td align="right">12</td>
+<td align="right">-5</td>
+<td align="right">1</td>
+<td align="right">-0.16</td>
+<td align="right">4.40</td>
+<td align="right">-1.89</td>
+<td align="right">3.15</td>
+<td align="right">17.284</td>
+<td align="right">0.0002</td>
+<td align="right">0.6263</td>
+</tr>
+</tbody>
+</table>
+<p><img src="usefulness_fc_diff.png" title="Questionnaire item scores" alt="Questionnaire item scores" /> <img src="usefulness_fc_abil.png" title="Questionnaire person scores" alt="Questionnaire person scores" /></p>
+<h4 id="flashmap-conditions-5">Flashmap conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>ctt</strong></td>
+<td align="right">11</td>
+<td align="right">0</td>
+<td align="right">13</td>
+<td align="right">8.82</td>
+<td align="right">15.16</td>
+<td align="right">-1.05</td>
+<td align="right">0.32</td>
+<td align="right">4.698</td>
+<td align="right">0.0955</td>
+<td align="right">0.6777</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>irt</strong></td>
+<td align="right">11</td>
+<td align="right">-3</td>
+<td align="right">1</td>
+<td align="right">-0.15</td>
+<td align="right">1.89</td>
+<td align="right">-1.41</td>
+<td align="right">1.44</td>
+<td align="right">9.670</td>
+<td align="right">0.0079</td>
+<td align="right">0.5298</td>
+</tr>
+</tbody>
+</table>
+<p><img src="usefulness_fm_diff.png" title="Questionnaire item scores" alt="Questionnaire item scores" /> <img src="usefulness_fm_abil.png" title="Questionnaire person scores" alt="Questionnaire person scores" /></p>
+<h4 id="combined-conditions-3">Combined conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>ctt</strong></td>
+<td align="right">23</td>
+<td align="right">-4</td>
+<td align="right">14</td>
+<td align="right">7.61</td>
+<td align="right">21.98</td>
+<td align="right">-0.86</td>
+<td align="right">-0.02</td>
+<td align="right">3.864</td>
+<td align="right">0.1448</td>
+<td align="right">0.6509</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>irt</strong></td>
+<td align="right">23</td>
+<td align="right">-3</td>
+<td align="right">2</td>
+<td align="right">0.49</td>
+<td align="right">1.82</td>
+<td align="right">-0.73</td>
+<td align="right">0.55</td>
+<td align="right">4.058</td>
+<td align="right">0.1315</td>
+<td align="right">0.4619</td>
+</tr>
+</tbody>
+</table>
+<p><img src="usefulness_gen_diff.png" title="Questionnaire item scores" alt="Questionnaire item scores" /> <img src="usefulness_gen_abil.png" title="Questionnaire person scores" alt="Questionnaire person scores" /></p>
+<h3 id="ease-of-use">Ease of use</h3>
+<h4 id="flashcard-conditions-6">Flashcard conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>ctt</strong></td>
+<td align="right">12</td>
+<td align="right">-4</td>
+<td align="right">17</td>
+<td align="right">6.58</td>
+<td align="right">38.08</td>
+<td align="right">-0.26</td>
+<td align="right">-0.62</td>
+<td align="right">0.232</td>
+<td align="right">0.8904</td>
+<td align="right">0.8794</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>irt</strong></td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">0.91</td>
+<td align="right">1.87</td>
+<td align="right">1.08</td>
+<td align="right">0.52</td>
+<td align="right">5.358</td>
+<td align="right">0.0686</td>
+<td align="right">0.2295</td>
+</tr>
+</tbody>
+</table>
+<p><img src="easeofuse_fc_diff.png" title="Questionnaire item scores" alt="Questionnaire item scores" /> <img src="easeofuse_fc_abil.png" title="Questionnaire person scores" alt="Questionnaire person scores" /></p>
+<h4 id="flashmap-conditions-6">Flashmap conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>ctt</strong></td>
+<td align="right">11</td>
+<td align="right">0</td>
+<td align="right">19</td>
+<td align="right">8.27</td>
+<td align="right">26.22</td>
+<td align="right">0.50</td>
+<td align="right">0.12</td>
+<td align="right">1.725</td>
+<td align="right">0.4220</td>
+<td align="right">0.7689</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>irt</strong></td>
+<td align="right">11</td>
+<td align="right">-2</td>
+<td align="right">2</td>
+<td align="right">0.22</td>
+<td align="right">1.87</td>
+<td align="right">-0.20</td>
+<td align="right">1.01</td>
+<td align="right">3.041</td>
+<td align="right">0.2186</td>
+<td align="right">0.2538</td>
+</tr>
+</tbody>
+</table>
+<p><img src="easeofuse_fm_diff.png" title="Questionnaire item scores" alt="Questionnaire item scores" /> <img src="easeofuse_fm_abil.png" title="Questionnaire person scores" alt="Questionnaire person scores" /></p>
+<h4 id="combined-conditions-4">Combined conditions</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sample</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">variance</th>
+<th align="right">skew</th>
+<th align="right">kurtosis</th>
+<th align="right">normal-t</th>
+<th align="right">normal-p</th>
+<th align="right"><span class="math"><em>α</em></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>ctt</strong></td>
+<td align="right">23</td>
+<td align="right">-4</td>
+<td align="right">19</td>
+<td align="right">7.39</td>
+<td align="right">31.70</td>
+<td align="right">-0.08</td>
+<td align="right">-0.10</td>
+<td align="right">0.239</td>
+<td align="right">0.8876</td>
+<td align="right">0.8285</td>
+</tr>
+</tbody>
+</table>
+<p><img src="easeofuse_gen_diff.png" title="Questionnaire item scores" alt="Questionnaire item scores" /> <img src="easeofuse_gen_abil.png" title="Questionnaire person scores" alt="Questionnaire person scores" /></p>
+<h2 id="comparisons-2">Comparisons</h2>
+<h3 id="perceived-usefulness-questions">Perceived usefulness questions</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right"><strong>Mann-Whitney-U k</strong></th>
+<th align="right"><strong>Mann-Whitney-U p</strong></th>
+<th align="right"><strong>Welch's t-test k</strong></th>
+<th align="right"><strong>Welch's t-test p</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>ctt</strong></td>
+<td align="right">-1.196</td>
+<td align="right">0.2449</td>
+<td align="right">-1.212</td>
+<td align="right">0.2395</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>irt</strong></td>
+<td align="right">-0.014</td>
+<td align="right">0.9891</td>
+<td align="right">-0.014</td>
+<td align="right">0.9889</td>
+</tr>
+</tbody>
+</table>
+<p><img src="usefulness_diff.png" title="Usefulness item scores" alt="Usefulness item scores" /> <img src="usefulness_abil.png" title="Usefulness person scores" alt="Usefulness person scores" /></p>
+<h3 id="perceived-ease-of-use-questions">Perceived ease of use questions</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right"><strong>Mann-Whitney-U k</strong></th>
+<th align="right"><strong>Mann-Whitney-U p</strong></th>
+<th align="right"><strong>Welch's t-test k</strong></th>
+<th align="right"><strong>Welch's t-test p</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>ctt</strong></td>
+<td align="right">-0.711</td>
+<td align="right">0.4851</td>
+<td align="right">-0.717</td>
+<td align="right">0.4816</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>irt</strong></td>
+<td align="right">1.206</td>
+<td align="right">0.2411</td>
+<td align="right">1.206</td>
+<td align="right">0.2412</td>
+</tr>
+</tbody>
+</table>
+<p><img src="easeofuse_diff.png" title="Ease of use item scores" alt="Ease of use item scores" /> <img src="easeofuse_abil.png" title="Ease of use person scores" alt="Ease of use person scores" /></p>
 </body>
 </html>
